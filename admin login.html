@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Access</title>
+<!-- No favicon, no branding — hidden page -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#060610;color:#f0f0ff;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;}
+.admin-card{background:#0f0f1e;border:1px solid rgba(0,212,255,0.15);border-radius:20px;padding:44px;width:100%;max-width:400px;box-shadow:0 40px 80px rgba(0,0,0,0.6);}
+.admin-header{text-align:center;margin-bottom:32px;}
+.admin-icon{width:54px;height:54px;background:linear-gradient(135deg,#7c3aed,#4c1d95);border-radius:14px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:24px;}
+.admin-title{font-weight:800;font-size:20px;color:#f0f0ff;}
+.admin-sub{color:rgba(255,255,255,0.35);font-size:13px;margin-top:4px;}
+.form-label{display:block;font-size:11px;font-weight:700;margin-bottom:6px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.5px;}
+.form-input{width:100%;padding:12px 14px;border:1.5px solid rgba(255,255,255,0.07);border-radius:10px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:#1a1a2e;color:#f0f0ff;transition:all .2s;margin-bottom:14px;}
+.form-input:focus{border-color:#7c3aed;}
+
+/* CAPTCHA */
+.captcha-wrap{margin-bottom:18px;}
+.captcha-label{display:block;font-size:11px;font-weight:700;margin-bottom:8px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.5px;}
+.captcha-display{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d0d20,#1a1a35);border:1.5px solid rgba(124,58,237,0.3);border-radius:12px;padding:14px 24px;margin-bottom:8px;position:relative;overflow:hidden;min-width:160px;}
+.captcha-display::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(124,58,237,0.03) 3px,rgba(124,58,237,0.03) 6px);}
+.captcha-chars{display:flex;gap:4px;position:relative;z-index:1;}
+.captcha-char{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;display:inline-block;user-select:none;}
+.captcha-char:nth-child(1){color:#a78bfa;transform:rotate(-8deg) translateY(2px);}
+.captcha-char:nth-child(2){color:#00d4ff;transform:rotate(5deg) translateY(-3px);}
+.captcha-char:nth-child(3){color:#f5c518;transform:rotate(-4deg) translateY(3px);}
+.captcha-char:nth-child(4){color:#10b981;transform:rotate(7deg) translateY(-2px);}
+.captcha-char:nth-child(5){color:#a78bfa;transform:rotate(-5deg) translateY(2px);}
+.captcha-row{display:flex;align-items:center;gap:10px;}
+.captcha-refresh-btn{background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.3);color:#a78bfa;width:40px;height:40px;border-radius:9px;cursor:pointer;font-size:16px;transition:.2s;flex-shrink:0;}
+.captcha-refresh-btn:hover{background:rgba(124,58,237,0.2);}
+.captcha-input-field{flex:1;padding:11px 14px;border:1.5px solid rgba(255,255,255,0.07);border-radius:10px;font-size:15px;font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:3px;outline:none;background:#1a1a2e;color:#f0f0ff;transition:all .2s;text-transform:uppercase;}
+.captcha-input-field:focus{border-color:#7c3aed;}
+.captcha-hint{color:rgba(255,255,255,0.25);font-size:11px;margin-top:5px;}
+.captcha-err{color:#ef4444;font-size:12px;margin-top:5px;display:none;font-weight:600;}
+.captcha-ok{color:#10b981;font-size:12px;margin-top:5px;display:none;font-weight:600;}
+
+.error-msg{color:#ef4444;font-size:13px;font-weight:600;text-align:center;margin-bottom:12px;padding:10px;background:rgba(239,68,68,0.08);border-radius:9px;border:1px solid rgba(239,68,68,0.15);display:none;}
+.error-msg.show{display:block;}
+.btn-admin{width:100%;background:linear-gradient(135deg,#7c3aed,#4c1d95);color:#fff;border:none;padding:14px;border-radius:11px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.btn-admin:hover{opacity:0.9;transform:translateY(-1px);}
+.back-link{display:block;text-align:center;margin-top:18px;color:rgba(255,255,255,0.25);font-size:13px;text-decoration:none;transition:.2s;}
+.back-link:hover{color:rgba(255,255,255,0.5);}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(18px);background:#1a1a2e;color:#fff;padding:13px 22px;border-radius:11px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:3000;white-space:nowrap;border:1px solid rgba(255,255,255,0.07);}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.success{background:#10b981;}
+</style>
+</head>
+<body>
+
+<div class="admin-card">
+  <div class="admin-header">
+    <div class="admin-icon">🔐</div>
+    <div class="admin-title">Admin Access</div>
+    <div class="admin-sub">Authorized personnel only</div>
+  </div>
+
+  <div class="error-msg" id="error-msg"></div>
+
+  <label class="form-label">Admin Email</label>
+  <input class="form-input" type="email" id="admin-email" placeholder="admin@ahsanmobiles.com" onkeydown="if(event.key==='Enter') doAdminLogin()">
+
+  <label class="form-label">Password</label>
+  <input class="form-input" type="password" id="admin-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter') doAdminLogin()">
+
+  <!-- CAPTCHA -->
+  <div class="captcha-wrap">
+    <span class="captcha-label">Security Verification</span>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+      <div class="captcha-display">
+        <div class="captcha-chars" id="captcha-chars"></div>
+      </div>
+      <button class="captcha-refresh-btn" onclick="generateCaptcha()" title="Refresh">🔄</button>
+    </div>
+    <div class="captcha-row">
+      <input class="captcha-input-field" type="text" id="captcha-input" placeholder="TYPE CODE" maxlength="5" autocomplete="off" oninput="this.value=this.value.toUpperCase()">
+    </div>
+    <div class="captcha-hint">Type the 5 characters shown above</div>
+    <div class="captcha-err" id="captcha-err">❌ Incorrect — try again</div>
+    <div class="captcha-ok" id="captcha-ok">✅ Verified!</div>
+  </div>
+
+  <button class="btn-admin" onclick="doAdminLogin()">🔐 Access Dashboard</button>
+  <a class="back-link" href="index.html">← Back to website</a>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBYw7O8vjPGUc8MzfjUiMCNgCnxh-fQDbs",
+  authDomain: "ahsan-mobiles.firebaseapp.com",
+  projectId: "ahsan-mobiles",
+  storageBucket: "ahsan-mobiles.firebasestorage.app",
+  messagingSenderId: "527845362077",
+  appId: "1:527845362077:web:aa19595d090c08f648c774"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Captcha
+let captchaCode = '';
+const CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+
+window.generateCaptcha = function() {
+  captchaCode = '';
+  for(let i = 0; i < 5; i++) captchaCode += CHARS[Math.floor(Math.random() * CHARS.length)];
+  const container = document.getElementById('captcha-chars');
+  container.innerHTML = '';
+  captchaCode.split('').forEach(ch => {
+    const span = document.createElement('span');
+    span.className = 'captcha-char';
+    span.textContent = ch;
+    container.appendChild(span);
+  });
+  document.getElementById('captcha-input').value = '';
+  document.getElementById('captcha-err').style.display = 'none';
+  document.getElementById('captcha-ok').style.display = 'none';
+};
+
+function checkCaptcha() {
+  const input = document.getElementById('captcha-input').value.trim().toUpperCase();
+  if(input === captchaCode) {
+    document.getElementById('captcha-err').style.display = 'none';
+    document.getElementById('captcha-ok').style.display = 'block';
+    return true;
+  }
+  document.getElementById('captcha-ok').style.display = 'none';
+  document.getElementById('captcha-err').style.display = 'block';
+  window.generateCaptcha();
+  return false;
+}
+
+window.doAdminLogin = async function() {
+  const errEl = document.getElementById('error-msg');
+  errEl.classList.remove('show');
+
+  const email = document.getElementById('admin-email').value.trim();
+  const pass = document.getElementById('admin-pass').value.trim();
+
+  if(!email) { errEl.textContent = 'Please enter admin email'; errEl.classList.add('show'); return; }
+  if(!pass)  { errEl.textContent = 'Please enter password'; errEl.classList.add('show'); return; }
+  if(!checkCaptcha()) return;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    showToast('✅ Access granted!', 'success');
+    setTimeout(() => window.location.href = 'admin.html', 1200);
+  } catch(e) {
+    errEl.textContent = '❌ Invalid credentials. Access denied.';
+    errEl.classList.add('show');
+    window.generateCaptcha();
+  }
+};
+
+function showToast(msg, type='') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + type;
+  setTimeout(() => { t.className = 'toast'; }, 3000);
+}
+
+// Init
+window.generateCaptcha();
+</script>
+
+</body>
+</html>

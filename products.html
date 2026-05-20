@@ -8,48 +8,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
-
 :root{
-  --nav-h:68px;
-  --radius:16px;
-  --shadow:0 4px 32px rgba(0,0,0,0.3);
-  --shadow-lg:0 20px 60px rgba(0,0,0,0.5);
-  --accent:#00d4ff;
-  --accent2:#7c3aed;
-  --gold:#f5c518;
-  --success:#10b981;
-  --warn:#f59e0b;
-  --danger:#ef4444;
-  --bg:#0a0a14;
-  --bg2:#0f0f1e;
-  --bg3:#141428;
-  --surface:#13131f;
-  --surface2:#1a1a2e;
-  --border:rgba(255,255,255,0.07);
-  --border2:rgba(0,212,255,0.18);
-  --text:#f0f0ff;
-  --text2:#c8c8e0;
-  --muted:rgba(255,255,255,0.45);
-  --card-bg:#13131f;
-  --input-bg:#1a1a2e;
-  --nav-bg:rgba(10,10,20,0.97);
+  --nav-h:68px;--radius:16px;--accent:#00d4ff;--accent2:#7c3aed;--gold:#f5c518;
+  --success:#10b981;--warn:#f59e0b;--danger:#ef4444;--bg:#0a0a14;--bg2:#0f0f1e;
+  --bg3:#141428;--surface:#13131f;--surface2:#1a1a2e;--border:rgba(255,255,255,0.07);
+  --border2:rgba(0,212,255,0.18);--text:#f0f0ff;--text2:#c8c8e0;--muted:rgba(255,255,255,0.45);
+  --card-bg:#13131f;--input-bg:#1a1a2e;--nav-bg:rgba(10,10,20,0.97);
 }
-
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 
-/* ===== NAVBAR ===== */
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav-bg);backdrop-filter:blur(24px);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid var(--border);}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer;}
 .nav-logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
 .nav-logo-text{color:var(--text);font-weight:800;font-size:18px;letter-spacing:-0.5px;}
 .nav-logo-text span{color:var(--accent);}
 .nav-links{display:flex;gap:4px;list-style:none;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all 0.2s;cursor:pointer;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all 0.2s;}
 .nav-links a:hover,.nav-links a.active{color:var(--accent);background:rgba(0,212,255,0.08);}
 .nav-actions{display:flex;gap:8px;align-items:center;}
 .nav-search-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:16px;transition:all 0.2s;}
@@ -68,16 +46,17 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .mob-menu a{padding:12px 14px;border-radius:9px;font-size:.95rem;font-weight:500;color:var(--muted);transition:.2s;text-decoration:none;}
 .mob-menu a:hover{color:var(--accent);background:rgba(0,212,255,0.08);}
 
-/* ===== SECTION COMMON ===== */
-.section{padding:90px 40px;}
-.section-header{text-align:center;margin-bottom:60px;}
-.section-tag{display:inline-block;background:rgba(0,212,255,0.08);color:var(--accent);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:14px;border:1px solid rgba(0,212,255,0.18);}
-.section-title{font-family:'Bebas Neue',cursive;font-size:clamp(36px,5vw,56px);color:var(--text);letter-spacing:1px;line-height:1;}
-.section-sub{color:var(--muted);font-size:15px;margin-top:10px;max-width:500px;margin-left:auto;margin-right:auto;}
+/* HERO */
+.products-hero{background:linear-gradient(135deg,var(--bg),#0d0d2e);padding:80px 40px 50px;text-align:center;}
+.products-hero-title{font-family:'Bebas Neue',cursive;font-size:60px;color:#fff;letter-spacing:2px;}
+.products-hero-sub{color:rgba(255,255,255,0.45);font-size:16px;margin-top:8px;}
+.products-cats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px;}
+.products-cat-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.products-cat-btn:hover,.products-cat-btn.active{background:var(--accent);border-color:var(--accent);color:#000;}
 
-/* ===== PRODUCT CARD ===== */
+/* PRODUCT CARD */
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;}
-.product-card{background:var(--card-bg);border:1.5px solid var(--border);border-radius:20px;overflow:hidden;transition:all .3s;cursor:pointer;}
+.product-card{background:var(--card-bg);border:1.5px solid var(--border);border-radius:20px;overflow:hidden;transition:all .3s;cursor:pointer;position:relative;}
 .product-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,212,255,0.1);border-color:rgba(0,212,255,0.3);}
 .product-img{height:210px;background:var(--bg2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
@@ -95,266 +74,12 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .product-add-btn{width:100%;background:linear-gradient(135deg,var(--surface2),#1e1e3e);color:#fff;border:none;padding:11px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;margin-top:12px;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
 .product-add-btn:hover{background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;}
 
-/* ===== CAT GRID ===== */
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:18px;max-width:1200px;margin:0 auto;}
-.cat-card{background:var(--card-bg);border:1.5px solid var(--border);border-radius:20px;padding:28px 20px;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;}
-.cat-card:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 16px 40px rgba(0,212,255,0.1);}
-.cat-img{width:72px;height:72px;object-fit:contain;margin:0 auto 14px;border-radius:12px;display:block;transition:transform .3s;}
-.cat-card:hover .cat-img{transform:scale(1.08) rotate(-4deg);}
-.cat-name{font-weight:700;font-size:14px;color:var(--text);}
-.cat-count{color:var(--muted);font-size:11px;margin-top:4px;}
-.cat-arrow{position:absolute;bottom:14px;right:14px;width:26px;height:26px;background:var(--accent);border-radius:7px;display:flex;align-items:center;justify-content:center;color:#000;font-size:11px;opacity:0;transition:.3s;}
-.cat-card:hover .cat-arrow{opacity:1;}
+/* COLOR SWATCHES ON CARD */
+.product-colors{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.color-swatch{width:20px;height:20px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all .2s;flex-shrink:0;}
+.color-swatch:hover,.color-swatch.active{border-color:var(--accent);transform:scale(1.15);}
 
-/* ===== FEATURES ===== */
-.features-section{background:var(--bg2);padding:90px 40px;}
-.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1100px;margin:0 auto;}
-.feature-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:30px 22px;text-align:center;transition:all .3s;}
-.feature-card:hover{background:rgba(0,212,255,0.04);border-color:rgba(0,212,255,0.2);transform:translateY(-4px);}
-.feature-icon{width:54px;height:54px;border-radius:15px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:22px;}
-.fi-blue{background:rgba(0,212,255,0.1);}
-.fi-purple{background:rgba(124,58,237,0.12);}
-.fi-gold{background:rgba(245,197,24,0.1);}
-.fi-green{background:rgba(16,185,129,0.1);}
-.feature-title{color:#fff;font-weight:700;font-size:15px;margin-bottom:8px;}
-.feature-desc{color:rgba(255,255,255,0.4);font-size:13px;line-height:1.6;}
-
-/* ===== TESTIMONIALS ===== */
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1100px;margin:0 auto;}
-.test-card{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:28px;transition:all .3s;}
-.test-card:hover{transform:translateY(-4px);border-color:rgba(0,212,255,0.15);box-shadow:0 16px 40px rgba(0,0,0,0.3);}
-.test-stars{color:var(--gold);font-size:14px;margin-bottom:12px;}
-.test-text{color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:18px;font-style:italic;}
-.test-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;}
-.test-name{font-weight:700;font-size:14px;color:var(--text);}
-.test-loc{color:var(--muted);font-size:12px;}
-
-/* ===== CTA ===== */
-.cta-banner{background:linear-gradient(135deg,var(--bg) 0%,#0d0d2e 50%,var(--bg) 100%);padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
-.cta-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,212,255,0.08) 0%,transparent 70%);}
-.cta-banner .section-title{color:#fff;}
-.cta-sub{color:rgba(255,255,255,0.55);font-size:18px;margin-top:12px;position:relative;z-index:1;}
-.cta-code{display:inline-block;background:rgba(245,197,24,0.08);border:2px solid var(--gold);border-radius:12px;padding:8px 24px;color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;margin:24px 0;position:relative;z-index:1;}
-.cta-btn{display:inline-block;background:linear-gradient(135deg,var(--accent2),#5b21b6);color:#fff;border:none;padding:16px 48px;border-radius:14px;font-size:18px;font-weight:700;cursor:pointer;transition:all .3s;position:relative;z-index:1;font-family:'Plus Jakarta Sans',sans-serif;}
-.cta-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(124,58,237,0.5);}
-
-/* ===== PRODUCTS HERO ===== */
-.products-hero{background:linear-gradient(135deg,var(--bg),#0d0d2e);padding:80px 40px 50px;text-align:center;}
-.products-hero-title{font-family:'Bebas Neue',cursive;font-size:60px;color:#fff;letter-spacing:2px;}
-.products-hero-sub{color:rgba(255,255,255,0.45);font-size:16px;margin-top:8px;}
-.products-cats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px;}
-.products-cat-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);padding:9px 20px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
-.products-cat-btn:hover,.products-cat-btn.active{background:var(--accent);border-color:var(--accent);color:#000;}
-
-/* ===== TICKER ===== */
-.ticker-wrap{background:var(--bg2);border-top:1px solid rgba(0,212,255,0.15);border-bottom:1px solid rgba(124,58,237,0.15);padding:0;overflow:hidden;position:relative;}
-.ticker-wrap::before,.ticker-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:1;pointer-events:none;}
-.ticker-wrap::before{left:0;background:linear-gradient(to right,var(--bg2),transparent);}
-.ticker-wrap::after{right:0;background:linear-gradient(to left,var(--bg2),transparent);}
-.ticker-inner{display:flex;align-items:center;padding:14px 0;}
-.ticker-track{display:inline-flex;gap:0;animation:tickerMove 28s linear infinite;white-space:nowrap;}
-.ticker-item{font-family:'Bebas Neue',cursive;font-size:20px;letter-spacing:2px;padding:0 28px;display:inline-flex;align-items:center;gap:10px;color:rgba(255,255,255,0.6);}
-.ticker-dot{color:var(--accent);font-size:14px;opacity:0.7;}
-@keyframes tickerMove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
-/* ===== FORM ===== */
-.form-group{margin-bottom:16px;}
-.form-label{display:block;font-size:12px;font-weight:700;margin-bottom:6px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
-.form-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:11px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:var(--input-bg);color:var(--text);transition:all .2s;}
-.form-input:focus{border-color:var(--accent);}
-.form-textarea{height:110px;resize:none;}
-.form-submit{width:100%;background:linear-gradient(135deg,var(--surface2),#1e1e3e);color:#fff;border:none;padding:13px;border-radius:11px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
-.form-submit:hover{background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;}
-.form-success{display:none;text-align:center;padding:18px;background:rgba(16,185,129,0.08);border-radius:11px;color:var(--success);font-weight:600;margin-top:12px;border:1px solid rgba(16,185,129,0.2);}
-
-/* ===== ADMIN ===== */
-.admin-layout{display:grid;grid-template-columns:230px 1fr;min-height:100vh;margin-top:var(--nav-h);}
-.admin-sidebar{background:var(--bg2);padding:28px 0;position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));overflow-y:auto;border-right:1px solid var(--border);}
-.admin-sidebar-title{color:rgba(255,255,255,0.25);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0 22px 10px;}
-.admin-nav-item{display:flex;align-items:center;gap:11px;padding:12px 22px;color:rgba(255,255,255,0.5);cursor:pointer;transition:.2s;font-size:14px;font-weight:500;}
-.admin-nav-item:hover,.admin-nav-item.active{background:rgba(0,212,255,0.05);color:#fff;}
-.admin-nav-item.active{border-right:3px solid var(--accent);color:var(--accent);}
-.admin-content{padding:34px;background:var(--bg);}
-.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;}
-.admin-header h1{font-family:'Bebas Neue',cursive;font-size:38px;letter-spacing:1px;color:var(--text);}
-.admin-kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:28px;}
-.admin-kpi{background:var(--card-bg);border-radius:18px;padding:22px;border:1px solid var(--border);}
-.admin-kpi-label{color:var(--muted);font-size:12px;font-weight:600;margin-bottom:6px;}
-.admin-kpi-val{font-family:'Bebas Neue',cursive;font-size:36px;color:var(--text);line-height:1;}
-.admin-kpi-change{font-size:12px;margin-top:5px;}
-.kpi-up{color:var(--success);}
-.kpi-down{color:var(--danger);}
-.admin-grid-2{display:grid;grid-template-columns:2fr 1fr;gap:22px;}
-.admin-card{background:var(--card-bg);border-radius:18px;padding:26px;border:1px solid var(--border);}
-.admin-card h3{font-weight:700;font-size:15px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;color:var(--text);}
-.admin-card h3 a{color:var(--accent);font-size:12px;font-weight:600;}
-.orders-table{width:100%;border-collapse:collapse;}
-.orders-table th{text-align:left;padding:9px 12px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);}
-.orders-table td{padding:13px 12px;font-size:13px;border-bottom:1px solid var(--border);color:var(--text);}
-.orders-table tr:last-child td{border:none;}
-.status-badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;}
-.status-delivered{background:rgba(16,185,129,0.1);color:var(--success);}
-.status-processing{background:rgba(0,212,255,0.1);color:var(--accent);}
-.status-pending{background:rgba(245,197,24,0.1);color:#d97706;}
-.top-products-list{display:flex;flex-direction:column;gap:12px;}
-.top-product{display:flex;align-items:center;gap:10px;}
-.top-product-icon{width:38px;height:38px;background:var(--bg2);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;}
-.top-product-info{flex:1;}
-.top-product-name{font-weight:600;font-size:13px;color:var(--text);}
-.top-product-sales{color:var(--muted);font-size:11px;}
-.top-product-bar-wrap{width:70px;height:5px;background:var(--border);border-radius:3px;}
-.top-product-bar{height:5px;background:var(--accent);border-radius:3px;}
-.admin-chart{height:180px;background:var(--bg2);border-radius:12px;display:flex;align-items:flex-end;padding:14px;gap:7px;overflow:hidden;}
-.chart-bar{flex:1;background:linear-gradient(to top,var(--accent),rgba(0,212,255,0.2));border-radius:5px 5px 0 0;}
-.inventory-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);}
-.inventory-item:last-child{border:none;}
-.inventory-name{flex:1;font-size:13px;font-weight:600;color:var(--text);}
-.stock-good{color:var(--success);}
-.stock-low{color:var(--warn);}
-.stock-out{color:var(--danger);}
-.admin-quick-actions{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:28px;}
-.admin-qa-btn{background:var(--card-bg);border:1.5px solid var(--border);border-radius:11px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:7px;transition:.2s;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;}
-.admin-qa-btn:hover{border-color:var(--accent);color:var(--accent);}
-
-/* ===== CONTACT ===== */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;max-width:1000px;margin:0 auto;padding:60px 40px;}
-.contact-info{display:flex;flex-direction:column;gap:18px;}
-.contact-info-card{background:var(--card-bg);border-radius:18px;padding:22px;display:flex;align-items:center;gap:14px;border:1px solid var(--border);transition:all .3s;}
-.contact-info-card:hover{border-color:rgba(0,212,255,0.2);transform:translateX(4px);}
-.contact-info-icon{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-.ci-blue{background:rgba(0,212,255,0.08);}
-.ci-purple{background:rgba(124,58,237,0.1);}
-.ci-green{background:rgba(16,185,129,0.08);}
-.ci-gold{background:rgba(245,197,24,0.08);}
-.contact-info-text strong{display:block;font-weight:700;color:var(--text);margin-bottom:3px;}
-.contact-info-text span{color:var(--muted);font-size:13px;}
-.contact-form-card{background:var(--card-bg);border-radius:22px;padding:34px;border:1px solid var(--border);}
-.contact-form-card h3{font-weight:700;font-size:20px;margin-bottom:22px;color:var(--text);}
-
-/* ===== OFFERS ===== */
-.offers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;max-width:1100px;margin:0 auto;padding:60px 40px;}
-.offer-card{background:var(--card-bg);border-radius:22px;overflow:hidden;border:1px solid var(--border);transition:all .3s;}
-.offer-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(0,212,255,0.15);}
-.offer-card-header{padding:30px 26px;position:relative;}
-.offer-discount{font-family:'Bebas Neue',cursive;font-size:62px;line-height:1;}
-.offer-disc-cyan{color:var(--accent);}
-.offer-disc-purple{color:#a78bfa;}
-.offer-disc-gold{color:var(--gold);}
-.offer-disc-green{color:var(--success);}
-.offer-title{font-weight:700;font-size:17px;color:var(--text);margin-top:4px;}
-.offer-code-wrap{padding:18px 26px 26px;}
-.offer-desc{color:var(--muted);font-size:13px;margin-bottom:14px;}
-.offer-code-box{background:var(--bg2);border:2px dashed rgba(0,212,255,0.2);border-radius:11px;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;}
-.offer-code-text{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;color:var(--accent);}
-.offer-copy-btn{background:var(--bg);color:#fff;border:none;padding:7px 14px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif;}
-.offer-copy-btn:hover{background:var(--accent);color:#000;}
-.offer-expiry{color:var(--muted);font-size:11px;margin-top:10px;}
-
-/* ===== HELP ===== */
-.help-content{max-width:800px;margin:0 auto;padding:60px 40px;}
-.help-search{display:flex;gap:0;margin-bottom:44px;border-radius:14px;overflow:hidden;box-shadow:var(--shadow-lg);}
-.help-search-input{flex:1;padding:16px 22px;border:none;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:var(--card-bg);color:var(--text);}
-.help-search-btn{background:var(--surface2);color:#fff;border:none;padding:16px 24px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif;}
-.help-search-btn:hover{background:var(--accent);color:#000;}
-.help-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px;}
-.help-cat-btn{background:var(--card-bg);border:1.5px solid var(--border);border-radius:14px;padding:18px;text-align:center;cursor:pointer;transition:all .2s;}
-.help-cat-btn:hover{border-color:var(--accent);transform:translateY(-2px);}
-.help-cat-btn span{display:block;font-size:26px;margin-bottom:8px;}
-.help-cat-btn strong{display:block;font-size:13px;color:var(--text);}
-.faq-item{background:var(--card-bg);border-radius:14px;margin-bottom:10px;overflow:hidden;border:1.5px solid var(--border);transition:border-color .2s;}
-.faq-item:hover{border-color:rgba(0,212,255,0.15);}
-.faq-question{padding:18px 22px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--text);transition:all .2s;}
-.faq-question.open{color:var(--accent);}
-.faq-arrow{font-size:16px;transition:transform .3s;color:var(--muted);}
-.faq-question.open .faq-arrow{transform:rotate(180deg);color:var(--accent);}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease;}
-.faq-answer.open{max-height:200px;}
-.faq-answer-inner{padding:0 22px 18px;color:var(--muted);font-size:14px;line-height:1.7;}
-
-/* ===== SEARCH ===== */
-.search-hero{background:linear-gradient(135deg,var(--bg),#0d0d2e);padding:100px 40px 60px;text-align:center;}
-.search-hero-title{font-family:'Bebas Neue',cursive;font-size:50px;color:#fff;margin-bottom:24px;letter-spacing:2px;}
-.search-wrap{display:flex;max-width:600px;margin:0 auto;background:var(--card-bg);border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.4);border:1px solid var(--border2);}
-.search-input{flex:1;padding:16px 22px;border:none;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:transparent;color:var(--text);}
-.search-btn{background:var(--accent);color:#000;border:none;padding:16px 26px;font-size:15px;cursor:pointer;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;}
-.search-results{max-width:1200px;margin:0 auto;padding:36px 40px;}
-.search-results-header{font-size:15px;color:var(--muted);margin-bottom:22px;}
-.search-no-results{text-align:center;padding:60px;color:var(--muted);}
-.search-no-results span{font-size:56px;display:block;margin-bottom:14px;}
-
-/* ===== LOGIN ===== */
-.login-card{background:var(--card-bg);border-radius:26px;padding:44px;width:100%;max-width:420px;margin:80px auto;box-shadow:0 40px 100px rgba(0,0,0,0.5);border:1px solid var(--border);}
-.login-logo{text-align:center;margin-bottom:28px;}
-.login-logo-icon{width:58px;height:58px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:16px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:26px;}
-.login-logo-text{font-weight:800;font-size:20px;color:var(--text);}
-.login-tabs{display:flex;background:var(--bg2);border-radius:11px;padding:4px;margin-bottom:26px;}
-.login-tab{flex:1;padding:9px;border:none;background:transparent;cursor:pointer;border-radius:9px;font-weight:600;font-size:13px;color:var(--muted);transition:.2s;font-family:'Plus Jakarta Sans',sans-serif;}
-.login-tab.active{background:var(--surface2);color:var(--accent);}
-.login-form{display:flex;flex-direction:column;gap:14px;}
-.login-submit{background:linear-gradient(135deg,var(--surface2),#1e1e3e);color:#fff;border:none;padding:14px;border-radius:11px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif;}
-.login-submit:hover{background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;}
-.login-divider{text-align:center;color:var(--muted);font-size:12px;position:relative;}
-.login-divider::before,.login-divider::after{content:'';position:absolute;top:50%;width:38%;height:1px;background:var(--border);}
-.login-divider::before{left:0;}
-.login-divider::after{right:0;}
-.login-footer{text-align:center;color:var(--muted);font-size:13px;margin-top:18px;}
-.login-footer a{color:var(--accent);font-weight:600;cursor:pointer;}
-
-/* ===== ABOUT ===== */
-.about-content{max-width:1100px;margin:0 auto;padding:70px 40px;}
-.about-story{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:70px;}
-.about-story-img{background:linear-gradient(135deg,var(--bg2),var(--bg3));border-radius:24px;height:340px;display:flex;align-items:center;justify-content:center;font-size:80px;border:1px solid var(--border);}
-.about-story-text h2{font-family:'Bebas Neue',cursive;font-size:40px;color:var(--text);margin-bottom:14px;}
-.about-story-text p{color:var(--muted);line-height:1.8;margin-bottom:12px;}
-.about-values{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px;}
-.about-value{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;padding:26px;text-align:center;transition:all .3s;}
-.about-value:hover{border-color:rgba(0,212,255,0.2);transform:translateY(-4px);}
-.about-value-icon{font-size:34px;margin-bottom:12px;}
-.about-value h3{font-weight:700;margin-bottom:8px;color:var(--text);}
-.about-value p{color:var(--muted);font-size:13px;}
-.team-section{padding:70px 40px;background:var(--bg2);}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:800px;margin:0 auto;}
-.team-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;text-align:center;transition:all .3s;}
-.team-card:hover{transform:translateY(-4px);border-color:rgba(0,212,255,0.15);}
-.team-avatar{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:30px;}
-.team-name{font-weight:700;font-size:16px;color:var(--text);}
-.team-role{color:var(--muted);font-size:13px;margin-top:4px;}
-
-/* ===== SHOP ===== */
-.shop-filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:28px 40px;}
-.shop-filter-btn{background:var(--card-bg);border:1.5px solid var(--border);border-radius:100px;padding:9px 20px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;}
-.shop-filter-btn:hover,.shop-filter-btn.active{background:var(--accent);color:#000;border-color:var(--accent);}
-.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;max-width:1300px;margin:0 auto;padding:0 40px 60px;}
-
-/* ===== PRODUCT DETAIL ===== */
-.product-detail-wrap{max-width:1200px;margin:0 auto;padding:100px 40px 60px;}
-.product-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
-.product-detail-main-img{background:var(--bg2);border-radius:20px;height:420px;overflow:hidden;border:1px solid var(--border);}
-.product-detail-main-img img{width:100%;height:100%;object-fit:cover;}
-.product-detail-thumbs{display:flex;gap:10px;margin-top:14px;}
-.product-detail-thumb{width:68px;height:68px;background:var(--bg2);border-radius:12px;border:2px solid var(--border);overflow:hidden;cursor:pointer;transition:.2s;}
-.product-detail-thumb img{width:100%;height:100%;object-fit:cover;}
-.product-detail-thumb.active,.product-detail-thumb:hover{border-color:var(--accent);}
-.product-detail-badge{display:inline-block;background:rgba(16,185,129,0.08);color:var(--success);font-size:13px;font-weight:700;padding:6px 14px;border-radius:100px;border:1px solid rgba(16,185,129,0.15);margin-bottom:16px;}
-.product-detail-name{font-family:'Bebas Neue',cursive;font-size:40px;color:var(--text);line-height:1.1;letter-spacing:1px;}
-.product-detail-price{display:flex;align-items:center;gap:14px;margin-top:20px;flex-wrap:wrap;}
-.product-detail-price-current{font-size:32px;font-weight:800;color:var(--text);}
-.product-detail-price-old{font-size:18px;color:var(--muted);text-decoration:line-through;}
-.product-detail-price-save{background:rgba(124,58,237,0.12);color:#a78bfa;font-size:13px;font-weight:700;padding:4px 10px;border-radius:100px;}
-.product-detail-desc{color:var(--muted);font-size:15px;line-height:1.7;margin-top:18px;}
-.product-detail-specs{margin-top:22px;}
-.product-detail-spec{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
-.spec-label{color:var(--muted);font-size:13px;width:110px;flex-shrink:0;}
-.spec-val{font-weight:600;font-size:14px;color:var(--text);}
-.product-detail-btns{display:flex;gap:12px;margin-top:26px;}
-.btn-add-cart{flex:1;background:linear-gradient(135deg,var(--surface2),#1e1e3e);color:#fff;border:none;padding:15px;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
-.btn-add-cart:hover{background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;}
-.btn-wishlist{width:52px;height:52px;background:var(--card-bg);border:1.5px solid var(--border);border-radius:14px;font-size:20px;cursor:pointer;transition:all .2s;}
-.btn-wishlist:hover{border-color:var(--accent2);}
-.back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--muted);cursor:pointer;font-size:14px;font-weight:600;margin-bottom:28px;transition:.2s;text-decoration:none;}
-.back-btn:hover{color:var(--accent);}
-
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer{background:#06060f;padding:64px 40px 28px;border-top:1px solid rgba(255,255,255,0.05);}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:38px;max-width:1200px;margin:0 auto 44px;}
 .footer-brand-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
@@ -370,16 +95,16 @@ footer{background:#06060f;padding:64px 40px 28px;border-top:1px solid rgba(255,2
 .footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:26px;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:12px;}
 .footer-copy{color:rgba(255,255,255,0.25);font-size:12px;}
 
-/* ===== FLOATING ===== */
+/* FLOATING */
 .scroll-btns{position:fixed;right:20px;bottom:90px;display:flex;flex-direction:column;gap:8px;z-index:999;}
-.scroll-btn{width:42px;height:42px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);border-radius:11px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.scroll-btn{width:42px;height:42px;background:var(--card-bg);border:1px solid var(--border);color:var(--muted);border-radius:11px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:.2s;}
 .scroll-btn:hover{background:var(--accent);color:#000;border-color:var(--accent);}
 .wa-float{position:fixed;right:20px;bottom:22px;z-index:999;}
 .wa-btn-fixed{width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;box-shadow:0 4px 20px rgba(37,211,102,0.4);cursor:pointer;transition:.3s;animation:waPulse 3s ease-in-out infinite;text-decoration:none;}
 .wa-btn-fixed:hover{transform:scale(1.1);}
 @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.35);}50%{box-shadow:0 4px 38px rgba(37,211,102,0.65);}}
 
-/* ===== MODAL ===== */
+/* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:2000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
 .modal-overlay.active{display:flex;}
 .modal-box{background:var(--card-bg);border-radius:22px;padding:38px;max-width:400px;width:90%;text-align:center;animation:modalIn .3s ease;border:1px solid var(--border2);}
@@ -389,74 +114,18 @@ footer{background:#06060f;padding:64px 40px 28px;border-top:1px solid rgba(255,2
 .modal-sub{color:var(--muted);font-size:14px;margin-bottom:22px;}
 .modal-close-btn{background:linear-gradient(135deg,var(--surface2),#1e1e3e);color:#fff;border:none;padding:12px 32px;border-radius:11px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
 
-/* ===== TOAST ===== */
+/* TOAST */
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(18px);background:var(--bg2);color:#fff;padding:13px 22px;border-radius:11px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:3000;white-space:nowrap;border:1px solid var(--border);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .toast.success{background:var(--success);}
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:1000px){
-  .features-grid{grid-template-columns:repeat(2,1fr);}
-  .test-grid,.about-story,.contact-grid,.admin-grid-2,.product-detail-grid{grid-template-columns:1fr;}
-  .about-values,.team-grid,.help-cats{grid-template-columns:repeat(2,1fr);}
-  .admin-layout{grid-template-columns:1fr;}
-  .admin-sidebar{display:none;}
-  .admin-kpi-grid{grid-template-columns:repeat(2,1fr);}
-  .footer-grid{grid-template-columns:1fr 1fr;}
-}
-@media(max-width:768px){
-  nav{padding:0 18px;}
-  .nav-links{display:none;}
-  .hamburger{display:flex;}
-  .section{padding:60px 18px;}
-  .contact-grid,.offers-grid,.search-results{padding:36px 18px;}
-  .footer-grid{grid-template-columns:1fr;gap:26px;}
-  .footer-bottom{flex-direction:column;text-align:center;}
-}
-
-/* ===== URDU (RTL) STYLES ===== */
-body.urdu-mode{direction:rtl;text-align:right;}
-body.urdu-mode nav{flex-direction:row-reverse;}
-body.urdu-mode .nav-links{flex-direction:row-reverse;}
-body.urdu-mode .mob-menu a{text-align:right;}
-body.urdu-mode .hero-content{text-align:right;padding:0 8% 0 4%;}
-body.urdu-mode .hero-btns{flex-direction:row-reverse;}
-body.urdu-mode .hero-stats{flex-direction:row-reverse;}
-body.urdu-mode .section-header{text-align:center;}
-body.urdu-mode .cat-card{direction:rtl;}
-body.urdu-mode .product-info{text-align:right;}
-body.urdu-mode .product-price{flex-direction:row-reverse;}
-body.urdu-mode .footer-grid{direction:rtl;}
-body.urdu-mode .footer-col a{text-align:right;}
-body.urdu-mode .contact-grid{direction:rtl;}
-body.urdu-mode .contact-info-card{flex-direction:row-reverse;}
-body.urdu-mode .faq-question{flex-direction:row-reverse;}
-body.urdu-mode .form-label{text-align:right;}
-body.urdu-mode .spec-row{flex-direction:row-reverse;}
-body.urdu-mode .test-card{text-align:right;}
-
-/* Urdu font for urdu text */
-.urdu-text{font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',serif;line-height:2;font-size:1.05em;}
-
-
-/* ===== CAPTCHA ===== */
-.captcha-wrap{margin-bottom:16px;}
-.captcha-box{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1.5px solid var(--border);border-radius:11px;padding:12px 14px;}
-.captcha-question{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--accent);min-width:100px;}
-.captcha-input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-size:16px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;}
-.captcha-refresh{background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;padding:2px 6px;border-radius:6px;transition:.2s;}
-.captcha-refresh:hover{color:var(--accent);background:rgba(0,212,255,0.08);}
-.captcha-error{color:#ef4444;font-size:12px;margin-top:6px;display:none;}
-
-
-/* ===== MULTI-LANGUAGE DROPDOWN ===== */
+/* LANG */
 .lang-dropdown-wrap{position:relative;}
 .lang-btn{background:var(--surface2);border:1px solid var(--border2);color:var(--accent);padding:7px 13px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;gap:6px;white-space:nowrap;}
 .lang-btn:hover{border-color:var(--accent);background:rgba(0,212,255,0.1);}
 .lang-btn .lang-arrow{font-size:10px;transition:transform .2s;}
 .lang-dropdown-wrap.open .lang-arrow{transform:rotate(180deg);}
-.lang-menu{position:absolute;top:calc(100% + 8px);right:0;background:#13131f;border:1px solid var(--border2);border-radius:12px;padding:6px;min-width:150px;z-index:9999;display:none;box-shadow:0 12px 40px rgba(0,0,0,0.5);animation:dropIn .2s ease;}
-@keyframes dropIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+.lang-menu{position:absolute;top:calc(100% + 8px);right:0;background:#13131f;border:1px solid var(--border2);border-radius:12px;padding:6px;min-width:150px;z-index:9999;display:none;box-shadow:0 12px 40px rgba(0,0,0,0.5);}
 .lang-dropdown-wrap.open .lang-menu{display:block;}
 .lang-option{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);transition:.2s;}
 .lang-option:hover{background:rgba(0,212,255,0.08);color:var(--text);}
@@ -465,31 +134,28 @@ body.urdu-mode .test-card{text-align:right;}
 .lang-option .lname{flex:1;}
 .lang-option .check{color:var(--accent);font-size:12px;opacity:0;}
 .lang-option.active-lang .check{opacity:1;}
+.urdu-text{font-family:'Noto Nastaliq Urdu',serif;line-height:2;font-size:1.05em;}
 
+/* RTL */
+body.rtl-mode{direction:rtl;}
+body.rtl-mode nav{flex-direction:row-reverse;}
+body.rtl-mode .nav-links{flex-direction:row-reverse;}
+body.rtl-mode .nav-actions{flex-direction:row-reverse;}
+body.rtl-mode .mob-menu a{text-align:right;}
+body.rtl-mode .product-info{text-align:right;}
+body.rtl-mode .product-price{flex-direction:row-reverse;}
+body.rtl-mode .footer-grid{direction:rtl;}
+body.rtl-mode .product-colors{flex-direction:row-reverse;}
 
-/* ===== TEXT CAPTCHA ===== */
-.captcha-section{margin-bottom:18px;}
-.captcha-label{display:block;font-size:12px;font-weight:700;margin-bottom:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
-.captcha-display{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d0d20,#1a1a35);border:1.5px solid var(--border2);border-radius:12px;padding:14px 24px;margin-bottom:10px;position:relative;overflow:hidden;min-width:160px;}
-.captcha-display::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(0,212,255,0.03) 3px,rgba(0,212,255,0.03) 6px);}
-.captcha-chars{display:flex;gap:4px;position:relative;z-index:1;}
-.captcha-char{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;display:inline-block;}
-.captcha-char:nth-child(1){color:#00d4ff;transform:rotate(-8deg) translateY(2px);}
-.captcha-char:nth-child(2){color:#a78bfa;transform:rotate(5deg) translateY(-3px);}
-.captcha-char:nth-child(3){color:#f5c518;transform:rotate(-4deg) translateY(3px);}
-.captcha-char:nth-child(4){color:#10b981;transform:rotate(7deg) translateY(-2px);}
-.captcha-char:nth-child(5){color:#00d4ff;transform:rotate(-5deg) translateY(2px);}
-.captcha-row{display:flex;align-items:center;gap:10px;}
-.captcha-refresh-btn{background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);color:var(--accent);width:38px;height:38px;border-radius:9px;cursor:pointer;font-size:16px;transition:.2s;flex-shrink:0;}
-.captcha-refresh-btn:hover{background:rgba(0,212,255,0.18);}
-.captcha-input-field{flex:1;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:3px;outline:none;background:var(--input-bg);color:var(--text);transition:all .2s;text-transform:uppercase;}
-.captcha-input-field:focus{border-color:var(--accent);}
-.captcha-hint{color:var(--muted);font-size:11px;margin-top:5px;}
-.captcha-err{color:#ef4444;font-size:12px;margin-top:5px;display:none;font-weight:600;}
-
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:0 18px;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .products-hero{padding:60px 18px 36px;}
+  .products-hero-title{font-size:40px;}
+}
 </style>
-
-
 </head>
 <body>
 
@@ -499,7 +165,12 @@ body.urdu-mode .test-card{text-align:right;}
     <div class="nav-logo-text">Ahsan <span>Mobiles</span></div>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html" data-translate>Home</a></li><li><a href="products.html" class="active" data-translate>Products</a></li><li><a href="about.html" data-translate>About</a></li><li><a href="offers.html" data-translate>Offers</a></li><li><a href="contact.html" data-translate>Contact</a></li><li><a href="help.html" data-translate>Help</a></li>
+    <li><a href="index.html" data-translate>Home</a></li>
+    <li><a href="products.html" class="active" data-translate>Products</a></li>
+    <li><a href="about.html" data-translate>About</a></li>
+    <li><a href="offers.html" data-translate>Offers</a></li>
+    <li><a href="contact.html" data-translate>Contact</a></li>
+    <li><a href="help.html" data-translate>Help</a></li>
   </ul>
   <div class="nav-actions">
     <button class="nav-search-btn" onclick="window.location='search.html'" title="Search">🔍</button>
@@ -523,20 +194,28 @@ body.urdu-mode .test-card{text-align:right;}
     </div>
   </div>
 </nav>
+
 <div class="mob-menu" id="mobMenu">
-  <a href="index.html">🏠 Home</a><a href="products.html">📱 Products</a><a href="about.html">ℹ️ About</a><a href="offers.html">🏷️ Offers</a><a href="contact.html">📞 Contact</a><a href="help.html">❓ Help</a>
+  <a href="index.html">🏠 Home</a>
+  <a href="products.html">📱 Products</a>
+  <a href="about.html">ℹ️ About</a>
+  <a href="offers.html">🏷️ Offers</a>
+  <a href="contact.html">📞 Contact</a>
+  <a href="help.html">❓ Help</a>
   <a href="login.html">👤 Login</a>
   <a href="shop.html">🛍️ Shop Now</a>
 </div>
 
 <div style="height:var(--nav-h);"></div>
+
 <div class="products-hero">
-  <div class="products-hero-title">Our Products</div>
-  <div class="products-hero-sub">500+ accessories — all genuine, all affordable</div>
+  <div class="products-hero-title" data-translate>Our Products</div>
+  <div class="products-hero-sub" data-translate>500+ accessories — all genuine, all affordable</div>
   <div class="products-cats" id="cat-btns">
-    <button class="products-cat-btn active" onclick="filterCat('all',this)">All Products</button>
+    <button class="products-cat-btn active" onclick="filterCat('all',this)" data-translate>All Products</button>
     <button class="products-cat-btn" onclick="filterCat('covers',this)">📱 Covers</button>
     <button class="products-cat-btn" onclick="filterCat('earphones',this)">🎧 Earphones</button>
+    <button class="products-cat-btn" onclick="filterCat('airpods',this)">🎵 AirPods</button>
     <button class="products-cat-btn" onclick="filterCat('chargers',this)">🔌 Chargers</button>
     <button class="products-cat-btn" onclick="filterCat('screen-guards',this)">🛡️ Screen Guards</button>
     <button class="products-cat-btn" onclick="filterCat('power-banks',this)">🔋 Power Banks</button>
@@ -547,10 +226,10 @@ body.urdu-mode .test-card{text-align:right;}
     <button class="products-cat-btn" onclick="filterCat('camera',this)">📷 Camera</button>
   </div>
 </div>
+
 <div style="max-width:1300px;margin:0 auto;padding:50px 40px;">
   <div class="products-grid" id="products-grid"></div>
 </div>
-
 
 <footer>
   <div class="footer-grid">
@@ -563,9 +242,9 @@ body.urdu-mode .test-card{text-align:right;}
       </div>
     </div>
     <div class="footer-col"><h4>Pages</h4>
-      <a href="index.html" data-translate>Home</a><a href="products.html" data-translate>Products</a>
-      <a href="about.html" data-translate>About</a><a href="offers.html" data-translate>Offers</a>
-      <a href="contact.html" data-translate>Contact</a><a href="help.html" data-translate>Help</a>
+      <a href="index.html">Home</a><a href="products.html">Products</a>
+      <a href="about.html">About</a><a href="offers.html">Offers</a>
+      <a href="contact.html">Contact</a><a href="help.html">Help</a>
     </div>
     <div class="footer-col"><h4>Categories</h4>
       <a href="products.html?cat=covers">Mobile Covers</a>
@@ -608,61 +287,466 @@ body.urdu-mode .test-card{text-align:right;}
 <div class="toast" id="toast"></div>
 
 <script>
-// ====== PRODUCTS DATA ======
+// =====================================================
+// COMPLETE PRODUCTS DATA — 24 PRODUCTS
+// =====================================================
 const allProducts = [
-  {id:1,name:'iPhone 15 Pro Max Silicone Cover',cat:'covers',img:'https://images.unsplash.com/photo-1601593346740-925612772716?w=400&h=300&fit=crop',price:850,oldPrice:1200,badge:'NEW',brand:'Apple',desc:'Premium silicone case with MagSafe compatibility. Scratch-resistant and shock-proof with camera raised edges.',specs:{Material:'Silicone',Compatible:'iPhone 15 Pro Max',Protection:'Military Grade',Color:'Multiple Colors'}},
-  {id:2,name:'Samsung Galaxy S24 Ultra Cover',cat:'covers',img:'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400&h=300&fit=crop',price:750,oldPrice:1100,badge:'HOT',brand:'Samsung',desc:'Slim-fit transparent cover with raised camera protection and anti-yellow formula.',specs:{Material:'TPU + PC',Compatible:'Samsung S24 Ultra',Protection:'Drop-proof 1.8m',Color:'Crystal Clear'}},
-  {id:3,name:'Oppo A58 Matte Cover',cat:'covers',img:'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&h=300&fit=crop',price:350,oldPrice:500,badge:null,brand:'Oppo',desc:'Lightweight hard case with matte finish. Precise cutouts for all ports and buttons.',specs:{Material:'Hard PC',Compatible:'Oppo A58',Protection:'Scratch-proof',Color:'Matte Black'}},
-  {id:4,name:'Vivo V29 Leather Flip Cover',cat:'covers',img:'https://images.unsplash.com/photo-1601593346740-925612772716?w=400&h=300&fit=crop',price:650,oldPrice:900,badge:'SALE',brand:'Vivo',desc:'Genuine leather flip cover with card holder, mirror, and kickstand.',specs:{Material:'Genuine Leather',Compatible:'Vivo V29',Protection:'Full 360°',Color:'Brown / Black'}},
-  {id:5,name:'Realme 11 Pro Crystal Cover',cat:'covers',img:'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400&h=300&fit=crop',price:280,oldPrice:400,badge:null,brand:'Realme',desc:'Transparent glitter case that stays crystal clear over time.',specs:{Material:'Crystal TPU',Compatible:'Realme 11 Pro',Protection:'Anti-yellow',Color:'Crystal Clear'}},
-  {id:6,name:'JBL C100SI Wired Earphones',cat:'earphones',img:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop',price:1500,oldPrice:2200,badge:'HOT',brand:'JBL',desc:'Pure bass earphones with one-button universal remote and microphone. JBL original.',specs:{Driver:'9mm Dynamic',Frequency:'20Hz–20kHz',Impedance:'16Ω',Connector:'3.5mm Jack'}},
-  {id:7,name:'Samsung AKG Type-C Earphones',cat:'earphones',img:'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=300&fit=crop',price:1200,oldPrice:1800,badge:null,brand:'Samsung',desc:'Original Samsung AKG earphones with Type-C connector.',specs:{Driver:'Dynamic',Frequency:'20Hz–20kHz',Connector:'USB Type-C',Length:'1.2m'}},
-  {id:8,name:'Hoco M93 Earphones with Mic',cat:'earphones',img:'https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=400&h=300&fit=crop',price:650,oldPrice:900,badge:null,brand:'Hoco',desc:'Crystal clear sound with noise-canceling microphone.',specs:{Driver:'10mm',Frequency:'20Hz–20kHz',Impedance:'32Ω',Connector:'3.5mm Jack'}},
-  {id:9,name:'65W GaN Fast Charger',cat:'chargers',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',price:1800,oldPrice:2500,badge:'HOT',brand:'Baseus',desc:'65W GaN technology — charges laptop, phone, tablet simultaneously.',specs:{Output:'65W PD / QC',Ports:'2× USB-C + 1× USB-A',Technology:'GaN III',Size:'Foldable Compact'}},
-  {id:10,name:'Samsung 45W Super Fast Charger',cat:'chargers',img:'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=300&fit=crop',price:2200,oldPrice:3000,badge:'NEW',brand:'Samsung',desc:'Original Samsung 45W super fast charger compatible with Galaxy S-series.',specs:{Output:'45W PPS',Port:'USB-C',Compatible:'Samsung Galaxy',Cable:'USB-C Included'}},
-  {id:11,name:'Apple 20W USB-C Power Adapter',cat:'chargers',img:'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400&h=300&fit=crop',price:1500,oldPrice:2000,badge:null,brand:'Apple',desc:'Original Apple 20W USB-C power adapter. Fast charge iPhone 12 and above.',specs:{Output:'20W',Port:'USB-C PD',Compatible:'iPhone 12 and above',Certified:'Apple MFi'}},
-  {id:12,name:'iPhone 15 Pro 9H Tempered Glass',cat:'screen-guards',img:'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&h=300&fit=crop',price:350,oldPrice:600,badge:'HOT',brand:'Premium',desc:'9H hardness tempered glass with oleophobic anti-fingerprint coating.',specs:{Hardness:'9H',Coverage:'Full Edge-to-Edge',Thickness:'0.33mm',Feature:'Anti-fingerprint'}},
-  {id:13,name:'Samsung S24 Ultra Glass Guard',cat:'screen-guards',img:'https://images.unsplash.com/photo-1601593346740-925612772716?w=400&h=300&fit=crop',price:400,oldPrice:650,badge:null,brand:'Premium',desc:'Curved edge-to-edge protection with under-display fingerprint unlock support.',specs:{Hardness:'9H',Coverage:'Full Curved',Thickness:'0.2mm',Feature:'Fingerprint-compatible'}},
-  {id:14,name:'Baseus 20000mAh 65W Power Bank',cat:'power-banks',img:'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=300&fit=crop',price:3500,oldPrice:5000,badge:'HOT',brand:'Baseus',desc:'20,000mAh with 65W fast charging output. Digital display shows exact battery %.',specs:{Capacity:'20,000mAh',Output:'65W PD Fast',Ports:'2× USB-C + 1× USB-A',Display:'LED Indicator'}},
-  {id:15,name:'Romoss 10000mAh Slim Bank',cat:'power-banks',img:'https://images.unsplash.com/photo-1583394293214-0e5e57f0c8e5?w=400&h=300&fit=crop',price:1800,oldPrice:2500,badge:null,brand:'Romoss',desc:'Ultra-slim 10,000mAh power bank — fits in your pocket.',specs:{Capacity:'10,000mAh',Output:'22.5W',Thickness:'14mm ultra-slim',Weight:'190g'}},
-  {id:16,name:'JBL Tune 760NC Headphones',cat:'headphones',img:'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&h=300&fit=crop',price:8500,oldPrice:12000,badge:'HOT',brand:'JBL',desc:'Active noise cancelling wireless headphones with 35-hour battery.',specs:{Battery:'35 hours',ANC:'Active Noise Cancelling',Connectivity:'Bluetooth 5.0',Driver:'40mm Pure Bass'}},
-  {id:17,name:'Sony WH-CH520 Wireless',cat:'headphones',img:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop',price:7200,oldPrice:10000,badge:'NEW',brand:'Sony',desc:'Wireless headphones with 50-hour battery life and multipoint connection.',specs:{Battery:'50 hours',ANC:'No',Connectivity:'Bluetooth 5.2',Weight:'147g lightweight'}},
-  {id:18,name:'Baseus 100W USB-C Cable 1m',cat:'cables',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',price:450,oldPrice:700,badge:null,brand:'Baseus',desc:'100W fast charging braided nylon cable.',specs:{Rating:'100W',Length:'1 meter',Material:'Nylon Braided',Connector:'USB-C to USB-C'}},
-  {id:19,name:'Apple MFi Lightning Cable 1m',cat:'cables',img:'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400&h=300&fit=crop',price:800,oldPrice:1200,badge:null,brand:'Apple',desc:'Official Apple MFi-certified Lightning cable.',specs:{Length:'1 meter',Certified:'Apple MFi',Compatible:'iPhone / iPad / AirPods',Material:'Original'}},
-  {id:20,name:'iPhone 14 OLED Display Screen',cat:'spare-parts',img:'https://images.unsplash.com/photo-1631281956016-3cdc1b2fe5fb?w=400&h=300&fit=crop',price:12000,oldPrice:16000,badge:'NEW',brand:'Apple Grade',desc:'Original-grade OLED replacement screen for iPhone 14.',specs:{Type:'OLED Display',Resolution:'2532×1170 px',Refresh:'60Hz',Includes:'Full Repair Kit'}},
-  {id:21,name:'Samsung Galaxy S22 Battery',cat:'spare-parts',img:'https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=400&h=300&fit=crop',price:2500,oldPrice:3500,badge:null,brand:'Samsung Grade',desc:'Original-grade replacement battery for Samsung Galaxy S22.',specs:{Capacity:'3,700mAh',Type:'Li-Ion',Voltage:'3.88V',Warranty:'3 months'}},
-  {id:22,name:'JBL Go 3 Bluetooth Speaker',cat:'speakers',img:'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop',price:5500,oldPrice:7500,badge:'HOT',brand:'JBL',desc:'Waterproof portable speaker with bold JBL Pro sound. IP67.',specs:{Battery:'5 hours',Waterproof:'IP67',Bluetooth:'5.1',Weight:'209g compact'}},
-  {id:23,name:'Xiaomi Outdoor BT Speaker',cat:'speakers',img:'https://images.unsplash.com/photo-1589003077984-894e133dabab?w=400&h=300&fit=crop',price:3200,oldPrice:4500,badge:null,brand:'Xiaomi',desc:'360° surround sound with 24-hour massive battery life.',specs:{Battery:'24 hours',RGB:'LED Lighting',Bluetooth:'5.0',Waterproof:'IPX4'}},
-  {id:24,name:'iPhone Camera Lens Protector',cat:'camera',img:'https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=400&h=300&fit=crop',price:280,oldPrice:450,badge:null,brand:'Premium',desc:'9H tempered glass lens ring protector for iPhone 15 Pro.',specs:{Hardness:'9H',Material:'Tempered Glass',Compatible:'iPhone 15 / 14',Pack:'3 Rings'}},
+
+  // ===== COVERS (7) =====
+  {
+    id:1, name:'iPhone Premium Silicone Cover',
+    nameUr:'آئی فون پریمیم سلیکون کور',
+    cat:'covers',
+    badge:'NEW',brand:'Apple',
+    price:850,oldPrice:1200,
+    imgs:[
+      'https://media.istockphoto.com/id/2226687630/photo/smartphone-case-in-four-colors.jpg?s=612x612&w=0&k=20&c=XLwggX7pcNJgU1rFYcBzhq53iaI-RMNrllFtGWICV7g=',
+      'https://media.istockphoto.com/id/2227095089/photo/yellow-smartphone-case.jpg?s=1024x1024&w=is&k=20&c=cf2kInIMSn0DJcuO36hF4AKTWTmIxEopWXjyx_0yUSY=',
+      'https://media.istockphoto.com/id/2227095105/photo/green-smartphone-case.jpg?s=1024x1024&w=is&k=20&c=2siMDpucLWiPVjBQDlH6yu4MKERgBdzIYsebEjStL2Y=',
+      'https://media.istockphoto.com/id/1476578608/photo/mobile-phone-case-isolated-on-white-background-smart-phone-case-isolated-black-silicone-case.jpg?s=1024x1024&w=is&k=20&c=4dyDAPWV-brZMfv21PTbYHqJxsg-nja4uCNCfPad8AE=',
+      'https://media.istockphoto.com/id/2130716501/photo/blank-smart-phone-back-cover.jpg?s=1024x1024&w=is&k=20&c=lwslbBruMjgzsvlHtNWzv0KhZoTxP5LHqw1F5sogOZo='
+    ],
+    colors:[
+      {name:'All Colors',nameUr:'تمام رنگ',hex:'linear-gradient(135deg,#f5c518,#10b981,#222,#e879a0)',imgIdx:0},
+      {name:'Yellow',nameUr:'زرد',hex:'#f5c518',imgIdx:1},
+      {name:'Green',nameUr:'سبز',hex:'#10b981',imgIdx:2},
+      {name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:3},
+      {name:'Pink',nameUr:'گلابی',hex:'#e879a0',imgIdx:4}
+    ],
+    desc:'Premium silicone cover with MagSafe compatibility. Military-grade drop protection with raised camera edges. Available in 4 vibrant colors. Soft inner lining prevents scratches.',
+    descUr:'پریمیم سلیکون کور جو MagSafe کے ساتھ مطابقت رکھتا ہے۔ ملٹری گریڈ ڈراپ پروٹیکشن کے ساتھ کیمرہ کنارے اونچے ہیں۔ 4 چمکدار رنگوں میں دستیاب۔ نرم اندرونی پرت خراشوں سے بچاتی ہے۔',
+    specs:{Material:'Premium Silicone',Compatible:'iPhone 15 / 14 Series',Protection:'Military Grade MIL-STD-810',Colors:'Yellow, Green, Black, Pink',Feature:'MagSafe Compatible'}
+  },
+  {
+    id:2, name:'Transparent Hard Cover',
+    nameUr:'شفاف ہارڈ کور',
+    cat:'covers',
+    badge:'HOT',brand:'Universal',
+    price:350,oldPrice:550,
+    imgs:[
+      'https://images.unsplash.com/photo-1593055454503-531d165c2ed8?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1593055454503-531d165c2ed8?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'Crystal clear hard case that shows off your phone\'s original design. Anti-yellow formula keeps it clear for years. Precise cutouts and slim profile — adds zero bulk.',
+    descUr:'کرسٹل کلیئر ہارڈ کیس جو آپ کے فون کا اصلی ڈیزائن دکھاتا ہے۔ اینٹی یلو فارمولا اسے سالوں تک صاف رکھتا ہے۔ درست کٹ آؤٹس اور پتلا پروفائل۔',
+    specs:{Material:'Hard PC + TPU',Type:'Transparent',Protection:'Scratch-proof',Profile:'Ultra Slim 0.5mm',Feature:'Anti-Yellow'}
+  },
+  {
+    id:3, name:'Cute Cartoon Phone Cover',
+    nameUr:'کیوٹ کارٹون فون کور',
+    cat:'covers',
+    badge:null,brand:'Trendy',
+    price:450,oldPrice:700,
+    imgs:[
+      'https://images.unsplash.com/photo-1563299585-548ccb637e5e?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1563299585-548ccb637e5e?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'Adorable cartoon-printed phone cover with vibrant colors. Perfect gift for teens and young adults. Soft TPU material absorbs shocks and protects corners.',
+    descUr:'خوبصورت کارٹون پرنٹڈ فون کور۔ نوجوانوں کے لیے بہترین تحفہ۔ نرم TPU مٹیریل شاک کو جذب کرتا ہے اور کونوں کی حفاظت کرتا ہے۔',
+    specs:{Material:'Soft TPU',Type:'Printed Design',Style:'Cartoon / Cute',Age:'Teens & Adults',Finish:'Matte'}
+  },
+  {
+    id:4, name:'Vivo V29 Leather Flip Cover',
+    nameUr:'ویوو V29 لیدر فلپ کور',
+    cat:'covers',
+    badge:'SALE',brand:'Vivo',
+    price:650,oldPrice:900,
+    imgs:[
+      'https://images.unsplash.com/photo-1623393884989-cb3663e431c5?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1623393884989-cb3663e431c5?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'Genuine leather flip cover with built-in card holder for 2 cards, mirror, and magnetic kickstand. Full 360° protection for your Vivo V29. Premium stitching for long-lasting use.',
+    descUr:'اصلی لیدر فلپ کور جس میں 2 کارڈ ہولڈر، آئینہ اور مقناطیسی کک اسٹینڈ ہے۔ ویوو V29 کے لیے مکمل 360° تحفظ۔ پریمیم سلائی دیرپا استعمال کے لیے۔',
+    specs:{Material:'Genuine Leather',Compatible:'Vivo V29',Protection:'Full 360°',Extra:'Card Holder + Mirror',Colors:'Brown / Black'}
+  },
+  {
+    id:5, name:'Samsung Galaxy Rugged Cover',
+    nameUr:'سام سنگ گیلیکسی رگڈ کور',
+    cat:'covers',
+    badge:'HOT',brand:'Samsung',
+    price:750,oldPrice:1100,
+    imgs:[
+      'https://images.unsplash.com/photo-1581003989336-2ae25a99c091?q=80&w=735&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1584881754105-8affb3337461?q=80&w=764&auto=format&fit=crop'
+    ],
+    colors:[
+      {name:'Dark Blue',nameUr:'گہرا نیلا',hex:'#1e3a5f',imgIdx:0},
+      {name:'Light',nameUr:'ہلکا',hex:'#c8d8e8',imgIdx:1}
+    ],
+    desc:'Heavy-duty rugged case for Samsung Galaxy. Dual-layer TPU + PC construction with reinforced corners. Designed for outdoor use — survives drops, dust, and water splashes.',
+    descUr:'سام سنگ گیلیکسی کے لیے بھاری ڈیوٹی رگڈ کیس۔ ڈبل لیئر TPU + PC تعمیر مضبوط کونوں کے ساتھ۔ آؤٹ ڈور استعمال کے لیے ڈیزائن کیا گیا۔',
+    specs:{Material:'TPU + PC Dual Layer',Compatible:'Samsung Galaxy Series',Protection:'Drop-proof 1.8m',Extra:'Reinforced Corners',Feature:'Dust & Water Resistant'}
+  },
+  {
+    id:6, name:'Realme 11 Pro Crystal Cover',
+    nameUr:'ریئل می 11 پرو کرسٹل کور',
+    cat:'covers',
+    badge:null,brand:'Realme',
+    price:280,oldPrice:400,
+    imgs:[
+      'https://images.unsplash.com/photo-1675355147911-e00d35d9ba79?q=80&w=1170&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1675355147911-e00d35d9ba79?q=80&w=1170&auto=format&fit=crop'
+    ],
+    colors:[],
+    desc:'Transparent glitter crystal case that stays clear over time. Unique sparkle effect catches light beautifully. Anti-yellow technology with soft TPU sides for easy grip.',
+    descUr:'شفاف گلٹر کرسٹل کیس جو وقت کے ساتھ صاف رہتا ہے۔ منفرد چمک اثر روشنی میں خوبصورت لگتا ہے۔ اینٹی یلو ٹیکنالوجی کے ساتھ نرم TPU سائڈز۔',
+    specs:{Material:'Crystal TPU',Compatible:'Realme 11 Pro',Protection:'Anti-yellow',Style:'Glitter Sparkle',Profile:'Slim Fit'}
+  },
+  {
+    id:7, name:'Android Universal Armor Case',
+    nameUr:'اینڈرائیڈ یونیورسل آرمر کیس',
+    cat:'covers',
+    badge:null,brand:'Generic',
+    price:320,oldPrice:500,
+    imgs:[
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7rA-tYXaaKKD3DPwbb2AT95pRqouX2FTa_w&s',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7rA-tYXaaKKD3DPwbb2AT95pRqouX2FTa_w&s'
+    ],
+    colors:[],
+    desc:'Universal armor case compatible with most Android phones. Heavy-duty protection with built-in kickstand and belt clip. Perfect for workers and outdoor enthusiasts.',
+    descUr:'یونیورسل آرمر کیس جو زیادہ تر اینڈرائیڈ فونز کے ساتھ مطابقت رکھتا ہے۔ بلٹ ان کک اسٹینڈ اور بیلٹ کلپ کے ساتھ بھاری ڈیوٹی تحفظ۔',
+    specs:{Material:'Rugged TPU + PC',Type:'Armor Case',Extra:'Kickstand + Belt Clip',Protection:'Heavy Duty',Compatible:'Most Android Phones'}
+  },
+
+  // ===== AIRPODS / EARPHONES (6) =====
+  {
+    id:8, name:'Apple AirPods Pro 2nd Gen',
+    nameUr:'ایپل ایئر پاڈز پرو دوسری نسل',
+    cat:'airpods',
+    badge:'NEW',brand:'Apple',
+    price:8500,oldPrice:12000,
+    imgs:[
+      'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'Original Apple AirPods Pro with Active Noise Cancellation and Transparency mode. Adaptive Audio adjusts automatically. Up to 30 hours total battery with MagSafe Charging Case.',
+    descUr:'اصلی ایپل ایئر پاڈز پرو جس میں ایکٹو نوائز کینسلیشن اور ٹرانسپیرنسی موڈ ہے۔ ایڈاپٹیو آڈیو خودکار طریقے سے ایڈجسٹ ہوتا ہے۔ MagSafe چارجنگ کیس کے ساتھ کل 30 گھنٹے بیٹری۔',
+    specs:{ANC:'Active Noise Cancellation',Battery:'6hr + 24hr case = 30hr',Connectivity:'Bluetooth 5.3',Charging:'MagSafe / Lightning',Rating:'IPX4 Water Resistant'}
+  },
+  {
+    id:9, name:'AirPods Wireless Charging Case',
+    nameUr:'ایئر پاڈز وائرلیس چارجنگ کیس',
+    cat:'airpods',
+    badge:'HOT',brand:'Apple',
+    price:5500,oldPrice:8000,
+    imgs:[
+      'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'Apple AirPods with wireless charging case. Instant automatic connection when taken out of case. Siri integration and double-tap controls. Rich, powerful bass with clear highs.',
+    descUr:'ایپل ایئر پاڈز وائرلیس چارجنگ کیس کے ساتھ۔ کیس سے نکالنے پر فوری خودکار کنکشن۔ سری انٹیگریشن اور ڈبل ٹیپ کنٹرول۔ واضح آواز کے ساتھ زبردست باس۔',
+    specs:{Connectivity:'Bluetooth 5.0',Battery:'5hr + 24hr case',Case:'Wireless Charging',Controls:'Double-tap',Feature:'Siri Integration'}
+  },
+  {
+    id:10, name:'Samsung Galaxy Buds Pro',
+    nameUr:'سام سنگ گیلیکسی بڈز پرو',
+    cat:'airpods',
+    badge:null,brand:'Samsung',
+    price:7200,oldPrice:10500,
+    imgs:[
+      'https://images.unsplash.com/photo-1610438235354-a6ae5528385c?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1610438235354-a6ae5528385c?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'Samsung Galaxy Buds Pro with Intelligent ANC and 360-degree sound. 8-hour playback with up to 28 hours total. IPX7 water resistance. Perfect for Galaxy phone users.',
+    descUr:'سام سنگ گیلیکسی بڈز پرو انٹیلیجنٹ ANC اور 360 ڈگری آواز کے ساتھ۔ کل 28 گھنٹے تک 8 گھنٹے کی پلے بیک۔ IPX7 واٹر ریزسٹنس۔',
+    specs:{ANC:'Intelligent ANC',Battery:'8hr + 20hr case',Connectivity:'Bluetooth 5.0',Rating:'IPX7',Compatible:'Samsung Galaxy (Best)'}
+  },
+  {
+    id:11, name:'JBL Tune 215BT Wireless Earphones',
+    nameUr:'جے بی ایل ٹیون 215BT وائرلیس ایئر فونز',
+    cat:'earphones',
+    badge:'HOT',brand:'JBL',
+    price:2200,oldPrice:3500,
+    imgs:[
+      'https://plus.unsplash.com/premium_photo-1679513691474-73102089c117?w=600&auto=format&fit=crop&q=60',
+      'https://plus.unsplash.com/premium_photo-1679513691474-73102089c117?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'JBL Tune 215BT wireless neckband earphones with JBL Pure Bass sound. 15-hour battery life, fast charge, and hands-free calls with 3-button remote. Tangle-free flat cable.',
+    descUr:'JBL ٹیون 215BT وائرلیس نیک بینڈ ایئر فونز JBL پیور باس ساؤنڈ کے ساتھ۔ 15 گھنٹے بیٹری، فاسٹ چارج، اور 3-بٹن ریموٹ سے ہینڈز فری کالز۔',
+    specs:{Battery:'15 hours',Charging:'2hr fast charge',Driver:'9mm JBL Pure Bass',Controls:'3-button remote',Cable:'Tangle-free Flat'}
+  },
+  {
+    id:12, name:'Sony WH-1000XM5 Headphones',
+    nameUr:'سونی WH-1000XM5 ہیڈ فونز',
+    cat:'headphones',
+    badge:'NEW',brand:'Sony',
+    price:18000,oldPrice:25000,
+    imgs:[
+      'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1545127398-14699f92334b?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'Sony\'s flagship noise-cancelling headphones. Industry-leading ANC with 8 microphones. 30-hour battery, multipoint connection, speak-to-chat technology. Foldable for travel.',
+    descUr:'سونی کے فلیگ شپ نوائز کینسلنگ ہیڈ فونز۔ 8 مائیکرو فونز کے ساتھ انڈسٹری لیڈنگ ANC۔ 30 گھنٹے بیٹری، ملٹی پوائنٹ کنکشن، اسپیک ٹو چیٹ ٹیکنالوجی۔',
+    specs:{ANC:'8-Mic Industry Leading',Battery:'30 hours',Connectivity:'Bluetooth 5.2 + NFC',Weight:'250g',Feature:'Speak-to-Chat'}
+  },
+  {
+    id:13, name:'JBL Tune 760NC Headphones',
+    nameUr:'جے بی ایل ٹیون 760NC ہیڈ فونز',
+    cat:'headphones',
+    badge:'HOT',brand:'JBL',
+    price:8500,oldPrice:12000,
+    imgs:[
+      'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1545127398-14699f92334b?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'JBL Tune 760NC active noise-cancelling wireless headphones with 35-hour battery. Foldable design for easy travel. JBL Pure Bass sound with on-ear comfort.',
+    descUr:'JBL ٹیون 760NC ایکٹو نوائز کینسلنگ وائرلیس ہیڈ فونز 35 گھنٹے بیٹری کے ساتھ۔ آسان سفر کے لیے فولڈ ایبل ڈیزائن۔ JBL پیور باس ساؤنڈ۔',
+    specs:{Battery:'35 hours',ANC:'Active Noise Cancelling',Connectivity:'Bluetooth 5.0',Driver:'40mm Pure Bass',Design:'Foldable On-Ear'}
+  },
+
+  // ===== POWER BANKS (4) =====
+  {
+    id:14, name:'Baseus 20000mAh 65W Power Bank',
+    nameUr:'باسیوس 20000mAh 65W پاور بینک',
+    cat:'power-banks',
+    badge:'HOT',brand:'Baseus',
+    price:3500,oldPrice:5000,
+    imgs:[
+      'https://images.unsplash.com/photo-1585995603413-eb35b5f4a50b?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1585995603413-eb35b5f4a50b?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'20,000mAh massive capacity with 65W fast charging output — charges your laptop, phone, and tablet simultaneously. Digital LED display shows exact battery percentage. Compact slim design.',
+    descUr:'20,000mAh بڑی صلاحیت کے ساتھ 65W فاسٹ چارجنگ آؤٹ پٹ — لیپ ٹاپ، فون اور ٹیبلٹ کو بیک وقت چارج کرتا ہے۔ ڈیجیٹل LED ڈسپلے صحیح بیٹری فیصد دکھاتا ہے۔',
+    specs:{Capacity:'20,000mAh',Output:'65W PD Fast',Ports:'2× USB-C + 1× USB-A',Display:'Digital LED %',Charges:'Laptop + Phone + Tablet'}
+  },
+  {
+    id:15, name:'10000mAh Slim Power Bank',
+    nameUr:'10000mAh سلم پاور بینک',
+    cat:'power-banks',
+    badge:null,brand:'Romoss',
+    price:1800,oldPrice:2500,
+    imgs:[
+      'https://images.unsplash.com/photo-1706275399494-fb26bbc5da63?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1706275399494-fb26bbc5da63?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'Ultra-slim 10,000mAh power bank — fits in your shirt pocket. 22.5W fast charge support. Dual USB output charges 2 devices simultaneously. Lightweight at only 190g.',
+    descUr:'انتہائی پتلا 10,000mAh پاور بینک جو آپ کی قمیض کی جیب میں آتا ہے۔ 22.5W فاسٹ چارج سپورٹ۔ ڈوئل USB آؤٹ پٹ ایک ساتھ 2 ڈیوائسز چارج کرتا ہے۔ صرف 190g وزن۔',
+    specs:{Capacity:'10,000mAh',Output:'22.5W Fast',Thickness:'14mm Ultra-Slim',Weight:'190g',Ports:'2× USB Output'}
+  },
+  {
+    id:16, name:'30000mAh Heavy Duty Power Bank',
+    nameUr:'30000mAh ہیوی ڈیوٹی پاور بینک',
+    cat:'power-banks',
+    badge:'NEW',brand:'Anker',
+    price:4800,oldPrice:7000,
+    imgs:[
+      'https://images.unsplash.com/photo-1736516434209-51ece1006788?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1736516434209-51ece1006788?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'30,000mAh high-capacity power bank — keeps multiple devices running for days. 3 output ports for simultaneous charging. Built-in LED flashlight. Ideal for travel and camping.',
+    descUr:'30,000mAh ہائی کیپیسٹی پاور بینک — کئی دنوں تک متعدد ڈیوائسز کو چلاتا رہتا ہے۔ بیک وقت چارجنگ کے لیے 3 آؤٹ پٹ پورٹس۔ بلٹ ان LED فلیش لائٹ۔ سفر اور کیمپنگ کے لیے مثالی۔',
+    specs:{Capacity:'30,000mAh',Ports:'3× USB Output',Extra:'LED Flashlight',Charges:'Up to 8 phone charges',Use:'Travel & Camping'}
+  },
+  {
+    id:17, name:'Wireless Charging Power Bank',
+    nameUr:'وائرلیس چارجنگ پاور بینک',
+    cat:'power-banks',
+    badge:'HOT',brand:'Baseus',
+    price:3200,oldPrice:4500,
+    imgs:[
+      'https://media.istockphoto.com/id/1409737619/photo/a-mobile-phone-being-charged-using-a-power-bank-is-on-the-table.webp?a=1&b=1&s=612x612&w=0&k=20&c=PlSb7DKnuFEQRkMV6TOAbXE2xtvTYISP1nAikMfj7x8=',
+      'https://media.istockphoto.com/id/1409737619/photo/a-mobile-phone-being-charged-using-a-power-bank-is-on-the-table.webp?a=1&b=1&s=612x612&w=0&k=20&c=PlSb7DKnuFEQRkMV6TOAbXE2xtvTYISP1nAikMfj7x8='
+    ],
+    colors:[],
+    desc:'10,000mAh power bank with built-in wireless charging pad. Just place your phone on top — no cable needed. Supports Qi wireless charging + USB-C wired output simultaneously.',
+    descUr:'10,000mAh پاور بینک بلٹ ان وائرلیس چارجنگ پیڈ کے ساتھ۔ بس اپنا فون اوپر رکھیں — کوئی کیبل ضروری نہیں۔ Qi وائرلیس چارجنگ + USB-C وائرڈ آؤٹ پٹ دونوں بیک وقت۔',
+    specs:{Capacity:'10,000mAh',Wireless:'Qi 10W',Wired:'USB-C 20W',Feature:'Wireless + Wired Both',LED:'Battery Indicator'}
+  },
+
+  // ===== CHARGERS (3) =====
+  {
+    id:18, name:'65W GaN Fast Charger 3-Port',
+    nameUr:'65W GaN فاسٹ چارجر 3-پورٹ',
+    cat:'chargers',
+    badge:'HOT',brand:'Baseus',
+    price:1800,oldPrice:2500,
+    imgs:[
+      'https://images.unsplash.com/photo-1731616103600-3fe7ccdc5a59?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1731616103600-3fe7ccdc5a59?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'65W GaN III technology charger — charges laptop, phone, tablet simultaneously. Ultra-compact foldable plug fits any bag. 3 ports: 2×USB-C PD + 1×USB-A QC. Overcharge protection.',
+    descUr:'65W GaN III ٹیکنالوجی چارجر — لیپ ٹاپ، فون، ٹیبلٹ ایک ساتھ چارج کرتا ہے۔ انتہائی کمپیکٹ فولڈ ایبل پلگ کسی بھی بیگ میں فٹ ہوتا ہے۔ اوور چارج پروٹیکشن۔',
+    specs:{Output:'65W Total',Ports:'2×USB-C PD + 1×USB-A QC',Technology:'GaN III',Size:'Foldable Ultra-Compact',Safety:'OVP + OCP + OTP'}
+  },
+  {
+    id:19, name:'Samsung 45W Super Fast Charger',
+    nameUr:'سام سنگ 45W سپر فاسٹ چارجر',
+    cat:'chargers',
+    badge:'NEW',brand:'Samsung',
+    price:2200,oldPrice:3000,
+    imgs:[
+      'https://images.unsplash.com/photo-1642983912974-05a554495d88?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1642983912974-05a554495d88?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'Original Samsung 45W Super Fast Charging 2.0 adapter. Charges Galaxy S series from 0–50% in just 20 minutes. USB-C PPS technology. Includes USB-C cable.',
+    descUr:'اصلی سام سنگ 45W سپر فاسٹ چارجنگ 2.0 اڈاپٹر۔ گیلیکسی S سیریز کو صرف 20 منٹ میں 0-50٪ تک چارج کرتا ہے۔ USB-C کیبل شامل ہے۔',
+    specs:{Output:'45W PPS',Port:'USB-C',Compatible:'Samsung Galaxy S/A Series',Cable:'USB-C Included','0-50%':'Only 20 minutes'}
+  },
+  {
+    id:20, name:'Apple 20W USB-C Fast Charger',
+    nameUr:'ایپل 20W USB-C فاسٹ چارجر',
+    cat:'chargers',
+    badge:null,brand:'Apple',
+    price:1500,oldPrice:2000,
+    imgs:[
+      'https://images.unsplash.com/photo-1725304382197-663ae3864750?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1725304382197-663ae3864750?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'Original Apple 20W USB-C Power Adapter. Fast charges iPhone 12 and above from 0 to 50% in just 30 minutes. MFi certified. Compatible with iPad and AirPods as well.',
+    descUr:'اصلی ایپل 20W USB-C پاور اڈاپٹر۔ آئی فون 12 اور اس سے اوپر کو صرف 30 منٹ میں 0 سے 50٪ تک فاسٹ چارج کرتا ہے۔ MFi سرٹیفائیڈ۔',
+    specs:{Output:'20W USB-C PD',Compatible:'iPhone 12 + / iPad / AirPods',Certified:'Apple MFi','0-50%':'Only 30 minutes',Standard:'USB PD 3.0'}
+  },
+
+  // ===== CABLES (1) =====
+  {
+    id:21, name:'3-in-1 Multi Fast Charging Cable',
+    nameUr:'3-in-1 ملٹی فاسٹ چارجنگ کیبل',
+    cat:'cables',
+    badge:'HOT',brand:'Baseus',
+    price:550,oldPrice:900,
+    imgs:[
+      'https://images.unsplash.com/photo-1587037542794-6ca5f4772330?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1587037542794-6ca5f4772330?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'3-in-1 cable with USB-C, Lightning (iPhone), and Micro-USB connectors. 100W fast charging support. Nylon braided for 25,000+ bend life. One cable for all your devices.',
+    descUr:'USB-C، لائٹننگ (آئی فون) اور مائیکرو USB کنیکٹرز کے ساتھ 3-in-1 کیبل۔ 100W فاسٹ چارجنگ سپورٹ۔ نائلون بریڈڈ 25,000+ بار موڑنے کے لیے۔ تمام ڈیوائسز کے لیے ایک کیبل۔',
+    specs:{Connectors:'USB-C + Lightning + Micro-USB',Rating:'100W Fast Charging',Material:'Nylon Braided',Durability:'25,000+ bends',Length:'1.2 meter'}
+  },
+
+  // ===== SPARE PARTS (1) =====
+  {
+    id:22, name:'iPhone 14 OLED Display Screen',
+    nameUr:'آئی فون 14 OLED ڈسپلے اسکرین',
+    cat:'spare-parts',
+    badge:'NEW',brand:'Apple Grade',
+    price:12000,oldPrice:16000,
+    imgs:[
+      'https://images.unsplash.com/photo-1631281956016-3cdc1b2fe5fb?w=600&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1631281956016-3cdc1b2fe5fb?w=600&h=450&fit=crop'
+    ],
+    colors:[],
+    desc:'Original-grade OLED replacement screen for iPhone 14. True-to-life colors, 460 ppi pixel density. Comes with full repair kit including tools, adhesive, and step-by-step guide.',
+    descUr:'آئی فون 14 کے لیے اصلی گریڈ OLED ریپلیسمنٹ اسکرین۔ حقیقی رنگ، 460 ppi پکسل ڈینسٹی۔ ٹولز، ایڈھیسیو اور مرحلہ وار گائیڈ کے ساتھ مکمل ریپیئر کٹ۔',
+    specs:{Type:'OLED Display',Resolution:'2532×1170 px 460ppi',Refresh:'60Hz',Color:'True Tone Display',Includes:'Full Repair Kit'}
+  },
+
+  // ===== SPEAKERS (2) =====
+  {
+    id:23, name:'JBL Go 3 Portable Bluetooth Speaker',
+    nameUr:'JBL گو 3 پورٹیبل بلوٹوتھ اسپیکر',
+    cat:'speakers',
+    badge:'HOT',brand:'JBL',
+    price:5500,oldPrice:7500,
+    imgs:[
+      'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&auto=format&fit=crop&q=60'
+    ],
+    colors:[],
+    desc:'Compact JBL Go 3 speaker with bold JBL Pro Sound. IP67 fully waterproof and dustproof. 5-hour playtime, built-in microphone for calls. Portable carabiner loop for outdoor adventures.',
+    descUr:'کمپیکٹ JBL گو 3 اسپیکر JBL پرو ساؤنڈ کے ساتھ۔ IP67 مکمل واٹر پروف اور ڈسٹ پروف۔ 5 گھنٹے کی پلے ٹائم، کالز کے لیے بلٹ ان مائیکرو فون۔ آؤٹ ڈور ایڈونچر کے لیے پورٹیبل کیرابینر لوپ۔',
+    specs:{Battery:'5 hours',Waterproof:'IP67 Fully Waterproof',Bluetooth:'5.1',Weight:'209g',Extra:'Carabiner Loop + Built-in Mic'}
+  },
+  {
+    id:24, name:'Screen Guard 9H Tempered Glass Pack',
+    nameUr:'اسکرین گارڈ 9H ٹیمپرڈ گلاس پیک',
+    cat:'screen-guards',
+    badge:'HOT',brand:'Premium',
+    price:350,oldPrice:600,
+    imgs:[
+      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=450&fit=crop',
+      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=450&fit=crop'
+    ],
+    colors:[],
+    desc:'Premium 9H hardness tempered glass screen protector. Pack of 2. Oleophobic anti-fingerprint coating. Full edge-to-edge coverage with easy bubble-free installation.',
+    descUr:'پریمیم 9H ہارڈنس ٹیمپرڈ گلاس اسکرین پروٹیکٹر۔ 2 کا پیک۔ اولیوفوبک اینٹی فنگر پرنٹ کوٹنگ۔ آسان ببل فری انسٹالیشن کے ساتھ مکمل ایج ٹو ایج کوریج۔',
+    specs:{Hardness:'9H',Pack:'2 Pieces',Thickness:'0.33mm',Coating:'Anti-fingerprint Oleophobic',Install:'Bubble-Free Easy Apply'}
+  }
 ];
 
-// ====== SHARED FUNCTIONS ======
-function productCardHTML(p, detailLink='') {
-  const save = Math.round((1-p.price/p.oldPrice)*100);
-  const href = detailLink || `product-detail.html?id=${p.id}`;
-  return `<div class="product-card" onclick="window.location='${href}'">
+// =====================================================
+// CURRENT LANGUAGE
+// =====================================================
+let currentLang = localStorage.getItem('ahsan-lang') || 'en';
+
+// =====================================================
+// RENDER PRODUCT CARD
+// =====================================================
+function productCardHTML(p) {
+  const save = Math.round((1 - p.price / p.oldPrice) * 100);
+  const imgSrc = p.imgs[0];
+  const isUrdu = currentLang === 'ur';
+  const displayName = isUrdu ? p.nameUr : p.name;
+
+  let colorSwatches = '';
+  if (p.colors && p.colors.length > 0) {
+    colorSwatches = `<div class="product-colors" id="swatches-${p.id}">`;
+    p.colors.forEach((c, i) => {
+      const active = i === 0 ? ' active' : '';
+      colorSwatches += `<div class="color-swatch${active}" 
+        style="background:${c.hex};" 
+        title="${isUrdu ? c.nameUr : c.name}"
+        onclick="event.stopPropagation();swapColor(${p.id},${i})"></div>`;
+    });
+    colorSwatches += `</div>`;
+  }
+
+  return `<div class="product-card" id="pcard-${p.id}" onclick="window.location='product-detail.html?id=${p.id}'">
     <div class="product-img">
-      ${p.badge?`<div class="product-badge">${p.badge}</div>`:''}
-      <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">
+      ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
+      <img id="card-img-${p.id}" src="${imgSrc}" alt="${p.name}" loading="lazy">
       <div class="product-img-overlay"></div>
     </div>
     <div class="product-info">
-      <div class="product-name">${p.name}</div>
+      <div class="product-name" id="pname-${p.id}">${displayName}</div>
       <div class="product-cat">${p.brand} · ${p.cat.replace(/-/g,' ')}</div>
+      ${colorSwatches}
       <div class="product-price">
         <div class="product-price-current">&#8360;${p.price.toLocaleString()}</div>
         <div class="product-price-old">&#8360;${p.oldPrice.toLocaleString()}</div>
         <div class="product-discount">${save}% OFF</div>
       </div>
-      <button class="product-add-btn" onclick="event.stopPropagation();addToCart('${p.name.replace(/'/g,"\'")}')">Order via WhatsApp 🛒</button>
+      <button class="product-add-btn" onclick="event.stopPropagation();addToCart('${p.name.replace(/'/g,"\\'")}')">
+        ${isUrdu ? 'واٹس ایپ پر آرڈر کریں 🛒' : 'Order via WhatsApp 🛒'}
+      </button>
     </div>
   </div>`;
 }
 
+function swapColor(productId, colorIdx) {
+  const p = allProducts.find(x => x.id === productId);
+  if (!p || !p.colors[colorIdx]) return;
+  const imgIdx = p.colors[colorIdx].imgIdx;
+  const img = document.getElementById('card-img-' + productId);
+  if (img) { img.src = p.imgs[imgIdx]; }
+  document.querySelectorAll(`#swatches-${productId} .color-swatch`).forEach((s, i) => {
+    s.classList.toggle('active', i === colorIdx);
+  });
+}
+
 function addToCart(name) {
   document.getElementById('modal-icon').textContent = '🛒';
-  document.getElementById('modal-title').textContent = 'Order via WhatsApp!';
-  document.getElementById('modal-sub').innerHTML = `<strong>${name}</strong><br><br>Send order on WhatsApp:<br><a href="https://wa.me/923091333812?text=${encodeURIComponent('Assalam o Alaikum! I want to order: '+name)}" target="_blank" style="color:var(--accent);font-weight:700;">📱 03091333812</a>`;
+  document.getElementById('modal-title').textContent = currentLang === 'ur' ? 'واٹس ایپ پر آرڈر کریں!' : 'Order via WhatsApp!';
+  document.getElementById('modal-sub').innerHTML = `<strong>${name}</strong><br><br>
+    <a href="https://wa.me/923091333812?text=${encodeURIComponent('Assalam o Alaikum! I want to order: ' + name)}" 
+       target="_blank" style="display:inline-block;background:#25d366;color:#fff;padding:11px 26px;border-radius:10px;font-weight:700;text-decoration:none;margin-top:6px;">
+      💬 ${currentLang === 'ur' ? 'واٹس ایپ کھولیں' : 'Open WhatsApp'}: 03091333812
+    </a>`;
   document.getElementById('modal-overlay').classList.add('active');
 }
 
@@ -672,12 +756,7 @@ function showToast(msg, type='') {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.className = 'toast show ' + type;
-  setTimeout(()=>{t.className='toast';}, 3000);
-}
-
-function copyCode(code) {
-  navigator.clipboard?.writeText(code).catch(()=>{});
-  showToast('✅ Code ' + code + ' copied!', 'success');
+  setTimeout(() => { t.className = 'toast'; }, 3000);
 }
 
 function toggleMobMenu() {
@@ -685,41 +764,34 @@ function toggleMobMenu() {
   document.getElementById('mobMenu').classList.toggle('open');
 }
 
-function toggleFaq(el) {
-  el.classList.toggle('open');
-  el.nextElementSibling.classList.toggle('open');
-}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape') closeModal();
-});
-</script>
-
-
-<script>
+// =====================================================
+// FILTER + RENDER GRID
+// =====================================================
 let currentCat = 'all';
 
 function filterCat(cat, btn) {
   currentCat = cat;
-  document.querySelectorAll('.products-cat-btn').forEach(b=>b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.products-cat-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
   renderGrid();
 }
 
 function renderGrid() {
   const grid = document.getElementById('products-grid');
-  if(!grid) return;
-  const list = currentCat === 'all' ? allProducts : allProducts.filter(p=>p.cat===currentCat);
-  grid.innerHTML = list.map(p=>productCardHTML(p,'product-detail.html?id='+p.id)).join('');
+  if (!grid) return;
+  const list = currentCat === 'all' ? allProducts : allProducts.filter(p => p.cat === currentCat);
+  grid.innerHTML = list.map(p => productCardHTML(p)).join('');
 }
 
-// Read URL param
+// URL param
 const urlCat = new URLSearchParams(window.location.search).get('cat');
-if(urlCat) {
+if (urlCat) {
   currentCat = urlCat;
-  document.addEventListener('DOMContentLoaded', ()=>{
-    document.querySelectorAll('.products-cat-btn').forEach(b=>{
-      if(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+urlCat+"'")) b.classList.add('active');
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.products-cat-btn').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + urlCat + "'")) b.classList.add('active');
       else b.classList.remove('active');
     });
     renderGrid();
@@ -728,165 +800,57 @@ if(urlCat) {
 document.addEventListener('DOMContentLoaded', renderGrid);
 </script>
 
+<!-- ===== MULTI-LANGUAGE SYSTEM ===== -->
 <script>
-// ===== MULTI-LANGUAGE SYSTEM =====
 const LANGS = {
-  en: {
-    flag:'🇺🇸', label:'English', dir:'ltr',
-    t:{
-      'Home':'Home','Products':'Products','About':'About','Offers':'Offers',
-      'Contact':'Contact','Help':'Help','Login':'Login','Shop Now →':'Shop Now →',
-      "Pakistan's #1 Mobile Accessories Store":"Pakistan's #1 Mobile Accessories Store",
-      'Premium':'Premium','For Every Phone.':'For Every Phone.',
-      'Shop by Category':'Shop by Category','Everything Your Phone Needs':'Everything Your Phone Needs',
-      'Why Choose Us':'Why Choose Us','Built on Trust':'Built on Trust',
-      '100% Original':'100% Original','Fast Delivery':'Fast Delivery',
-      'Best Prices':'Best Prices','24/7 Support':'24/7 Support',
-      'Customer Reviews':'Customer Reviews','What People Say':'What People Say',
-      'Get 20% OFF Your First Order!':'Get 20% OFF Your First Order!',
-      'Our Story':'Our Story','Send Message 📨':'Send Message 📨',
-      'Order via WhatsApp 🛒':'Order via WhatsApp 🛒',
-      'Hot Deals & Offers 🔥':'Hot Deals & Offers 🔥',
-      'Help Center 🤝':'Help Center 🤝','Get in Touch 📞':'Get in Touch 📞',
-    }
+  en:{ flag:'🇺🇸', label:'English', dir:'ltr',
+    t:{'Home':'Home','Products':'Products','About':'About','Offers':'Offers','Contact':'Contact','Help':'Help','Login':'Login','Shop Now →':'Shop Now →','Our Products':'Our Products','500+ accessories — all genuine, all affordable':'500+ accessories — all genuine, all affordable','All Products':'All Products','Order via WhatsApp 🛒':'Order via WhatsApp 🛒'}
   },
-  ur: {
-    flag:'🇵🇰', label:'اردو', dir:'rtl',
-    t:{
-      'Home':'ہوم','Products':'پروڈکٹس','About':'ہمارے بارے میں','Offers':'آفرز',
-      'Contact':'رابطہ','Help':'مدد','Login':'لاگ ان','Shop Now →':'ابھی خریدیں →',
-      "Pakistan's #1 Mobile Accessories Store":"پاکستان کا نمبر 1 موبائل اسٹور",
-      'Premium':'پریمیم','For Every Phone.':'ہر فون کے لیے۔',
-      'Shop by Category':'کیٹیگری سے خریداری','Everything Your Phone Needs':'آپ کے فون کی ضرورت',
-      'Why Choose Us':'ہمیں کیوں چنیں','Built on Trust':'اعتماد پر قائم',
-      '100% Original':'100٪ اصلی','Fast Delivery':'فوری ڈلیوری',
-      'Best Prices':'بہترین قیمتیں','24/7 Support':'24/7 سپورٹ',
-      'Customer Reviews':'گاہکوں کے تبصرے','What People Say':'لوگ کیا کہتے ہیں',
-      'Get 20% OFF Your First Order!':'پہلے آرڈر پر 20٪ چھوٹ!',
-      'Our Story':'ہماری کہانی','Send Message 📨':'پیغام بھیجیں 📨',
-      'Order via WhatsApp 🛒':'واٹس ایپ پر آرڈر کریں 🛒',
-      'Hot Deals & Offers 🔥':'گرم ڈیلز اور آفرز 🔥',
-      'Help Center 🤝':'مدد مرکز 🤝','Get in Touch 📞':'ہم سے رابطہ کریں 📞',
-    }
+  ur:{ flag:'🇵🇰', label:'اردو', dir:'rtl',
+    t:{'Home':'ہوم','Products':'پروڈکٹس','About':'ہمارے بارے میں','Offers':'آفرز','Contact':'رابطہ','Help':'مدد','Login':'لاگ ان','Shop Now →':'ابھی خریدیں →','Our Products':'ہماری مصنوعات','500+ accessories — all genuine, all affordable':'500+ اکسیسریز — سب اصلی، سب سستے','All Products':'تمام پروڈکٹس','Order via WhatsApp 🛒':'واٹس ایپ پر آرڈر کریں 🛒'}
   },
-  hi: {
-    flag:'🇮🇳', label:'हिंदी', dir:'ltr',
-    t:{
-      'Home':'होम','Products':'उत्पाद','About':'हमारे बारे में','Offers':'ऑफर',
-      'Contact':'संपर्क','Help':'सहायता','Login':'लॉगिन','Shop Now →':'अभी खरीदें →',
-      "Pakistan's #1 Mobile Accessories Store":"पाकिस्तान का नंबर 1 मोबाइल स्टोर",
-      'Premium':'प्रीमियम','For Every Phone.':'हर फोन के लिए।',
-      'Shop by Category':'श्रेणी के अनुसार खरीदें','Everything Your Phone Needs':'आपके फोन की ज़रूरत',
-      'Why Choose Us':'हमें क्यों चुनें','Built on Trust':'विश्वास पर निर्मित',
-      '100% Original':'100% असली','Fast Delivery':'तेज़ डिलीवरी',
-      'Best Prices':'सर्वोत्तम कीमतें','24/7 Support':'24/7 सहायता',
-      'Customer Reviews':'ग्राहक समीक्षाएं','What People Say':'लोग क्या कहते हैं',
-      'Get 20% OFF Your First Order!':'पहले ऑर्डर पर 20% छूट!',
-      'Our Story':'हमारी कहानी','Send Message 📨':'संदेश भेजें 📨',
-      'Order via WhatsApp 🛒':'WhatsApp पर ऑर्डर करें 🛒',
-      'Hot Deals & Offers 🔥':'गर्म डील और ऑफर 🔥',
-      'Help Center 🤝':'सहायता केंद्र 🤝','Get in Touch 📞':'संपर्क करें 📞',
-    }
+  hi:{ flag:'🇮🇳', label:'हिंदी', dir:'ltr',
+    t:{'Home':'होम','Products':'उत्पाद','About':'हमारे बारे में','Offers':'ऑफर','Contact':'संपर्क','Help':'सहायता','Login':'लॉगिन','Shop Now →':'अभी खरीदें →','Our Products':'हमारे उत्पाद','500+ accessories — all genuine, all affordable':'500+ एक्सेसरीज — सब असली, सब सस्ते','All Products':'सभी उत्पाद','Order via WhatsApp 🛒':'WhatsApp पर ऑर्डर करें 🛒'}
   },
-  ar: {
-    flag:'🇸🇦', label:'العربية', dir:'rtl',
-    t:{
-      'Home':'الرئيسية','Products':'المنتجات','About':'معلومات عنا','Offers':'العروض',
-      'Contact':'اتصل بنا','Help':'المساعدة','Login':'تسجيل الدخول','Shop Now →':'تسوق الآن →',
-      "Pakistan's #1 Mobile Accessories Store":"متجر إكسسوارات المحمول رقم 1 في باكستان",
-      'Premium':'مميز','For Every Phone.':'لكل هاتف.',
-      'Shop by Category':'تسوق حسب الفئة','Everything Your Phone Needs':'كل ما يحتاجه هاتفك',
-      'Why Choose Us':'لماذا تختارنا','Built on Trust':'مبني على الثقة',
-      '100% Original':'100٪ أصلي','Fast Delivery':'توصيل سريع',
-      'Best Prices':'أفضل الأسعار','24/7 Support':'دعم 24/7',
-      'Customer Reviews':'آراء العملاء','What People Say':'ماذا يقول الناس',
-      'Get 20% OFF Your First Order!':'احصل على خصم 20٪ على طلبك الأول!',
-      'Our Story':'قصتنا','Send Message 📨':'إرسال رسالة 📨',
-      'Order via WhatsApp 🛒':'اطلب عبر واتساب 🛒',
-      'Hot Deals & Offers 🔥':'أفضل الصفقات والعروض 🔥',
-      'Help Center 🤝':'مركز المساعدة 🤝','Get in Touch 📞':'تواصل معنا 📞',
-    }
+  ar:{ flag:'🇸🇦', label:'العربية', dir:'rtl',
+    t:{'Home':'الرئيسية','Products':'المنتجات','About':'معلومات عنا','Offers':'العروض','Contact':'اتصل بنا','Help':'المساعدة','Login':'تسجيل الدخول','Shop Now →':'تسوق الآن →','Our Products':'منتجاتنا','500+ accessories — all genuine, all affordable':'500+ ملحق — كلها أصلية وبأسعار معقولة','All Products':'جميع المنتجات','Order via WhatsApp 🛒':'اطلب عبر واتساب 🛒'}
   }
 };
 
-let currentLang = localStorage.getItem('ahsan-lang') || 'en';
-
-function toggleLangMenu() {
-  const wrap = document.getElementById('lang-wrap');
-  if(wrap) wrap.classList.toggle('open');
-}
-
-// Close on outside click
-document.addEventListener('click', function(e){
-  const wrap = document.getElementById('lang-wrap');
-  if(wrap && !wrap.contains(e.target)) wrap.classList.remove('open');
-});
+function toggleLangMenu(){ document.getElementById('lang-wrap').classList.toggle('open'); }
+document.addEventListener('click', function(e){ const w=document.getElementById('lang-wrap'); if(w && !w.contains(e.target)) w.classList.remove('open'); });
 
 function setLang(code) {
   currentLang = code;
   localStorage.setItem('ahsan-lang', code);
   const lang = LANGS[code];
-  
-  // Update button
   document.getElementById('lang-flag').textContent = lang.flag;
   document.getElementById('lang-label').textContent = lang.label;
-  
-  // Update active state in menu
   document.querySelectorAll('.lang-option').forEach(opt => {
     opt.classList.remove('active-lang');
-    if(opt.getAttribute('onclick').includes("'" + code + "'")) opt.classList.add('active-lang');
+    if (opt.getAttribute('onclick').includes("'" + code + "'")) opt.classList.add('active-lang');
   });
-  
-  // RTL/LTR
   document.documentElement.dir = lang.dir;
   document.documentElement.lang = code;
   document.body.classList.toggle('rtl-mode', lang.dir === 'rtl');
-  
-  // Translate elements
   document.querySelectorAll('[data-translate]').forEach(el => {
     const orig = el.getAttribute('data-orig') || el.textContent.trim();
-    if(!el.getAttribute('data-orig')) el.setAttribute('data-orig', orig);
+    if (!el.getAttribute('data-orig')) el.setAttribute('data-orig', orig);
     el.textContent = lang.t[orig] || orig;
   });
-  
-  // Close menu
-  const wrap = document.getElementById('lang-wrap');
-  if(wrap) wrap.classList.remove('open');
+  document.getElementById('lang-wrap').classList.remove('open');
+  renderGrid(); // re-render with new language names
 }
 
-// RTL body styles
-const rtlStyle = document.createElement('style');
-rtlStyle.textContent = `
-body.rtl-mode{direction:rtl;}
-body.rtl-mode nav{flex-direction:row-reverse;}
-body.rtl-mode .nav-links{flex-direction:row-reverse;}
-body.rtl-mode .nav-actions{flex-direction:row-reverse;}
-body.rtl-mode .mob-menu a{text-align:right;}
-body.rtl-mode .hero-content{text-align:right;}
-body.rtl-mode .hero-btns{flex-direction:row-reverse;}
-body.rtl-mode .section-header{text-align:center;}
-body.rtl-mode .product-info{text-align:right;}
-body.rtl-mode .contact-info-card{flex-direction:row-reverse;}
-body.rtl-mode .faq-question{flex-direction:row-reverse;}
-body.rtl-mode .footer-grid{direction:rtl;}
-body.rtl-mode .about-story{direction:rtl;}
-body.rtl-mode .detail-info{text-align:right;}
-body.rtl-mode .spec-row{flex-direction:row-reverse;}
-`;
-document.head.appendChild(rtlStyle);
-
-// Init on page load
 document.addEventListener('DOMContentLoaded', function(){
-  if(currentLang !== 'en') setLang(currentLang);
+  if (currentLang !== 'en') setLang(currentLang);
   else {
-    // just mark active
     document.querySelectorAll('.lang-option').forEach(opt => {
       opt.classList.remove('active-lang');
-      if(opt.getAttribute('onclick') && opt.getAttribute('onclick').includes("'en'")) opt.classList.add('active-lang');
+      if (opt.getAttribute('onclick') && opt.getAttribute('onclick').includes("'en'")) opt.classList.add('active-lang');
     });
   }
 });
-
 </script>
 </body>
 </html>
