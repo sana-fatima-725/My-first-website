@@ -4,22 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home — Ahsan Mobiles.pk</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <!-- FAVICON — same as shop.html / other pages -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a14'/%3E%3Crect x='2' y='2' width='28' height='28' rx='6' fill='none' stroke='%2300d4ff' stroke-width='1.5'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' font-family='Arial'%3E%F0%9F%93%B1%3C/text%3E%3C/svg%3E"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
+    /* ── COLOUR PALETTE (matching shop.html / products.html) ── */
     :root {
-      --black: #0a0a0a;
-      --white: #ffffff;
-      --red: #e63329;
-      --red-dark: #b5251c;
-      --gray: #f5f5f5;
-      --gray-mid: #e0e0e0;
-      --gray-text: #666;
-      --nav-h: 70px;
+      --accent:    #00d4ff;
+      --accent2:   #7c3aed;
+      --accent-dk: #0099bb;
+      --bg:        #0a0a14;
+      --bg2:       #0f0f1e;
+      --bg3:       #141428;
+      --surface:   #13131f;
+      --surface2:  #1a1a2e;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(0,212,255,0.18);
+      --text:      #f0f0ff;
+      --text2:     #c8c8e0;
+      --muted:     rgba(255,255,255,0.45);
+      --nav-h:     68px;
+      --radius:    16px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Outfit', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
     /* ── NAVBAR ── */
     nav {
@@ -27,36 +37,49 @@
       height: var(--nav-h);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 40px;
-      background: rgba(10,10,10,0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(10,10,20,0.97);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
     }
-    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--white); letter-spacing: 2px; text-decoration: none; }
-    .nav-logo span { color: var(--red); }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--white); }
-    .nav-right { display: flex; align-items: center; gap: 16px; }
-    .nav-search { background: none; border: 1px solid rgba(255,255,255,0.2); color: white; padding: 7px 14px; border-radius: 20px; font-size: 13px; font-family: 'Outfit', sans-serif; width: 160px; transition: border 0.2s; }
-    .nav-search:focus { outline: none; border-color: var(--red); }
-    .btn-nav { background: var(--red); color: white; border: none; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Outfit', sans-serif; transition: background 0.2s; }
-    .btn-nav:hover { background: var(--red-dark); }
-    .nav-cart { color: white; font-size: 20px; cursor: pointer; position: relative; }
-    .cart-badge { position: absolute; top: -6px; right: -8px; background: var(--red); color: white; font-size: 9px; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo-icon { width:38px; height:38px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; }
+    .nav-logo-text { color:var(--text); font-weight:800; font-size:18px; letter-spacing:-0.5px; }
+    .nav-logo-text span { color:var(--accent); }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 8px; transition: all 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(0,212,255,0.08); }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .nav-search {
+      background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+      padding: 8px 14px; border-radius: 8px; font-size: 13px;
+      font-family: 'Plus Jakarta Sans', sans-serif; width: 180px; transition: border 0.2s;
+    }
+    .nav-search:focus { outline: none; border-color: var(--accent); }
+    .btn-nav {
+      background: linear-gradient(135deg,var(--accent),var(--accent-dk));
+      color: #000; border: none; padding: 9px 20px; border-radius: 8px;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s;
+    }
+    .btn-nav:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,212,255,0.4); }
+    .nav-cart { color: var(--text); font-size: 20px; cursor: pointer; position: relative; }
+    .cart-badge {
+      position: absolute; top: -6px; right: -8px;
+      background: var(--accent); color: #000; font-size: 9px; font-weight: 700;
+      width: 16px; height: 16px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
 
     /* ── TICKER ── */
     .ticker-wrap {
       position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 999;
-      background: var(--red); overflow: hidden; height: 34px;
-      display: flex; align-items: center;
+      background: linear-gradient(90deg,var(--accent2),var(--accent-dk));
+      overflow: hidden; height: 34px; display: flex; align-items: center;
     }
-    .ticker-track {
-      display: flex; gap: 0; white-space: nowrap;
-      animation: ticker 30s linear infinite;
-    }
+    .ticker-track { display: flex; white-space: nowrap; animation: ticker 30s linear infinite; }
     .ticker-item { padding: 0 40px; font-size: 12px; font-weight: 600; color: white; letter-spacing: 1px; text-transform: uppercase; }
     .ticker-item::after { content: '✦'; margin-left: 40px; }
-    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
     /* ── HERO SLIDER ── */
     .hero {
@@ -64,279 +87,378 @@
       position: relative; height: calc(100vh - var(--nav-h) - 34px);
       min-height: 500px; overflow: hidden;
     }
-    .slide {
-      position: absolute; inset: 0; opacity: 0;
-      transition: opacity 0.8s ease;
-      display: flex; align-items: center;
-    }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; display: flex; align-items: center; }
     .slide.active { opacity: 1; }
-    .slide-bg {
-      position: absolute; inset: 0; background-size: cover; background-position: center;
-      transform: scale(1.05); transition: transform 6s ease;
-    }
+    .slide-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transform: scale(1.05); transition: transform 6s ease; }
     .slide.active .slide-bg { transform: scale(1); }
-    .slide-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 70%); }
-    .slide-content { position: relative; z-index: 2; padding: 0 80px; max-width: 620px; }
-    .slide-tag { display: inline-block; background: var(--red); color: white; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 3px; margin-bottom: 18px; }
-    .slide-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 90px); color: white; line-height: 0.95; margin-bottom: 16px; }
-    .slide-title span { color: var(--red); }
+    .slide-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.2) 70%); }
+    .slide-content { position: relative; z-index: 2; padding: 0 80px; max-width: 640px; }
+    .slide-tag {
+      display: inline-block; background: var(--accent); color: #000;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 3px; margin-bottom: 18px;
+    }
+    .slide-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px,7vw,90px); color: white; line-height: 0.95; margin-bottom: 16px; }
+    .slide-title span { color: var(--accent); }
     .slide-desc { font-size: 16px; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 22px; max-width: 420px; }
-
-    /* ── HERO FEATURE PILLS (Audionic-style) ── */
     .slide-feature-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
     .feature-pill {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.35);
-      color: white; font-size: 11px; font-weight: 700;
+      background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.35);
+      color: var(--accent); font-size: 11px; font-weight: 700;
       letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 6px 14px; border-radius: 4px;
-      backdrop-filter: blur(6px);
+      padding: 6px 14px; border-radius: 4px; backdrop-filter: blur(6px);
     }
-    .feature-pill.active-pill {
-      background: white; color: var(--black);
-      border-color: white;
-    }
-
-    /* ── SURROUND SENSE SOUND branding ── */
-    .slide-brand-line {
-      margin-top: 10px;
-      font-size: 11px; color: rgba(255,255,255,0.5); font-style: italic; letter-spacing: 0.5px;
-    }
-    .slide-brand-line strong {
-      font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: white; display: block;
-      letter-spacing: 3px; font-style: normal; line-height: 1;
-    }
-
+    .feature-pill.active-pill { background: var(--accent); color: #000; border-color: var(--accent); }
     .slide-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-primary { background: var(--red); color: white; border: none; padding: 14px 32px; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-radius: 6px; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; text-decoration: none; display: inline-block; }
-    .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
-    .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5); padding: 12px 28px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; text-decoration: none; display: inline-block; }
-    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+    .btn-primary {
+      background: linear-gradient(135deg,var(--accent),var(--accent-dk));
+      color: #000; border: none; padding: 14px 32px; font-size: 14px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase; border-radius: 8px;
+      cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: all 0.2s; text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,255,0.5); }
+    .btn-outline {
+      background: transparent; color: white;
+      border: 2px solid rgba(0,212,255,0.4); padding: 12px 28px;
+      font-size: 14px; font-weight: 600; border-radius: 8px;
+      cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: all 0.2s; text-decoration: none; display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--accent); background: rgba(0,212,255,0.1); color: var(--accent); }
     .slider-dots { position: absolute; bottom: 30px; left: 80px; display: flex; gap: 10px; z-index: 10; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.3s; }
-    .dot.active { width: 28px; border-radius: 4px; background: var(--red); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s; }
+    .dot.active { width: 28px; border-radius: 4px; background: var(--accent); }
     .slider-arrows { position: absolute; bottom: 20px; right: 40px; display: flex; gap: 10px; z-index: 10; }
-    .arrow-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-    .arrow-btn:hover { background: var(--red); border-color: var(--red); }
+    .arrow-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3);
+      color: var(--accent); font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+    }
+    .arrow-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
 
     /* ── STATS BAR ── */
     .stats-bar {
-      background: var(--black); padding: 28px 60px;
-      display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 28px 60px; display: flex;
+      justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;
     }
     .stat-item { text-align: center; }
-    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: var(--red); line-height: 1; }
-    .stat-label { font-size: 12px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 42px; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
 
     /* ── SECTION COMMON ── */
     section { padding: 80px 60px; }
-    .section-header { margin-bottom: 48px; }
-    .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
-    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 4vw, 52px); color: var(--black); line-height: 1; }
-    .section-title span { color: var(--red); }
+    .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; display: inline-block; background: rgba(0,212,255,0.08); padding: 5px 12px; border-radius: 100px; border: 1px solid var(--border2); }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,4vw,52px); color: var(--text); line-height: 1; margin-top: 8px; }
+    .section-title span { color: var(--accent); }
     .section-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
-    .view-all { color: var(--red); font-weight: 600; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+    .section-header { margin-bottom: 48px; }
+    .view-all {
+      color: var(--accent); font-weight: 600; font-size: 14px;
+      text-decoration: none; display: flex; align-items: center; gap: 6px; transition: gap 0.2s;
+    }
     .view-all:hover { gap: 12px; }
 
     /* ── CATEGORIES ── */
-    .categories { background: var(--gray); }
+    .categories { background: var(--bg2); }
     .cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
     .cat-card {
-      background: white; border-radius: 16px; overflow: hidden;
-      cursor: pointer; transition: all 0.3s; position: relative;
-      aspect-ratio: 1; display: flex; flex-direction: column;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; cursor: pointer;
+      transition: all 0.3s; position: relative; aspect-ratio: 1;
+      display: flex; flex-direction: column;
     }
-    .cat-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+    .cat-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,212,255,0.12); border-color: var(--border2); }
     .cat-img { width: 100%; height: 70%; object-fit: cover; }
     .cat-info { padding: 14px; flex: 1; }
-    .cat-name { font-weight: 700; font-size: 14px; color: var(--black); }
-    .cat-count { font-size: 12px; color: var(--gray-text); margin-top: 2px; }
-    .cat-arrow { position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; background: var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; opacity: 0; transition: opacity 0.2s; }
+    .cat-name { font-weight: 700; font-size: 14px; color: var(--text); }
+    .cat-count { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .cat-arrow {
+      position: absolute; top: 12px; right: 12px;
+      width: 28px; height: 28px; background: var(--accent); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #000; font-size: 12px; opacity: 0; transition: opacity 0.2s;
+    }
     .cat-card:hover .cat-arrow { opacity: 1; }
 
-    /* ── LIFESTYLE / VIDEO CARDS ── */
-    .lifestyle { background: var(--black); padding: 80px 60px; }
-    .lifestyle .section-title { color: white; }
-    .lifestyle .section-tag { color: var(--red); }
-    .lifestyle-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    /* ── LIFESTYLE COLLECTION ── */
+    .lifestyle { background: var(--bg3); padding: 80px 60px; }
+    .lifestyle-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
     .lifestyle-card {
-      border-radius: 16px; overflow: hidden; position: relative; cursor: pointer;
-      aspect-ratio: 3/4; background: #1a1a1a;
-      transition: transform 0.3s;
+      border-radius: var(--radius); overflow: hidden; position: relative;
+      cursor: pointer; aspect-ratio: 3/4; background: var(--surface);
+      border: 1px solid var(--border); transition: transform 0.3s;
     }
-    .lifestyle-card:hover { transform: scale(1.02); }
+    .lifestyle-card:hover { transform: scale(1.02); border-color: var(--border2); }
     .lifestyle-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
     .lifestyle-card:hover img { transform: scale(1.08); }
-    .lifestyle-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(0deg, rgba(0,0,0,0.82) 0%, transparent 55%);
-    }
+    .lifestyle-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, transparent 55%); }
     .lifestyle-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 16px; }
-    .lifestyle-product { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); backdrop-filter: blur(12px); border-radius: 10px; padding: 10px 12px; border: 1px solid rgba(255,255,255,0.1); }
-    .lifestyle-product-img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; background: #333; flex-shrink: 0; }
+    .lifestyle-product {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(0,212,255,0.1); backdrop-filter: blur(12px);
+      border-radius: 10px; padding: 10px 12px; border: 1px solid rgba(0,212,255,0.2);
+    }
+    .lifestyle-product-img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; background: var(--surface2); flex-shrink: 0; }
     .lifestyle-product-name { font-size: 13px; font-weight: 700; color: white; line-height: 1.2; }
     .lifestyle-price-row { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
-    .lifestyle-product-price { font-size: 13px; color: var(--red); font-weight: 700; }
-    .lifestyle-product-old { font-size: 11px; color: rgba(255,255,255,0.45); text-decoration: line-through; }
+    .lifestyle-product-price { font-size: 13px; color: var(--accent); font-weight: 700; }
+    .lifestyle-product-old { font-size: 11px; color: rgba(255,255,255,0.4); text-decoration: line-through; }
     .play-btn {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 52px; height: 52px; background: rgba(255,255,255,0.18); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;
-      backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.2s;
-      border: 1.5px solid rgba(255,255,255,0.4);
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 52px; height: 52px; background: rgba(0,212,255,0.2);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: 20px; backdrop-filter: blur(4px);
+      opacity: 0; transition: opacity 0.2s; border: 1.5px solid rgba(0,212,255,0.5);
     }
     .lifestyle-card:hover .play-btn { opacity: 1; }
 
     /* ── FEATURED PRODUCTS ── */
-    .products-section { background: white; }
-    .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .products-section { background: var(--bg2); }
+    .products-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
     .product-card {
-      border-radius: 16px; overflow: hidden; border: 1px solid var(--gray-mid);
+      background: var(--surface); border-radius: var(--radius);
+      border: 1.5px solid var(--border); overflow: hidden;
       cursor: pointer; transition: all 0.3s; position: relative;
     }
-    .product-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); border-color: transparent; }
-    .product-img-wrap { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--gray); }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,212,255,0.12); border-color: var(--border2); }
+    .product-img-wrap { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--surface2); }
     .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
     .product-card:hover img { transform: scale(1.06); }
-    .badge { position: absolute; top: 12px; left: 12px; background: var(--red); color: white; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; letter-spacing: 0.5px; }
-    .wishlist-btn { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; opacity: 0; transition: opacity 0.2s; cursor: pointer; border: none; }
+    .badge {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--accent); color: #000;
+      font-size: 10px; font-weight: 700; padding: 3px 8px;
+      border-radius: 4px; letter-spacing: 0.5px;
+    }
+    .badge-hot { background: linear-gradient(135deg,#f59e0b,#ef4444); color: white; }
+    .wishlist-btn {
+      position: absolute; top: 12px; right: 12px; width: 32px; height: 32px;
+      background: rgba(0,0,0,0.5); border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-size: 14px;
+      opacity: 0; transition: opacity 0.2s; cursor: pointer; border: none; color: white;
+    }
     .product-card:hover .wishlist-btn { opacity: 1; }
     .product-info { padding: 16px; }
-    .product-brand { font-size: 11px; color: var(--gray-text); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-    .product-name { font-weight: 700; font-size: 15px; color: var(--black); margin-bottom: 8px; line-height: 1.3; }
+    .product-brand { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .product-name { font-weight: 700; font-size: 15px; color: var(--text); margin-bottom: 8px; line-height: 1.3; }
     .product-price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-    .price-new { font-size: 18px; font-weight: 800; color: var(--red); }
-    .price-old { font-size: 13px; color: var(--gray-text); text-decoration: line-through; }
-    .add-cart-btn { width: 100%; background: var(--black); color: white; border: none; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Outfit', sans-serif; transition: background 0.2s; }
-    .add-cart-btn:hover { background: var(--red); }
+    .price-new { font-size: 18px; font-weight: 800; color: var(--accent); }
+    .price-old { font-size: 13px; color: var(--muted); text-decoration: line-through; }
+    .add-cart-btn {
+      width: 100%; background: var(--surface2); color: var(--text);
+      border: 1.5px solid var(--border2); padding: 10px; border-radius: 8px;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s;
+    }
+    .add-cart-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
 
-    /* ── WHY US ── */
-    .why-us { background: var(--gray); }
-    .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-    .why-card { background: white; border-radius: 16px; padding: 32px 24px; text-align: center; transition: transform 0.3s; }
-    .why-card:hover { transform: translateY(-4px); }
-    .why-icon { font-size: 36px; margin-bottom: 16px; }
-    .why-title { font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 8px; }
-    .why-desc { font-size: 14px; color: var(--gray-text); line-height: 1.6; }
+    /* ── WHY CHOOSE US ── */
+    .why-us { background: var(--bg3); }
+    .why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+    .why-card {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: var(--radius); padding: 32px 24px; text-align: center;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .why-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg,var(--accent),var(--accent2));
+      transform: scaleX(0); transition: transform 0.3s; transform-origin: left;
+    }
+    .why-card:hover { transform: translateY(-4px); border-color: var(--border2); box-shadow: 0 16px 40px rgba(0,212,255,0.1); }
+    .why-card:hover::before { transform: scaleX(1); }
+    .why-icon {
+      width: 60px; height: 60px; border-radius: 14px; margin: 0 auto 16px;
+      background: rgba(0,212,255,0.1); border: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center; font-size: 28px;
+    }
+    .why-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .why-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
 
-    /* ── BRAND STORY SECTION (Audionic-style) ── */
-    .brand-story { background: white; padding: 80px 60px; }
+    /* ── BRAND STORY ── */
+    .brand-story { background: var(--bg2); padding: 80px 60px; }
     .brand-story-inner { max-width: 1100px; margin: 0 auto; }
-    .brand-story-heading {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(32px, 4vw, 56px);
-      color: var(--black); line-height: 1;
-      margin-bottom: 10px;
-    }
-    .brand-story-heading span { color: var(--red); }
-    .brand-story-divider {
-      width: 60px; height: 4px; background: var(--red); border-radius: 2px;
-      margin-bottom: 32px;
-    }
+    .brand-story-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,4vw,56px); color: var(--text); line-height: 1; margin-bottom: 10px; }
+    .brand-story-heading span { color: var(--accent); }
+    .brand-story-divider { width: 60px; height: 4px; background: linear-gradient(90deg,var(--accent),var(--accent2)); border-radius: 2px; margin-bottom: 32px; }
     .brand-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-    .brand-story-text p { font-size: 15px; color: #444; line-height: 1.8; margin-bottom: 18px; }
-    .brand-story-text p a { color: var(--red); text-decoration: underline; }
+    .brand-story-text p { font-size: 15px; color: var(--text2); line-height: 1.8; margin-bottom: 18px; }
+    .brand-story-text p a { color: var(--accent); text-decoration: underline; }
     .brand-story-highlights { display: flex; flex-direction: column; gap: 24px; }
     .brand-highlight-card {
-      background: var(--gray); border-radius: 14px; padding: 24px 28px;
-      border-left: 4px solid var(--red);
+      background: var(--surface); border-radius: 14px; padding: 24px 28px;
+      border-left: 4px solid var(--accent); border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
     }
-    .brand-highlight-card h3 { font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 8px; }
-    .brand-highlight-card p { font-size: 14px; color: var(--gray-text); line-height: 1.7; }
+    .brand-highlight-card h3 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .brand-highlight-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
 
     /* ── OFFERS BANNER ── */
     .offers-banner {
-      background: var(--red); padding: 60px;
-      display: flex; align-items: center; justify-content: space-between; gap: 40px;
-      flex-wrap: wrap;
+      background: linear-gradient(135deg, var(--accent2), var(--accent-dk));
+      padding: 60px; display: flex; align-items: center;
+      justify-content: space-between; gap: 40px; flex-wrap: wrap;
     }
     .offer-text .offer-label { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
-    .offer-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 64px); color: white; line-height: 1; }
-    .offer-code-box { background: rgba(255,255,255,0.15); border: 2px dashed rgba(255,255,255,0.5); border-radius: 12px; padding: 24px 40px; text-align: center; }
+    .offer-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px,5vw,64px); color: white; line-height: 1; }
+    .offer-code-box { background: rgba(255,255,255,0.12); border: 2px dashed rgba(255,255,255,0.4); border-radius: 12px; padding: 24px 40px; text-align: center; }
     .offer-code-label { font-size: 12px; color: rgba(255,255,255,0.7); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
     .offer-code { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: white; letter-spacing: 4px; }
     .offer-code-sub { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 6px; }
-    .btn-white { background: white; color: var(--red); border: none; padding: 14px 32px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; font-family: 'Outfit', sans-serif; transition: all 0.2s; }
-    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .btn-white { background: white; color: var(--accent-dk); border: none; padding: 14px 32px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s; }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
 
     /* ── BLOG ── */
-    .blog-section { background: white; }
-    .blog-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-    .blog-card { border-radius: 16px; overflow: hidden; cursor: pointer; transition: transform 0.3s; }
-    .blog-card:hover { transform: translateY(-4px); }
-    .blog-img-wrap { position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; border-radius: 12px; background: var(--gray); }
+    .blog-section { background: var(--bg2); }
+    .blog-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+    .blog-card {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; cursor: pointer;
+      transition: all 0.3s; text-decoration: none; display: block;
+    }
+    .blog-card:hover { transform: translateY(-4px); border-color: var(--border2); box-shadow: 0 16px 40px rgba(0,212,255,0.1); }
+    .blog-img-wrap { position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; background: var(--surface2); }
     .blog-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
     .blog-card:hover .blog-img-wrap img { transform: scale(1.05); }
-    .blog-info { padding: 16px 0; }
-    .blog-tag { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-    .blog-title { font-size: 15px; font-weight: 700; color: var(--black); line-height: 1.4; margin-bottom: 8px; }
-    .blog-date { font-size: 12px; color: var(--gray-text); }
+    .blog-info { padding: 16px; }
+    .blog-tag-pill {
+      display: inline-block; font-size: 10px; font-weight: 700; color: var(--accent);
+      background: rgba(0,212,255,0.08); border: 1px solid var(--border2);
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+      padding: 3px 10px; border-radius: 100px;
+    }
+    .blog-title { font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.4; margin-bottom: 8px; }
+    .blog-date { font-size: 12px; color: var(--muted); }
 
     /* ── NEWSLETTER ── */
     .newsletter {
-      background: var(--black); padding: 80px 60px;
-      display: flex; align-items: center; justify-content: space-between; gap: 60px;
-      flex-wrap: wrap;
+      background: var(--surface); border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border); padding: 80px 60px;
+      display: flex; align-items: center; justify-content: space-between; gap: 60px; flex-wrap: wrap;
     }
-    .newsletter-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: white; line-height: 1; margin-bottom: 10px; }
-    .newsletter-text h2 span { color: var(--red); }
-    .newsletter-text p { font-size: 15px; color: rgba(255,255,255,0.6); }
+    .newsletter-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--text); line-height: 1; margin-bottom: 10px; }
+    .newsletter-text h2 span { color: var(--accent); }
+    .newsletter-text p { font-size: 15px; color: var(--muted); }
     .newsletter-form { display: flex; gap: 12px; flex-wrap: wrap; }
-    .newsletter-input { padding: 14px 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: white; font-size: 14px; font-family: 'Outfit', sans-serif; width: 300px; transition: border 0.2s; }
-    .newsletter-input::placeholder { color: rgba(255,255,255,0.4); }
-    .newsletter-input:focus { outline: none; border-color: var(--red); }
+    .newsletter-input {
+      padding: 14px 20px; background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif; width: 300px; transition: border 0.2s;
+    }
+    .newsletter-input::placeholder { color: var(--muted); }
+    .newsletter-input:focus { outline: none; border-color: var(--accent); }
 
     /* ── REVIEWS ── */
-    .reviews { background: var(--gray); }
-    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .review-card { background: white; border-radius: 16px; padding: 28px; }
-    .review-stars { color: #f5a623; font-size: 16px; margin-bottom: 14px; }
-    .review-text { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .reviews { background: var(--bg3); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .review-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px; transition: border-color 0.2s; }
+    .review-card:hover { border-color: var(--border2); }
+    .review-stars { color: #f5c518; font-size: 16px; margin-bottom: 14px; }
+    .review-text { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
     .reviewer { display: flex; align-items: center; gap: 12px; }
-    .reviewer-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--red); color: white; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; }
-    .reviewer-name { font-weight: 700; font-size: 14px; }
-    .reviewer-loc { font-size: 12px; color: var(--gray-text); }
+    .reviewer-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg,var(--accent),var(--accent2));
+      color: #000; font-weight: 700; font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .reviewer-name { font-weight: 700; font-size: 14px; color: var(--text); }
+    .reviewer-loc { font-size: 12px; color: var(--muted); }
 
     /* ── FOOTER ── */
-    footer { background: #0a0a0a; color: rgba(255,255,255,0.65); }
-    .footer-main { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 36px; padding: 64px 60px 48px; }
-    .footer-brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: white; letter-spacing: 2px; margin-bottom: 14px; }
-    .footer-brand-name span { color: var(--red); }
-    .footer-desc { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+    footer { background: #060610; color: var(--muted); }
+    .footer-main {
+      display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 36px;
+      padding: 64px 60px 48px;
+    }
+    .footer-brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--text); letter-spacing: 2px; margin-bottom: 14px; }
+    .footer-brand-name span { color: var(--accent); }
+    .footer-desc { font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 24px; }
     .footer-socials { display: flex; gap: 10px; }
-    .social-btn { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: white; font-size: 15px; text-decoration: none; transition: background 0.2s; }
-    .social-btn:hover { background: var(--red); }
-    .footer-col h4 { font-size: 13px; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 8px; background: var(--surface2);
+      border: 1px solid var(--border); display: flex; align-items: center;
+      justify-content: center; color: var(--text); font-size: 15px;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .social-btn:hover { background: rgba(0,212,255,0.15); border-color: var(--border2); color: var(--accent); }
+    .footer-col h4 {
+      font-size: 13px; font-weight: 700; color: var(--text);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px;
+      padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s; }
-    .footer-col ul a:hover { color: white; }
-    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; margin-bottom: 12px; }
+    .footer-col ul a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--accent); }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; margin-bottom: 12px; color: var(--muted); }
     .footer-contact-item span:first-child { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-
-    /* ── FOOTER CATEGORY COLUMNS (Audionic-style) ── */
-    .footer-cats { background: #111; padding: 40px 60px; border-top: 1px solid rgba(255,255,255,0.05); }
-    .footer-cats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-    .footer-cat-col h5 { font-size: 13px; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .footer-cats { background: #09090f; padding: 40px 60px; border-top: 1px solid var(--border); }
+    .footer-cats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; }
+    .footer-cat-col h5 {
+      font-size: 13px; font-weight: 700; color: var(--text);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px;
+      padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    }
     .footer-cat-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .footer-cat-col ul a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 13px; transition: color 0.2s; }
-    .footer-cat-col ul a:hover { color: rgba(255,255,255,0.85); }
-
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-    .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.35); }
+    .footer-cat-col ul a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-cat-col ul a:hover { color: var(--accent); }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding: 20px 60px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.25); }
     .payment-methods { display: flex; gap: 8px; }
-    .payment-tag { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 4px; }
+    .payment-tag {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--muted); font-size: 11px; font-weight: 600;
+      padding: 4px 10px; border-radius: 4px;
+    }
 
     /* ── WHATSAPP FLOAT ── */
     .whatsapp-float {
       position: fixed; bottom: 28px; right: 28px; z-index: 2000;
       width: 56px; height: 56px; background: #25d366; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-      text-decoration: none; color: white;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none; color: white;
       animation: float 3s ease-in-out infinite;
     }
     .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
     @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+    /* ── BLOG DETAIL OVERLAY (for Tips/Guide/Review/Deals click) ── */
+    .blog-overlay {
+      display: none; position: fixed; inset: 0; z-index: 3000;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+      overflow-y: auto; padding: 40px 20px;
+    }
+    .blog-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+    .blog-modal {
+      background: var(--surface); border: 1.5px solid var(--border2);
+      border-radius: 20px; max-width: 720px; width: 100%; padding: 44px 48px;
+      position: relative; margin: auto;
+    }
+    .blog-modal-close {
+      position: absolute; top: 18px; right: 20px; width: 36px; height: 36px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 50%; color: var(--text); font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+    }
+    .blog-modal-close:hover { border-color: var(--border2); color: var(--accent); }
+    .blog-modal-tag {
+      display: inline-block; background: rgba(0,212,255,0.1); color: var(--accent);
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; border: 1px solid var(--border2); margin-bottom: 16px;
+    }
+    .blog-modal h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--text); line-height: 1.1; margin-bottom: 8px; }
+    .blog-modal-date { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+    .blog-modal-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 12px; margin-bottom: 28px; }
+    .blog-modal-body p { font-size: 15px; color: var(--text2); line-height: 1.85; margin-bottom: 16px; }
+    .blog-modal-body h3 { font-size: 18px; font-weight: 700; color: var(--text); margin: 24px 0 12px; }
+    .blog-modal-body ul { padding-left: 20px; margin-bottom: 16px; }
+    .blog-modal-body ul li { font-size: 15px; color: var(--text2); line-height: 1.8; margin-bottom: 6px; }
 
     /* ── MOBILE ── */
     @media(max-width:900px){
@@ -360,6 +482,8 @@
       .footer-bottom { padding: 20px 24px; flex-direction: column; text-align: center; }
       .brand-story { padding: 60px 24px; }
       .brand-story-grid { grid-template-columns: 1fr; gap: 32px; }
+      .blog-modal { padding: 32px 24px; }
+      .lifestyle { padding: 60px 24px; }
     }
   </style>
 </head>
@@ -367,9 +491,12 @@
 
 <!-- NAVBAR -->
 <nav>
-  <a href="index.html" class="nav-logo">AHSAN <span>MOBILES</span></a>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">📱</div>
+    <div class="nav-logo-text">AHSAN <span>MOBILES</span></div>
+  </a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html" class="active">Home</a></li>
     <li><a href="products.html">Products</a></li>
     <li><a href="shop.html">Shop</a></li>
     <li><a href="offers.html">Offers</a></li>
@@ -386,7 +513,7 @@
 
 <!-- TICKER -->
 <div class="ticker-wrap">
-  <div class="ticker-track" id="ticker">
+  <div class="ticker-track">
     <span class="ticker-item">🚀 Fast & Free Delivery Over Rs.1999</span>
     <span class="ticker-item">🛡️ 100% Original Products Guaranteed</span>
     <span class="ticker-item">⚡ Same-Day Delivery in Sargodha</span>
@@ -406,7 +533,6 @@
 
 <!-- HERO SLIDER -->
 <section class="hero" id="hero">
-
   <!-- Slide 1 -->
   <div class="slide active" id="slide-0">
     <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&fit=crop')"></div>
@@ -426,7 +552,6 @@
       </div>
     </div>
   </div>
-
   <!-- Slide 2 -->
   <div class="slide" id="slide-1">
     <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1600&fit=crop')"></div>
@@ -446,7 +571,6 @@
       </div>
     </div>
   </div>
-
   <!-- Slide 3 -->
   <div class="slide" id="slide-2">
     <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1600&fit=crop')"></div>
@@ -466,7 +590,6 @@
       </div>
     </div>
   </div>
-
   <!-- Slide 4 -->
   <div class="slide" id="slide-3">
     <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=1600&fit=crop')"></div>
@@ -508,7 +631,7 @@
   <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">WhatsApp Support</div></div>
 </div>
 
-<!-- CATEGORIES -->
+<!-- CATEGORIES — images are product-relevant -->
 <section class="categories">
   <div class="section-row">
     <div class="section-header" style="margin-bottom:0">
@@ -518,72 +641,82 @@
     <a href="products.html" class="view-all">View All →</a>
   </div>
   <div class="cat-grid">
+    <!-- Mobile Covers -->
     <a href="products.html?cat=covers" style="text-decoration:none">
       <div class="cat-card">
-        <img class="cat-img" src="https://images.unsplash.com/photo-1601593346740-925612772716?w=400&h=300&fit=crop" alt="Mobile Covers"/>
+        <img class="cat-img" src="https://images.unsplash.com/photo-1601593346740-925612772716?w=400&h=280&fit=crop" alt="Mobile Covers"/>
         <div class="cat-info"><div class="cat-name">Mobile Covers</div><div class="cat-count">120+ products</div></div>
         <div class="cat-arrow">→</div>
       </div>
     </a>
+    <!-- Earphones — actual earphone image -->
     <a href="products.html?cat=earphones" style="text-decoration:none">
       <div class="cat-card">
-        <img class="cat-img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop" alt="Earphones"/>
+        <img class="cat-img" src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=280&fit=crop" alt="Earphones"/>
         <div class="cat-info"><div class="cat-name">Earphones</div><div class="cat-count">80+ products</div></div>
         <div class="cat-arrow">→</div>
       </div>
     </a>
+    <!-- Fast Chargers — charging adapter image -->
     <a href="products.html?cat=chargers" style="text-decoration:none">
       <div class="cat-card">
-        <img class="cat-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Chargers"/>
+        <img class="cat-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=280&fit=crop" alt="Fast Chargers"/>
         <div class="cat-info"><div class="cat-name">Fast Chargers</div><div class="cat-count">60+ products</div></div>
         <div class="cat-arrow">→</div>
       </div>
     </a>
+    <!-- Screen Guards — phone screen protector image -->
     <a href="products.html?cat=screen-guards" style="text-decoration:none">
       <div class="cat-card">
-        <img class="cat-img" src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&h=300&fit=crop" alt="Screen Guards"/>
+        <img class="cat-img" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=280&fit=crop" alt="Screen Guards"/>
         <div class="cat-info"><div class="cat-name">Screen Guards</div><div class="cat-count">50+ products</div></div>
         <div class="cat-arrow">→</div>
       </div>
     </a>
+    <!-- Power Banks -->
     <a href="products.html?cat=power-banks" style="text-decoration:none">
       <div class="cat-card">
-        <img class="cat-img" src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=300&fit=crop" alt="Power Banks"/>
+        <img class="cat-img" src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=280&fit=crop" alt="Power Banks"/>
         <div class="cat-info"><div class="cat-name">Power Banks</div><div class="cat-count">30+ products</div></div>
         <div class="cat-arrow">→</div>
       </div>
     </a>
+    <!-- Headphones — over-ear headphones -->
     <a href="products.html?cat=headphones" style="text-decoration:none">
       <div class="cat-card">
-        <img class="cat-img" src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&h=300&fit=crop" alt="Headphones"/>
+        <img class="cat-img" src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&h=280&fit=crop" alt="Headphones"/>
         <div class="cat-info"><div class="cat-name">Headphones</div><div class="cat-count">40+ products</div></div>
         <div class="cat-arrow">→</div>
       </div>
     </a>
+    <!-- Cables & Data -->
     <a href="products.html?cat=cables" style="text-decoration:none">
       <div class="cat-card">
-        <img class="cat-img" src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop" alt="Cables"/>
+        <img class="cat-img" src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=280&fit=crop" alt="Cables"/>
         <div class="cat-info"><div class="cat-name">Cables & Data</div><div class="cat-count">45+ products</div></div>
         <div class="cat-arrow">→</div>
       </div>
     </a>
+    <!-- BT Speakers -->
     <a href="products.html?cat=speakers" style="text-decoration:none">
       <div class="cat-card">
-        <img class="cat-img" src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop" alt="Speakers"/>
+        <img class="cat-img" src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=280&fit=crop" alt="BT Speakers"/>
         <div class="cat-info"><div class="cat-name">BT Speakers</div><div class="cat-count">25+ products</div></div>
         <div class="cat-arrow">→</div>
       </div>
     </a>
+    <!-- Spare Parts -->
     <a href="products.html?cat=spare-parts" style="text-decoration:none">
       <div class="cat-card">
-        <img class="cat-img" src="https://images.unsplash.com/photo-1631281956016-3cdc1b2fe5fb?w=400&h=300&fit=crop" alt="Spare Parts"/>
+        <img class="cat-img" src="https://images.unsplash.com/photo-1631281956016-3cdc1b2fe5fb?w=400&h=280&fit=crop" alt="Spare Parts"/>
         <div class="cat-info"><div class="cat-name">Spare Parts</div><div class="cat-count">70+ products</div></div>
         <div class="cat-arrow">→</div>
       </div>
     </a>
+    <!-- Camera Lenses -->
     <a href="products.html?cat=camera-lens" style="text-decoration:none">
       <div class="cat-card">
-        <img class="cat-img" src="https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=400&h=300&fit=crop" alt="Camera Lens"/>
+        <img class="cat-img" src="https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=400&h=280&fit=crop" alt="Camera Lenses"/>
         <div class="cat-info"><div class="cat-name">Camera Lenses</div><div class="cat-count">20+ products</div></div>
         <div class="cat-arrow">→</div>
       </div>
@@ -591,14 +724,14 @@
   </div>
 </section>
 
-<!-- LIFESTYLE COLLECTION (Audionic-style) -->
+<!-- LIFESTYLE COLLECTION -->
 <section class="lifestyle">
   <div class="section-row">
     <div class="section-header" style="margin-bottom:0">
       <div class="section-tag">Trending</div>
-      <h2 class="section-title" style="color:white">Lifestyle <span>Collection</span></h2>
+      <h2 class="section-title">Lifestyle <span>Collection</span></h2>
     </div>
-    <a href="shop.html" class="view-all" style="color:rgba(255,255,255,0.6)">View All →</a>
+    <a href="shop.html" class="view-all" style="color:var(--muted)">View All →</a>
   </div>
   <div class="lifestyle-grid">
     <div class="lifestyle-card">
@@ -607,7 +740,7 @@
       <div class="play-btn">▶</div>
       <div class="lifestyle-info">
         <div class="lifestyle-product">
-          <img class="lifestyle-product-img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=80&h=80&fit=crop" alt=""/>
+          <img class="lifestyle-product-img" src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=80&h=80&fit=crop" alt=""/>
           <div>
             <div class="lifestyle-product-name">Pro Earbuds X1</div>
             <div class="lifestyle-price-row">
@@ -672,7 +805,7 @@
   </div>
 </section>
 
-<!-- FEATURED PRODUCTS -->
+<!-- FEATURED PRODUCTS — images matching products.html style -->
 <section class="products-section">
   <div class="section-row">
     <div class="section-header" style="margin-bottom:0">
@@ -682,9 +815,10 @@
     <a href="products.html" class="view-all">View All →</a>
   </div>
   <div class="products-grid">
+    <!-- 1. Wireless Earbuds -->
     <div class="product-card">
       <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop" alt="Earbuds"/>
+        <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop" alt="Earbuds"/>
         <span class="badge">-50% OFF</span>
         <button class="wishlist-btn">♡</button>
       </div>
@@ -695,6 +829,7 @@
         <button class="add-cart-btn">Add to Cart</button>
       </div>
     </div>
+    <!-- 2. Leather Cover -->
     <div class="product-card">
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1601593346740-925612772716?w=400&h=400&fit=crop" alt="Cover"/>
@@ -708,6 +843,7 @@
         <button class="add-cart-btn">Add to Cart</button>
       </div>
     </div>
+    <!-- 3. Fast Charger -->
     <div class="product-card">
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop" alt="Charger"/>
@@ -720,10 +856,11 @@
         <button class="add-cart-btn">Add to Cart</button>
       </div>
     </div>
+    <!-- 4. Power Bank -->
     <div class="product-card">
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=400&fit=crop" alt="Power Bank"/>
-        <span class="badge">HOT 🔥</span>
+        <span class="badge badge-hot">HOT 🔥</span>
         <button class="wishlist-btn">♡</button>
       </div>
       <div class="product-info">
@@ -733,6 +870,7 @@
         <button class="add-cart-btn">Add to Cart</button>
       </div>
     </div>
+    <!-- 5. Headphones -->
     <div class="product-card">
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&h=400&fit=crop" alt="Headphones"/>
@@ -746,9 +884,10 @@
         <button class="add-cart-btn">Add to Cart</button>
       </div>
     </div>
+    <!-- 6. Screen Guard — phone closeup -->
     <div class="product-card">
       <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&h=400&fit=crop" alt="Screen Guard"/>
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop" alt="Screen Guard"/>
         <button class="wishlist-btn">♡</button>
       </div>
       <div class="product-info">
@@ -758,6 +897,7 @@
         <button class="add-cart-btn">Add to Cart</button>
       </div>
     </div>
+    <!-- 7. BT Speaker -->
     <div class="product-card">
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop" alt="Speaker"/>
@@ -771,6 +911,7 @@
         <button class="add-cart-btn">Add to Cart</button>
       </div>
     </div>
+    <!-- 8. USB-C Cable -->
     <div class="product-card">
       <div class="product-img-wrap">
         <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=400&fit=crop" alt="Cable"/>
@@ -786,32 +927,69 @@
   </div>
 </section>
 
-<!-- WHY CHOOSE US -->
+<!-- WHY CHOOSE US — fixed with proper icons and design -->
 <section class="why-us">
-  <div class="section-header" style="text-align:center">
-    <div class="section-tag" style="text-align:center">Our Promise</div>
-    <h2 class="section-title">Why Choose <span>Ahsan Mobiles</span></h2>
+  <div class="section-header" style="text-align:center; margin-bottom: 48px;">
+    <div class="section-tag" style="display:inline-block">Our Promise</div>
+    <h2 class="section-title" style="margin-top:10px">Why Choose <span>Ahsan Mobiles</span></h2>
+    <p style="font-size:15px; color:var(--muted); margin-top:12px; max-width:520px; margin-left:auto; margin-right:auto;">We don't just sell accessories — we deliver trust, quality, and speed right to your door.</p>
   </div>
   <div class="why-grid">
-    <div class="why-card"><div class="why-icon">🛡️</div><div class="why-title">100% Original</div><div class="why-desc">Every product is verified for authenticity. No fakes, ever.</div></div>
-    <div class="why-card"><div class="why-icon">⚡</div><div class="why-title">Fast Delivery</div><div class="why-desc">Same-day in Sargodha. 2–4 days across Pakistan.</div></div>
-    <div class="why-card"><div class="why-icon">🏷️</div><div class="why-title">Best Prices</div><div class="why-desc">Most competitive pricing with zero hidden charges.</div></div>
-    <div class="why-card"><div class="why-icon">💬</div><div class="why-title">24/7 Support</div><div class="why-desc">WhatsApp us anytime — instant replies, always ready.</div></div>
+    <div class="why-card">
+      <div class="why-icon">🛡️</div>
+      <div class="why-title">100% Original</div>
+      <div class="why-desc">Every single product is carefully verified for authenticity before it reaches you. No fakes, no replicas — ever.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Lightning-Fast Delivery</div>
+      <div class="why-desc">Same-day delivery across Sargodha. 2–4 days nationwide. We know your time is valuable.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏷️</div>
+      <div class="why-title">Best Prices in Pakistan</div>
+      <div class="why-desc">Lowest competitive prices with zero hidden charges. Use code AHSAN20 for an extra 20% off your first order.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💬</div>
+      <div class="why-title">24/7 WhatsApp Support</div>
+      <div class="why-desc">Got a question? Message us on WhatsApp anytime — day or night. We respond fast, always.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔄</div>
+      <div class="why-title">7-Day Easy Returns</div>
+      <div class="why-desc">Not satisfied? Return it within 7 days. No questions, no hassle — your satisfaction is our priority.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💳</div>
+      <div class="why-title">Flexible Payments</div>
+      <div class="why-desc">Pay via COD, JazzCash, EasyPaisa or Bank Transfer. We make buying as easy as possible.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📦</div>
+      <div class="why-title">Secure Packaging</div>
+      <div class="why-desc">Every order is packed with care to ensure it arrives safely. Bubble wrap, sealed boxes — always.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🇵🇰</div>
+      <div class="why-title">Made for Pakistan</div>
+      <div class="why-desc">Based in Sargodha. Serving customers from Karachi to Peshawar with the same love and reliability.</div>
+    </div>
   </div>
 </section>
 
-<!-- BRAND STORY SECTION (Audionic-inspired) -->
+<!-- BRAND STORY -->
 <section class="brand-story">
   <div class="brand-story-inner">
     <div class="section-tag">About Us</div>
-    <h2 class="brand-story-heading">Sargodha's <span>Trusted</span> Mobile Accessories Brand.</h2>
+    <h2 class="brand-story-heading" style="margin-top:10px">Sargodha's <span>Trusted</span> Mobile Accessories Brand.</h2>
     <div class="brand-story-divider"></div>
     <div class="brand-story-grid">
       <div class="brand-story-text">
         <p>In a world that's always connected, your phone should never be unprotected. At Ahsan Mobiles, we believe everyone deserves top-quality accessories without paying a premium price. Since our launch, we have dedicated ourselves to providing Sargodha and all of Pakistan with the best <a href="products.html?cat=covers">mobile covers</a>, <a href="products.html?cat=earphones">earphones</a>, <a href="products.html?cat=chargers">fast chargers</a>, <a href="products.html?cat=power-banks">power banks</a>, and smart gadgets that keep up with your busy, on-the-go lifestyle.</p>
         <p>As a trusted name in mobile accessories in Pakistan, Ahsan Mobiles has carved its niche by combining quality products with reliable, fast service. Every item we stock is carefully verified to ensure it's 100% original and worth your money.</p>
         <p>Shopping with us is secure, quick, and simple. We deliver across Pakistan, so you can order your favourite gadgets from the comfort of your home and have them arrive at your doorstep in no time. Our customer support team is always ready on WhatsApp if you need any help choosing the right product or require after-sales service.</p>
-        <p>More and more Pakistanis trust Ahsan Mobiles to elevate their everyday phone experience. If you're looking for the best mobile accessories in Pakistan at the right price, Ahsan Mobiles is the name you can rely on. Stay protected, powered up, and connected — with accessories that keep pace with you.</p>
+        <p>More and more Pakistanis trust Ahsan Mobiles to elevate their everyday phone experience. If you're looking for the best mobile accessories in Pakistan at the right price, Ahsan Mobiles is the name you can rely on.</p>
       </div>
       <div class="brand-story-highlights">
         <div class="brand-highlight-card">
@@ -845,7 +1023,7 @@
   <button class="btn-white" onclick="location.href='shop.html'">Claim Offer →</button>
 </div>
 
-<!-- BLOG SECTION (Audionic-style) -->
+<!-- BLOG SECTION — clicking Tags opens real content overlays -->
 <section class="blog-section">
   <div class="section-row">
     <div class="section-header" style="margin-bottom:0">
@@ -855,70 +1033,87 @@
     <a href="#" class="view-all">View All →</a>
   </div>
   <div class="blog-grid">
-    <div class="blog-card">
+    <a class="blog-card" href="#" onclick="openBlog('tips'); return false;">
       <div class="blog-img-wrap">
-        <img src="https://images.unsplash.com/photo-1567581935884-3349723552ca?w=600&h=400&fit=crop" alt="Blog 1"/>
+        <img src="https://images.unsplash.com/photo-1601593346740-925612772716?w=600&h=400&fit=crop" alt="Blog Tips"/>
       </div>
       <div class="blog-info">
-        <div class="blog-tag">Tips</div>
+        <span class="blog-tag-pill">Tips</span>
         <div class="blog-title">Top 5 Mobile Covers to Protect Your Phone in 2026</div>
         <div class="blog-date">May 18, 2026</div>
       </div>
-    </div>
-    <div class="blog-card">
+    </a>
+    <a class="blog-card" href="#" onclick="openBlog('guide'); return false;">
       <div class="blog-img-wrap">
-        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="Blog 2"/>
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop" alt="Blog Guide"/>
       </div>
       <div class="blog-info">
-        <div class="blog-tag">Guide</div>
+        <span class="blog-tag-pill">Guide</span>
         <div class="blog-title">How to Choose the Best Fast Charger for Your Device</div>
         <div class="blog-date">May 15, 2026</div>
       </div>
-    </div>
-    <div class="blog-card">
+    </a>
+    <a class="blog-card" href="#" onclick="openBlog('review'); return false;">
       <div class="blog-img-wrap">
-        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=400&fit=crop" alt="Blog 3"/>
+        <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&h=400&fit=crop" alt="Blog Review"/>
       </div>
       <div class="blog-info">
-        <div class="blog-tag">Review</div>
+        <span class="blog-tag-pill">Review</span>
         <div class="blog-title">Best Wireless Earbuds Under Rs.3000 in Pakistan</div>
         <div class="blog-date">May 10, 2026</div>
       </div>
-    </div>
-    <div class="blog-card">
+    </a>
+    <a class="blog-card" href="#" onclick="openBlog('deals'); return false;">
       <div class="blog-img-wrap">
-        <img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=600&h=400&fit=crop" alt="Blog 4"/>
+        <img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=600&h=400&fit=crop" alt="Blog Deals"/>
       </div>
       <div class="blog-info">
-        <div class="blog-tag">Deals</div>
+        <span class="blog-tag-pill">Deals</span>
         <div class="blog-title">Power Banks 2026 — Which One Should You Buy?</div>
         <div class="blog-date">May 5, 2026</div>
       </div>
-    </div>
+    </a>
   </div>
 </section>
+
+<!-- BLOG OVERLAYS (Tips / Guide / Review / Deals) -->
+<div class="blog-overlay" id="blog-overlay" onclick="closeBlogIfBg(event)">
+  <div class="blog-modal" id="blog-modal">
+    <button class="blog-modal-close" onclick="closeBlog()">✕</button>
+    <div id="blog-modal-content"></div>
+  </div>
+</div>
 
 <!-- CUSTOMER REVIEWS -->
 <section class="reviews">
   <div class="section-header" style="text-align:center">
-    <div class="section-tag" style="text-align:center">Testimonials</div>
-    <h2 class="section-title">What <span>Customers Say</span></h2>
+    <div class="section-tag" style="display:inline-block">Testimonials</div>
+    <h2 class="section-title" style="margin-top:10px">What <span>Customers Say</span></h2>
   </div>
   <div class="reviews-grid">
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"Best mobile accessories shop in Sargodha! Got my iPhone cover and it's amazing quality. Delivery was super fast too. Will definitely buy again!"</p>
-      <div class="reviewer"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Ahmed Raza</div><div class="reviewer-loc">Sargodha, Punjab</div></div></div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">A</div>
+        <div><div class="reviewer-name">Ahmed Raza</div><div class="reviewer-loc">Sargodha, Punjab</div></div>
+      </div>
     </div>
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"Ordered a fast charger — arrived same day. 100% original product at a great price. WhatsApp support was very responsive. Highly recommended!"</p>
-      <div class="reviewer"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sara Khan</div><div class="reviewer-loc">Sargodha, Punjab</div></div></div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">S</div>
+        <div><div class="reviewer-name">Sara Khan</div><div class="reviewer-loc">Sargodha, Punjab</div></div>
+      </div>
     </div>
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"Very good prices and excellent customer service. They helped me choose the right power bank for my needs. Great overall experience!"</p>
-      <div class="reviewer"><div class="reviewer-avatar">U</div><div><div class="reviewer-name">Usman Ali</div><div class="reviewer-loc">Sargodha, Punjab</div></div></div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">U</div>
+        <div><div class="reviewer-name">Usman Ali</div><div class="reviewer-loc">Sargodha, Punjab</div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -931,7 +1126,7 @@
   </div>
   <div class="newsletter-form">
     <input class="newsletter-input" type="email" placeholder="Enter your email address..."/>
-    <button class="btn-primary" style="padding:14px 28px">Subscribe →</button>
+    <button class="btn-primary" style="padding:14px 28px" onclick="subscribeNewsletter()">Subscribe →</button>
   </div>
 </div>
 
@@ -987,13 +1182,12 @@
     <div class="footer-col">
       <h4>Contact</h4>
       <div class="footer-contact-item"><span>📍</span><span>Trust Plaza, Sargodha, Punjab, Pakistan</span></div>
-      <div class="footer-contact-item"><span>📞</span><a href="tel:03091333812" style="color:rgba(255,255,255,0.5);text-decoration:none">03091333812</a></div>
-      <div class="footer-contact-item"><span>💬</span><a href="https://wa.me/923091333812" style="color:rgba(255,255,255,0.5);text-decoration:none">WhatsApp Available</a></div>
+      <div class="footer-contact-item"><span>📞</span><a href="tel:03091333812" style="color:var(--muted);text-decoration:none">03091333812</a></div>
+      <div class="footer-contact-item"><span>💬</span><a href="https://wa.me/923091333812" style="color:var(--muted);text-decoration:none">WhatsApp Available</a></div>
       <div class="footer-contact-item"><span>🕘</span><span>Mon–Sat: 9am–9pm</span></div>
     </div>
   </div>
 
-  <!-- AUDIONIC-STYLE CATEGORY LINK COLUMNS -->
   <div class="footer-cats">
     <div class="footer-cats-grid">
       <div class="footer-cat-col">
@@ -1046,7 +1240,7 @@
   </div>
 </footer>
 
-<!-- WHATSAPP FLOAT (same green circle, now using proper WhatsApp SVG icon) -->
+<!-- WHATSAPP FLOAT -->
 <a href="https://wa.me/923091333812?text=Assalam%20o%20Alaikum!%20I%20need%20help." class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
   <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
     <path d="M16 2C8.268 2 2 8.268 2 16c0 2.482.674 4.807 1.848 6.797L2 30l7.395-1.82A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.46 11.46 0 01-5.86-1.608l-.42-.25-4.39 1.08 1.12-4.27-.275-.44A11.46 11.46 0 014.5 16C4.5 9.649 9.649 4.5 16 4.5S27.5 9.649 27.5 16 22.351 27.5 16 27.5zm6.29-8.37c-.344-.172-2.035-1.003-2.35-1.117-.315-.115-.545-.172-.774.172-.23.344-.888 1.117-1.09 1.347-.2.23-.4.258-.744.086-.344-.172-1.452-.535-2.767-1.707-1.022-.913-1.713-2.04-1.913-2.384-.2-.344-.021-.53.15-.701.155-.154.344-.4.516-.6.172-.2.23-.344.344-.573.115-.23.057-.43-.028-.602-.086-.172-.774-1.867-1.06-2.556-.28-.67-.564-.578-.774-.59-.2-.012-.43-.014-.659-.014s-.6.086-.916.43c-.315.344-1.202 1.175-1.202 2.865s1.23 3.325 1.4 3.554c.172.23 2.42 3.697 5.862 5.186.82.354 1.46.565 1.958.724.823.26 1.572.223 2.164.135.66-.098 2.035-.831 2.322-1.634.287-.802.287-1.49.2-1.634-.086-.143-.315-.23-.659-.4z"/>
@@ -1054,70 +1248,192 @@
 </a>
 
 <script>
-  // ── SLIDER ──
-  let current = 0;
-  const slides = document.querySelectorAll('.slide');
-  const dots = document.querySelectorAll('.dot');
-  let autoplay;
+// ── BLOG CONTENT DATA ──
+const blogData = {
+  tips: {
+    tag: 'Tips',
+    title: 'Top 5 Mobile Covers to Protect Your Phone in 2026',
+    date: 'May 18, 2026',
+    img: 'https://images.unsplash.com/photo-1601593346740-925612772716?w=720&h=400&fit=crop',
+    body: `
+      <p>Your phone is one of your most valuable possessions — and a great cover is its first line of defence. Here are our top 5 picks for 2026 that combine style and serious protection.</p>
+      <h3>1. Military-Grade Silicone Cover</h3>
+      <p>Engineered with shock-absorbing silicone, these covers can withstand drops of up to 2 metres. Available for Samsung, iPhone, Vivo, Realme and more. Raised edges protect the camera and screen even when placed face-down.</p>
+      <h3>2. Leather Flip Wallet Case</h3>
+      <p>Premium PU leather with card slots built in. Keeps your cards, cash and phone all in one place. The magnetic clasp keeps everything secure without adding bulk.</p>
+      <h3>3. Transparent Hard Case</h3>
+      <p>Want to show off your phone's original colour? Our crystal-clear hard cases add a tough polycarbonate shell without hiding the design underneath.</p>
+      <h3>4. Carbon Fibre Textured Cover</h3>
+      <p>Lightweight, slim, and incredibly strong. The carbon fibre texture gives a premium feel and improved grip — no more accidental drops from sweaty hands.</p>
+      <h3>5. Ring Stand Case</h3>
+      <p>Built-in 360° ring stand doubles as a grip for one-handed use and a kickstand for hands-free video calls. Perfect for busy professionals and students.</p>
+      <ul>
+        <li>✅ Always check compatibility with your exact phone model before ordering</li>
+        <li>✅ Raised bezels around the camera and screen are a must</li>
+        <li>✅ Opt for certified drop-protection ratings whenever possible</li>
+      </ul>
+    `
+  },
+  guide: {
+    tag: 'Guide',
+    title: 'How to Choose the Best Fast Charger for Your Device',
+    date: 'May 15, 2026',
+    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=720&h=400&fit=crop',
+    body: `
+      <p>Fast charging can be confusing with so many watt ratings, protocols, and brand names out there. This guide breaks it all down so you can buy with confidence.</p>
+      <h3>Understand the Watt Rating</h3>
+      <p>The watt (W) number tells you how fast a charger can deliver power. For most smartphones, 33W–65W is more than enough for a full charge in under an hour. Tablets and laptops may need 65W–100W.</p>
+      <h3>Match the Charging Protocol</h3>
+      <p>Your phone and charger must speak the same protocol. Common ones include USB Power Delivery (PD), Qualcomm Quick Charge (QC), and manufacturer-specific standards like VOOC (Oppo/Vivo) or Dart Charge (Realme).</p>
+      <h3>USB-C vs USB-A</h3>
+      <p>Most new phones use USB-C, which supports faster charging speeds. If your phone is USB-C, always pair it with a USB-C to USB-C cable for maximum speed.</p>
+      <h3>Our Recommended Picks at Ahsan Mobiles</h3>
+      <ul>
+        <li>⚡ Baseus 65W GaN Charger — best for iPhone and Samsung users</li>
+        <li>⚡ Anker Nano 30W — ultra-compact, great for travel</li>
+        <li>⚡ Ugreen 100W 4-Port Hub — charge your phone, tablet, and laptop together</li>
+      </ul>
+      <p>Still not sure? WhatsApp us your phone model and we'll tell you exactly which charger fits best — free of charge!</p>
+    `
+  },
+  review: {
+    tag: 'Review',
+    title: 'Best Wireless Earbuds Under Rs.3000 in Pakistan',
+    date: 'May 10, 2026',
+    img: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=720&h=400&fit=crop',
+    body: `
+      <p>True wireless earbuds have become a daily essential — but you don't need to spend a fortune to get great sound. We tested the top options available at Ahsan Mobiles under Rs.3000.</p>
+      <h3>1. Audionic Airbuds 550 — Rs.2,499</h3>
+      <p>Our top pick. Impressive bass response, ENC microphone for clear calls, and 30-hour total battery life with the case. The fit is comfortable for extended use. Best overall value.</p>
+      <h3>2. QCY T13 ANC — Rs.2,799</h3>
+      <p>If you want active noise cancellation on a budget, these are hard to beat. ANC reduces ambient noise noticeably — ideal for commuters. Sound quality is balanced and clear.</p>
+      <h3>3. Haylou GT7 Neo — Rs.1,899</h3>
+      <p>An excellent budget option. 20-hour battery, IPX4 water resistance, and surprisingly punchy audio for the price. Great first pair for students.</p>
+      <h3>Verdict</h3>
+      <ul>
+        <li>🏆 Best overall: Audionic Airbuds 550</li>
+        <li>🎧 Best ANC: QCY T13 ANC</li>
+        <li>💰 Best budget: Haylou GT7 Neo</li>
+      </ul>
+      <p>All three are available with free delivery across Pakistan. Order via WhatsApp or our shop page.</p>
+    `
+  },
+  deals: {
+    tag: 'Deals',
+    title: 'Power Banks 2026 — Which One Should You Buy?',
+    date: 'May 5, 2026',
+    img: 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=720&h=400&fit=crop',
+    body: `
+      <p>Running out of battery in the middle of the day is the worst. A good power bank is an investment that pays off every single day. Here's what's worth your money in 2026.</p>
+      <h3>Capacity: How Much Do You Need?</h3>
+      <p>10,000mAh charges a typical smartphone 2–2.5 times. 20,000mAh gives you 4–5 charges. If you travel frequently or use your phone heavily, go for 20,000mAh or above.</p>
+      <h3>Fast Charging Support</h3>
+      <p>Look for USB-C PD (Power Delivery) input for quick recharging of the power bank itself. Also check if it supports 18W or higher output for fast charging your device.</p>
+      <h3>Our Top Deals Right Now</h3>
+      <ul>
+        <li>🔋 Anker PowerCore 20000 PD — Rs.4,499 (was Rs.8,999) — <strong>50% OFF</strong></li>
+        <li>🔋 Baseus Bipow 10000mAh 20W — Rs.2,199 (was Rs.3,999) — <strong>45% OFF</strong></li>
+        <li>🔋 Romoss 30000mAh 22.5W — Rs.5,999 — great for long trips</li>
+      </ul>
+      <h3>Pro Tips Before You Buy</h3>
+      <ul>
+        <li>✅ Airline-safe limit is 100Wh (approx. 27,000mAh at 3.7V)</li>
+        <li>✅ Always charge the power bank fully before your trip</li>
+        <li>✅ Use a high-quality cable — a cheap cable wastes speed</li>
+      </ul>
+      <p>Use code <strong>AHSAN20</strong> for an extra 20% off any power bank today. Limited stock available!</p>
+    `
+  }
+};
 
-  function goSlide(n) {
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
-    resetAutoplay();
-  }
-  function nextSlide() { goSlide(current + 1); }
-  function prevSlide() { goSlide(current - 1); }
-  function resetAutoplay() {
-    clearInterval(autoplay);
-    autoplay = setInterval(() => goSlide(current + 1), 5000);
-  }
+function openBlog(type) {
+  const d = blogData[type];
+  document.getElementById('blog-modal-content').innerHTML = `
+    <span class="blog-modal-tag">${d.tag}</span>
+    <h2>${d.title}</h2>
+    <div class="blog-modal-date">📅 ${d.date} · Ahsan Mobiles Blog</div>
+    <img class="blog-modal-img" src="${d.img}" alt="${d.title}"/>
+    <div class="blog-modal-body">${d.body}</div>
+  `;
+  document.getElementById('blog-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBlog() {
+  document.getElementById('blog-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeBlogIfBg(e) {
+  if (e.target === document.getElementById('blog-overlay')) closeBlog();
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeBlog(); });
+
+// ── SLIDER ──
+let current = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+let autoplay;
+function goSlide(n) {
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current = (n + slides.length) % slides.length;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
   resetAutoplay();
+}
+function nextSlide() { goSlide(current + 1); }
+function prevSlide() { goSlide(current - 1); }
+function resetAutoplay() {
+  clearInterval(autoplay);
+  autoplay = setInterval(() => goSlide(current + 1), 5000);
+}
+resetAutoplay();
 
-  // ── CART ──
-  let cartCount = 0;
-  document.querySelectorAll('.add-cart-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      cartCount++;
-      document.querySelector('.cart-badge').textContent = cartCount;
-      btn.textContent = '✓ Added!';
-      btn.style.background = '#22a84b';
-      setTimeout(() => {
-        btn.textContent = 'Add to Cart';
-        btn.style.background = '';
-      }, 1500);
-    });
+// ── CART ──
+let cartCount = 0;
+document.querySelectorAll('.add-cart-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    cartCount++;
+    document.querySelector('.cart-badge').textContent = cartCount;
+    btn.textContent = '✓ Added!';
+    btn.style.background = 'var(--accent)';
+    btn.style.color = '#000';
+    btn.style.borderColor = 'var(--accent)';
+    setTimeout(() => {
+      btn.textContent = 'Add to Cart';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+    }, 1500);
   });
+});
 
-  // ── WISHLIST ──
-  document.querySelectorAll('.wishlist-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
-      btn.style.color = btn.textContent === '♥' ? 'var(--red)' : '';
-    });
+// ── WISHLIST ──
+document.querySelectorAll('.wishlist-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
+    btn.style.color = btn.textContent === '♥' ? 'var(--accent)' : '';
   });
+});
 
-  // ── NEWSLETTER ──
-  document.querySelector('.newsletter-form button').addEventListener('click', () => {
-    const inp = document.querySelector('.newsletter-input');
-    if(inp.value.includes('@')) {
-      inp.value = '';
-      inp.placeholder = '✓ Subscribed! Thank you 🎉';
-    } else {
-      inp.style.borderColor = 'var(--red)';
-      inp.placeholder = 'Please enter a valid email';
-    }
-  });
+// ── NEWSLETTER ──
+function subscribeNewsletter() {
+  const inp = document.querySelector('.newsletter-input');
+  if (inp.value.includes('@')) {
+    inp.value = '';
+    inp.placeholder = '✓ Subscribed! Thank you 🎉';
+  } else {
+    inp.style.borderColor = 'var(--accent)';
+    inp.placeholder = 'Please enter a valid email';
+  }
+}
 
-  // ── SEARCH ──
-  document.querySelector('.nav-search').addEventListener('keydown', e => {
-    if(e.key === 'Enter' && e.target.value.trim()) {
-      location.href = `search.html?q=${encodeURIComponent(e.target.value.trim())}`;
-    }
-  });
+// ── SEARCH ──
+document.querySelector('.nav-search').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.value.trim()) {
+    location.href = `search.html?q=${encodeURIComponent(e.target.value.trim())}`;
+  }
+});
 </script>
 </body>
 </html>
