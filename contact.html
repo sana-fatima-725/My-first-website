@@ -678,7 +678,7 @@ function productCardHTML(p, detailLink='') {
 function addToCart(name) {
   document.getElementById('modal-icon').textContent = '🛒';
   document.getElementById('modal-title').textContent = 'Order via WhatsApp!';
-  document.getElementById('modal-sub').innerHTML = `<strong>${name}</strong><br><br>Send order on WhatsApp:<br><a href="https://wa.me/923091333812?text=${encodeURIComponent('Assalam o Alaikum! I want to order: '+name)}" target="_blank" style="color:var(--accent);font-weight:700;">📱 03091333812</a>`;
+  document.getElementById('modal-sub').innerHTML = `<strong>${name}</strong><br><br>Send order on WhatsApp:<br><a href="https://wa.me/923054603311?text=${encodeURIComponent('Assalam o Alaikum! I want to order: '+name)}" target="_blank" style="color:var(--accent);font-weight:700;">📱 03054603311</a>`;
   document.getElementById('modal-overlay').classList.add('active');
 }
 
@@ -720,7 +720,7 @@ function submitContact() {
   const phone = document.getElementById('contact-phone').value.trim();
   if(!name||!phone){showToast('Please fill name and phone number');return;}
   const msg = encodeURIComponent('New message from '+name+' ('+phone+'): '+document.getElementById('contact-msg').value);
-  window.open('https://wa.me/923091333812?text='+msg,'_blank');
+  window.open('https://wa.me/923054603311?text='+msg,'_blank');
   document.getElementById('contact-success').style.display='block';
   showToast('✅ Message sent!','success');
 }
@@ -770,43 +770,7 @@ const LANGS = {
       'Help Center 🤝':'مدد مرکز 🤝','Get in Touch 📞':'ہم سے رابطہ کریں 📞',
     }
   },
-  hi: {
-    flag:'🇮🇳', label:'हिंदी', dir:'ltr',
-    t:{
-      'Home':'होम','Products':'उत्पाद','About':'हमारे बारे में','Offers':'ऑफर',
-      'Contact':'संपर्क','Help':'सहायता','Login':'लॉगिन','Shop Now →':'अभी खरीदें →',
-      "Pakistan's #1 Mobile Accessories Store":"पाकिस्तान का नंबर 1 मोबाइल स्टोर",
-      'Premium':'प्रीमियम','For Every Phone.':'हर फोन के लिए।',
-      'Shop by Category':'श्रेणी के अनुसार खरीदें','Everything Your Phone Needs':'आपके फोन की ज़रूरत',
-      'Why Choose Us':'हमें क्यों चुनें','Built on Trust':'विश्वास पर निर्मित',
-      '100% Original':'100% असली','Fast Delivery':'तेज़ डिलीवरी',
-      'Best Prices':'सर्वोत्तम कीमतें','24/7 Support':'24/7 सहायता',
-      'Customer Reviews':'ग्राहक समीक्षाएं','What People Say':'लोग क्या कहते हैं',
-      'Get 20% OFF Your First Order!':'पहले ऑर्डर पर 20% छूट!',
-      'Our Story':'हमारी कहानी','Send Message 📨':'संदेश भेजें 📨',
-      'Order via WhatsApp 🛒':'WhatsApp पर ऑर्डर करें 🛒',
-      'Hot Deals & Offers 🔥':'गर्म डील और ऑफर 🔥',
-      'Help Center 🤝':'सहायता केंद्र 🤝','Get in Touch 📞':'संपर्क करें 📞',
-    }
-  },
-  ar: {
-    flag:'🇸🇦', label:'العربية', dir:'rtl',
-    t:{
-      'Home':'الرئيسية','Products':'المنتجات','About':'معلومات عنا','Offers':'العروض',
-      'Contact':'اتصل بنا','Help':'المساعدة','Login':'تسجيل الدخول','Shop Now →':'تسوق الآن →',
-      "Pakistan's #1 Mobile Accessories Store":"متجر إكسسوارات المحمول رقم 1 في باكستان",
-      'Premium':'مميز','For Every Phone.':'لكل هاتف.',
-      'Shop by Category':'تسوق حسب الفئة','Everything Your Phone Needs':'كل ما يحتاجه هاتفك',
-      'Why Choose Us':'لماذا تختارنا','Built on Trust':'مبني على الثقة',
-      '100% Original':'100٪ أصلي','Fast Delivery':'توصيل سريع',
-      'Best Prices':'أفضل الأسعار','24/7 Support':'دعم 24/7',
-      'Customer Reviews':'آراء العملاء','What People Say':'ماذا يقول الناس',
-      'Get 20% OFF Your First Order!':'احصل على خصم 20٪ على طلبك الأول!',
-      'Our Story':'قصتنا','Send Message 📨':'إرسال رسالة 📨',
-      'Order via WhatsApp 🛒':'اطلب عبر واتساب 🛒',
-      'Hot Deals & Offers 🔥':'أفضل الصفقات والعروض 🔥',
-      'Help Center 🤝':'مركز المساعدة 🤝','Get in Touch 📞':'تواصل معنا 📞',
-    }
+  
   }
 };
 
