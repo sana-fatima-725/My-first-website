@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/opendyslexic" />
 <style>
 :root{
   --nav-h:68px;--accent:#00d4ff;--accent2:#7c3aed;--gold:#f5c518;
@@ -19,6 +20,47 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+/* ── HIGH CONTRAST ── */
+body.high-contrast{--bg:#000!important;--bg2:#000!important;--card-bg:#111!important;--surface2:#111!important;--text:#ffff00!important;--muted:#fff!important;--accent:#ffff00!important;--border:rgba(255,255,0,0.4)!important;--border2:rgba(255,255,0,0.6)!important;}
+body.high-contrast nav,body.high-contrast footer{background:#000!important;border-color:#ffff00!important;}
+/* ── PAUSE ANIMATIONS ── */
+body.pause-animations *,body.pause-animations *::before,body.pause-animations *::after{animation-play-state:paused!important;transition:none!important;}
+/* ── DYSLEXIA FONT ── */
+body.dyslexia-font,body.dyslexia-font *{font-family:'OpenDyslexic',sans-serif!important;letter-spacing:0.05em!important;word-spacing:0.15em!important;line-height:1.9!important;}
+/* ── URDU MODE ── */
+body.urdu-mode{direction:rtl;}
+body.urdu-mode nav{flex-direction:row-reverse;}
+body.urdu-mode .nav-links{flex-direction:row-reverse;}
+body.urdu-mode .nav-actions{flex-direction:row-reverse;}
+body.urdu-mode .toolbar{direction:rtl;}
+body.urdu-mode .filter-tabs{direction:rtl;}
+body.urdu-mode footer{direction:rtl;}
+
+/* ══ ACCESSIBILITY PANEL ══ */
+.a11y-wrapper{position:relative;display:flex;align-items:center;}
+#a11y-toggle-btn{width:38px;height:38px;background:var(--surface2);border:1px solid var(--border2);border-radius:9px;color:var(--accent);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,box-shadow 0.2s;}
+#a11y-toggle-btn:hover,#a11y-toggle-btn.open{background:rgba(0,212,255,0.15);box-shadow:0 0 0 2px rgba(0,212,255,0.3);}
+#a11y-panel{display:none;position:absolute;top:calc(100% + 12px);right:0;width:260px;background:#0f0f1e;border:1.5px solid rgba(0,212,255,0.25);border-radius:14px;padding:16px;z-index:9999;box-shadow:0 16px 48px rgba(0,0,0,0.6);flex-direction:column;gap:6px;}
+#a11y-panel.open{display:flex;}
+.a11y-panel-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.a11y-row{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid transparent;transition:all 0.15s;}
+.a11y-row:hover{border-color:var(--border2);background:rgba(0,212,255,0.05);}
+.a11y-row-label{font-size:13px;font-weight:600;color:#c8c8e0;display:flex;align-items:center;gap:8px;}
+.a11y-row-label .a11y-icon{font-size:16px;width:22px;text-align:center;}
+.a11y-font-controls{display:flex;align-items:center;gap:6px;}
+.a11y-font-btn{width:30px;height:30px;background:var(--surface2);border:1px solid var(--border2);border-radius:7px;color:var(--accent);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;font-family:'Plus Jakarta Sans',sans-serif;}
+.a11y-font-btn:hover{background:var(--accent);color:#000;}
+#font-size-val{font-size:11px;font-weight:700;color:var(--accent);min-width:34px;text-align:center;}
+.a11y-toggle{position:relative;width:38px;height:20px;flex-shrink:0;}
+.a11y-toggle input{opacity:0;width:0;height:0;}
+.a11y-toggle-track{position:absolute;inset:0;background:var(--surface2);border:1px solid var(--border2);border-radius:20px;cursor:pointer;transition:background 0.2s;}
+.a11y-toggle-track::after{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:var(--muted);top:2px;left:2px;transition:transform 0.2s,background 0.2s;}
+.a11y-toggle input:checked+.a11y-toggle-track{background:rgba(0,212,255,0.25);border-color:var(--accent);}
+.a11y-toggle input:checked+.a11y-toggle-track::after{transform:translateX(18px);background:var(--accent);}
+/* Lang btn */
+#lang-nav-btn{display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--accent2),#0099bb);border:none;border-radius:9px;color:white;font-size:12px;font-weight:700;padding:0 14px;height:38px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;white-space:nowrap;}
+#lang-nav-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(124,58,237,0.4);}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav-bg);backdrop-filter:blur(24px);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid var(--border);}
@@ -44,27 +86,11 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .mob-menu a{padding:12px 14px;border-radius:9px;font-size:.95rem;font-weight:500;color:var(--muted);text-decoration:none;}
 .mob-menu a:hover{color:var(--accent);}
 
-/* LANG */
-.lang-dropdown-wrap{position:relative;}
-.lang-btn{background:var(--surface2);border:1px solid var(--border2);color:var(--accent);padding:7px 13px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;gap:6px;white-space:nowrap;}
-.lang-btn:hover{border-color:var(--accent);background:rgba(0,212,255,0.1);}
-.lang-arrow{font-size:10px;transition:transform .2s;}
-.lang-dropdown-wrap.open .lang-arrow{transform:rotate(180deg);}
-.lang-menu{position:absolute;top:calc(100% + 8px);right:0;background:#13131f;border:1px solid var(--border2);border-radius:12px;padding:6px;min-width:150px;z-index:9999;display:none;box-shadow:0 12px 40px rgba(0,0,0,0.5);}
-.lang-dropdown-wrap.open .lang-menu{display:block;}
-.lang-option{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);transition:.2s;}
-.lang-option:hover{background:rgba(0,212,255,0.08);color:var(--text);}
-.lang-option.active-lang{background:rgba(0,212,255,0.1);color:var(--accent);}
-.lang-option .check{color:var(--accent);font-size:12px;opacity:0;}
-.lang-option.active-lang .check{opacity:1;}
-
 /* PAGE */
 .page-hero{padding:calc(var(--nav-h) + 40px) 40px 40px;max-width:1200px;margin:0 auto;}
 .page-hero h1{font-family:'Bebas Neue',cursive;font-size:52px;letter-spacing:1px;}
 .page-hero h1 span{color:var(--accent);}
 .page-hero p{color:var(--muted);font-size:15px;margin-top:8px;}
-
-/* TOOLBAR */
 .toolbar{padding:0 40px 28px;max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
 .search-wrap{flex:1;min-width:220px;position:relative;}
 .search-wrap input{width:100%;background:var(--card-bg);border:1px solid var(--border);color:var(--text);padding:12px 14px 12px 42px;border-radius:11px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:.2s;}
@@ -74,14 +100,10 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .sort-select{background:var(--card-bg);border:1px solid var(--border);color:var(--text);padding:12px 14px;border-radius:11px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;cursor:pointer;transition:.2s;}
 .sort-select:focus{border-color:var(--accent);}
 .results-count{color:var(--muted);font-size:13px;font-weight:600;white-space:nowrap;}
-
-/* FILTER TABS */
 .filter-tabs{padding:0 40px 28px;max-width:1200px;margin:0 auto;display:flex;gap:8px;flex-wrap:wrap;}
 .filter-tab{background:var(--card-bg);border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;}
 .filter-tab:hover{border-color:var(--border2);color:var(--text);}
 .filter-tab.active{background:var(--accent);border-color:var(--accent);color:#000;}
-
-/* PRODUCTS GRID */
 .products-section{padding:0 40px 80px;max-width:1200px;margin:0 auto;}
 .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
 .prod-card{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .3s;cursor:pointer;display:flex;flex-direction:column;}
@@ -102,40 +124,29 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .prod-save{font-size:11px;font-weight:700;color:#a78bfa;background:rgba(124,58,237,0.1);padding:2px 7px;border-radius:100px;}
 .prod-btn{width:100%;background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;border:none;padding:11px;font-size:13px;font-weight:800;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
 .prod-btn:hover{opacity:.9;}
-
-/* EMPTY STATE */
 .empty-state{text-align:center;padding:80px 20px;grid-column:1/-1;}
 .empty-state .emoji{font-size:54px;margin-bottom:16px;}
 .empty-state h3{font-size:20px;font-weight:700;margin-bottom:8px;}
 .empty-state p{color:var(--muted);font-size:14px;}
-
-/* WA */
 .wa-float{position:fixed;right:20px;bottom:22px;z-index:999;}
 .wa-btn{width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:.3s;animation:waPulse 3s ease-in-out infinite;}
 .wa-btn:hover{transform:scale(1.1);}
 @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.35);}50%{box-shadow:0 4px 38px rgba(37,211,102,0.65);}}
-
-/* FOOTER */
 footer{background:#06060f;padding:40px;border-top:1px solid rgba(255,255,255,0.05);text-align:center;color:rgba(255,255,255,0.25);font-size:12px;}
 footer span{color:var(--accent);}
-
-/* RTL */
-body.rtl-mode{direction:rtl;}
-body.rtl-mode nav{flex-direction:row-reverse;}
-body.rtl-mode .nav-links{flex-direction:row-reverse;}
-body.rtl-mode .nav-actions{flex-direction:row-reverse;}
-.urdu-text{font-family:'Noto Nastaliq Urdu',serif;line-height:2;}
-
-/* TOAST */
 .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg2);color:#fff;padding:13px 22px;border-radius:11px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:3000;white-space:nowrap;border:1px solid var(--border);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
+/* Reading guide */
+#reading-guide{display:none;position:fixed;left:0;right:0;height:32px;background:rgba(0,212,255,0.08);border-top:2px solid rgba(0,212,255,0.4);border-bottom:2px solid rgba(0,212,255,0.4);pointer-events:none;z-index:8000;transform:translateY(-50%);}
 @media(max-width:1100px){.products-grid{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:700px){.products-grid{grid-template-columns:repeat(2,1fr);}.page-hero,.toolbar,.filter-tabs,.products-section{padding-left:18px;padding-right:18px;}.page-hero h1{font-size:38px;}}
-@media(max-width:600px){.nav-links{display:none;}.hamburger{display:flex;}nav{padding:0 18px;}}
+@media(max-width:600px){.nav-links{display:none;}.hamburger{display:flex;}nav{padding:0 18px;}#a11y-panel{right:-60px;width:240px;}}
 </style>
 </head>
 <body>
+
+<!-- Reading Guide -->
+<div id="reading-guide"></div>
 
 <!-- NAV -->
 <nav>
@@ -144,29 +155,59 @@ body.rtl-mode .nav-actions{flex-direction:row-reverse;}
     <div class="nav-logo-text">Ahsan <span>Mobiles</span></div>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html" data-translate>Home</a></li>
-    <li><a href="products.html" class="active" data-translate>Products</a></li>
-    <li><a href="about.html" data-translate>About</a></li>
-    <li><a href="offers.html" data-translate>Offers</a></li>
-    <li><a href="contact.html" data-translate>Contact</a></li>
-    <li><a href="help.html" data-translate>Help</a></li>
+    <li><a href="index.html" data-en="Home" data-ur="ہوم">Home</a></li>
+    <li><a href="products.html" class="active" data-en="Products" data-ur="مصنوعات">Products</a></li>
+    <li><a href="about.html" data-en="About" data-ur="ہمارے بارے میں">About</a></li>
+    <li><a href="offers.html" data-en="Offers" data-ur="آفرز">Offers</a></li>
+    <li><a href="contact.html" data-en="Contact" data-ur="رابطہ">Contact</a></li>
+    <li><a href="help.html" data-en="Help" data-ur="مدد">Help</a></li>
   </ul>
   <div class="nav-actions">
-    <button class="btn-login" onclick="window.location='login.html'" data-translate>Login</button>
-    <button class="btn-shop" onclick="window.location='products.html'" data-translate>Shop Now →</button>
-    <div class="lang-dropdown-wrap" id="lang-wrap">
-      <button class="lang-btn" onclick="toggleLangMenu()">
-        <span id="lang-flag">🇺🇸</span>
-        <span id="lang-label">EN</span>
-        <span class="lang-arrow">▼</span>
-      </button>
-      <div class="lang-menu" id="lang-menu">
-        <div class="lang-option active-lang" onclick="setLang('en')"><span class="flag">🇺🇸</span><span class="lname">English</span><span class="check">✓</span></div>
-        <div class="lang-option" onclick="setLang('ur')"><span class="flag">🇵🇰</span><span class="lname">اردو</span><span class="check">✓</span></div>
-        <div class="lang-option" onclick="setLang('hi')"><span class="flag">🇮🇳</span><span class="lname">हिंदी</span><span class="check">✓</span></div>
-        <div class="lang-option" onclick="setLang('ar')"><span class="flag">🇸🇦</span><span class="lname">العربية</span><span class="check">✓</span></div>
+    <button class="btn-login" onclick="window.location='login.html'" data-en="Login" data-ur="لاگ ان">Login</button>
+    <button class="btn-shop" onclick="window.location='products.html'" data-en="Shop Now →" data-ur="ابھی خریدیں →">Shop Now →</button>
+
+    <!-- LANGUAGE TOGGLE -->
+    <button id="lang-nav-btn" onclick="toggleLanguage()" aria-label="Switch language">
+      <span class="lang-globe">🌐</span>
+      <span id="lang-btn-label">اردو</span>
+    </button>
+
+    <!-- ACCESSIBILITY PANEL -->
+    <div class="a11y-wrapper">
+      <button id="a11y-toggle-btn" onclick="toggleA11yPanel()" aria-label="Accessibility options" aria-expanded="false" aria-haspopup="true">♿</button>
+      <div id="a11y-panel" role="menu" aria-label="Accessibility Options">
+        <div class="a11y-panel-title">♿ Accessibility</div>
+        <div class="a11y-row">
+          <span class="a11y-row-label"><span class="a11y-icon">🔡</span>Font Size</span>
+          <div class="a11y-font-controls">
+            <button class="a11y-font-btn" onclick="changeFontSize(-1)" aria-label="Decrease font size">A−</button>
+            <span id="font-size-val">100%</span>
+            <button class="a11y-font-btn" onclick="changeFontSize(1)" aria-label="Increase font size">A+</button>
+          </div>
+        </div>
+        <div class="a11y-row">
+          <span class="a11y-row-label"><span class="a11y-icon">◑</span>High Contrast</span>
+          <label class="a11y-toggle"><input type="checkbox" id="a11y-contrast-input" onchange="toggleContrast()"/><span class="a11y-toggle-track"></span></label>
+        </div>
+        <div class="a11y-row">
+          <span class="a11y-row-label"><span class="a11y-icon">📖</span>Dyslexia Font</span>
+          <label class="a11y-toggle"><input type="checkbox" id="a11y-dyslexia-input" onchange="toggleDyslexia()"/><span class="a11y-toggle-track"></span></label>
+        </div>
+        <div class="a11y-row">
+          <span class="a11y-row-label"><span class="a11y-icon">⏸</span>Pause Animations</span>
+          <label class="a11y-toggle"><input type="checkbox" id="a11y-pause-input" onchange="toggleAnimations()"/><span class="a11y-toggle-track"></span></label>
+        </div>
+        <div class="a11y-row">
+          <span class="a11y-row-label"><span class="a11y-icon">🖱️</span>Large Cursor</span>
+          <label class="a11y-toggle"><input type="checkbox" id="a11y-cursor-input" onchange="toggleLargeCursor()"/><span class="a11y-toggle-track"></span></label>
+        </div>
+        <div class="a11y-row">
+          <span class="a11y-row-label"><span class="a11y-icon">📏</span>Reading Guide</span>
+          <label class="a11y-toggle"><input type="checkbox" id="a11y-guide-input" onchange="toggleReadingGuide()"/><span class="a11y-toggle-track"></span></label>
+        </div>
       </div>
     </div>
+
     <div class="hamburger" id="hamburger" onclick="this.classList.toggle('open');document.getElementById('mobMenu').classList.toggle('open')">
       <span></span><span></span><span></span>
     </div>
@@ -184,39 +225,43 @@ body.rtl-mode .nav-actions{flex-direction:row-reverse;}
 
 <!-- PAGE HEADER -->
 <div class="page-hero">
-  <h1>ALL <span>PRODUCTS</span></h1>
-  <p>Browse our complete collection of premium mobile accessories</p>
+  <h1 data-en="ALL PRODUCTS" data-ur="تمام مصنوعات">ALL <span>PRODUCTS</span></h1>
+  <p data-en="Browse our complete collection of premium mobile accessories" data-ur="ہمارے تمام پریمیم موبائل لوازمات دیکھیں">Browse our complete collection of premium mobile accessories</p>
 </div>
 
 <!-- TOOLBAR -->
 <div class="toolbar">
   <div class="search-wrap">
     <i class="fas fa-search search-icon"></i>
-    <input type="text" id="search-input" placeholder="Search products..." oninput="filterProducts()">
+    <input type="text" id="search-input"
+      placeholder="Search products..."
+      data-en-placeholder="Search products..."
+      data-ur-placeholder="مصنوعات تلاش کریں..."
+      oninput="filterProducts()">
   </div>
   <select class="sort-select" id="sort-select" onchange="filterProducts()">
-    <option value="default">Sort: Default</option>
-    <option value="price-low">Price: Low to High</option>
-    <option value="price-high">Price: High to Low</option>
-    <option value="discount">Biggest Discount</option>
+    <option value="default" data-en="Sort: Default" data-ur="ترتیب: ڈیفالٹ">Sort: Default</option>
+    <option value="price-low" data-en="Price: Low to High" data-ur="قیمت: کم سے زیادہ">Price: Low to High</option>
+    <option value="price-high" data-en="Price: High to Low" data-ur="قیمت: زیادہ سے کم">Price: High to Low</option>
+    <option value="discount" data-en="Biggest Discount" data-ur="سب سے بڑی چھوٹ">Biggest Discount</option>
   </select>
   <div class="results-count" id="results-count">26 Products</div>
 </div>
 
 <!-- FILTER TABS -->
 <div class="filter-tabs" id="filter-tabs">
-  <div class="filter-tab active" onclick="setCategory('all')">All (26)</div>
-  <div class="filter-tab" onclick="setCategory('covers')">📱 Covers (7)</div>
-  <div class="filter-tab" onclick="setCategory('earphones')">🎧 Earphones (1)</div>
-  <div class="filter-tab" onclick="setCategory('airpods')">🎵 AirPods &amp; Buds (3)</div>
-  <div class="filter-tab" onclick="setCategory('chargers')">⚡ Chargers (3)</div>
-  <div class="filter-tab" onclick="setCategory('screen-guards')">🛡️ Screen Guards (1)</div>
-  <div class="filter-tab" onclick="setCategory('power-banks')">🔋 Power Banks (3)</div>
-  <div class="filter-tab" onclick="setCategory('headphones')">🎶 Headphones (2)</div>
-  <div class="filter-tab" onclick="setCategory('cables')">🔌 Cables (2)</div>
-  <div class="filter-tab" onclick="setCategory('spare-parts')">🛠️ Spare Parts (1)</div>
-  <div class="filter-tab" onclick="setCategory('speakers')">🔊 Speakers (1)</div>
-  <div class="filter-tab" onclick="setCategory('camera')">📷 Cameras (2)</div>
+  <div class="filter-tab active" onclick="setCategory('all',this)" data-en="All (26)" data-ur="سب (26)">All (26)</div>
+  <div class="filter-tab" onclick="setCategory('covers',this)" data-en="📱 Covers (7)" data-ur="📱 کور (7)">📱 Covers (7)</div>
+  <div class="filter-tab" onclick="setCategory('earphones',this)" data-en="🎧 Earphones (1)" data-ur="🎧 ایئرفون (1)">🎧 Earphones (1)</div>
+  <div class="filter-tab" onclick="setCategory('airpods',this)" data-en="🎵 AirPods &amp; Buds (3)" data-ur="🎵 ایئر پاڈز (3)">🎵 AirPods &amp; Buds (3)</div>
+  <div class="filter-tab" onclick="setCategory('chargers',this)" data-en="⚡ Chargers (3)" data-ur="⚡ چارجر (3)">⚡ Chargers (3)</div>
+  <div class="filter-tab" onclick="setCategory('screen-guards',this)" data-en="🛡️ Screen Guards (1)" data-ur="🛡️ سکرین گارڈ (1)">🛡️ Screen Guards (1)</div>
+  <div class="filter-tab" onclick="setCategory('power-banks',this)" data-en="🔋 Power Banks (3)" data-ur="🔋 پاور بینک (3)">🔋 Power Banks (3)</div>
+  <div class="filter-tab" onclick="setCategory('headphones',this)" data-en="🎶 Headphones (2)" data-ur="🎶 ہیڈفون (2)">🎶 Headphones (2)</div>
+  <div class="filter-tab" onclick="setCategory('cables',this)" data-en="🔌 Cables (2)" data-ur="🔌 کیبل (2)">🔌 Cables (2)</div>
+  <div class="filter-tab" onclick="setCategory('spare-parts',this)" data-en="🛠️ Spare Parts (1)" data-ur="🛠️ فالتو پرزے (1)">🛠️ Spare Parts (1)</div>
+  <div class="filter-tab" onclick="setCategory('speakers',this)" data-en="🔊 Speakers (1)" data-ur="🔊 اسپیکر (1)">🔊 Speakers (1)</div>
+  <div class="filter-tab" onclick="setCategory('camera',this)" data-en="📷 Cameras (2)" data-ur="📷 کیمرے (2)">📷 Cameras (2)</div>
 </div>
 
 <!-- PRODUCTS -->
@@ -224,42 +269,43 @@ body.rtl-mode .nav-actions{flex-direction:row-reverse;}
   <div class="products-grid" id="products-grid"></div>
 </div>
 
-<footer>© 2025 Ahsan Mobiles.pk — All Rights Reserved &nbsp;|&nbsp; <span>Made with ❤️ in Sargodha 🇵🇰</span></footer>
+<footer>© 2026 Ahsan Mobiles.pk — All Rights Reserved &nbsp;|&nbsp; <span>Made with ❤️ in Sargodha 🇵🇰</span></footer>
 
 <div class="wa-float">
   <a class="wa-btn" href="https://wa.me/923091333812?text=Assalam%20o%20Alaikum!" target="_blank"><i class="fab fa-whatsapp"></i></a>
 </div>
 <div class="toast" id="toast"></div>
+<style id="large-cursor-style"></style>
 
 <script>
-// ===== FULL PRODUCTS DATA =====
+// ===== PRODUCTS DATA =====
 const allProducts = [
-{id:1,name:'iPhone 13 Premium Silicone Cover',nameUr:'آئی فون 13 پریمیم سلیکون کور',cat:'covers',badge:'NEW',brand:'Apple',price:850,oldPrice:1200,imgs:['https://m.media-amazon.com/images/I/61npKqB2yWL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/512csOgQI1L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/517XQICcoWL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/51i1-WZWyXL._AC_SX679_.jpg'],colors:[{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:0},{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:1},{name:'Chalk Pink',nameUr:'گلابی',hex:'#f9a8c9',imgIdx:2},{name:'Stone Gray',nameUr:'سرمئی',hex:'#9ca3af',imgIdx:3}],desc:'Premium Apple-style silicone cover designed for iPhone 13. Soft microfiber lining protects your phone from scratches. Raised edges protect camera and screen. Available in 4 stunning colors. Excellent grip and MagSafe-compatible.',descUr:'آئی فون 13 کے لیے پریمیم سلیکون کور۔ نرم مائیکرو فائبر لائننگ خراشوں سے بچاتی ہے۔ اونچے کنارے کیمرہ اور اسکرین کی حفاظت کرتے ہیں۔ 4 خوبصورت رنگوں میں دستیاب۔',specs:{Material:'Premium Silicone',Compatible:'iPhone 13',Protection:'Military Grade',Colors:'Blue, Black, Chalk Pink, Stone Gray',Lining:'Soft Microfiber',Feature:'MagSafe Compatible'}},
-{id:2,name:'iPhone 11 Transparent Hard Cover',nameUr:'آئی فون 11 شفاف ہارڈ کور',cat:'covers',badge:'HOT',brand:'Generic',price:350,oldPrice:550,imgs:['https://m.media-amazon.com/images/I/61Txe-1Sa3L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61OMgVbMp3L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61Wz71MSw6L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/614Gtz+nb-L._AC_SX679_.jpg'],colors:[{name:'Red',nameUr:'لال',hex:'#ef4444',imgIdx:0},{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:1},{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:2},{name:'Forest Green',nameUr:'جنگلی سبز',hex:'#166534',imgIdx:3}],desc:'Crystal clear transparent hard plastic cover for iPhone 11. Anti-yellow formula ensures it stays clear for years. Precise cutouts for all ports and buttons. Ultra-slim profile adds no extra bulk.',descUr:'آئی فون 11 کے لیے کرسٹل کلیئر شفاف ہارڈ کور۔ اینٹی یلو فارمولا۔ تمام پورٹس کے لیے کٹ آؤٹس۔',specs:{Material:'Transparent Hard Plastic',Compatible:'iPhone 11',Protection:'Scratch-proof',Colors:'Red, Black, White, Forest Green',Profile:'Ultra Slim',Feature:'Anti-Yellow'}},
-{id:3,name:'Cute Cartoon Phone Cover',nameUr:'کیوٹ کارٹون فون کور',cat:'covers',badge:null,brand:'Trendy',price:450,oldPrice:700,imgs:['https://m.media-amazon.com/images/I/718W2ZNFB0L._AC_SX569_.jpg','https://m.media-amazon.com/images/I/7120prYS4NL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/717Q9-cNBqL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71cTPdE0yPL._AC_SX679_.jpg'],colors:[{name:'Pink (iPhone 15)',nameUr:'گلابی',hex:'#f9a8c9',imgIdx:0},{name:'Honey Bear (iPhone 11)',nameUr:'ہنی بیئر',hex:'#f59e0b',imgIdx:1},{name:'Star Cat (Samsung A26)',nameUr:'اسٹار کیٹ',hex:'#8b5cf6',imgIdx:2},{name:'Pink (iPhone 16)',nameUr:'گلابی (آئی فون 16)',hex:'#ec4899',imgIdx:3}],desc:'Adorable cartoon-printed covers for iPhone 15, iPhone 11, Samsung Galaxy A26 5G, and iPhone 16. Soft TPU and leather blend. Shock-absorbing corners protect from drops.',descUr:'خوبصورت کارٹون پرنٹڈ کور۔ نرم TPU۔ شاک ابزوربنگ کونے۔',specs:{Material:'Silicone / TPU / Leather',Compatible:'iPhone 15, iPhone 11, Samsung A26, iPhone 16',Style:'Cartoon Printed',Finish:'Matte Anti-slip',Shock:'Corner Absorbers'}},
-{id:4,name:'Vivo V29 Faux Leather Flip Cover',nameUr:'ویوو V29 فیوکس لیدر فلپ کور',cat:'covers',badge:'SALE',brand:'Vivo',price:650,oldPrice:900,imgs:['https://m.media-amazon.com/images/I/617y-ZfgF9L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61NzAvCcTTL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61TUA+l5Q7L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71WCCqHvbKL._AC_SX679_.jpg'],colors:[{name:'Gray',nameUr:'سرمئی',hex:'#6b7280',imgIdx:0},{name:'Dark Brown',nameUr:'گہرا بھورا',hex:'#78350f',imgIdx:1},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:2},{name:'Rose Gold',nameUr:'روز گولڈ',hex:'#fbbf24',imgIdx:3}],desc:'Premium faux leather flip cover for Vivo V29 5G. Built-in card slots, magnetic closure, and kickstand. Full 360° protection.',descUr:'ویوو V29 5G کے لیے پریمیم فلپ کور۔ کارڈ سلاٹس، مقناطیسی بند۔',specs:{Material:'Faux Leather',Compatible:'Vivo V29 / V29 5G',Protection:'Full 360°',Closure:'Magnetic Snap',Extra:'Card Slots + Kickstand',Colors:'Gray, Dark Brown, Blue, Rose Gold'}},
-{id:5,name:'Samsung Galaxy A16 5G Rugged Cover',nameUr:'سام سنگ گیلیکسی A16 5G رگڈ کور',cat:'covers',badge:'HOT',brand:'Samsung',price:750,oldPrice:1100,imgs:['https://m.media-amazon.com/images/I/81tZjh3sxrL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81FqDobT3OL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81MTB03CypL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81x+D90bkyL._AC_SX679_.jpg'],colors:[{name:'Black Matte',nameUr:'میٹ سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Dark Green',nameUr:'گہرا سبز',hex:'#166534',imgIdx:1},{name:'Mint Green',nameUr:'منٹ سبز',hex:'#6ee7b7',imgIdx:2},{name:'Red',nameUr:'لال',hex:'#ef4444',imgIdx:3}],desc:'Heavy-duty polycarbonate rugged case for Samsung Galaxy A16 5G. Military-grade drop protection with shock-absorbing corners.',descUr:'سام سنگ A16 5G کے لیے رگڈ کیس۔ ملٹری گریڈ ڈراپ پروٹیکشن۔',specs:{Material:'Polycarbonate',Compatible:'Samsung Galaxy A16 5G',Protection:'Military Grade',Finish:'Matte Anti-fingerprint',Colors:'Black Matte, Dark Green, Mint Green, Red',Extra:'Shock-absorbing Corners'}},
-{id:6,name:'Realme C11 Crystal Glitter Cover',nameUr:'ریئل می C11 کرسٹل گلٹر کور',cat:'covers',badge:null,brand:'Realme',price:280,oldPrice:400,imgs:['https://m.media-amazon.com/images/I/61QEDrM-bpL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/611gRgrlH4L._AC_SX679_.jpg'],colors:[{name:'Pink',nameUr:'گلابی',hex:'#f9a8c9',imgIdx:0},{name:'Purple',nameUr:'جامنی',hex:'#7c3aed',imgIdx:1}],desc:'Transparent glitter crystal TPU case for Realme C11. Anti-yellow technology. Soft flexible sides.',descUr:'ریئل می C11 کے لیے گلٹر کرسٹل کیس۔',specs:{Material:'Silicone TPU',Compatible:'Realme C11',Effect:'Crystal Glitter',Feature:'Anti-Yellow',Colors:'Pink, Purple',Profile:'Slim Fit'}},
-{id:7,name:'Android Rugged Armor Case',nameUr:'اینڈرائیڈ رگڈ آرمر کیس',cat:'covers',badge:null,brand:'Generic',price:320,oldPrice:500,imgs:['https://m.media-amazon.com/images/I/710+2gQhGQL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81P-C+v2TnL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71oP25DAJ7L._AC_SX569_.jpg','https://m.media-amazon.com/images/I/7157A+jxaSL._AC_SX569_.jpg'],colors:[{name:'Black+Red (S26 Ultra)',nameUr:'کالا+لال',hex:'#ef4444',imgIdx:0},{name:'Green (A37)',nameUr:'سبز',hex:'#22c55e',imgIdx:1},{name:'Black (S23 Ultra)',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:2},{name:'Olive (Pixel 9)',nameUr:'زیتونی',hex:'#65a30d',imgIdx:3}],desc:'Heavy-duty metal + silicone armor case with kickstand and belt clip. Samsung S26 Ultra, A37, S23 Ultra, Google Pixel 9.',descUr:'بھاری ڈیوٹی آرمر کیس۔ کک اسٹینڈ اور بیلٹ کلپ۔',specs:{Material:'Metal + Silicone',Compatible:'Samsung S26 Ultra, A37, S23 Ultra, Google Pixel 9',Extra:'Kickstand + Belt Clip',Protection:'Heavy Duty',Colors:'Black+Red, Green, Black, Olive'}},
-{id:8,name:'Wired In-Ear Earphones',nameUr:'وائرڈ ان ایئر ایئر فونز',cat:'earphones',badge:'HOT',brand:'Generic',price:650,oldPrice:1000,imgs:['https://m.media-amazon.com/images/I/51tE5dn5QxL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/51QhFh7WGGL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/514YUBv14QL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/71Ig7LaqT7L._AC_SX569_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:1},{name:'Red',nameUr:'لال',hex:'#ef4444',imgIdx:2},{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:3}],desc:'High-quality wired in-ear earphones with powerful bass and crisp treble. 16 Ohm impedance. In-line microphone. Universal 3.5mm jack.',descUr:'طاقتور باس کے ساتھ ان ایئر ایئر فونز۔ 3.5mm جیک۔',specs:{Type:'In-Ear Wired',Impedance:'16 Ohms',Connector:'3.5mm Jack',Mic:'Built-in Inline',Colors:'Black, Blue, Red, White',EarPlacement:'In Ear'}},
-{id:9,name:'Apple AirPods Pro 2nd Generation',nameUr:'ایپل ایئر پاڈز پرو دوسری نسل',cat:'airpods',badge:'NEW',brand:'Apple',price:8500,oldPrice:12000,imgs:['https://m.media-amazon.com/images/I/51NRGHU2NoL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/611pEx7220L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61n7MpBGeBL._AC_SX679_.jpg'],colors:[],desc:'Original Apple AirPods Pro 2nd Generation. Active Noise Cancellation. Transparency mode. Up to 30 hours total battery with MagSafe Charging Case. IPX4 sweat resistant.',descUr:'اصلی ایپل ایئر پاڈز پرو۔ ایکٹو نوائز کینسلیشن۔ MagSafe کیس۔',specs:{Brand:'Apple',Color:'White',Impedance:'24 Ohms',ANC:'Active Noise Cancellation',Battery:'6hr + 24hr case',Charging:'MagSafe',Rating:'IPX4'}},
-{id:10,name:'Samsung Galaxy Buds Pro',nameUr:'سام سنگ گیلیکسی بڈز پرو',cat:'airpods',badge:null,brand:'Samsung',price:7200,oldPrice:10500,imgs:['https://m.media-amazon.com/images/I/51QEHqsjzPL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/51Hg2oo0nHL._AC_SX679_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:1}],desc:'Samsung Galaxy Buds Pro with Intelligent ANC. 360-degree spatial audio. IPX7 waterproof. 8+20 hour battery.',descUr:'سام سنگ گیلیکسی بڈز پرو۔ انٹیلیجنٹ ANC۔ IPX7 واٹر پروف۔',specs:{Brand:'Samsung',Impedance:'24 Ohms',ANC:'Intelligent ANC',Battery:'8hr + 20hr case',Rating:'IPX7',Sound:'360° Spatial Audio',Colors:'Black, White'}},
-{id:11,name:'ESR AirPods 4 Wireless Charging Case',nameUr:'ESR ایئر پاڈز 4 وائرلیس چارجنگ کیس',cat:'airpods',badge:'HOT',brand:'ESR',price:1200,oldPrice:1800,imgs:['https://m.media-amazon.com/images/I/61Uwm+8gn1L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61YCaL+maUL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/613+NfkUBoL._AC_SX679_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:1},{name:'Desert Titanium',nameUr:'ڈیزرٹ ٹائٹینیم',hex:'#d4a96a',imgIdx:2}],desc:'ESR protective case for AirPods 4 with Qi wireless charging support. Hard shell protection.',descUr:'ESR کیس ایئر پاڈز 4 کے لیے۔ Qi وائرلیس چارجنگ۔',specs:{Brand:'ESR',Compatible:'AirPods 4',Charging:'Qi Wireless',Colors:'Black, Blue, Desert Titanium',Protection:'Hard Shell',Feature:'Carabiner Hole'}},
-{id:12,name:'65W GaN Fast Charger — 3 Ports',nameUr:'65W GaN فاسٹ چارجر',cat:'chargers',badge:'HOT',brand:'INIU / MINIX',price:1800,oldPrice:2500,imgs:['https://m.media-amazon.com/images/I/71-JlJ622oL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/61ojwZSg3pL._AC_SX679_.jpg'],colors:[{name:'INIU',nameUr:'INIU',hex:'#1a1a1a',imgIdx:0},{name:'MINIX',nameUr:'MINIX',hex:'#374151',imgIdx:1}],desc:'65W GaN fast charger with 3 USB ports. Charges laptop, phone, and tablet simultaneously.',descUr:'65W GaN فاسٹ چارجر 3 پورٹس۔',specs:{Output:'65W GaN',Ports:'3 USB (Type-A + Type-C)',Brands:'INIU / MINIX',Color:'Black',Safety:'OVP + OCP + OTP',Design:'Foldable Compact'}},
-{id:13,name:'Samsung 45W Super Fast Charger',nameUr:'سام سنگ 45W سپر فاسٹ چارجر',cat:'chargers',badge:'NEW',brand:'Samsung',price:2200,oldPrice:3000,imgs:['https://m.media-amazon.com/images/I/61xeaSwjuCL._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/51qzmoZBLYL._AC_SX679_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:1}],desc:'Original Samsung 45W Super Fast Charging 2.0 adapter. Charges Galaxy S series 0-50% in just 20 minutes.',descUr:'اصلی سام سنگ 45W چارجر۔ 20 منٹ میں 50٪ چارج۔',specs:{Brand:'Samsung',Output:'45W PPS',Ports:'1× USB-C',Compatible:'Samsung Galaxy S & A Series',Colors:'Black, White','0-50%':'Only 20 min',Cable:'USB-C Included'}},
-{id:14,name:'Apple 20W USB-C Fast Charger',nameUr:'ایپل 20W USB-C فاسٹ چارجر',cat:'chargers',badge:null,brand:'Apple',price:1500,oldPrice:2000,imgs:['https://m.media-amazon.com/images/I/51PA37nXgJL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/41mPNFKp2wL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61t+vHQ67DL._AC_SX679_.jpg'],colors:[],desc:'Original Apple 20W USB-C Power Adapter. Fast charges iPhone 12+ 0-50% in 30 minutes. MFi certified.',descUr:'اصلی ایپل 20W چارجر۔ 30 منٹ میں 50٪ چارج۔',specs:{Brand:'Apple',Output:'20W USB-C PD',Ports:'1× USB-C',Compatible:'iPhone 12+, iPad, AirPods',Certified:'Apple MFi','0-50%':'30 minutes',Color:'White'}},
-{id:15,name:'Ailun 9H Tempered Glass Screen Guard',nameUr:'Ailun 9H ٹیمپرڈ گلاس اسکرین گارڈ',cat:'screen-guards',badge:'HOT',brand:'Ailun',price:350,oldPrice:600,imgs:['https://m.media-amazon.com/images/I/71OicfvCsbL._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/71mEz9OkKGL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71xLbMGka0L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/6128a4sx+0L._AC_SX679_.jpg'],colors:[],desc:'Ailun premium 9H hardness tempered glass. Oleophobic anti-fingerprint coating. Bubble-free installation with alignment frame.',descUr:'Ailun 9H ٹیمپرڈ گلاس۔ اینٹی فنگر پرنٹ۔ ببل فری انسٹالیشن۔',specs:{Brand:'Ailun',Material:'Tempered Glass',Hardness:'9H',Coating:'Oleophobic Anti-fingerprint',Coverage:'Full Edge-to-Edge',Install:'Bubble-Free + Alignment Frame'}},
-{id:16,name:'INIU 20000mAh 65W Power Bank',nameUr:'INIU 20000mAh 65W پاور بینک',cat:'power-banks',badge:'HOT',brand:'INIU',price:3500,oldPrice:5000,imgs:['https://m.media-amazon.com/images/I/51B-TtrqU6L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61UA7QJYZCL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71ce+BoO5CL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71Yxi8Ba8pL._AC_SX679_.jpg'],colors:[],desc:'INIU 20,000mAh power bank with 65W fast charging. Digital LED display. 2× USB-C + 1× USB-A ports.',descUr:'INIU 20,000mAh پاور بینک 65W فاسٹ چارجنگ۔',specs:{Brand:'INIU',Capacity:'20,000mAh',Output:'65W PD Fast',Ports:'2× USB-C + 1× USB-A',Display:'Digital LED %',Charges:'Laptop + Phone + Tablet'}},
-{id:17,name:'10000mAh Ultra Slim Power Bank',nameUr:'10000mAh الٹرا سلم پاور بینک',cat:'power-banks',badge:null,brand:'Generic',price:1800,oldPrice:2500,imgs:['https://m.media-amazon.com/images/I/519bJupcnQL._AC_SL1200_.jpg','https://m.media-amazon.com/images/I/71Zb2AEIATL._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/715Ll2122TL._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/71tGOS7Vd4L._AC_SL1500_.jpg'],colors:[],desc:'Ultra-slim 10,000mAh power bank. Only 14mm thin. 22.5W fast charge. Dual USB ports. 190g lightweight.',descUr:'14mm الٹرا سلم 10,000mAh پاور بینک۔ 22.5W فاسٹ چارج۔',specs:{Capacity:'10,000mAh',Output:'22.5W Fast',Thickness:'14mm Slim',Weight:'190g',Ports:'2× USB',Display:'LED Battery Indicator'}},
-{id:18,name:'30000mAh High Capacity Power Bank',nameUr:'30000mAh ہائی کیپیسٹی پاور بینک',cat:'power-banks',badge:'NEW',brand:'Generic',price:4800,oldPrice:7000,imgs:['https://m.media-amazon.com/images/I/31z1jUNsmOL._AC_.jpg','https://m.media-amazon.com/images/I/41SehL3mNrL._AC_.jpg'],colors:[],desc:'Massive 30,000mAh power bank. 3 simultaneous output ports. Built-in LED flashlight. Charges phone up to 8 times.',descUr:'30,000mAh پاور بینک۔ بلٹ ان فلیش لائٹ۔ فون کو 8 بار چارج۔',specs:{Capacity:'30,000mAh',Ports:'3× USB Output',Extra:'LED Flashlight',Charges:'Up to 8 phones',Use:'Travel, Camping, Power Outages'}},
-{id:19,name:'Sony WH-1000XM5 Headphones',nameUr:'سونی WH-1000XM5 ہیڈ فونز',cat:'headphones',badge:'NEW',brand:'Sony',price:18000,oldPrice:25000,imgs:['https://m.media-amazon.com/images/I/61vJtKbAssL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/61oUbsHuWuL._AC_SY879_.jpg','https://m.media-amazon.com/images/I/61aT4CcnGmL._AC_SX569_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Midnight Blue',nameUr:'نیلا',hex:'#1e3a5f',imgIdx:1},{name:'Silver',nameUr:'چاندی',hex:'#9ca3af',imgIdx:2}],desc:'Sony WH-1000XM5 flagship noise-cancelling headphones. 8-mic system. 30-hour battery. Multipoint connection.',descUr:'سونی فلیگ شپ ہیڈ فونز۔ 8 مائیکرو فونز۔ 30 گھنٹے بیٹری۔',specs:{Brand:'Sony',Impedance:'48 Ohms',ANC:'8-Mic Industry Leading',Battery:'30 hours',Connectivity:'Bluetooth 5.2',Colors:'Black, Midnight Blue, Silver',Feature:'Speak-to-Chat + Multipoint'}},
-{id:20,name:'JBL Tune 760NC Wireless Headphones',nameUr:'JBL ٹیون 760NC ہیڈ فونز',cat:'headphones',badge:'HOT',brand:'JBL',price:8500,oldPrice:12000,imgs:['https://m.media-amazon.com/images/I/51P5yWaJscL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/51bEfQvoeLL._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/817Lq3gngOS._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/61turRGN1cL._AC_SX569_.jpg'],colors:[{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:0},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:3}],desc:'JBL Tune 760NC active noise-cancelling wireless headphones. 35-hour battery. Foldable design.',descUr:'JBL 760NC وائرلیس ہیڈ فونز۔ 35 گھنٹے بیٹری۔',specs:{Brand:'JBL',Impedance:'32 Ohms',ANC:'Active Noise Cancelling',Battery:'35 hours',Connectivity:'Bluetooth 5.0',Colors:'White, Blue',Driver:'40mm JBL Pure Bass'}},
-{id:21,name:'3-in-1 Multi Fast Charging Cable',nameUr:'3-in-1 ملٹی فاسٹ چارجنگ کیبل',cat:'cables',badge:'HOT',brand:'Generic',price:550,oldPrice:900,imgs:['https://m.media-amazon.com/images/I/61LCDYuThXL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71lOJAPFTvL._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/618+urZiBjL._AC_SL1500_.jpg'],colors:[],desc:'3-in-1 cable with USB-C, Lightning, and Micro-USB. 100W fast charging. Nylon braided with 25,000+ bend life.',descUr:'USB-C، لائٹننگ اور مائیکرو USB ایک کیبل میں۔ 100W۔',specs:{Connectors:'USB-C + Lightning + Micro-USB',Rating:'100W',Material:'Nylon Braided',Durability:'25,000+ bends',Length:'1.2m'}},
-{id:22,name:'USB Type-C to A Cable — 5 Pack',nameUr:'USB Type-C to A کیبل — 5 پیک',cat:'cables',badge:null,brand:'SMALLelectric',price:800,oldPrice:1200,imgs:['https://m.media-amazon.com/images/I/71hLGDuvLCL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/719Ok7ujpiL._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/81DlIuJq7mL._AC_SL1500_.jpg'],colors:[],desc:'SMALLelectric USB-C to A cable 5-pack. Fast charging and 480 Mbps data transfer. Nylon braided.',descUr:'USB-C کیبل 5 کا پیک۔ فاسٹ چارجنگ۔ نائلون بریڈڈ۔',specs:{Brand:'SMALLelectric',Type:'USB-C to USB-A',Pack:'5 Cables',DataSpeed:'480 Mbps',Material:'Nylon Braided',Compatible:'All USB-C Devices'}},
-{id:23,name:'iPhone 14 OLED Display Screen',nameUr:'آئی فون 14 OLED ڈسپلے اسکرین',cat:'spare-parts',badge:'NEW',brand:'Apple Grade',price:12000,oldPrice:16000,imgs:['https://m.media-amazon.com/images/I/71MzvRpZ8JL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71OP6M-f74L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/714HoWhLgXL._AC_SX679_.jpg'],colors:[],desc:'Original-grade OLED replacement screen for iPhone 14. Super Retina XDR — 460 ppi. Full repair kit included. 3-month warranty.',descUr:'آئی فون 14 OLED ریپلیسمنٹ اسکرین۔ مکمل ریپیئر کٹ۔ 3 ماہ وارنٹی۔',specs:{Type:'OLED Super Retina XDR',Resolution:'2532×1170 px 460ppi',Refresh:'60Hz',Includes:'Full Repair Kit',Warranty:'3 Months',Compatible:'iPhone 14'}},
-{id:24,name:'JBL Go 3 Portable Bluetooth Speaker',nameUr:'JBL گو 3 پورٹیبل اسپیکر',cat:'speakers',badge:'HOT',brand:'JBL',price:5500,oldPrice:7500,imgs:['https://m.media-amazon.com/images/I/715ZUYP5N5L._AC_SX569_.jpg','https://m.media-amazon.com/images/I/91jMTx-oKhL._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/81CW7tay9IL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/71H96W3JhwL._AC_SX569_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:2},{name:'Silver',nameUr:'چاندی',hex:'#9ca3af',imgIdx:3}],desc:'JBL Go 3 Bluetooth speaker with IP67 waterproofing. 5-hour playtime. Built-in speakerphone.',descUr:'JBL گو 3 اسپیکر۔ IP67 واٹر پروف۔ 5 گھنٹے۔',specs:{Battery:'5 hours',Waterproof:'IP67',Bluetooth:'5.1',Weight:'209g',Colors:'Black, Blue, Silver',Extra:'Speakerphone + Carabiner Loop'}},
-{id:25,name:'Kodak PIXPRO FZ55 16MP Camera',nameUr:'Kodak PIXPRO FZ55 16MP کیمرہ',cat:'camera',badge:'NEW',brand:'Kodak',price:15000,oldPrice:20000,imgs:['https://m.media-amazon.com/images/I/81a8ZMB-nNL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81-drCl5xVL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81swjZCbdiL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81PWniucvuL._AC_SX569_.jpg'],colors:[{name:'Red',nameUr:'لال',hex:'#ef4444',imgIdx:0},{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:2},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:3}],desc:'Kodak PIXPRO FZ55 16MP digital camera. 5x optical zoom. Full HD video. Compact pocket-size.',descUr:'Kodak 16MP کیمرہ۔ 5x زوم۔ فل HD ویڈیو۔',specs:{Brand:'Kodak',Megapixels:'16 MP',Zoom:'5x Optical',FileFormat:'JPEG',Video:'Full HD',Colors:'Red, Black, Blue',Size:'Compact Pocket-Size'}},
-{id:26,name:'Sony Alpha 7 Full-Frame Camera',nameUr:'سونی الفا 7 فل فریم کیمرہ',cat:'camera',badge:'HOT',brand:'Sony',price:85000,oldPrice:110000,imgs:['https://m.media-amazon.com/images/I/814+bb-I8HL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81UPLQHpzcL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/815pNFbdcYL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81MncDovV0L._AC_SX522_.jpg'],colors:[],desc:'Sony Alpha 7 full-frame mirrorless camera. RAW format. ISO 50. Professional autofocus. 4K video.',descUr:'سونی الفا 7 فل فریم مررلیس کیمرہ۔ 4K ویڈیو۔',specs:{Brand:'Sony',Type:'Full-Frame Mirrorless',FileFormat:'RAW + JPEG',ISO_Min:'50 (Expanded)',ISO_Max:'51200',Video:'4K UHD',Autofocus:'Professional Grade'}}
+{id:1,name:'iPhone 13 Premium Silicone Cover',nameUr:'آئی فون 13 پریمیم سلیکون کور',cat:'covers',badge:'NEW',brand:'Apple',price:850,oldPrice:1200,imgs:['https://m.media-amazon.com/images/I/61npKqB2yWL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/512csOgQI1L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/517XQICcoWL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/51i1-WZWyXL._AC_SX679_.jpg'],colors:[{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:0},{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:1},{name:'Chalk Pink',nameUr:'گلابی',hex:'#f9a8c9',imgIdx:2},{name:'Stone Gray',nameUr:'سرمئی',hex:'#9ca3af',imgIdx:3}],desc:'Premium Apple-style silicone cover designed for iPhone 13.',descUr:'آئی فون 13 کے لیے پریمیم سلیکون کور۔'},
+{id:2,name:'iPhone 11 Transparent Hard Cover',nameUr:'آئی فون 11 شفاف ہارڈ کور',cat:'covers',badge:'HOT',brand:'Generic',price:350,oldPrice:550,imgs:['https://m.media-amazon.com/images/I/61Txe-1Sa3L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61OMgVbMp3L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61Wz71MSw6L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/614Gtz+nb-L._AC_SX679_.jpg'],colors:[{name:'Red',nameUr:'لال',hex:'#ef4444',imgIdx:0},{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:1},{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:2},{name:'Forest Green',nameUr:'جنگلی سبز',hex:'#166534',imgIdx:3}],desc:'Crystal clear transparent hard plastic cover for iPhone 11.',descUr:'آئی فون 11 کے لیے کرسٹل کلیئر شفاف ہارڈ کور۔'},
+{id:3,name:'Cute Cartoon Phone Cover',nameUr:'کیوٹ کارٹون فون کور',cat:'covers',badge:null,brand:'Trendy',price:450,oldPrice:700,imgs:['https://m.media-amazon.com/images/I/718W2ZNFB0L._AC_SX569_.jpg','https://m.media-amazon.com/images/I/7120prYS4NL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/717Q9-cNBqL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71cTPdE0yPL._AC_SX679_.jpg'],colors:[{name:'Pink',nameUr:'گلابی',hex:'#f9a8c9',imgIdx:0},{name:'Honey Bear',nameUr:'ہنی بیئر',hex:'#f59e0b',imgIdx:1},{name:'Star Cat',nameUr:'اسٹار کیٹ',hex:'#8b5cf6',imgIdx:2},{name:'Pink 16',nameUr:'گلابی',hex:'#ec4899',imgIdx:3}],desc:'Adorable cartoon-printed covers.',descUr:'خوبصورت کارٹون پرنٹڈ کور۔'},
+{id:4,name:'Vivo V29 Faux Leather Flip Cover',nameUr:'ویوو V29 فیوکس لیدر فلپ کور',cat:'covers',badge:'SALE',brand:'Vivo',price:650,oldPrice:900,imgs:['https://m.media-amazon.com/images/I/617y-ZfgF9L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61NzAvCcTTL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61TUA+l5Q7L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71WCCqHvbKL._AC_SX679_.jpg'],colors:[{name:'Gray',nameUr:'سرمئی',hex:'#6b7280',imgIdx:0},{name:'Dark Brown',nameUr:'گہرا بھورا',hex:'#78350f',imgIdx:1},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:2},{name:'Rose Gold',nameUr:'روز گولڈ',hex:'#fbbf24',imgIdx:3}],desc:'Premium faux leather flip cover for Vivo V29.',descUr:'ویوو V29 کے لیے پریمیم فلپ کور۔'},
+{id:5,name:'Samsung Galaxy A16 5G Rugged Cover',nameUr:'سام سنگ A16 5G رگڈ کور',cat:'covers',badge:'HOT',brand:'Samsung',price:750,oldPrice:1100,imgs:['https://m.media-amazon.com/images/I/81tZjh3sxrL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81FqDobT3OL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81MTB03CypL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81x+D90bkyL._AC_SX679_.jpg'],colors:[{name:'Black Matte',nameUr:'میٹ سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Dark Green',nameUr:'گہرا سبز',hex:'#166534',imgIdx:1},{name:'Mint Green',nameUr:'منٹ سبز',hex:'#6ee7b7',imgIdx:2},{name:'Red',nameUr:'لال',hex:'#ef4444',imgIdx:3}],desc:'Heavy-duty rugged case for Samsung Galaxy A16 5G.',descUr:'سام سنگ A16 5G کے لیے رگڈ کیس۔'},
+{id:6,name:'Realme C11 Crystal Glitter Cover',nameUr:'ریئل می C11 کرسٹل گلٹر کور',cat:'covers',badge:null,brand:'Realme',price:280,oldPrice:400,imgs:['https://m.media-amazon.com/images/I/61QEDrM-bpL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/611gRgrlH4L._AC_SX679_.jpg'],colors:[{name:'Pink',nameUr:'گلابی',hex:'#f9a8c9',imgIdx:0},{name:'Purple',nameUr:'جامنی',hex:'#7c3aed',imgIdx:1}],desc:'Transparent glitter crystal TPU case for Realme C11.',descUr:'ریئل می C11 کے لیے گلٹر کرسٹل کیس۔'},
+{id:7,name:'Android Rugged Armor Case',nameUr:'اینڈرائیڈ رگڈ آرمر کیس',cat:'covers',badge:null,brand:'Generic',price:320,oldPrice:500,imgs:['https://m.media-amazon.com/images/I/710+2gQhGQL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81P-C+v2TnL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71oP25DAJ7L._AC_SX569_.jpg','https://m.media-amazon.com/images/I/7157A+jxaSL._AC_SX569_.jpg'],colors:[{name:'Black+Red',nameUr:'کالا+لال',hex:'#ef4444',imgIdx:0},{name:'Green',nameUr:'سبز',hex:'#22c55e',imgIdx:1},{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:2},{name:'Olive',nameUr:'زیتونی',hex:'#65a30d',imgIdx:3}],desc:'Heavy-duty metal + silicone armor case.',descUr:'بھاری ڈیوٹی آرمر کیس۔'},
+{id:8,name:'Wired In-Ear Earphones',nameUr:'وائرڈ ان ایئر ایئر فونز',cat:'earphones',badge:'HOT',brand:'Generic',price:650,oldPrice:1000,imgs:['https://m.media-amazon.com/images/I/51tE5dn5QxL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/51QhFh7WGGL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/514YUBv14QL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/71Ig7LaqT7L._AC_SX569_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:1},{name:'Red',nameUr:'لال',hex:'#ef4444',imgIdx:2},{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:3}],desc:'High-quality wired in-ear earphones with powerful bass.',descUr:'طاقتور باس کے ساتھ ان ایئر ایئر فونز۔'},
+{id:9,name:'Apple AirPods Pro 2nd Generation',nameUr:'ایپل ایئر پاڈز پرو دوسری نسل',cat:'airpods',badge:'NEW',brand:'Apple',price:8500,oldPrice:12000,imgs:['https://m.media-amazon.com/images/I/51NRGHU2NoL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/611pEx7220L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61n7MpBGeBL._AC_SX679_.jpg'],colors:[],desc:'Original Apple AirPods Pro 2nd Generation with ANC.',descUr:'اصلی ایپل ایئر پاڈز پرو۔ ایکٹو نوائز کینسلیشن۔'},
+{id:10,name:'Samsung Galaxy Buds Pro',nameUr:'سام سنگ گیلیکسی بڈز پرو',cat:'airpods',badge:null,brand:'Samsung',price:7200,oldPrice:10500,imgs:['https://m.media-amazon.com/images/I/51QEHqsjzPL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/51Hg2oo0nHL._AC_SX679_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:1}],desc:'Samsung Galaxy Buds Pro with Intelligent ANC.',descUr:'سام سنگ گیلیکسی بڈز پرو۔ انٹیلیجنٹ ANC۔'},
+{id:11,name:'ESR AirPods 4 Wireless Charging Case',nameUr:'ESR ایئر پاڈز 4 وائرلیس چارجنگ کیس',cat:'airpods',badge:'HOT',brand:'ESR',price:1200,oldPrice:1800,imgs:['https://m.media-amazon.com/images/I/61Uwm+8gn1L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61YCaL+maUL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/613+NfkUBoL._AC_SX679_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:1},{name:'Desert Titanium',nameUr:'ڈیزرٹ ٹائٹینیم',hex:'#d4a96a',imgIdx:2}],desc:'ESR protective case for AirPods 4 with Qi wireless charging.',descUr:'ESR کیس ایئر پاڈز 4 کے لیے۔ Qi وائرلیس چارجنگ۔'},
+{id:12,name:'65W GaN Fast Charger — 3 Ports',nameUr:'65W GaN فاسٹ چارجر',cat:'chargers',badge:'HOT',brand:'INIU / MINIX',price:1800,oldPrice:2500,imgs:['https://m.media-amazon.com/images/I/71-JlJ622oL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/61ojwZSg3pL._AC_SX679_.jpg'],colors:[{name:'INIU',nameUr:'INIU',hex:'#1a1a1a',imgIdx:0},{name:'MINIX',nameUr:'MINIX',hex:'#374151',imgIdx:1}],desc:'65W GaN fast charger with 3 USB ports.',descUr:'65W GaN فاسٹ چارجر 3 پورٹس۔'},
+{id:13,name:'Samsung 45W Super Fast Charger',nameUr:'سام سنگ 45W سپر فاسٹ چارجر',cat:'chargers',badge:'NEW',brand:'Samsung',price:2200,oldPrice:3000,imgs:['https://m.media-amazon.com/images/I/61xeaSwjuCL._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/51qzmoZBLYL._AC_SX679_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:1}],desc:'Original Samsung 45W Super Fast Charging adapter.',descUr:'اصلی سام سنگ 45W چارجر۔'},
+{id:14,name:'Apple 20W USB-C Fast Charger',nameUr:'ایپل 20W USB-C فاسٹ چارجر',cat:'chargers',badge:null,brand:'Apple',price:1500,oldPrice:2000,imgs:['https://m.media-amazon.com/images/I/51PA37nXgJL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/41mPNFKp2wL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61t+vHQ67DL._AC_SX679_.jpg'],colors:[],desc:'Original Apple 20W USB-C Power Adapter.',descUr:'اصلی ایپل 20W چارجر۔'},
+{id:15,name:'Ailun 9H Tempered Glass Screen Guard',nameUr:'Ailun 9H ٹیمپرڈ گلاس اسکرین گارڈ',cat:'screen-guards',badge:'HOT',brand:'Ailun',price:350,oldPrice:600,imgs:['https://m.media-amazon.com/images/I/71OicfvCsbL._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/71mEz9OkKGL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71xLbMGka0L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/6128a4sx+0L._AC_SX679_.jpg'],colors:[],desc:'Ailun premium 9H hardness tempered glass.',descUr:'Ailun 9H ٹیمپرڈ گلاس۔'},
+{id:16,name:'INIU 20000mAh 65W Power Bank',nameUr:'INIU 20000mAh 65W پاور بینک',cat:'power-banks',badge:'HOT',brand:'INIU',price:3500,oldPrice:5000,imgs:['https://m.media-amazon.com/images/I/51B-TtrqU6L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61UA7QJYZCL._AC_SX679_.jpg'],colors:[],desc:'INIU 20,000mAh power bank with 65W fast charging.',descUr:'INIU 20,000mAh پاور بینک 65W فاسٹ چارجنگ۔'},
+{id:17,name:'10000mAh Ultra Slim Power Bank',nameUr:'10000mAh الٹرا سلم پاور بینک',cat:'power-banks',badge:null,brand:'Generic',price:1800,oldPrice:2500,imgs:['https://m.media-amazon.com/images/I/519bJupcnQL._AC_SL1200_.jpg','https://m.media-amazon.com/images/I/71Zb2AEIATL._AC_SL1500_.jpg'],colors:[],desc:'Ultra-slim 10,000mAh power bank. 22.5W fast charge.',descUr:'14mm الٹرا سلم 10,000mAh پاور بینک۔'},
+{id:18,name:'30000mAh High Capacity Power Bank',nameUr:'30000mAh ہائی کیپیسٹی پاور بینک',cat:'power-banks',badge:'NEW',brand:'Generic',price:4800,oldPrice:7000,imgs:['https://m.media-amazon.com/images/I/31z1jUNsmOL._AC_.jpg','https://m.media-amazon.com/images/I/41SehL3mNrL._AC_.jpg'],colors:[],desc:'Massive 30,000mAh power bank with LED flashlight.',descUr:'30,000mAh پاور بینک۔ بلٹ ان فلیش لائٹ۔'},
+{id:19,name:'Sony WH-1000XM5 Headphones',nameUr:'سونی WH-1000XM5 ہیڈ فونز',cat:'headphones',badge:'NEW',brand:'Sony',price:18000,oldPrice:25000,imgs:['https://m.media-amazon.com/images/I/61vJtKbAssL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/61oUbsHuWuL._AC_SY879_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Silver',nameUr:'چاندی',hex:'#9ca3af',imgIdx:1}],desc:'Sony WH-1000XM5 flagship noise-cancelling headphones.',descUr:'سونی فلیگ شپ ہیڈ فونز۔ 30 گھنٹے بیٹری۔'},
+{id:20,name:'JBL Tune 760NC Wireless Headphones',nameUr:'JBL ٹیون 760NC ہیڈ فونز',cat:'headphones',badge:'HOT',brand:'JBL',price:8500,oldPrice:12000,imgs:['https://m.media-amazon.com/images/I/51P5yWaJscL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/51bEfQvoeLL._AC_SL1500_.jpg'],colors:[{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:0},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:1}],desc:'JBL Tune 760NC active noise-cancelling wireless headphones.',descUr:'JBL 760NC وائرلیس ہیڈ فونز۔ 35 گھنٹے بیٹری۔'},
+{id:21,name:'3-in-1 Multi Fast Charging Cable',nameUr:'3-in-1 ملٹی فاسٹ چارجنگ کیبل',cat:'cables',badge:'HOT',brand:'Generic',price:550,oldPrice:900,imgs:['https://m.media-amazon.com/images/I/61LCDYuThXL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71lOJAPFTvL._AC_SL1500_.jpg'],colors:[],desc:'3-in-1 cable with USB-C, Lightning, and Micro-USB.',descUr:'USB-C، لائٹننگ اور مائیکرو USB ایک کیبل میں۔'},
+{id:22,name:'USB Type-C to A Cable — 5 Pack',nameUr:'USB Type-C to A کیبل — 5 پیک',cat:'cables',badge:null,brand:'SMALLelectric',price:800,oldPrice:1200,imgs:['https://m.media-amazon.com/images/I/71hLGDuvLCL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/719Ok7ujpiL._AC_SL1500_.jpg'],colors:[],desc:'USB-C to A cable 5-pack with fast charging.',descUr:'USB-C کیبل 5 کا پیک۔ فاسٹ چارجنگ۔'},
+{id:23,name:'iPhone 14 OLED Display Screen',nameUr:'آئی فون 14 OLED ڈسپلے اسکرین',cat:'spare-parts',badge:'NEW',brand:'Apple Grade',price:12000,oldPrice:16000,imgs:['https://m.media-amazon.com/images/I/71MzvRpZ8JL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71OP6M-f74L._AC_SX679_.jpg'],colors:[],desc:'Original-grade OLED replacement screen for iPhone 14.',descUr:'آئی فون 14 OLED ریپلیسمنٹ اسکرین۔'},
+{id:24,name:'JBL Go 3 Portable Bluetooth Speaker',nameUr:'JBL گو 3 پورٹیبل اسپیکر',cat:'speakers',badge:'HOT',brand:'JBL',price:5500,oldPrice:7500,imgs:['https://m.media-amazon.com/images/I/715ZUYP5N5L._AC_SX569_.jpg','https://m.media-amazon.com/images/I/91jMTx-oKhL._AC_SL1500_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:1}],desc:'JBL Go 3 Bluetooth speaker with IP67 waterproofing.',descUr:'JBL گو 3 اسپیکر۔ IP67 واٹر پروف۔'},
+{id:25,name:'Kodak PIXPRO FZ55 16MP Camera',nameUr:'Kodak PIXPRO FZ55 16MP کیمرہ',cat:'camera',badge:'NEW',brand:'Kodak',price:15000,oldPrice:20000,imgs:['https://m.media-amazon.com/images/I/81a8ZMB-nNL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81-drCl5xVL._AC_SX679_.jpg'],colors:[{name:'Red',nameUr:'لال',hex:'#ef4444',imgIdx:0},{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:1}],desc:'Kodak PIXPRO FZ55 16MP digital camera. 5x optical zoom.',descUr:'Kodak 16MP کیمرہ۔ 5x زوم۔'},
+{id:26,name:'Sony Alpha 7 Full-Frame Camera',nameUr:'سونی الفا 7 فل فریم کیمرہ',cat:'camera',badge:'HOT',brand:'Sony',price:85000,oldPrice:110000,imgs:['https://m.media-amazon.com/images/I/814+bb-I8HL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81UPLQHpzcL._AC_SX569_.jpg'],colors:[],desc:'Sony Alpha 7 full-frame mirrorless camera. 4K video.',descUr:'سونی الفا 7 فل فریم مررلیس کیمرہ۔ 4K ویڈیو۔'},
 ];
 
 // ===== STATE =====
@@ -267,59 +313,48 @@ let currentCategory = 'all';
 let currentSearch = '';
 let currentSort = 'default';
 
-// ===== INIT FROM URL =====
 function initFromURL() {
   const params = new URLSearchParams(window.location.search);
   const cat = params.get('cat');
-  if (cat) { currentCategory = cat; updateActiveCatTab(cat); }
+  if (cat) {
+    currentCategory = cat;
+    document.querySelectorAll('.filter-tab').forEach(t => {
+      t.classList.remove('active');
+      if (t.getAttribute('onclick') && t.getAttribute('onclick').includes("'" + cat + "'")) t.classList.add('active');
+    });
+  }
 }
 
-function updateActiveCatTab(cat) {
-  document.querySelectorAll('.filter-tab').forEach(tab => {
-    tab.classList.remove('active');
-    if (tab.getAttribute('onclick') && tab.getAttribute('onclick').includes("'" + cat + "'")) tab.classList.add('active');
-  });
-  if (cat === 'all') document.querySelector('.filter-tab').classList.add('active');
-}
-
-function setCategory(cat) {
+function setCategory(cat, el) {
   currentCategory = cat;
   document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
+  if (el) el.classList.add('active');
   filterProducts();
 }
 
 function filterProducts() {
   currentSearch = document.getElementById('search-input').value.toLowerCase().trim();
-  currentSort = document.getElementById('sort-select').value;
-
-  let filtered = allProducts.filter(p => {
-    const matchCat = currentCategory === 'all' || p.cat === currentCategory;
-    const matchSearch = !currentSearch ||
-      p.name.toLowerCase().includes(currentSearch) ||
-      p.nameUr.includes(currentSearch) ||
-      p.brand.toLowerCase().includes(currentSearch) ||
-      p.cat.toLowerCase().includes(currentSearch);
+  currentSort   = document.getElementById('sort-select').value;
+  let filtered  = allProducts.filter(p => {
+    const matchCat    = currentCategory === 'all' || p.cat === currentCategory;
+    const matchSearch = !currentSearch || p.name.toLowerCase().includes(currentSearch) || (p.nameUr && p.nameUr.includes(currentSearch)) || p.brand.toLowerCase().includes(currentSearch) || p.cat.toLowerCase().includes(currentSearch);
     return matchCat && matchSearch;
   });
-
-  if (currentSort === 'price-low') filtered.sort((a, b) => a.price - b.price);
-  else if (currentSort === 'price-high') filtered.sort((a, b) => b.price - a.price);
-  else if (currentSort === 'discount') filtered.sort((a, b) => (b.oldPrice - b.price) / b.oldPrice - (a.oldPrice - a.price) / a.oldPrice);
-
+  if (currentSort === 'price-low')  filtered.sort((a,b) => a.price - b.price);
+  else if (currentSort === 'price-high') filtered.sort((a,b) => b.price - a.price);
+  else if (currentSort === 'discount') filtered.sort((a,b) => (b.oldPrice-b.price)/b.oldPrice - (a.oldPrice-a.price)/a.oldPrice);
   renderGrid(filtered);
   document.getElementById('results-count').textContent = filtered.length + ' Product' + (filtered.length !== 1 ? 's' : '');
 }
 
 function renderGrid(products) {
   const grid = document.getElementById('products-grid');
-  if (products.length === 0) {
-    grid.innerHTML = `<div class="empty-state"><div class="emoji">😕</div><h3>No Products Found</h3><p>Try a different search or category.</p></div>`;
-    return;
-  }
+  if (!products.length) { grid.innerHTML = '<div class="empty-state"><div class="emoji">😕</div><h3>No Products Found</h3><p>Try a different search or category.</p></div>'; return; }
   grid.innerHTML = products.map(p => {
     const save = Math.round((1 - p.price / p.oldPrice) * 100);
     const badgeClass = p.badge === 'NEW' ? 'badge-new' : p.badge === 'HOT' ? 'badge-hot' : p.badge === 'SALE' ? 'badge-sale' : '';
+    const displayName = (typeof isUrdu !== 'undefined' && isUrdu && p.nameUr) ? p.nameUr : p.name;
+    const btnLabel = (typeof isUrdu !== 'undefined' && isUrdu) ? 'تفصیل دیکھیں' : 'View Details';
     return `<div class="prod-card" onclick="window.location='product-detail.html?id=${p.id}'">
       <div class="prod-img-wrap">
         <img src="${p.imgs[0]}" alt="${p.name}" loading="lazy">
@@ -327,62 +362,139 @@ function renderGrid(products) {
       </div>
       <div class="prod-info">
         <div class="prod-brand">${p.brand}</div>
-        <div class="prod-name">${p.name}</div>
+        <div class="prod-name">${displayName}</div>
         <div class="prod-price-row">
           <div class="prod-price">&#8360;${p.price.toLocaleString()}</div>
           <div class="prod-old">&#8360;${p.oldPrice.toLocaleString()}</div>
           <div class="prod-save">${save}% OFF</div>
         </div>
       </div>
-      <button class="prod-btn" onclick="event.stopPropagation();window.location='product-detail.html?id=${p.id}'">View Details</button>
+      <button class="prod-btn" onclick="event.stopPropagation();window.location='product-detail.html?id=${p.id}'">${btnLabel}</button>
     </div>`;
   }).join('');
 }
 
-// ===== LANGUAGE =====
-const LANGS = {
-  en:{flag:'🇺🇸',label:'EN',dir:'ltr',t:{'Home':'Home','Products':'Products','About':'About','Offers':'Offers','Contact':'Contact','Help':'Help','Login':'Login','Shop Now →':'Shop Now →'}},
-  ur:{flag:'🇵🇰',label:'اردو',dir:'rtl',t:{'Home':'ہوم','Products':'پروڈکٹس','About':'ہمارے بارے میں','Offers':'آفرز','Contact':'رابطہ','Help':'مدد','Login':'لاگ ان','Shop Now →':'ابھی خریدیں →'}},
-  hi:{flag:'🇮🇳',label:'हिं',dir:'ltr',t:{'Home':'होम','Products':'उत्पाद','About':'हमारे बारे में','Offers':'ऑफर','Contact':'संपर्क','Help':'सहायता','Login':'लॉगिन','Shop Now →':'अभी खरीदें →'}},
-  ar:{flag:'🇸🇦',label:'عر',dir:'rtl',t:{'Home':'الرئيسية','Products':'المنتجات','About':'معلومات','Offers':'العروض','Contact':'اتصل','Help':'مساعدة','Login':'دخول','Shop Now →':'تسوق →'}}
-};
-let currentLang = localStorage.getItem('ahsan-lang') || 'en';
-
-function toggleLangMenu() { document.getElementById('lang-wrap').classList.toggle('open'); }
+// ══════════════════════════════════
+// ACCESSIBILITY FUNCTIONS
+// ══════════════════════════════════
+function toggleA11yPanel() {
+  const panel = document.getElementById('a11y-panel');
+  const btn   = document.getElementById('a11y-toggle-btn');
+  const open  = panel.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open);
+}
 document.addEventListener('click', function(e) {
-  const w = document.getElementById('lang-wrap');
-  if (w && !w.contains(e.target)) w.classList.remove('open');
+  const wrap = document.querySelector('.a11y-wrapper');
+  if (wrap && !wrap.contains(e.target)) {
+    document.getElementById('a11y-panel').classList.remove('open');
+    document.getElementById('a11y-toggle-btn').classList.remove('open');
+    document.getElementById('a11y-toggle-btn').setAttribute('aria-expanded','false');
+  }
 });
-
-function setLang(code) {
-  currentLang = code;
-  localStorage.setItem('ahsan-lang', code);
-  const lang = LANGS[code];
-  document.getElementById('lang-flag').textContent = lang.flag;
-  document.getElementById('lang-label').textContent = lang.label;
-  document.querySelectorAll('.lang-option').forEach(opt => {
-    opt.classList.remove('active-lang');
-    if (opt.getAttribute('onclick') && opt.getAttribute('onclick').includes("'" + code + "'")) opt.classList.add('active-lang');
-  });
-  document.documentElement.dir = lang.dir;
-  document.body.classList.toggle('rtl-mode', lang.dir === 'rtl');
-  document.querySelectorAll('[data-translate]').forEach(el => {
-    const orig = el.getAttribute('data-orig') || el.textContent.trim();
-    if (!el.getAttribute('data-orig')) el.setAttribute('data-orig', orig);
-    el.textContent = lang.t[orig] || orig;
-  });
-  document.getElementById('lang-wrap').classList.remove('open');
+let currentFontScale = parseInt(localStorage.getItem('am_fontSize') || '100', 10);
+function applyFontSize() {
+  document.documentElement.style.fontSize = (currentFontScale / 100) * 16 + 'px';
+  const el = document.getElementById('font-size-val');
+  if (el) el.textContent = currentFontScale + '%';
+}
+function changeFontSize(dir) {
+  currentFontScale = Math.min(140, Math.max(80, currentFontScale + dir * 10));
+  localStorage.setItem('am_fontSize', currentFontScale);
+  applyFontSize();
+}
+function toggleContrast() {
+  const active = document.body.classList.toggle('high-contrast');
+  localStorage.setItem('am_contrast', active ? '1' : '');
+  const inp = document.getElementById('a11y-contrast-input');
+  if (inp) inp.checked = active;
+}
+function toggleDyslexia() {
+  const active = document.body.classList.toggle('dyslexia-font');
+  localStorage.setItem('am_dyslexia', active ? '1' : '');
+  const inp = document.getElementById('a11y-dyslexia-input');
+  if (inp) inp.checked = active;
+}
+function toggleAnimations() {
+  const active = document.body.classList.toggle('pause-animations');
+  localStorage.setItem('am_pauseAnim', active ? '1' : '');
+  const inp = document.getElementById('a11y-pause-input');
+  if (inp) inp.checked = active;
+}
+function toggleLargeCursor() {
+  const active = document.body.classList.toggle('large-cursor');
+  localStorage.setItem('am_largeCursor', active ? '1' : '');
+  const inp = document.getElementById('a11y-cursor-input');
+  if (inp) inp.checked = active;
+  const style = document.getElementById('large-cursor-style');
+  style.textContent = active ? '*, *::before, *::after { cursor: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'%3E%3Ccircle cx=\'4\' cy=\'4\' r=\'4\' fill=\'%2300d4ff\'/%3E%3Cline x1=\'4\' y1=\'4\' x2=\'4\' y2=\'28\' stroke=\'%2300d4ff\' stroke-width=\'3\'/%3E%3Cline x1=\'4\' y1=\'4\' x2=\'20\' y2=\'20\' stroke=\'%2300d4ff\' stroke-width=\'3\'/%3E%3C/svg%3E") 4 4, auto !important; }' : '';
+}
+let readingGuideActive = false;
+function toggleReadingGuide() {
+  readingGuideActive = !readingGuideActive;
+  localStorage.setItem('am_readingGuide', readingGuideActive ? '1' : '');
+  const guide = document.getElementById('reading-guide');
+  const inp   = document.getElementById('a11y-guide-input');
+  if (inp) inp.checked = readingGuideActive;
+  guide.style.display = readingGuideActive ? 'block' : 'none';
+  if (readingGuideActive) document.addEventListener('mousemove', moveReadingGuide);
+  else document.removeEventListener('mousemove', moveReadingGuide);
+}
+function moveReadingGuide(e) {
+  const guide = document.getElementById('reading-guide');
+  if (guide) guide.style.top = e.clientY + 'px';
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+// ══════════════════════════════════
+// LANGUAGE TOGGLE (EN / UR)
+// ══════════════════════════════════
+let isUrdu = localStorage.getItem('am_lang') === 'ur';
+function applyLang() {
+  document.body.classList.toggle('urdu-mode', isUrdu);
+  document.getElementById('html-root').setAttribute('lang', isUrdu ? 'ur' : 'en');
+  const lbl = document.getElementById('lang-btn-label');
+  if (lbl) lbl.textContent = isUrdu ? 'English' : 'اردو';
+  document.querySelectorAll('[data-en],[data-ur]').forEach(el => {
+    const val = isUrdu ? el.getAttribute('data-ur') : el.getAttribute('data-en');
+    if (val !== null) el.textContent = val;
+  });
+  document.querySelectorAll('[data-en-placeholder],[data-ur-placeholder]').forEach(el => {
+    const ph = isUrdu ? el.getAttribute('data-ur-placeholder') : el.getAttribute('data-en-placeholder');
+    if (ph !== null) el.placeholder = ph;
+  });
+  if (isUrdu && !document.getElementById('urdu-font-link')) {
+    const link = document.createElement('link');
+    link.id = 'urdu-font-link'; link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap';
+    document.head.appendChild(link);
+  }
+  filterProducts();
+}
+function toggleLanguage() {
+  isUrdu = !isUrdu;
+  localStorage.setItem('am_lang', isUrdu ? 'ur' : 'en');
+  applyLang();
+}
+
+// ══════════════════════════════════
+// RESTORE SAVED SETTINGS
+// ══════════════════════════════════
+(function restoreSettings() {
+  applyFontSize();
+  if (localStorage.getItem('am_contrast')    === '1') { document.body.classList.add('high-contrast');    const i=document.getElementById('a11y-contrast-input'); if(i) i.checked=true; }
+  if (localStorage.getItem('am_dyslexia')    === '1') { document.body.classList.add('dyslexia-font');    const i=document.getElementById('a11y-dyslexia-input'); if(i) i.checked=true; }
+  if (localStorage.getItem('am_pauseAnim')   === '1') { document.body.classList.add('pause-animations'); const i=document.getElementById('a11y-pause-input');    if(i) i.checked=true; }
+  if (localStorage.getItem('am_largeCursor') === '1') { toggleLargeCursor(); }
+  if (localStorage.getItem('am_readingGuide')=== '1') { toggleReadingGuide(); }
   initFromURL();
   filterProducts();
-  if (currentLang !== 'en') setLang(currentLang);
-  else {
-    document.querySelectorAll('.lang-option').forEach(opt => {
-      opt.classList.remove('active-lang');
-      if (opt.getAttribute('onclick') && opt.getAttribute('onclick').includes("'en'")) opt.classList.add('active-lang');
-    });
+  if (isUrdu) applyLang();
+})();
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('a11y-panel').classList.remove('open');
+    document.getElementById('a11y-toggle-btn').setAttribute('aria-expanded','false');
   }
 });
 </script>

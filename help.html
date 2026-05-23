@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,260 +7,240 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a14'/%3E%3Crect x='2' y='2' width='28' height='28' rx='6' fill='none' stroke='%2300d4ff' stroke-width='1.5'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' font-family='Arial'%3E%F0%9F%93%B1%3C/text%3E%3C/svg%3E"/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/opendyslexic" />
   <style>
     :root {
-      --accent:    #00d4ff;
-      --accent2:   #7c3aed;
-      --accent-dk: #0099bb;
-      --bg:        #0a0a14;
-      --bg2:       #0f0f1e;
-      --bg3:       #141428;
-      --surface:   #13131f;
-      --surface2:  #1a1a2e;
-      --border:    rgba(255,255,255,0.07);
-      --border2:   rgba(0,212,255,0.18);
-      --text:      #f0f0ff;
-      --text2:     #c8c8e0;
-      --muted:     rgba(255,255,255,0.45);
-      --nav-h:     68px;
-      --radius:    16px;
+      --accent:#00d4ff; --accent2:#7c3aed; --accent-dk:#0099bb;
+      --bg:#0a0a14; --bg2:#0f0f1e; --bg3:#141428;
+      --surface:#13131f; --surface2:#1a1a2e;
+      --border:rgba(255,255,255,0.07); --border2:rgba(0,212,255,0.18);
+      --text:#f0f0ff; --text2:#c8c8e0; --muted:rgba(255,255,255,0.45);
+      --nav-h:68px; --radius:16px;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+    /* HIGH CONTRAST */
+    body.high-contrast{--bg:#000!important;--bg2:#000!important;--bg3:#000!important;--surface:#111!important;--surface2:#111!important;--text:#ffff00!important;--text2:#ffff00!important;--muted:#fff!important;--accent:#ffff00!important;--border:rgba(255,255,0,0.4)!important;--border2:rgba(255,255,0,0.6)!important;}
+    body.high-contrast nav,body.high-contrast .help-footer{background:#000!important;border-color:#ffff00!important;}
+    body.pause-animations *,body.pause-animations *::before,body.pause-animations *::after{animation-play-state:paused!important;transition:none!important;}
+    body.dyslexia-font,body.dyslexia-font *{font-family:'OpenDyslexic',sans-serif!important;letter-spacing:0.05em!important;word-spacing:0.15em!important;line-height:1.9!important;}
+    body.urdu-mode{direction:rtl;}
 
     /* NAVBAR */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      height: var(--nav-h);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px;
-      background: rgba(10,10,20,0.97);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
-    .nav-logo-icon { width:38px; height:38px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; }
-    .nav-logo-text { color:var(--text); font-weight:800; font-size:18px; letter-spacing:-0.5px; }
-    .nav-logo-text span { color:var(--accent); }
-    .nav-links { display: flex; gap: 4px; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 8px; transition: all 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(0,212,255,0.08); }
-    .nav-right { display: flex; align-items: center; gap: 10px; }
-    .btn-nav {
-      background: linear-gradient(135deg,var(--accent),var(--accent-dk));
-      color: #000; border: none; padding: 9px 20px; border-radius: 8px;
-      font-size: 13px; font-weight: 700; cursor: pointer;
-      font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s;
-    }
-    .btn-nav:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,212,255,0.4); }
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(10,10,20,0.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);gap:12px;}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+    .nav-logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+    .nav-logo-text{color:var(--text);font-weight:800;font-size:18px;letter-spacing:-0.5px;}
+    .nav-logo-text span{color:var(--accent);}
+    .nav-links{display:flex;gap:4px;list-style:none;}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all 0.2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--accent);background:rgba(0,212,255,0.08);}
+    .nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+
+    /* LANG BTN */
+    #lang-nav-btn{display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--accent2),var(--accent-dk));border:none;border-radius:9px;color:white;font-size:12px;font-weight:700;padding:0 14px;height:38px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;white-space:nowrap;}
+    #lang-nav-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(124,58,237,0.4);}
+
+    /* A11Y */
+    .a11y-wrapper{position:relative;display:flex;align-items:center;}
+    #a11y-toggle-btn{width:38px;height:38px;background:var(--surface2);border:1px solid var(--border2);border-radius:9px;color:var(--accent);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,box-shadow 0.2s;}
+    #a11y-toggle-btn:hover,#a11y-toggle-btn.open{background:rgba(0,212,255,0.15);box-shadow:0 0 0 2px rgba(0,212,255,0.3);}
+    #a11y-panel{display:none;position:absolute;top:calc(100% + 12px);right:0;width:260px;background:#0f0f1e;border:1.5px solid rgba(0,212,255,0.25);border-radius:14px;padding:16px;z-index:9999;box-shadow:0 16px 48px rgba(0,0,0,0.6);flex-direction:column;gap:6px;}
+    #a11y-panel.open{display:flex;}
+    .a11y-panel-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+    .a11y-row{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid transparent;transition:all 0.15s;}
+    .a11y-row:hover{border-color:var(--border2);background:rgba(0,212,255,0.05);}
+    .a11y-row-label{font-size:13px;font-weight:600;color:var(--text2);display:flex;align-items:center;gap:8px;}
+    .a11y-row-label .a11y-icon{font-size:16px;width:22px;text-align:center;}
+    .a11y-font-controls{display:flex;align-items:center;gap:6px;}
+    .a11y-font-btn{width:30px;height:30px;background:var(--surface2);border:1px solid var(--border2);border-radius:7px;color:var(--accent);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;font-family:'Plus Jakarta Sans',sans-serif;}
+    .a11y-font-btn:hover{background:var(--accent);color:#000;}
+    #font-size-val{font-size:11px;font-weight:700;color:var(--accent);min-width:34px;text-align:center;}
+    .a11y-toggle{position:relative;width:38px;height:20px;flex-shrink:0;}
+    .a11y-toggle input{opacity:0;width:0;height:0;}
+    .a11y-toggle-track{position:absolute;inset:0;background:var(--surface2);border:1px solid var(--border2);border-radius:20px;cursor:pointer;transition:background 0.2s;}
+    .a11y-toggle-track::after{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:var(--muted);top:2px;left:2px;transition:transform 0.2s,background 0.2s;}
+    .a11y-toggle input:checked+.a11y-toggle-track{background:rgba(0,212,255,0.25);border-color:var(--accent);}
+    .a11y-toggle input:checked+.a11y-toggle-track::after{transform:translateX(18px);background:var(--accent);}
+
+    /* HAMBURGER */
+    .hamburger{display:none;flex-direction:column;gap:5px;background:var(--surface2);border:1px solid var(--border);padding:8px;border-radius:8px;cursor:pointer;}
+    .hamburger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mob-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(10,10,20,0.99);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px 24px;flex-direction:column;gap:4px;z-index:999;}
+    .mob-menu.open{display:flex;}
+    .mob-menu a{padding:12px 14px;border-radius:9px;font-size:.95rem;font-weight:500;color:var(--muted);transition:.2s;text-decoration:none;}
+    .mob-menu a:hover{color:var(--accent);background:rgba(0,212,255,0.08);}
+
+    /* READING GUIDE */
+    #reading-guide{display:none;position:fixed;left:0;right:0;height:32px;background:rgba(0,212,255,0.08);border-top:2px solid rgba(0,212,255,0.4);border-bottom:2px solid rgba(0,212,255,0.4);pointer-events:none;z-index:8000;transform:translateY(-50%);}
 
     /* HERO */
-    .help-hero {
-      margin-top: var(--nav-h);
-      background: linear-gradient(135deg, var(--bg2), var(--bg3));
-      padding: 60px 60px 50px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-    .help-hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(0,212,255,0.08) 0%, transparent 70%);
-    }
-    .help-hero-tag {
-      display: inline-block; background: rgba(0,212,255,0.1); color: var(--accent);
-      font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-      padding: 5px 16px; border-radius: 100px; border: 1px solid var(--border2);
-      margin-bottom: 16px; position: relative;
-    }
-    .help-hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(40px, 6vw, 72px);
-      color: var(--text); line-height: 1; margin-bottom: 14px; position: relative;
-    }
-    .help-hero h1 span { color: var(--accent); }
-    .help-hero p { font-size: 16px; color: var(--muted); max-width: 500px; margin: 0 auto 30px; position: relative; }
-
-    /* QUICK NAV PILLS */
-    .quick-nav {
-      display: flex; flex-wrap: wrap; gap: 10px;
-      justify-content: center; position: relative;
-    }
-    .quick-pill {
-      background: var(--surface); border: 1.5px solid var(--border);
-      color: var(--text2); font-size: 13px; font-weight: 600;
-      padding: 10px 20px; border-radius: 100px; text-decoration: none;
-      transition: all 0.2s; display: flex; align-items: center; gap: 8px;
-    }
-    .quick-pill:hover {
-      border-color: var(--accent); color: var(--accent);
-      background: rgba(0,212,255,0.08);
-      transform: translateY(-2px);
-    }
+    .help-hero{margin-top:var(--nav-h);background:linear-gradient(135deg,var(--bg2),var(--bg3));padding:60px 60px 50px;text-align:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+    .help-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,212,255,0.08) 0%,transparent 70%);}
+    .help-hero-tag{display:inline-block;background:rgba(0,212,255,0.1);color:var(--accent);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:5px 16px;border-radius:100px;border:1px solid var(--border2);margin-bottom:16px;position:relative;}
+    .help-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);color:var(--text);line-height:1;margin-bottom:14px;position:relative;}
+    .help-hero h1 span{color:var(--accent);}
+    .help-hero p{font-size:16px;color:var(--muted);max-width:500px;margin:0 auto 30px;position:relative;}
+    .quick-nav{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;position:relative;}
+    .quick-pill{background:var(--surface);border:1.5px solid var(--border);color:var(--text2);font-size:13px;font-weight:600;padding:10px 20px;border-radius:100px;text-decoration:none;transition:all 0.2s;display:flex;align-items:center;gap:8px;}
+    .quick-pill:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,0.08);transform:translateY(-2px);}
 
     /* MAIN LAYOUT */
-    .help-body {
-      max-width: 860px; margin: 0 auto;
-      padding: 60px 40px 80px;
-      display: flex; flex-direction: column; gap: 0;
-    }
+    .help-body{max-width:860px;margin:0 auto;padding:60px 40px 80px;display:flex;flex-direction:column;gap:0;}
 
-    /* SECTION CARD */
-    .help-section {
-      border-bottom: 1px solid var(--border);
-      padding: 52px 0;
-      scroll-margin-top: calc(var(--nav-h) + 20px);
-    }
-    .help-section:last-child { border-bottom: none; }
-
-    .help-section-header {
-      display: flex; align-items: center; gap: 16px; margin-bottom: 28px;
-    }
-    .help-icon {
-      width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
-      background: rgba(0,212,255,0.1); border: 1px solid var(--border2);
-      display: flex; align-items: center; justify-content: center; font-size: 24px;
-    }
-    .help-section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px; color: var(--text); line-height: 1;
-    }
-    .help-section-title span { color: var(--accent); }
+    /* SECTION */
+    .help-section{border-bottom:1px solid var(--border);padding:52px 0;scroll-margin-top:calc(var(--nav-h) + 20px);}
+    .help-section:last-child{border-bottom:none;}
+    .help-section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+    .help-icon{width:52px;height:52px;border-radius:14px;flex-shrink:0;background:rgba(0,212,255,0.1);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:24px;}
+    .help-section-title{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--text);line-height:1;}
+    .help-section-title span{color:var(--accent);}
 
     /* STEPS */
-    .help-steps { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
-    .help-step {
-      display: flex; gap: 16px; align-items: flex-start;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 18px 20px; transition: border-color 0.2s;
-    }
-    .help-step:hover { border-color: var(--border2); }
-    .step-num {
-      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-      background: linear-gradient(135deg, var(--accent), var(--accent-dk));
-      color: #000; font-weight: 800; font-size: 14px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .step-content h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-    .step-content p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .help-steps{display:flex;flex-direction:column;gap:16px;margin-bottom:24px;}
+    .help-step{display:flex;gap:16px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;transition:border-color 0.2s;}
+    .help-step:hover{border-color:var(--border2);}
+    .step-num{width:32px;height:32px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent-dk));color:#000;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;}
+    .step-content h4{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;}
+    .step-content p{font-size:14px;color:var(--muted);line-height:1.6;}
 
-    /* INFO BOXES */
-    .help-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
-    .help-info-box {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 18px 20px; border-left: 3px solid var(--accent);
-    }
-    .help-info-box h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-    .help-info-box p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    /* INFO GRID */
+    .help-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;}
+    .help-info-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;border-left:3px solid var(--accent);}
+    .help-info-box h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px;}
+    .help-info-box p{font-size:13px;color:var(--muted);line-height:1.6;}
 
     /* FAQ */
-    .faq-list { display: flex; flex-direction: column; gap: 10px; }
-    .faq-item {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; overflow: hidden; cursor: pointer;
-      transition: border-color 0.2s;
-    }
-    .faq-item:hover { border-color: var(--border2); }
-    .faq-q {
-      padding: 18px 20px; font-size: 15px; font-weight: 600; color: var(--text);
-      display: flex; justify-content: space-between; align-items: center; gap: 12px;
-      user-select: none;
-    }
-    .faq-arrow { color: var(--accent); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
-    .faq-item.open .faq-arrow { transform: rotate(45deg); }
-    .faq-a {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.25s;
-      font-size: 14px; color: var(--muted); line-height: 1.7;
-      padding: 0 20px;
-    }
-    .faq-item.open .faq-a { max-height: 300px; padding: 0 20px 18px; }
+    .faq-list{display:flex;flex-direction:column;gap:10px;}
+    .faq-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color 0.2s;}
+    .faq-item:hover{border-color:var(--border2);}
+    .faq-q{padding:18px 20px;font-size:15px;font-weight:600;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none;}
+    .faq-arrow{color:var(--accent);font-size:18px;transition:transform 0.3s;flex-shrink:0;}
+    .faq-item.open .faq-arrow{transform:rotate(45deg);}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.25s;font-size:14px;color:var(--muted);line-height:1.7;padding:0 20px;}
+    .faq-item.open .faq-a{max-height:300px;padding:0 20px 18px;}
 
-    /* HIGHLIGHT BOX */
-    .help-highlight {
-      background: rgba(0,212,255,0.06); border: 1.5px solid var(--border2);
-      border-radius: 12px; padding: 20px 24px;
-      font-size: 14px; color: var(--text2); line-height: 1.7;
-    }
-    .help-highlight strong { color: var(--accent); }
+    /* HIGHLIGHT */
+    .help-highlight{background:rgba(0,212,255,0.06);border:1.5px solid var(--border2);border-radius:12px;padding:20px 24px;font-size:14px;color:var(--text2);line-height:1.7;}
+    .help-highlight strong{color:var(--accent);}
 
     /* CONTACT STRIP */
-    .help-contact-strip {
-      background: linear-gradient(135deg, var(--accent2), var(--accent-dk));
-      border-radius: 16px; padding: 32px 36px;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 20px; margin-top: 16px;
-    }
-    .help-contact-strip h3 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: white; margin-bottom: 4px; }
-    .help-contact-strip p { font-size: 14px; color: rgba(255,255,255,0.75); }
-    .btn-wa {
-      background: #25d366; color: white; border: none;
-      padding: 12px 26px; border-radius: 10px; font-size: 14px; font-weight: 700;
-      cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
-      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-      transition: all 0.2s;
-    }
-    .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.4); }
+    .help-contact-strip{background:linear-gradient(135deg,var(--accent2),var(--accent-dk));border-radius:16px;padding:32px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-top:16px;}
+    .help-contact-strip h3{font-family:'Bebas Neue',sans-serif;font-size:28px;color:white;margin-bottom:4px;}
+    .help-contact-strip p{font-size:14px;color:rgba(255,255,255,0.75);}
+    .btn-wa{background:#25d366;color:white;border:none;padding:12px 26px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s;}
+    .btn-wa:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,0.4);}
 
     /* FOOTER */
-    .help-footer {
-      background: #060610; border-top: 1px solid var(--border);
-      text-align: center; padding: 28px;
-      font-size: 13px; color: rgba(255,255,255,0.2);
-    }
-    .help-footer a { color: var(--accent); text-decoration: none; }
+    .help-footer{background:#060610;border-top:1px solid var(--border);text-align:center;padding:28px;font-size:13px;color:rgba(255,255,255,0.2);}
+    .help-footer a{color:var(--accent);text-decoration:none;}
 
     /* WHATSAPP FLOAT */
-    .whatsapp-float { position: fixed; bottom: 28px; right: 28px; z-index: 2000; width: 56px; height: 56px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none; color: white; animation: floatwa 3s ease-in-out infinite; }
-    .whatsapp-float i { font-size: 28px; }
-    @keyframes floatwa { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .whatsapp-float{position:fixed;bottom:28px;right:28px;z-index:2000;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;color:white;animation:floatwa 3s ease-in-out infinite;}
+    .whatsapp-float i{font-size:28px;}
+    @keyframes floatwa{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
     @media(max-width:700px){
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .help-hero { padding: 40px 24px 36px; }
-      .help-body { padding: 40px 20px 60px; }
-      .help-info-grid { grid-template-columns: 1fr; }
-      .help-contact-strip { flex-direction: column; text-align: center; }
+      nav{padding:0 20px;}
+      .nav-links{display:none;}
+      .hamburger{display:flex;}
+      .help-hero{padding:40px 24px 36px;}
+      .help-body{padding:40px 20px 60px;}
+      .help-info-grid{grid-template-columns:1fr;}
+      .help-contact-strip{flex-direction:column;text-align:center;}
     }
   </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav>
   <a href="index.html" class="nav-logo">
     <div class="nav-logo-icon">📱</div>
     <div class="nav-logo-text">AHSAN <span>MOBILES</span></div>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="products.html">Products</a></li>
-    <li><a href="offers.html">Offers</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="help.html" class="active">Help</a></li>
+    <li><a href="index.html" data-en="Home" data-ur="ہوم">Home</a></li>
+    <li><a href="products.html" data-en="Products" data-ur="پروڈکٹس">Products</a></li>
+    <li><a href="offers.html" data-en="Offers" data-ur="آفرز">Offers</a></li>
+    <li><a href="about.html" data-en="About" data-ur="ہمارے بارے میں">About</a></li>
+    <li><a href="contact.html" data-en="Contact" data-ur="رابطہ">Contact</a></li>
+    <li><a href="help.html" class="active" data-en="Help" data-ur="مدد">Help</a></li>
   </ul>
   <div class="nav-right">
-    <a href="login.html"><button class="btn-nav">Login</button></a>
+    <button id="lang-nav-btn" onclick="toggleLanguage()">
+      <span>🌐</span>
+      <span id="lang-btn-label">اردو</span>
+    </button>
+    <div class="a11y-wrapper">
+      <button id="a11y-toggle-btn" onclick="toggleA11yPanel()" aria-label="Accessibility options" aria-expanded="false">♿</button>
+      <div id="a11y-panel">
+        <div class="a11y-panel-title">♿ Accessibility</div>
+        <div class="a11y-row">
+          <span class="a11y-row-label"><span class="a11y-icon">🔡</span>Font Size</span>
+          <div class="a11y-font-controls">
+            <button class="a11y-font-btn" onclick="changeFontSize(-1)">A−</button>
+            <span id="font-size-val">100%</span>
+            <button class="a11y-font-btn" onclick="changeFontSize(1)">A+</button>
+          </div>
+        </div>
+        <div class="a11y-row">
+          <span class="a11y-row-label"><span class="a11y-icon">◑</span>High Contrast</span>
+          <label class="a11y-toggle"><input type="checkbox" id="a11y-contrast-input" onchange="toggleContrast()"/><span class="a11y-toggle-track"></span></label>
+        </div>
+        <div class="a11y-row">
+          <span class="a11y-row-label"><span class="a11y-icon">📖</span>Dyslexia Font</span>
+          <label class="a11y-toggle"><input type="checkbox" id="a11y-dyslexia-input" onchange="toggleDyslexia()"/><span class="a11y-toggle-track"></span></label>
+        </div>
+        <div class="a11y-row">
+          <span class="a11y-row-label"><span class="a11y-icon">⏸</span>Pause Animations</span>
+          <label class="a11y-toggle"><input type="checkbox" id="a11y-pause-input" onchange="toggleAnimations()"/><span class="a11y-toggle-track"></span></label>
+        </div>
+        <div class="a11y-row">
+          <span class="a11y-row-label"><span class="a11y-icon">🖱️</span>Large Cursor</span>
+          <label class="a11y-toggle"><input type="checkbox" id="a11y-cursor-input" onchange="toggleLargeCursor()"/><span class="a11y-toggle-track"></span></label>
+        </div>
+        <div class="a11y-row">
+          <span class="a11y-row-label"><span class="a11y-icon">📏</span>Reading Guide</span>
+          <label class="a11y-toggle"><input type="checkbox" id="a11y-guide-input" onchange="toggleReadingGuide()"/><span class="a11y-toggle-track"></span></label>
+        </div>
+      </div>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMobMenu()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
+<div class="mob-menu" id="mobMenu">
+  <a href="index.html" data-en="🏠 Home" data-ur="🏠 ہوم">🏠 Home</a>
+  <a href="products.html" data-en="📱 Products" data-ur="📱 پروڈکٹس">📱 Products</a>
+  <a href="about.html" data-en="ℹ️ About" data-ur="ℹ️ ہمارے بارے میں">ℹ️ About</a>
+  <a href="offers.html" data-en="🏷️ Offers" data-ur="🏷️ آفرز">🏷️ Offers</a>
+  <a href="contact.html" data-en="📞 Contact" data-ur="📞 رابطہ">📞 Contact</a>
+  <a href="help.html" data-en="❓ Help" data-ur="❓ مدد">❓ Help</a>
+  <a href="shop.html" data-en="🛍️ Shop Now" data-ur="🛍️ ابھی خریدیں">🛍️ Shop Now</a>
+</div>
+
+<div id="reading-guide"></div>
+<style id="large-cursor-style"></style>
+
 <!-- HERO -->
 <div class="help-hero">
-  <div class="help-hero-tag">Help Center</div>
-  <h1>How Can We <span>Help You?</span></h1>
-  <p>Everything you need to know about orders, returns, payments and more.</p>
+  <div class="help-hero-tag" data-en="Help Center" data-ur="مدد مرکز">Help Center</div>
+  <h1 data-en="How Can We Help You?" data-ur="ہم آپ کی کیسے مدد کر سکتے ہیں؟">How Can We <span>Help You?</span></h1>
+  <p data-en="Everything you need to know about orders, returns, payments and more." data-ur="آرڈرز، واپسی، ادائیگی اور مزید کے بارے میں سب کچھ۔">Everything you need to know about orders, returns, payments and more.</p>
   <div class="quick-nav">
-    <a href="#track-order"   class="quick-pill">📦 Track Order</a>
-    <a href="#return-policy" class="quick-pill">🔄 Return Policy</a>
-    <a href="#warranty"      class="quick-pill">🛡️ Warranty</a>
-    <a href="#shipping"      class="quick-pill">🚚 Shipping</a>
-    <a href="#faqs"          class="quick-pill">❓ FAQs</a>
-    <a href="#bulk-orders"   class="quick-pill">📋 Bulk Orders</a>
+    <a href="#track-order" class="quick-pill" data-en="📦 Track Order" data-ur="📦 آرڈر ٹریک کریں">📦 Track Order</a>
+    <a href="#return-policy" class="quick-pill" data-en="🔄 Return Policy" data-ur="🔄 واپسی کی پالیسی">🔄 Return Policy</a>
+    <a href="#warranty" class="quick-pill" data-en="🛡️ Warranty" data-ur="🛡️ وارنٹی">🛡️ Warranty</a>
+    <a href="#shipping" class="quick-pill" data-en="🚚 Shipping" data-ur="🚚 شپنگ">🚚 Shipping</a>
+    <a href="#faqs" class="quick-pill" data-en="❓ FAQs" data-ur="❓ اکثر سوالات">❓ FAQs</a>
+    <a href="#bulk-orders" class="quick-pill" data-en="📋 Bulk Orders" data-ur="📋 بلک آرڈر">📋 Bulk Orders</a>
   </div>
 </div>
 
@@ -271,41 +250,41 @@
   <div class="help-section" id="track-order">
     <div class="help-section-header">
       <div class="help-icon">📦</div>
-      <div class="help-section-title">Track Your <span>Order</span></div>
+      <div class="help-section-title" data-en="Track Your Order" data-ur="اپنا آرڈر ٹریک کریں">Track Your <span>Order</span></div>
     </div>
     <div class="help-steps">
       <div class="help-step">
         <div class="step-num">1</div>
         <div class="step-content">
-          <h4> Confirm your order</h4>
-          <p>After placing your order, you will receive a confirmation via WhatsApp or phone call. Please note down your Order ID.
-.</p>
+          <h4 data-en="Confirm your order" data-ur="اپنا آرڈر کنفرم کریں">Confirm your order</h4>
+          <p data-en="After placing your order, you will receive a confirmation via WhatsApp or phone call. Please note down your Order ID." data-ur="آرڈر دینے کے بعد آپ کو واٹس ایپ یا فون کال پر تصدیق ملے گی۔ اپنا آرڈر ID نوٹ کریں۔">After placing your order, you will receive a confirmation via WhatsApp or phone call. Please note down your Order ID.</p>
         </div>
       </div>
       <div class="help-step">
         <div class="step-num">2</div>
         <div class="step-content">
-          <h4>Dispatch Notification</h4>
-          <p>Once parcel courier has picked up your package, we will send you the tracking number via WhatsApp.</p>
+          <h4 data-en="Dispatch Notification" data-ur="روانگی کی اطلاع">Dispatch Notification</h4>
+          <p data-en="Once parcel courier has picked up your package, we will send you the tracking number via WhatsApp." data-ur="جب کورئیر آپ کا پارسل اٹھائے گا، ہم آپ کو واٹس ایپ پر ٹریکنگ نمبر بھیجیں گے۔">Once parcel courier has picked up your package, we will send you the tracking number via WhatsApp.</p>
         </div>
       </div>
       <div class="help-step">
         <div class="step-num">3</div>
         <div class="step-content">
-          <h4> Track your courier</h4>
-          <p>Once you receive the tracking number, visit the TCS, Leopards, or Trax website to track your parcel.</p>
+          <h4 data-en="Track your courier" data-ur="اپنا کورئیر ٹریک کریں">Track your courier</h4>
+          <p data-en="Once you receive the tracking number, visit the TCS, Leopards, or Trax website to track your parcel." data-ur="ٹریکنگ نمبر ملنے پر TCS، لیپرڈز یا ٹریکس کی ویب سائٹ پر جائیں۔">Once you receive the tracking number, visit the TCS, Leopards, or Trax website to track your parcel.</p>
         </div>
       </div>
       <div class="help-step">
         <div class="step-num">4</div>
         <div class="step-content">
-          <h4>Delivery</h4>
-          <p>Same day delivery in Sargodha, 2–4 working days delivery in the rest of Pakistan.</p>
+          <h4 data-en="Delivery" data-ur="ڈیلیوری">Delivery</h4>
+          <p data-en="Same day delivery in Sargodha, 2–4 working days delivery in the rest of Pakistan." data-ur="سرگودھا میں اسی دن ڈیلیوری، باقی پاکستان میں 2–4 کام کے دن۔">Same day delivery in Sargodha, 2–4 working days delivery in the rest of Pakistan.</p>
         </div>
       </div>
     </div>
     <div class="help-highlight">
-      <strong>Having trouble tracking your order?</strong> Get your Order ID and WhatsApp us — we'll update you immediately. 📞 <strong>03054603311</strong>
+      <strong data-en="Having trouble tracking your order?" data-ur="آرڈر ٹریک کرنے میں مشکل؟">Having trouble tracking your order?</strong>
+      <span data-en=" Get your Order ID and WhatsApp us — we'll update you immediately. 📞 03054603311" data-ur=" اپنا آرڈر ID لے کر واٹس ایپ کریں — ہم فوری اپڈیٹ دیں گے۔ 📞 03054603311"> Get your Order ID and WhatsApp us — we'll update you immediately. 📞 03054603311</span>
     </div>
   </div>
 
@@ -313,46 +292,46 @@
   <div class="help-section" id="return-policy">
     <div class="help-section-header">
       <div class="help-icon">🔄</div>
-      <div class="help-section-title">Return <span>Policy</span></div>
+      <div class="help-section-title" data-en="Return Policy" data-ur="واپسی کی پالیسی">Return <span>Policy</span></div>
     </div>
     <div class="help-info-grid">
       <div class="help-info-box">
-        <h4>⏰ Return Window</h4>
-        <p>You must request a return within 7 days of delivery. Returns will not be accepted after 7 days.</p>
+        <h4 data-en="⏰ Return Window" data-ur="⏰ واپسی کا وقت">⏰ Return Window</h4>
+        <p data-en="You must request a return within 7 days of delivery. Returns will not be accepted after 7 days." data-ur="ڈیلیوری کے 7 دن کے اندر واپسی کی درخواست دیں۔ 7 دن بعد واپسی قبول نہیں ہوگی۔">You must request a return within 7 days of delivery. Returns will not be accepted after 7 days.</p>
       </div>
       <div class="help-info-box">
-        <h4>✅ Return Conditions</h4>
-        <p>Product must be in its original packaging. It should be unused and free from any damage.</p>
+        <h4 data-en="✅ Return Conditions" data-ur="✅ واپسی کی شرائط">✅ Return Conditions</h4>
+        <p data-en="Product must be in its original packaging. It should be unused and free from any damage." data-ur="مصنوع اصل پیکیجنگ میں ہونی چاہیے۔ استعمال نہ شدہ اور بغیر نقصان کے۔">Product must be in its original packaging. It should be unused and free from any damage.</p>
       </div>
       <div class="help-info-box">
-        <h4>❌ Return Nahi Hoga</h4>
-        <p>Returns will not be accepted if the product has been used, the packaging is opened, or the damage is caused by the customer.</p>
+        <h4 data-en="❌ Non-Returnable" data-ur="❌ واپسی نہیں ہوگی">❌ Non-Returnable</h4>
+        <p data-en="Returns will not be accepted if the product has been used, packaging is opened, or damage is caused by the customer." data-ur="اگر مصنوع استعمال ہو، پیکیجنگ کھولی ہو، یا گاہک کی وجہ سے نقصان ہو تو واپسی نہیں ہوگی۔">Returns will not be accepted if the product has been used, packaging is opened, or damage is caused by the customer.</p>
       </div>
       <div class="help-info-box">
-        <h4>💰 Refund</h4>
-        <p>Once the return is approved, the refund will be credited to JazzCash, EasyPaisa, or bank within 3–5 working days.</p>
+        <h4 data-en="💰 Refund" data-ur="💰 رقم واپسی">💰 Refund</h4>
+        <p data-en="Once the return is approved, the refund will be credited to JazzCash, EasyPaisa, or bank within 3–5 working days." data-ur="واپسی منظور ہونے کے بعد 3–5 کام کے دنوں میں جاز کیش، ایزی پیسہ یا بینک میں رقم واپس ہوگی۔">Once the return is approved, the refund will be credited to JazzCash, EasyPaisa, or bank within 3–5 working days.</p>
       </div>
     </div>
     <div class="help-steps">
       <div class="help-step">
         <div class="step-num">1</div>
         <div class="step-content">
-          <h4>Send a Message on WhatsApp</h4>
-          <p>Message 03054603311 with your Order ID and reason for return.</p>
+          <h4 data-en="Send a Message on WhatsApp" data-ur="واٹس ایپ پر پیغام بھیجیں">Send a Message on WhatsApp</h4>
+          <p data-en="Message 03054603311 with your Order ID and reason for return." data-ur="03054603311 پر اپنا آرڈر ID اور واپسی کی وجہ بھیجیں۔">Message 03054603311 with your Order ID and reason for return.</p>
         </div>
       </div>
       <div class="help-step">
         <div class="step-num">2</div>
         <div class="step-content">
-          <h4>Send Photos of the Product</h4>
-          <p>Send clear photos of the product on WhatsApp so we can verify.</p>
+          <h4 data-en="Send Photos of the Product" data-ur="مصنوع کی تصاویر بھیجیں">Send Photos of the Product</h4>
+          <p data-en="Send clear photos of the product on WhatsApp so we can verify." data-ur="واٹس ایپ پر مصنوع کی واضح تصاویر بھیجیں تاکہ ہم تصدیق کر سکیں۔">Send clear photos of the product on WhatsApp so we can verify.</p>
         </div>
       </div>
       <div class="help-step">
         <div class="step-num">3</div>
         <div class="step-content">
-          <h4>Send the Parcel After Approval</h4>
-          <p>Once we approve, send the parcel to our address by courier.</p>
+          <h4 data-en="Send the Parcel After Approval" data-ur="منظوری کے بعد پارسل بھیجیں">Send the Parcel After Approval</h4>
+          <p data-en="Once we approve, send the parcel to our address by courier." data-ur="منظوری کے بعد کورئیر کے ذریعے ہمارے پتے پر پارسل بھیجیں۔">Once we approve, send the parcel to our address by courier.</p>
         </div>
       </div>
     </div>
@@ -362,28 +341,29 @@
   <div class="help-section" id="warranty">
     <div class="help-section-header">
       <div class="help-icon">🛡️</div>
-      <div class="help-section-title">Warranty <span>Policy</span></div>
+      <div class="help-section-title" data-en="Warranty Policy" data-ur="وارنٹی پالیسی">Warranty <span>Policy</span></div>
     </div>
     <div class="help-info-grid">
       <div class="help-info-box">
-        <h4>🎧 Earphones & Earbuds</h4>
-        <p>3 months warranty. Manufacturing defects are covered. Physical damage is not covered.</p>
+        <h4 data-en="🎧 Earphones & Earbuds" data-ur="🎧 ایئرفون اور ائربڈز">🎧 Earphones &amp; Earbuds</h4>
+        <p data-en="3 months warranty. Manufacturing defects are covered. Physical damage is not covered." data-ur="3 ماہ کی وارنٹی۔ مینوفیکچرنگ خرابی کور ہے۔ جسمانی نقصان کور نہیں۔">3 months warranty. Manufacturing defects are covered. Physical damage is not covered.</p>
       </div>
       <div class="help-info-box">
-        <h4>⚡ Chargers & Cables</h4>
-        <p>1 month warranty. If the charger stops working or doesn't charge, we will replace it.</p>
+        <h4 data-en="⚡ Chargers & Cables" data-ur="⚡ چارجر اور کیبل">⚡ Chargers &amp; Cables</h4>
+        <p data-en="1 month warranty. If the charger stops working or doesn't charge, we will replace it." data-ur="1 ماہ کی وارنٹی۔ اگر چارجر کام نہ کرے تو بدل دیں گے۔">1 month warranty. If the charger stops working or doesn't charge, we will replace it.</p>
       </div>
       <div class="help-info-box">
-        <h4>🔋 Power Banks</h4>
-        <p>3 months warranty. Battery drain or charging issues are covered.</p>
+        <h4 data-en="🔋 Power Banks" data-ur="🔋 پاور بینک">🔋 Power Banks</h4>
+        <p data-en="3 months warranty. Battery drain or charging issues are covered." data-ur="3 ماہ کی وارنٹی۔ بیٹری یا چارجنگ مسائل کور ہیں۔">3 months warranty. Battery drain or charging issues are covered.</p>
       </div>
       <div class="help-info-box">
-        <h4>📱 Covers & Screen Guards</h4>
-        <p>If damaged during delivery, you get a replacement. Physical damage after delivery is not covered.</p>
+        <h4 data-en="📱 Covers & Screen Guards" data-ur="📱 کور اور سکرین گارڈ">📱 Covers &amp; Screen Guards</h4>
+        <p data-en="If damaged during delivery, you get a replacement. Physical damage after delivery is not covered." data-ur="ڈیلیوری کے دوران نقصان ہو تو بدلاؤ ملے گا۔ بعد میں جسمانی نقصان کور نہیں۔">If damaged during delivery, you get a replacement. Physical damage after delivery is not covered.</p>
       </div>
     </div>
     <div class="help-highlight">
-      <strong>Want to claim warranty?</strong> Take a video or photo of the product showing the problem clearly and send it to us on WhatsApp. We will respond within 24 hours.
+      <strong data-en="Want to claim warranty?" data-ur="وارنٹی کلیم کرنا چاہتے ہیں؟">Want to claim warranty?</strong>
+      <span data-en=" Take a video or photo of the product showing the problem clearly and send it to us on WhatsApp. We will respond within 24 hours." data-ur=" مسئلہ واضح دکھاتی ویڈیو یا تصویر لے کر واٹس ایپ پر بھیجیں۔ ہم 24 گھنٹوں میں جواب دیں گے۔"> Take a video or photo of the product showing the problem clearly and send it to us on WhatsApp. We will respond within 24 hours.</span>
     </div>
   </div>
 
@@ -391,46 +371,46 @@
   <div class="help-section" id="shipping">
     <div class="help-section-header">
       <div class="help-icon">🚚</div>
-      <div class="help-section-title">Shipping <span>Policy</span></div>
+      <div class="help-section-title" data-en="Shipping Policy" data-ur="شپنگ پالیسی">Shipping <span>Policy</span></div>
     </div>
     <div class="help-info-grid">
       <div class="help-info-box">
-        <h4>⚡ Sargodha — Same Day</h4>
-        <p>Orders placed in Sargodha city before 2 PM are delivered the same day.</p>
+        <h4 data-en="⚡ Sargodha — Same Day" data-ur="⚡ سرگودھا — اسی دن">⚡ Sargodha — Same Day</h4>
+        <p data-en="Orders placed in Sargodha city before 2 PM are delivered the same day." data-ur="سرگودھا میں دوپہر 2 بجے سے پہلے کے آرڈر اسی دن ڈیلیور ہوتے ہیں۔">Orders placed in Sargodha city before 2 PM are delivered the same day.</p>
       </div>
       <div class="help-info-box">
-        <h4>🇵🇰 Pakistan Wide — 2 to 4 Days</h4>
-        <p>Across Pakistan via TCS, Leopards, or Trax — delivery in 2–4 working days.</p>
+        <h4 data-en="🇵🇰 Pakistan Wide — 2 to 4 Days" data-ur="🇵🇰 پورا پاکستان — 2 سے 4 دن">🇵🇰 Pakistan Wide — 2 to 4 Days</h4>
+        <p data-en="Across Pakistan via TCS, Leopards, or Trax — delivery in 2–4 working days." data-ur="TCS، لیپرڈز یا ٹریکس کے ذریعے 2–4 کام کے دنوں میں ڈیلیوری۔">Across Pakistan via TCS, Leopards, or Trax — delivery in 2–4 working days.</p>
       </div>
       <div class="help-info-box">
-        <h4>🆓 Free Shipping</h4>
-        <p>Orders Rs.1999 and above get free shipping. Below that, Rs.150 shipping charge applies.</p>
+        <h4 data-en="🆓 Free Shipping" data-ur="🆓 مفت شپنگ">🆓 Free Shipping</h4>
+        <p data-en="Orders Rs.1999 and above get free shipping. Below that, Rs.150 shipping charge applies." data-ur="Rs.1999 یا اس سے زیادہ کے آرڈرز پر مفت شپنگ۔ اس سے کم پر Rs.150 شپنگ چارج۔">Orders Rs.1999 and above get free shipping. Below that, Rs.150 shipping charge applies.</p>
       </div>
       <div class="help-info-box">
-        <h4>📦 Packaging</h4>
-        <p>Every order is packed with bubble wrap and sealed boxes for safe delivery.</p>
+        <h4 data-en="📦 Packaging" data-ur="📦 پیکیجنگ">📦 Packaging</h4>
+        <p data-en="Every order is packed with bubble wrap and sealed boxes for safe delivery." data-ur="ہر آرڈر محفوظ ڈیلیوری کے لیے ببل ریپ اور سیلڈ باکس میں پیک کیا جاتا ہے۔">Every order is packed with bubble wrap and sealed boxes for safe delivery.</p>
       </div>
     </div>
     <div class="help-steps">
       <div class="help-step">
         <div class="step-num">1</div>
         <div class="step-content">
-          <h4>Place Your Order</h4>
-          <p>Confirm your order on our website or WhatsApp and provide your complete address.</p>
+          <h4 data-en="Place Your Order" data-ur="اپنا آرڈر دیں">Place Your Order</h4>
+          <p data-en="Confirm your order on our website or WhatsApp and provide your complete address." data-ur="ویب سائٹ یا واٹس ایپ پر آرڈر کنفرم کریں اور مکمل پتہ دیں۔">Confirm your order on our website or WhatsApp and provide your complete address.</p>
         </div>
       </div>
       <div class="help-step">
         <div class="step-num">2</div>
         <div class="step-content">
-          <h4>Payment</h4>
-          <p>Choose from COD, JazzCash, EasyPaisa, or Bank Transfer — whatever works for you.</p>
+          <h4 data-en="Payment" data-ur="ادائیگی">Payment</h4>
+          <p data-en="Choose from COD, JazzCash, EasyPaisa, or Bank Transfer — whatever works for you." data-ur="COD، جاز کیش، ایزی پیسہ یا بینک ٹرانسفر — جو آپ کو مناسب لگے۔">Choose from COD, JazzCash, EasyPaisa, or Bank Transfer — whatever works for you.</p>
         </div>
       </div>
       <div class="help-step">
         <div class="step-num">3</div>
         <div class="step-content">
-          <h4>Dispatch & Tracking</h4>
-          <p>We pack your parcel and send it to the courier, then share your tracking number.</p>
+          <h4 data-en="Dispatch & Tracking" data-ur="روانگی اور ٹریکنگ">Dispatch &amp; Tracking</h4>
+          <p data-en="We pack your parcel and send it to the courier, then share your tracking number." data-ur="ہم پارسل پیک کر کے کورئیر کو دیتے ہیں، پھر آپ کو ٹریکنگ نمبر بھیجتے ہیں۔">We pack your parcel and send it to the courier, then share your tracking number.</p>
         </div>
       </div>
     </div>
@@ -440,36 +420,36 @@
   <div class="help-section" id="faqs">
     <div class="help-section-header">
       <div class="help-icon">❓</div>
-      <div class="help-section-title">Frequently Asked <span>Questions</span></div>
+      <div class="help-section-title" data-en="Frequently Asked Questions" data-ur="اکثر پوچھے گئے سوالات">Frequently Asked <span>Questions</span></div>
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Are all products 100% original? <span class="faq-arrow">+</span></div>
-        <div class="faq-a">Yes, Ahsan Mobiles only sells 100% original products. Every item is verified before stocking. No replicas or fake products here.</div>
+        <div class="faq-q" onclick="toggleFaq(this)"><span data-en="Are all products 100% original?" data-ur="کیا تمام مصنوعات 100% اصلی ہیں؟">Are all products 100% original?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a" data-en="Yes, Ahsan Mobiles only sells 100% original products. Every item is verified before stocking. No replicas or fake products here." data-ur="جی ہاں، احسن موبائلز صرف 100% اصلی مصنوعات بیچتا ہے۔ ہر آئٹم اسٹاک سے پہلے تصدیق کی جاتی ہے۔">Yes, Ahsan Mobiles only sells 100% original products. Every item is verified before stocking. No replicas or fake products here.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Is Cash on Delivery available? <span class="faq-arrow">+</span></div>
-        <div class="faq-a">Yes! Cash on Delivery is available across Pakistan. Pay cash upon delivery and receive your product.</div>
+        <div class="faq-q" onclick="toggleFaq(this)"><span data-en="Is Cash on Delivery available?" data-ur="کیش آن ڈیلیوری دستیاب ہے؟">Is Cash on Delivery available?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a" data-en="Yes! Cash on Delivery is available across Pakistan. Pay cash upon delivery and receive your product." data-ur="جی ہاں! پورے پاکستان میں کیش آن ڈیلیوری دستیاب ہے۔ ڈیلیوری پر کیش ادا کریں۔">Yes! Cash on Delivery is available across Pakistan. Pay cash upon delivery and receive your product.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">How do I cancel an order? <span class="faq-arrow">+</span></div>
-        <div class="faq-a">If the parcel hasn't been dispatched, message us on WhatsApp and we'll cancel it. Once dispatched, cancellation isn't possible.</div>
+        <div class="faq-q" onclick="toggleFaq(this)"><span data-en="How do I cancel an order?" data-ur="آرڈر کیسے منسوخ کروں؟">How do I cancel an order?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a" data-en="If the parcel hasn't been dispatched, message us on WhatsApp and we'll cancel it. Once dispatched, cancellation isn't possible." data-ur="اگر پارسل روانہ نہ ہوا ہو تو واٹس ایپ کریں اور ہم منسوخ کر دیں گے۔ روانگی کے بعد منسوخی ممکن نہیں۔">If the parcel hasn't been dispatched, message us on WhatsApp and we'll cancel it. Once dispatched, cancellation isn't possible.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">What if I receive the wrong product? <span class="faq-arrow">+</span></div>
-        <div class="faq-a">Send us a photo on WhatsApp immediately. If it's our mistake, we'll provide a free replacement or full refund. No extra charges.</div>
+        <div class="faq-q" onclick="toggleFaq(this)"><span data-en="What if I receive the wrong product?" data-ur="اگر غلط مصنوع ملے تو؟">What if I receive the wrong product?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a" data-en="Send us a photo on WhatsApp immediately. If it's our mistake, we'll provide a free replacement or full refund. No extra charges." data-ur="فوری واٹس ایپ پر تصویر بھیجیں۔ اگر ہماری غلطی ہو تو مفت بدلاؤ یا مکمل رقم واپسی ملے گی۔">Send us a photo on WhatsApp immediately. If it's our mistake, we'll provide a free replacement or full refund. No extra charges.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Where do I use a discount code? <span class="faq-arrow">+</span></div>
-        <div class="faq-a">Mention your discount code on WhatsApp when placing your order. Use code AHSAN20 to get 20% off on your first order.</div>
+        <div class="faq-q" onclick="toggleFaq(this)"><span data-en="Where do I use a discount code?" data-ur="ڈسکاؤنٹ کوڈ کہاں استعمال کروں؟">Where do I use a discount code?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a" data-en="Mention your discount code on WhatsApp when placing your order. Use code AHSAN20 to get 20% off on your first order." data-ur="آرڈر دیتے وقت واٹس ایپ پر ڈسکاؤنٹ کوڈ بتائیں۔ پہلے آرڈر پر 20% چھوٹ کے لیے AHSAN20 استعمال کریں۔">Mention your discount code on WhatsApp when placing your order. Use code AHSAN20 to get 20% off on your first order.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Do you deliver outside Pakistan? <span class="faq-arrow">+</span></div>
-        <div class="faq-a">Currently, we only deliver within Pakistan. For international shipping, contact us on WhatsApp.</div>
+        <div class="faq-q" onclick="toggleFaq(this)"><span data-en="Do you deliver outside Pakistan?" data-ur="کیا پاکستان سے باہر ڈیلیوری کرتے ہیں؟">Do you deliver outside Pakistan?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a" data-en="Currently, we only deliver within Pakistan. For international shipping, contact us on WhatsApp." data-ur="فی الحال ہم صرف پاکستان کے اندر ڈیلیوری کرتے ہیں۔ بین الاقوامی شپنگ کے لیے واٹس ایپ کریں۔">Currently, we only deliver within Pakistan. For international shipping, contact us on WhatsApp.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Is payment secure? <span class="faq-arrow">+</span></div>
-        <div class="faq-a">Absolutely. We accept JazzCash, EasyPaisa, and Bank Transfer — all secure platforms. COD option is also available if you prefer not to pay online.</div>
+        <div class="faq-q" onclick="toggleFaq(this)"><span data-en="Is payment secure?" data-ur="کیا ادائیگی محفوظ ہے؟">Is payment secure?</span><span class="faq-arrow">+</span></div>
+        <div class="faq-a" data-en="Absolutely. We accept JazzCash, EasyPaisa, and Bank Transfer — all secure platforms. COD option is also available if you prefer not to pay online." data-ur="بالکل۔ ہم جاز کیش، ایزی پیسہ اور بینک ٹرانسفر قبول کرتے ہیں — سب محفوظ پلیٹ فارمز۔ آن لائن نہ دینا چاہیں تو COD بھی دستیاب ہے۔">Absolutely. We accept JazzCash, EasyPaisa, and Bank Transfer — all secure platforms. COD option is also available if you prefer not to pay online.</div>
       </div>
     </div>
   </div>
@@ -478,36 +458,37 @@
   <div class="help-section" id="bulk-orders">
     <div class="help-section-header">
       <div class="help-icon">📋</div>
-      <div class="help-section-title">Bulk <span>Orders</span></div>
+      <div class="help-section-title" data-en="Bulk Orders" data-ur="بلک آرڈر">Bulk <span>Orders</span></div>
     </div>
     <div class="help-info-grid">
       <div class="help-info-box">
-        <h4>🏪 For Resellers</h4>
-        <p>If you're a reseller, you get special discounts on bulk orders. Minimum 10 items per order.</p>
+        <h4 data-en="🏪 For Resellers" data-ur="🏪 ری سیلرز کے لیے">🏪 For Resellers</h4>
+        <p data-en="If you're a reseller, you get special discounts on bulk orders. Minimum 10 items per order." data-ur="اگر آپ ری سیلر ہیں، بلک آرڈرز پر خصوصی چھوٹ ملے گی۔ کم از کم 10 آئٹم فی آرڈر۔">If you're a reseller, you get special discounts on bulk orders. Minimum 10 items per order.</p>
       </div>
       <div class="help-info-box">
-        <h4>🏢 Corporate Orders</h4>
-        <p>Companies and offices can place bulk accessory orders with custom pricing.</p>
+        <h4 data-en="🏢 Corporate Orders" data-ur="🏢 کارپوریٹ آرڈر">🏢 Corporate Orders</h4>
+        <p data-en="Companies and offices can place bulk accessory orders with custom pricing." data-ur="کمپنیاں اور دفاتر کسٹم قیمتوں پر بلک لوازمات آرڈر کر سکتے ہیں۔">Companies and offices can place bulk accessory orders with custom pricing.</p>
       </div>
       <div class="help-info-box">
-        <h4>💰 Special Rates</h4>
-        <p>The more you order, the bigger the discount. Up to 30% discount on 50+ items.</p>
+        <h4 data-en="💰 Special Rates" data-ur="💰 خصوصی ریٹس">💰 Special Rates</h4>
+        <p data-en="The more you order, the bigger the discount. Up to 30% discount on 50+ items." data-ur="جتنا زیادہ آرڈر، اتنی زیادہ چھوٹ۔ 50+ آئٹمز پر 30% تک چھوٹ۔">The more you order, the bigger the discount. Up to 30% discount on 50+ items.</p>
       </div>
       <div class="help-info-box">
-        <h4>🚚 Free Delivery</h4>
-        <p>Bulk orders include free delivery anywhere in Pakistan.</p>
+        <h4 data-en="🚚 Free Delivery" data-ur="🚚 مفت ڈیلیوری">🚚 Free Delivery</h4>
+        <p data-en="Bulk orders include free delivery anywhere in Pakistan." data-ur="بلک آرڈرز میں پاکستان میں کہیں بھی مفت ڈیلیوری شامل ہے۔">Bulk orders include free delivery anywhere in Pakistan.</p>
       </div>
     </div>
-    <div class="help-highlight" style="margin-bottom: 20px;">
-      For bulk orders, <strong>contact us directly on WhatsApp</strong>. Share your quantity, product details, and city — we'll provide the best quote.
+    <div class="help-highlight" style="margin-bottom:20px;">
+      <span data-en="For bulk orders, contact us directly on WhatsApp. Share your quantity, product details, and city — we'll provide the best quote." data-ur="بلک آرڈرز کے لیے واٹس ایپ پر براہ راست رابطہ کریں۔ تعداد، مصنوع کی تفصیل اور شہر بتائیں — ہم بہترین قیمت دیں گے۔">For bulk orders, <strong>contact us directly on WhatsApp</strong>. Share your quantity, product details, and city — we'll provide the best quote.</span>
     </div>
     <div class="help-contact-strip">
       <div>
-        <h3>Bulk Order Enquiry</h3>
-        <p>WhatsApp us — Available 24/7</p>
+        <h3 data-en="Bulk Order Enquiry" data-ur="بلک آرڈر انکوائری">Bulk Order Enquiry</h3>
+        <p data-en="WhatsApp us — Available 24/7" data-ur="واٹس ایپ کریں — 24/7 دستیاب">WhatsApp us — Available 24/7</p>
       </div>
       <a href="https://wa.me/923091333812?text=Assalam%20o%20Alaikum!%20I%20would%20like%20information%20about%20bulk%20orders." class="btn-wa" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i> WhatsApp Now
+        <i class="fa-brands fa-whatsapp"></i>
+        <span data-en="WhatsApp Now" data-ur="ابھی واٹس ایپ کریں">WhatsApp Now</span>
       </a>
     </div>
   </div>
@@ -516,7 +497,7 @@
 
 <!-- FOOTER -->
 <div class="help-footer">
-  <p>© 2026 <a href="index.html">Ahsan Mobiles.pk</a> — All Rights Reserved · Made with ❤️ in Sargodha 🇵🇰</p>
+  <p data-en="© 2026 Ahsan Mobiles.pk — All Rights Reserved · Made with ❤️ in Sargodha 🇵🇰" data-ur="© 2026 احسن موبائلز.pk — تمام حقوق محفوظ ہیں · سرگودھا میں ❤️ کے ساتھ بنایا گیا 🇵🇰">© 2026 <a href="index.html">Ahsan Mobiles.pk</a> — All Rights Reserved · Made with ❤️ in Sargodha 🇵🇰</p>
 </div>
 
 <!-- WHATSAPP FLOAT -->
@@ -525,10 +506,50 @@
 </a>
 
 <script>
-function toggleFaq(el) {
-  var item = el.parentElement;
-  item.classList.toggle('open');
+/* ── UTILS ── */
+function toggleMobMenu(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('mobMenu').classList.toggle('open');}
+function toggleFaq(el){var item=el.parentElement;item.classList.toggle('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('a11y-panel').classList.remove('open');document.getElementById('a11y-toggle-btn').setAttribute('aria-expanded','false');}});
+
+/* ── ACCESSIBILITY ── */
+function toggleA11yPanel(){const p=document.getElementById('a11y-panel');const b=document.getElementById('a11y-toggle-btn');const o=p.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);}
+document.addEventListener('click',function(e){const w=document.querySelector('.a11y-wrapper');if(w&&!w.contains(e.target)){document.getElementById('a11y-panel').classList.remove('open');document.getElementById('a11y-toggle-btn').classList.remove('open');document.getElementById('a11y-toggle-btn').setAttribute('aria-expanded','false');}});
+
+let currentFontScale=parseInt(localStorage.getItem('am_fontSize')||'100',10);
+function applyFontSize(){document.documentElement.style.fontSize=(currentFontScale/100)*16+'px';const el=document.getElementById('font-size-val');if(el)el.textContent=currentFontScale+'%';}
+function changeFontSize(dir){currentFontScale=Math.min(140,Math.max(80,currentFontScale+dir*10));localStorage.setItem('am_fontSize',currentFontScale);applyFontSize();}
+function toggleContrast(){const a=document.body.classList.toggle('high-contrast');localStorage.setItem('am_contrast',a?'1':'');const i=document.getElementById('a11y-contrast-input');if(i)i.checked=a;}
+function toggleDyslexia(){const a=document.body.classList.toggle('dyslexia-font');localStorage.setItem('am_dyslexia',a?'1':'');const i=document.getElementById('a11y-dyslexia-input');if(i)i.checked=a;}
+function toggleAnimations(){const a=document.body.classList.toggle('pause-animations');localStorage.setItem('am_pauseAnim',a?'1':'');const i=document.getElementById('a11y-pause-input');if(i)i.checked=a;}
+function toggleLargeCursor(){const a=document.body.classList.toggle('large-cursor');localStorage.setItem('am_largeCursor',a?'1':'');const i=document.getElementById('a11y-cursor-input');if(i)i.checked=a;const s=document.getElementById('large-cursor-style');s.textContent=a?'*,*::before,*::after{cursor:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'%3E%3Ccircle cx=\'4\' cy=\'4\' r=\'4\' fill=\'%2300d4ff\'/%3E%3Cline x1=\'4\' y1=\'4\' x2=\'4\' y2=\'28\' stroke=\'%2300d4ff\' stroke-width=\'3\'/%3E%3Cline x1=\'4\' y1=\'4\' x2=\'20\' y2=\'20\' stroke=\'%2300d4ff\' stroke-width=\'3\'/%3E%3C/svg%3E") 4 4,auto!important;}':'';}
+let readingGuideActive=false;
+function toggleReadingGuide(){readingGuideActive=!readingGuideActive;localStorage.setItem('am_readingGuide',readingGuideActive?'1':'');const g=document.getElementById('reading-guide');const i=document.getElementById('a11y-guide-input');if(i)i.checked=readingGuideActive;g.style.display=readingGuideActive?'block':'none';if(readingGuideActive){document.addEventListener('mousemove',moveReadingGuide);}else{document.removeEventListener('mousemove',moveReadingGuide);}}
+function moveReadingGuide(e){const g=document.getElementById('reading-guide');if(g)g.style.top=e.clientY+'px';}
+
+/* ── LANGUAGE ── */
+let isUrdu=localStorage.getItem('am_lang')==='ur';
+function applyLang(){
+  document.body.classList.toggle('urdu-mode',isUrdu);
+  document.getElementById('html-root').setAttribute('lang',isUrdu?'ur':'en');
+  const lbl=document.getElementById('lang-btn-label');if(lbl)lbl.textContent=isUrdu?'English':'اردو';
+  document.querySelectorAll('[data-en],[data-ur]').forEach(el=>{
+    const v=isUrdu?el.getAttribute('data-ur'):el.getAttribute('data-en');
+    if(v!==null)el.textContent=v;
+  });
+  if(isUrdu&&!document.getElementById('urdu-font-link')){const l=document.createElement('link');l.id='urdu-font-link';l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap';document.head.appendChild(l);}
 }
+function toggleLanguage(){isUrdu=!isUrdu;localStorage.setItem('am_lang',isUrdu?'ur':'en');applyLang();}
+
+/* ── RESTORE ── */
+(function(){
+  applyFontSize();
+  if(localStorage.getItem('am_contrast')==='1'){document.body.classList.add('high-contrast');const i=document.getElementById('a11y-contrast-input');if(i)i.checked=true;}
+  if(localStorage.getItem('am_dyslexia')==='1'){document.body.classList.add('dyslexia-font');const i=document.getElementById('a11y-dyslexia-input');if(i)i.checked=true;}
+  if(localStorage.getItem('am_pauseAnim')==='1'){document.body.classList.add('pause-animations');const i=document.getElementById('a11y-pause-input');if(i)i.checked=true;}
+  if(localStorage.getItem('am_largeCursor')==='1'){toggleLargeCursor();}
+  if(localStorage.getItem('am_readingGuide')==='1'){toggleReadingGuide();}
+  if(isUrdu)applyLang();
+})();
 </script>
 </body>
 </html>
