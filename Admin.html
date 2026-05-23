@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — Ahsan Mobiles</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a14'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%237c3aed' stroke-width='1.5'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' font-family='Arial'%3E📊%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#060610;--card:#0f0f1e;--card2:#12122a;--inp:#1a1a2e;--sb:#0a0a1a;
+  --purple:#7c3aed;--pl:#a78bfa;--pd:#4c1d95;--cyan:#00d4ff;
+  --green:#10b981;--red:#ef4444;--yellow:#f5c518;--orange:#f97316;
+  --text:#f0f0ff;--muted:rgba(255,255,255,0.35);
+  --border:rgba(255,255,255,0.07);--bp:rgba(124,58,237,0.22);
+  --sw:240px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;}
+/* SIDEBAR */
+.sb{width:var(--sw);background:var(--sb);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:transform .3s;}
+.sb-logo{padding:22px 18px 18px;border-bottom:1px solid var(--border);}
+.sb-logo .bn{font-size:15px;font-weight:800;letter-spacing:-.3px;}
+.sb-logo .bn em{color:var(--pl);font-style:normal;}
+.sb-logo .bs{font-size:11px;color:var(--muted);margin-top:2px;}
+.sb-nav{flex:1;padding:14px 10px;overflow-y:auto;}
+.nst{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);padding:0 8px;margin:14px 0 5px;}
+.ni{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:11px;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--muted);transition:all .15s;margin-bottom:2px;}
+.ni:hover{background:rgba(124,58,237,.1);color:var(--pl);}
+.ni.active{background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(76,29,149,.1));color:var(--pl);border:1px solid rgba(124,58,237,.2);}
+.ni .ico{font-size:16px;width:20px;text-align:center;}
+.nbadge{margin-left:auto;background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;}
+.nbadge.g{background:var(--green);}
+.sb-foot{padding:14px 10px;border-top:1px solid var(--border);}
+.ap{display:flex;align-items:center;gap:9px;padding:10px 12px;background:rgba(124,58,237,.08);border-radius:12px;border:1px solid var(--bp);margin-bottom:9px;}
+.av{width:36px;height:36px;background:linear-gradient(135deg,var(--purple),var(--pd));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.an{font-size:13px;font-weight:700;}
+.ar{font-size:11px;color:var(--muted);}
+.btn-out{width:100%;padding:9px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:10px;color:var(--red);font-size:13px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.btn-out:hover{background:rgba(239,68,68,.18);}
+/* MAIN */
+.main{margin-left:var(--sw);flex:1;display:flex;flex-direction:column;min-height:100vh;}
+.topbar{background:var(--card);border-bottom:1px solid var(--border);padding:15px 26px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:50;}
+.tb-title{font-size:18px;font-weight:800;flex:1;}
+.tb-title span{color:var(--pl);}
+.tb-search{position:relative;}
+.tb-search input{background:var(--inp);border:1.5px solid var(--border);border-radius:10px;padding:9px 14px 9px 34px;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);outline:none;width:210px;transition:border-color .2s;}
+.tb-search input:focus{border-color:var(--purple);}
+.tb-search input::placeholder{color:var(--muted);}
+.tb-search .si{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.4;}
+.tb-date{font-size:12px;color:var(--muted);background:var(--inp);padding:8px 13px;border-radius:10px;border:1px solid var(--border);white-space:nowrap;}
+.ham{display:none;background:var(--inp);border:1px solid var(--border);border-radius:9px;padding:8px 10px;font-size:18px;cursor:pointer;color:var(--text);}
+.content{padding:26px;flex:1;}
+/* PANELS */
+.panel{display:none;}
+.panel.active{display:block;animation:fin .3s ease;}
+@keyframes fin{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:translateY(0);}}
+/* SECTION HEADER */
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:10px;}
+.st{font-size:20px;font-weight:800;}
+.ss{font-size:13px;color:var(--muted);margin-top:2px;}
+/* STAT CARDS */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:24px;}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s;cursor:default;}
+.sc:hover{transform:translateY(-3px);border-color:var(--bp);}
+.sc::before{content:'';position:absolute;top:-18px;right:-18px;width:72px;height:72px;border-radius:50%;opacity:.12;}
+.sc.p::before{background:var(--purple);}
+.sc.c::before{background:var(--cyan);}
+.sc.g::before{background:var(--green);}
+.sc.o::before{background:var(--orange);}
+.sc.r::before{background:var(--red);}
+.sc-ico{font-size:26px;margin-bottom:10px;}
+.sc-val{font-size:26px;font-weight:800;font-family:'JetBrains Mono',monospace;margin-bottom:3px;}
+.sc-lbl{font-size:12px;color:var(--muted);}
+.sc-chg{font-size:12px;font-weight:700;margin-top:7px;color:var(--green);}
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;margin-bottom:20px;}
+.ct{font-size:14px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:7px;}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 17px;border-radius:11px;font-size:13.5px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:all .2s;border:none;}
+.btn-p{background:linear-gradient(135deg,var(--purple),var(--pd));color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.28);}
+.btn-p:hover{opacity:.9;transform:translateY(-1px);}
+.btn-d{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.22);}
+.btn-d:hover{background:rgba(239,68,68,.2);}
+.btn-g{background:var(--inp);color:var(--muted);border:1px solid var(--border);}
+.btn-g:hover{color:var(--text);border-color:var(--bp);}
+.btn-sm{padding:7px 12px;font-size:12.5px;border-radius:9px;}
+/* FORM */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.ff{display:flex;flex-direction:column;gap:6px;}
+.ff.full{grid-column:1/-1;}
+.ff label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.38);}
+.ff input,.ff select,.ff textarea{background:var(--inp);border:1.5px solid var(--border);border-radius:11px;padding:11px 14px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;}
+.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(124,58,237,.11);}
+.ff select{appearance:none;cursor:pointer;}
+.ff textarea{resize:vertical;min-height:78px;}
+.ff input::placeholder,.ff textarea::placeholder{color:rgba(255,255,255,.18);}
+.fa{display:flex;gap:10px;justify-content:flex-end;margin-top:16px;}
+/* TABLE */
+.tw{overflow-x:auto;border-radius:14px;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;}
+thead th{background:var(--card2);padding:12px 15px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);white-space:nowrap;border-bottom:1px solid var(--border);}
+tbody tr{border-bottom:1px solid var(--border);transition:background .15s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:rgba(124,58,237,.04);}
+tbody td{padding:12px 15px;font-size:13px;vertical-align:middle;}
+.tn{font-weight:700;max-width:175px;}
+.tn .tb{font-size:11px;color:var(--pl);font-weight:600;margin-bottom:2px;}
+/* BADGES */
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+.bg{background:rgba(16,185,129,.12);color:var(--green);border:1px solid rgba(16,185,129,.2);}
+.br{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2);}
+.by{background:rgba(245,197,24,.12);color:var(--yellow);border:1px solid rgba(245,197,24,.2);}
+.bp2{background:rgba(124,58,237,.12);color:var(--pl);border:1px solid rgba(124,58,237,.2);}
+.bo{background:rgba(249,115,22,.12);color:var(--orange);border:1px solid rgba(249,115,22,.2);}
+/* FILTER BAR */
+.fb{display:flex;gap:9px;align-items:center;margin-bottom:16px;flex-wrap:wrap;}
+.fb input,.fb select{background:var(--inp);border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);outline:none;transition:border-color .2s;}
+.fb input:focus,.fb select:focus{border-color:var(--purple);}
+.fb input::placeholder{color:var(--muted);}
+.fb select{cursor:pointer;appearance:none;padding-right:26px;}
+/* EMPTY */
+.emp{text-align:center;padding:48px 20px;color:var(--muted);}
+.emp .big{font-size:46px;margin-bottom:11px;}
+/* MODAL */
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:500;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.mo.open{display:flex;}
+.mod{background:var(--card);border:1px solid var(--bp);border-radius:22px;padding:30px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;animation:min .25s cubic-bezier(.16,1,.3,1);}
+@keyframes min{from{opacity:0;transform:scale(.94);}to{opacity:1;transform:scale(1);}}
+.mh{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
+.mt2{font-size:17px;font-weight:800;}
+.mc{width:34px;height:34px;background:var(--inp);border:1px solid var(--border);border-radius:9px;color:var(--muted);font-size:15px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;}
+.mc:hover{color:var(--text);border-color:var(--bp);}
+.cmod{max-width:370px;text-align:center;}
+.cico{font-size:46px;margin-bottom:12px;}
+.cmsg{font-size:14px;color:var(--muted);margin:10px 0 20px;line-height:1.55;}
+.cact{display:flex;gap:10px;justify-content:center;}
+/* TOAST */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);color:var(--text);padding:12px 22px;border-radius:12px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:9999;white-space:nowrap;border:1px solid var(--border);box-shadow:0 20px 40px rgba(0,0,0,.4);pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.success{background:rgba(16,185,129,.92);border-color:var(--green);}
+.toast.error{background:rgba(239,68,68,.92);border-color:var(--red);}
+/* CHARTS */
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px;}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;}
+.chart-wrap{position:relative;height:220px;}
+/* ACTIVITY */
+.act-list{display:flex;flex-direction:column;gap:9px;}
+.act-item{display:flex;align-items:center;gap:11px;padding:11px 13px;background:var(--inp);border-radius:12px;border:1px solid var(--border);}
+.act-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.act-txt{flex:1;font-size:13px;}
+.act-time{font-size:11px;color:var(--muted);flex-shrink:0;}
+/* PROGRESS */
+.pb{background:rgba(255,255,255,.06);border-radius:20px;height:6px;overflow:hidden;margin-top:7px;}
+.pf{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--purple),var(--cyan));transition:width .5s;}
+/* QUICK ROW */
+.qr{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+/* IMG PREVIEW */
+.ip{width:52px;height:52px;object-fit:cover;border-radius:9px;border:1px solid var(--border);background:var(--inp);display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden;flex-shrink:0;}
+.ip img{width:100%;height:100%;object-fit:cover;}
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(124,58,237,.3);border-radius:10px;}
+/* MOBILE */
+@media(max-width:768px){
+  .sb{transform:translateX(-100%);}
+  .sb.open{transform:translateX(0);}
+  .main{margin-left:0;}
+  .fg{grid-template-columns:1fr;}
+  .sg{grid-template-columns:1fr 1fr;}
+  .qr{grid-template-columns:1fr;}
+  .charts-row{grid-template-columns:1fr;}
+  .tb-search{display:none;}
+  .content{padding:14px;}
+  .ham{display:block;}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sb" id="sb">
+  <div class="sb-logo">
+    <div class="bn">📱 AHSAN <em>MOBILES</em></div>
+    <div class="bs">Admin Dashboard</div>
+  </div>
+  <nav class="sb-nav">
+    <div class="nst">Main</div>
+    <div class="ni active" onclick="goPanel('dashboard',this)"><span class="ico">📊</span>Dashboard</div>
+    <div class="ni" onclick="goPanel('products',this)"><span class="ico">📦</span>Products<span class="nbadge" id="pcount">26</span></div>
+    <div class="ni" onclick="goPanel('addprod',this)"><span class="ico">➕</span>Add Product</div>
+    <div class="nst">Store</div>
+    <div class="ni" onclick="goPanel('categories',this)"><span class="ico">🏷️</span>Categories</div>
+    <div class="ni" onclick="goPanel('orders',this)"><span class="ico">🛒</span>Orders<span class="nbadge g">New</span></div>
+    <div class="ni" onclick="goPanel('offers',this)"><span class="ico">🎁</span>Offers</div>
+    <div class="nst">System</div>
+    <div class="ni" onclick="goPanel('settings',this)"><span class="ico">⚙️</span>Settings</div>
+    <div class="ni" onclick="window.open('index.html','_blank')"><span class="ico">🌐</span>View Website</div>
+  </nav>
+  <div class="sb-foot">
+    <div class="ap">
+      <div class="av">👨‍💼</div>
+      <div><div class="an" id="adm-name">Admin</div><div class="ar">Super Admin</div></div>
+    </div>
+    <button class="btn-out" onclick="doLogout()">🚪 Logout</button>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <button class="ham" onclick="document.getElementById('sb').classList.toggle('open')">☰</button>
+    <div class="tb-title">Ahsan Mobiles <span>Admin</span></div>
+    <div class="tb-search"><span class="si">🔍</span><input type="text" placeholder="Search products…" id="gsearch" oninput="gSearch(this.value)"></div>
+    <div class="tb-date" id="tbdate"></div>
+  </div>
+
+  <div class="content">
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <div class="panel active" id="panel-dashboard">
+      <div class="sh">
+        <div><div class="st">📊 Dashboard Overview</div><div class="ss">Welcome back! Here's your store at a glance.</div></div>
+      </div>
+      <div class="sg">
+        <div class="sc p"><div class="sc-ico">📦</div><div class="sc-val" id="s-total">26</div><div class="sc-lbl">Total Products</div><div class="sc-chg">↑ All in store</div></div>
+        <div class="sc g"><div class="sc-ico">⭐</div><div class="sc-val" id="s-feat">0</div><div class="sc-lbl">Featured</div><div class="sc-chg">↑ On homepage</div></div>
+        <div class="sc o"><div class="sc-ico">🔥</div><div class="sc-val" id="s-sale">0</div><div class="sc-lbl">On Sale</div><div class="sc-chg">↑ Discounted</div></div>
+        <div class="sc c"><div class="sc-ico">🏷️</div><div class="sc-val">11</div><div class="sc-lbl">Categories</div><div class="sc-chg">↑ All active</div></div>
+        <div class="sc r"><div class="sc-ico">⚠️</div><div class="sc-val" id="s-low">0</div><div class="sc-lbl">Low Stock</div><div class="sc-chg" style="color:var(--red)">⚠ Restock soon</div></div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-card"><div class="ct">📈 Products by Category</div><div class="chart-wrap"><canvas id="catChart"></canvas></div></div>
+        <div class="chart-card"><div class="ct">💰 Price Range Distribution</div><div class="chart-wrap"><canvas id="priceChart"></canvas></div></div>
+      </div>
+      <div class="qr">
+        <div class="card" style="margin-bottom:0">
+          <div class="ct">🏆 Top Category Breakdown</div>
+          <div id="cat-bars"></div>
+        </div>
+        <div class="card" style="margin-bottom:0">
+          <div class="ct">⚡ Recent Activity</div>
+          <div class="act-list" id="act-list">
+            <div class="act-item"><div class="act-dot" style="background:var(--purple)"></div><div class="act-txt">Admin logged in</div><div class="act-time">Just now</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <div class="ct">🚀 Quick Actions</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-p" onclick="goPanel('addprod',null)">➕ Add Product</button>
+          <button class="btn btn-g" onclick="goPanel('products',null)">📦 Manage Products</button>
+          <button class="btn btn-g" onclick="goPanel('offers',null)">🎁 Offers</button>
+          <button class="btn btn-g" onclick="exportProds()">📥 Export JSON</button>
+          <a href="index.html" target="_blank" class="btn btn-g" style="text-decoration:none">🌐 Live Site</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PRODUCTS ═══ -->
+    <div class="panel" id="panel-products">
+      <div class="sh">
+        <div><div class="st">📦 All Products</div><div class="ss">Manage your product catalogue</div></div>
+        <button class="btn btn-p" onclick="goPanel('addprod',null)">➕ Add New</button>
+      </div>
+      <div class="fb">
+        <input type="text" id="ps" placeholder="🔍  Search…" oninput="renderProds()" style="flex:1;min-width:160px;">
+        <select id="pcf" onchange="renderProds()">
+          <option value="">All Categories</option>
+          <option value="covers">📱 Covers</option>
+          <option value="earphones">🎧 Earphones</option>
+          <option value="airpods">🎵 AirPods & Buds</option>
+          <option value="chargers">⚡ Chargers</option>
+          <option value="screen-guards">🛡️ Screen Guards</option>
+          <option value="power-banks">🔋 Power Banks</option>
+          <option value="headphones">🎶 Headphones</option>
+          <option value="cables">🔌 Cables</option>
+          <option value="spare-parts">🛠️ Spare Parts</option>
+          <option value="speakers">🔊 Speakers</option>
+        </select>
+        <select id="psf" onchange="renderProds()">
+          <option value="">All Status</option>
+          <option value="featured">⭐ Featured</option>
+          <option value="sale">🔥 On Sale</option>
+          <option value="low">⚠️ Low Stock</option>
+        </select>
+      </div>
+      <div class="tw"><table>
+        <thead><tr><th>#</th><th>Product</th><th>Category</th><th>Price</th><th>MRP</th><th>Stock</th><th>Badge</th><th>Actions</th></tr></thead>
+        <tbody id="ptbody"></tbody>
+      </table>
+      <div class="emp" id="pemp" style="display:none"><div class="big">📦</div><p>No products match your filter.</p></div></div>
+    </div>
+
+    <!-- ═══ ADD / EDIT PRODUCT ═══ -->
+    <div class="panel" id="panel-addprod">
+      <div class="sh">
+        <div><div class="st" id="aTitle">➕ Add New Product</div><div class="ss">Fill in the details below.</div></div>
+      </div>
+      <div class="card">
+        <div class="fg">
+          <div class="ff"><label>Product Name *</label><input type="text" id="fn" placeholder="e.g. iPhone Premium Silicone Cover"></div>
+          <div class="ff"><label>Brand</label><input type="text" id="fb2" placeholder="e.g. Apple, JBL, Baseus"></div>
+          <div class="ff"><label>Category *</label>
+            <select id="fcat">
+              <option value="">— Select —</option>
+              <option value="covers">📱 Mobile Covers</option>
+              <option value="earphones">🎧 Earphones</option>
+              <option value="airpods">🎵 AirPods & Buds</option>
+              <option value="chargers">⚡ Chargers</option>
+              <option value="screen-guards">🛡️ Screen Guards</option>
+              <option value="power-banks">🔋 Power Banks</option>
+              <option value="headphones">🎶 Headphones</option>
+              <option value="cables">🔌 Cables</option>
+              <option value="spare-parts">🛠️ Spare Parts</option>
+              <option value="speakers">🔊 BT Speakers</option>
+            </select>
+          </div>
+          <div class="ff"><label>Selling Price (Rs.) *</label><input type="number" id="fp" placeholder="e.g. 2499"></div>
+          <div class="ff"><label>MRP / Original Price (Rs.)</label><input type="number" id="fo" placeholder="e.g. 4999"></div>
+          <div class="ff"><label>Stock Quantity *</label><input type="number" id="fs" placeholder="e.g. 50" min="0"></div>
+          <div class="ff"><label>Promo Badge</label>
+            <select id="fbg">
+              <option value="">No Badge</option>
+              <option value="NEW">🆕 NEW</option>
+              <option value="HOT">🔥 HOT</option>
+              <option value="SALE">🏷️ SALE</option>
+              <option value="-50% OFF">-50% OFF</option>
+              <option value="-40%">-40%</option>
+              <option value="-30%">-30%</option>
+              <option value="LIMITED">⚡ LIMITED</option>
+            </select>
+          </div>
+          <div class="ff"><label>Image URL</label><input type="url" id="fimg" placeholder="https://images.unsplash.com/…"></div>
+          <div class="ff full"><label>Description</label><textarea id="fd" placeholder="Brief product description…"></textarea></div>
+          <div class="ff" style="align-self:center;">
+            <label style="display:flex;align-items:center;gap:9px;cursor:pointer;text-transform:none;font-size:13px;font-weight:600;color:var(--muted);">
+              <input type="checkbox" id="ffeat" style="width:15px;height:15px;accent-color:var(--purple);padding:0;">
+              ⭐ Mark as Featured
+            </label>
+          </div>
+          <div class="ff" style="align-self:center;">
+            <label style="display:flex;align-items:center;gap:9px;cursor:pointer;text-transform:none;font-size:13px;font-weight:600;color:var(--muted);">
+              <input type="checkbox" id="fsal" style="width:15px;height:15px;accent-color:var(--orange);padding:0;">
+              🔥 Mark as On Sale
+            </label>
+          </div>
+        </div>
+        <div class="fa">
+          <button class="btn btn-g" onclick="resetForm()">✕ Clear</button>
+          <button class="btn btn-p" onclick="saveProduct()"><span id="sbtn">💾 Save Product</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CATEGORIES ═══ -->
+    <div class="panel" id="panel-categories">
+      <div class="sh"><div><div class="st">🏷️ Categories</div><div class="ss">Product breakdown by category</div></div></div>
+      <div class="sg" id="cat-grid"></div>
+      <div class="card" style="margin-top:4px">
+        <div class="ct">📊 Category Chart</div>
+        <div style="position:relative;height:300px;"><canvas id="catChart2"></canvas></div>
+      </div>
+    </div>
+
+    <!-- ═══ ORDERS ═══ -->
+    <div class="panel" id="panel-orders">
+      <div class="sh"><div><div class="st">🛒 Orders</div><div class="ss">Customer order management</div></div></div>
+      <div class="card"><div class="emp"><div class="big">🛒</div><p>No orders yet. Orders from your website will appear here.</p><p style="margin-top:8px;font-size:12px;">Connect your Firebase <code style="background:var(--inp);padding:2px 7px;border-radius:6px;font-size:11px;">orders</code> collection to manage orders.</p></div></div>
+    </div>
+
+    <!-- ═══ OFFERS ═══ -->
+    <div class="panel" id="panel-offers">
+      <div class="sh"><div><div class="st">🎁 Offers & Promos</div><div class="ss">Active discount codes</div></div></div>
+      <div class="card">
+        <div class="ct">🎟️ Promo Codes</div>
+        <div class="tw"><table>
+          <thead><tr><th>Code</th><th>Discount</th><th>Min Order</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><code style="background:var(--inp);padding:4px 10px;border-radius:7px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--yellow);">AHSAN20</code></td>
+              <td>20% OFF</td><td>Rs. 500</td>
+              <td><span class="badge bg">Active</span></td>
+            </tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <!-- ═══ SETTINGS ═══ -->
+    <div class="panel" id="panel-settings">
+      <div class="sh"><div><div class="st">⚙️ Settings</div><div class="ss">Store configuration</div></div></div>
+      <div class="card">
+        <div class="ct">🏪 Store Info</div>
+        <div class="fg">
+          <div class="ff"><label>Store Name</label><input type="text" value="Ahsan Mobiles" readonly></div>
+          <div class="ff"><label>WhatsApp</label><input type="text" value="03054603311" readonly></div>
+          <div class="ff"><label>Address</label><input type="text" value="Trust Plaza, Sargodha, Punjab" readonly></div>
+          <div class="ff"><label>Email</label><input type="text" value="admin@ahsanmobiles.com" readonly></div>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-top:13px;">📌 Edit store info directly in your website HTML files.</p>
+      </div>
+      <div class="card">
+        <div class="ct">🗄️ Data Management</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-g" onclick="exportProds()">📥 Export Products (JSON)</button>
+          <button class="btn btn-d btn-sm" onclick="document.getElementById('clrmod').classList.add('open')">🗑️ Clear All Products</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- DELETE MODAL -->
+<div class="mo" id="delmod">
+  <div class="mod cmod">
+    <div class="cico">🗑️</div>
+    <div class="mt2" style="display:flex;justify-content:center;">Delete Product?</div>
+    <p class="cmsg" id="delmsg">This cannot be undone.</p>
+    <div class="cact">
+      <button class="btn btn-g" onclick="document.getElementById('delmod').classList.remove('open')">Cancel</button>
+      <button class="btn btn-d" id="delok">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- CLEAR ALL MODAL -->
+<div class="mo" id="clrmod">
+  <div class="mod cmod">
+    <div class="cico">⚠️</div>
+    <div class="mt2" style="display:flex;justify-content:center;">Clear ALL Products?</div>
+    <p class="cmsg">This will permanently delete ALL products. Cannot be undone!</p>
+    <div class="cact">
+      <button class="btn btn-g" onclick="document.getElementById('clrmod').classList.remove('open')">Cancel</button>
+      <button class="btn btn-d" onclick="clearAll()">Yes, Delete All</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- FIREBASE -->
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import{getAuth,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import{getFirestore,collection,addDoc,getDocs,deleteDoc,doc,updateDoc,onSnapshot,query,orderBy}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const app=initializeApp({apiKey:"AIzaSyBYw7O8vjPGUc8MzfjUiMCNgCnxh-fQDbs",authDomain:"ahsan-mobiles.firebaseapp.com",projectId:"ahsan-mobiles",storageBucket:"ahsan-mobiles.firebasestorage.app",messagingSenderId:"527845362077",appId:"1:527845362077:web:aa19595d090c08f648c774"});
+const auth=getAuth(app);
+const db=getFirestore(app);
+const COLL='products';
+
+// ── SEED DATA (26 real products) ──
+const SEED=[
+  {name:"iPhone Premium Silicone Cover",brand:"Apple",category:"covers",price:850,originalPrice:1200,stock:50,badge:"NEW",image:"https://media.istockphoto.com/id/2226687630/photo/smartphone-case-in-four-colors.jpg?s=612x612&w=0&k=20&c=XLwggX7pcNJgU1rFYcBzhq53iaI-RMNrllFtGWICV7g=",description:"Premium silicone cover with MagSafe compatibility. Military-grade drop protection.",featured:true,onSale:false},
+  {name:"Transparent Hard Cover",brand:"Universal",category:"covers",price:350,originalPrice:550,stock:80,badge:"HOT",image:"https://images.unsplash.com/photo-1593055454503-531d165c2ed8?w=400",description:"Crystal clear hard case. Anti-yellow formula.",featured:false,onSale:true},
+  {name:"Cute Cartoon Phone Cover",brand:"Trendy",category:"covers",price:450,originalPrice:700,stock:60,badge:null,image:"https://images.unsplash.com/photo-1563299585-548ccb637e5e?w=400",description:"Adorable cartoon-printed phone cover.",featured:false,onSale:false},
+  {name:"Vivo V29 Leather Flip Cover",brand:"Vivo",category:"covers",price:650,originalPrice:900,stock:35,badge:"SALE",image:"https://images.unsplash.com/photo-1623393884989-cb3663e431c5?w=400",description:"Genuine leather flip cover with card holder.",featured:false,onSale:true},
+  {name:"Samsung Galaxy Rugged Cover",brand:"Samsung",category:"covers",price:750,originalPrice:1100,stock:40,badge:"HOT",image:"https://images.unsplash.com/photo-1581003989336-2ae25a99c091?w=400",description:"Heavy-duty rugged case dual-layer TPU+PC.",featured:false,onSale:false},
+  {name:"Realme 11 Pro Crystal Cover",brand:"Realme",category:"covers",price:280,originalPrice:400,stock:90,badge:null,image:"https://images.unsplash.com/photo-1675355147911-e00d35d9ba79?w=400",description:"Transparent glitter crystal case.",featured:false,onSale:false},
+  {name:"Android Universal Armor Case",brand:"Generic",category:"covers",price:320,originalPrice:500,stock:55,badge:null,image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7rA-tYXaaKKD3DPwbb2AT95pRqouX2FTa_w&s",description:"Universal armor case with kickstand and belt clip.",featured:false,onSale:false},
+  {name:"Apple AirPods Pro 2nd Gen",brand:"Apple",category:"airpods",price:8500,originalPrice:12000,stock:15,badge:"NEW",image:"https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400",description:"Original Apple AirPods Pro with ANC and Transparency mode.",featured:true,onSale:false},
+  {name:"AirPods Wireless Charging Case",brand:"Apple",category:"airpods",price:5500,originalPrice:8000,stock:20,badge:"HOT",image:"https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=400",description:"Apple AirPods with wireless charging case.",featured:false,onSale:false},
+  {name:"Samsung Galaxy Buds Pro",brand:"Samsung",category:"airpods",price:7200,originalPrice:10500,stock:18,badge:null,image:"https://images.unsplash.com/photo-1610438235354-a6ae5528385c?w=400",description:"Galaxy Buds Pro with Intelligent ANC, IPX7.",featured:false,onSale:false},
+  {name:"JBL Tune 215BT Wireless Earphones",brand:"JBL",category:"earphones",price:2200,originalPrice:3500,stock:30,badge:"HOT",image:"https://plus.unsplash.com/premium_photo-1679513691474-73102089c117?w=400",description:"JBL Tune 215BT neckband with 15hr battery.",featured:false,onSale:true},
+  {name:"Sony WH-1000XM5 Headphones",brand:"Sony",category:"headphones",price:18000,originalPrice:25000,stock:8,badge:"NEW",image:"https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400",description:"Flagship noise-cancelling. 30hr battery, 8-mic ANC.",featured:true,onSale:false},
+  {name:"JBL Tune 760NC Headphones",brand:"JBL",category:"headphones",price:8500,originalPrice:12000,stock:12,badge:"HOT",image:"https://images.unsplash.com/photo-1545127398-14699f92334b?w=400",description:"ANC wireless headphones with 35hr battery.",featured:false,onSale:false},
+  {name:"Baseus 20000mAh 65W Power Bank",brand:"Baseus",category:"power-banks",price:3500,originalPrice:5000,stock:25,badge:"HOT",image:"https://images.unsplash.com/photo-1585995603413-eb35b5f4a50b?w=400",description:"20,000mAh 65W fast charge. Charges laptop+phone+tablet.",featured:true,onSale:false},
+  {name:"10000mAh Slim Power Bank",brand:"Romoss",category:"power-banks",price:1800,originalPrice:2500,stock:40,badge:null,image:"https://images.unsplash.com/photo-1706275399494-fb26bbc5da63?w=400",description:"Ultra-slim 10,000mAh, 22.5W fast charge, 190g.",featured:false,onSale:false},
+  {name:"30000mAh Heavy Duty Power Bank",brand:"Anker",category:"power-banks",price:4800,originalPrice:7000,stock:10,badge:"NEW",image:"https://images.unsplash.com/photo-1736516434209-51ece1006788?w=400",description:"30,000mAh with LED flashlight. Ideal for travel.",featured:false,onSale:false},
+  {name:"Wireless Charging Power Bank",brand:"Baseus",category:"power-banks",price:3200,originalPrice:4500,stock:22,badge:"HOT",image:"https://media.istockphoto.com/id/1409737619/photo/a-mobile-phone-being-charged-using-a-power-bank-is-on-the-table.webp?a=1&b=1&s=612x612&w=0&k=20&c=PlSb7DKnuFEQRkMV6TOAbXE2xtvTYISP1nAikMfj7x8=",description:"10,000mAh with Qi wireless charging pad.",featured:false,onSale:false},
+  {name:"65W GaN Fast Charger 3-Port",brand:"Baseus",category:"chargers",price:1800,originalPrice:2500,stock:35,badge:"HOT",image:"https://images.unsplash.com/photo-1731616103600-3fe7ccdc5a59?w=400",description:"GaN III, charges laptop+phone+tablet. Foldable plug.",featured:false,onSale:true},
+  {name:"Samsung 45W Super Fast Charger",brand:"Samsung",category:"chargers",price:2200,originalPrice:3000,stock:28,badge:"NEW",image:"https://images.unsplash.com/photo-1642983912974-05a554495d88?w=400",description:"Original Samsung 45W SFC 2.0. 0–50% in 20 min.",featured:false,onSale:false},
+  {name:"Apple 20W USB-C Fast Charger",brand:"Apple",category:"chargers",price:1500,originalPrice:2000,stock:45,badge:null,image:"https://images.unsplash.com/photo-1725304382197-663ae3864750?w=400",description:"Original Apple 20W USB-C. MFi certified.",featured:false,onSale:false},
+  {name:"3-in-1 Multi Fast Charging Cable",brand:"Baseus",category:"cables",price:550,originalPrice:900,stock:70,badge:"HOT",image:"https://images.unsplash.com/photo-1587037542794-6ca5f4772330?w=400",description:"USB-C + Lightning + Micro-USB. 100W, nylon braided.",featured:false,onSale:true},
+  {name:"120W Braided USB-C Cable 2m",brand:"Ugreen",category:"cables",price:599,originalPrice:999,stock:60,badge:null,image:"https://images.pexels.com/photos/163047/network-network-cables-connection-plug-163047.jpeg",description:"120W braided USB-C cable 2 metre.",featured:false,onSale:false},
+  {name:"iPhone 14 OLED Display Screen",brand:"Apple Grade",category:"spare-parts",price:12000,originalPrice:16000,stock:5,badge:"NEW",image:"https://images.unsplash.com/photo-1631281956016-3cdc1b2fe5fb?w=400",description:"Original-grade OLED screen for iPhone 14. Full repair kit included.",featured:false,onSale:false},
+  {name:"JBL Go 3 Portable BT Speaker",brand:"JBL",category:"speakers",price:5500,originalPrice:7500,stock:14,badge:"HOT",image:"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400",description:"IP67 waterproof, 5hr playtime, carabiner loop.",featured:false,onSale:false},
+  {name:"Screen Guard 9H Tempered Glass Pack",brand:"Premium",category:"screen-guards",price:350,originalPrice:600,stock:100,badge:"HOT",image:"https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400",description:"9H tempered glass, pack of 2. Anti-fingerprint.",featured:false,onSale:false},
+  {name:"Pro Wireless Earbuds X1",brand:"Audionic",category:"earphones",price:2499,originalPrice:4999,stock:20,badge:"-50% OFF",image:"https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400",description:"Pro wireless earbuds with deep bass.",featured:true,onSale:true}
+];
+
+let prods=[];
+let editId=null;
+let catChart1=null,catChart2=null,priceChart=null;
+
+const CNAMES={covers:'📱 Covers',earphones:'🎧 Earphones',airpods:'🎵 AirPods & Buds',chargers:'⚡ Chargers','screen-guards':'🛡️ Screen Guards','power-banks':'🔋 Power Banks',headphones:'🎶 Headphones',cables:'🔌 Cables','spare-parts':'🛠️ Spare Parts',speakers:'🔊 Speakers'};
+
+// ── Auth guard
+onAuthStateChanged(auth,user=>{
+  if(!user){window.location.href='admin-login.html';return;}
+  const n=user.email.split('@')[0];
+  document.getElementById('adm-name').textContent=n.charAt(0).toUpperCase()+n.slice(1);
+  loadProds();
+});
+
+async function loadProds(){
+  try{
+    const q2=query(collection(db,COLL),orderBy('createdAt','desc'));
+    onSnapshot(q2,snap=>{
+      if(snap.empty){seedDB();}
+      else{prods=snap.docs.map(d=>({id:d.id,...d.data()}));refresh();}
+    },()=>fallbackLoad());
+  }catch(e){fallbackLoad();}
+}
+
+async function fallbackLoad(){
+  const snap=await getDocs(collection(db,COLL));
+  if(snap.empty){seedDB();}
+  else{prods=snap.docs.map(d=>({id:d.id,...d.data()}));refresh();}
+}
+
+async function seedDB(){
+  showToast('⚙️ Loading products…');
+  for(const p of SEED){
+    await addDoc(collection(db,COLL),{...p,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()});
+  }
+  const snap=await getDocs(collection(db,COLL));
+  prods=snap.docs.map(d=>({id:d.id,...d.data()}));
+  refresh();
+  showToast('✅ 26 products loaded!','success');
+}
+
+function refresh(){
+  updateStats();
+  renderProds();
+  renderCharts();
+  renderCatGrid();
+  document.getElementById('pcount').textContent=prods.length;
+}
+
+function updateStats(){
+  document.getElementById('s-total').textContent=prods.length;
+  document.getElementById('s-feat').textContent=prods.filter(p=>p.featured).length;
+  document.getElementById('s-sale').textContent=prods.filter(p=>p.onSale).length;
+  document.getElementById('s-low').textContent=prods.filter(p=>p.stock<=5).length;
+}
+
+// ── Render products table
+window.renderProds=function(){
+  const s=(document.getElementById('ps')||{value:''}).value.toLowerCase();
+  const cat=document.getElementById('pcf').value;
+  const st=document.getElementById('psf').value;
+  const gs=(document.getElementById('gsearch')||{value:''}).value.toLowerCase();
+  const q=s||gs;
+  let list=prods.filter(p=>{
+    if(q&&!((p.name||'').toLowerCase().includes(q)||(p.brand||'').toLowerCase().includes(q)))return false;
+    if(cat&&p.category!==cat)return false;
+    if(st==='featured'&&!p.featured)return false;
+    if(st==='sale'&&!p.onSale)return false;
+    if(st==='low'&&p.stock>5)return false;
+    return true;
+  });
+  const tb=document.getElementById('ptbody');
+  const em=document.getElementById('pemp');
+  if(!list.length){tb.innerHTML='';em.style.display='block';return;}
+  em.style.display='none';
+  tb.innerHTML=list.map((p,i)=>`
+    <tr>
+      <td style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:12px">${i+1}</td>
+      <td><div style="display:flex;align-items:center;gap:11px">
+        <div class="ip">${p.image?`<img src="${p.image}" onerror="this.parentNode.textContent='📦'">`:'📦'}</div>
+        <div class="tn"><div class="tb">${p.brand||'—'}</div><div>${p.name}</div></div>
+      </div></td>
+      <td><span class="badge bp2">${CNAMES[p.category]||p.category}</span></td>
+      <td style="font-weight:800;color:var(--green)">Rs.${Number(p.price||0).toLocaleString()}</td>
+      <td style="color:var(--muted);text-decoration:line-through">${p.originalPrice?'Rs.'+Number(p.originalPrice).toLocaleString():'—'}</td>
+      <td><span class="badge ${(p.stock||0)>10?'bg':(p.stock||0)>0?'by':'br'}">${p.stock||0} pcs</span></td>
+      <td>${p.badge?`<span class="badge bo">${p.badge}</span>`:'<span style="color:var(--muted);font-size:12px">—</span>'}</td>
+      <td><div style="display:flex;gap:6px">
+        <button class="btn btn-g btn-sm" onclick="editProd('${p.id}')">✏️</button>
+        <button class="btn btn-d btn-sm" onclick="askDel('${p.id}','${(p.name||'').replace(/'/g,"\\'")}')">🗑️</button>
+      </div></td>
+    </tr>`).join('');
+};
+
+// ── Charts
+function renderCharts(){
+  const cats={};
+  prods.forEach(p=>{cats[p.category]=(cats[p.category]||0)+1;});
+  const clabels=Object.keys(cats).map(k=>CNAMES[k]||k);
+  const cvals=Object.values(cats);
+  const colors=['#7c3aed','#00d4ff','#10b981','#f97316','#ef4444','#f5c518','#a78bfa','#06b6d4','#84cc16','#ec4899','#8b5cf6'];
+
+  if(catChart1){catChart1.destroy();}
+  catChart1=new Chart(document.getElementById('catChart'),{
+    type:'doughnut',
+    data:{labels:clabels,datasets:[{data:cvals,backgroundColor:colors,borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'rgba(255,255,255,0.6)',font:{size:10},padding:10}}}}
+  });
+
+  // price ranges
+  const ranges=[0,0,0,0,0];
+  prods.forEach(p=>{
+    const pr=p.price||0;
+    if(pr<500)ranges[0]++;
+    else if(pr<2000)ranges[1]++;
+    else if(pr<5000)ranges[2]++;
+    else if(pr<10000)ranges[3]++;
+    else ranges[4]++;
+  });
+  if(priceChart){priceChart.destroy();}
+  priceChart=new Chart(document.getElementById('priceChart'),{
+    type:'bar',
+    data:{labels:['Under Rs.500','Rs.500–2k','Rs.2k–5k','Rs.5k–10k','Rs.10k+'],datasets:[{data:ranges,backgroundColor:['#a78bfa','#7c3aed','#00d4ff','#10b981','#f97316'],borderRadius:8,borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'rgba(255,255,255,0.4)',font:{size:10}},grid:{display:false}},y:{ticks:{color:'rgba(255,255,255,0.4)',stepSize:1},grid:{color:'rgba(255,255,255,0.05)'}}}}
+  });
+
+  // cat bars for dashboard
+  const el=document.getElementById('cat-bars');
+  const max=Math.max(...cvals,1);
+  el.innerHTML=Object.entries(cats).map(([k,v])=>`
+    <div style="margin-bottom:11px">
+      <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px">
+        <span>${CNAMES[k]||k}</span><span style="font-weight:700;color:var(--pl)">${v}</span>
+      </div>
+      <div class="pb"><div class="pf" style="width:${Math.round(v/max*100)}%"></div></div>
+    </div>`).join('');
+
+  // Categories panel chart
+  if(document.getElementById('catChart2')){
+    if(catChart2){catChart2.destroy();}
+    catChart2=new Chart(document.getElementById('catChart2'),{
+      type:'bar',
+      data:{labels:clabels,datasets:[{label:'Products',data:cvals,backgroundColor:colors,borderRadius:10,borderWidth:0}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'rgba(255,255,255,0.45)',font:{size:10.5}},grid:{display:false}},y:{ticks:{color:'rgba(255,255,255,0.4)',stepSize:1},grid:{color:'rgba(255,255,255,0.05)'}}}}
+    });
+  }
+}
+
+function renderCatGrid(){
+  const cats={};
+  prods.forEach(p=>{cats[p.category]=(cats[p.category]||0)+1;});
+  const g=document.getElementById('cat-grid');
+  const icons={covers:'📱',earphones:'🎧',airpods:'🎵',chargers:'⚡','screen-guards':'🛡️','power-banks':'🔋',headphones:'🎶',cables:'🔌','spare-parts':'🛠️',speakers:'🔊'};
+  g.innerHTML=Object.entries(CNAMES).map(([k,n])=>`
+    <div class="sc p" style="cursor:pointer" onclick="filtByCat('${k}')">
+      <div class="sc-ico">${icons[k]||'📦'}</div>
+      <div class="sc-val">${cats[k]||0}</div>
+      <div class="sc-lbl">${n}</div>
+    </div>`).join('');
+}
+
+window.filtByCat=function(cat){
+  goPanel('products',document.querySelectorAll('.ni')[1]);
+  document.getElementById('pcf').value=cat;
+  renderProds();
+};
+
+// ── Save product
+window.saveProduct=async function(){
+  const name=document.getElementById('fn').value.trim();
+  const brand=document.getElementById('fb2').value.trim();
+  const cat=document.getElementById('fcat').value;
+  const price=document.getElementById('fp').value;
+  const orig=document.getElementById('fo').value;
+  const stock=document.getElementById('fs').value;
+  const badge=document.getElementById('fbg').value;
+  const img=document.getElementById('fimg').value.trim();
+  const desc=document.getElementById('fd').value.trim();
+  const feat=document.getElementById('ffeat').checked;
+  const sal=document.getElementById('fsal').checked;
+  if(!name){showToast('❌ Product name required','error');return;}
+  if(!cat){showToast('❌ Select a category','error');return;}
+  if(!price){showToast('❌ Price required','error');return;}
+  if(stock===''){showToast('❌ Stock required','error');return;}
+  const data={name,brand,category:cat,price:Number(price),originalPrice:orig?Number(orig):null,stock:Number(stock),badge:badge||null,image:img,description:desc,featured:feat,onSale:sal,updatedAt:new Date().toISOString()};
+  try{
+    if(editId){
+      await updateDoc(doc(db,COLL,editId),data);
+      addAct(`✏️ Updated: ${name}`);showToast('✅ Product updated!','success');
+    }else{
+      data.createdAt=new Date().toISOString();
+      await addDoc(collection(db,COLL),data);
+      addAct(`➕ Added: ${name}`);showToast('✅ Product added!','success');
+    }
+    resetForm();
+    const snap=await getDocs(collection(db,COLL));
+    prods=snap.docs.map(d=>({id:d.id,...d.data()}));
+    refresh();
+    goPanel('products',document.querySelectorAll('.ni')[1]);
+  }catch(e){showToast('❌ Error: '+e.message,'error');}
+};
+
+// ── Edit
+window.editProd=function(id){
+  const p=prods.find(x=>x.id===id);if(!p)return;
+  editId=id;
+  document.getElementById('fn').value=p.name||'';
+  document.getElementById('fb2').value=p.brand||'';
+  document.getElementById('fcat').value=p.category||'';
+  document.getElementById('fp').value=p.price||'';
+  document.getElementById('fo').value=p.originalPrice||'';
+  document.getElementById('fs').value=p.stock||'';
+  document.getElementById('fbg').value=p.badge||'';
+  document.getElementById('fimg').value=p.image||'';
+  document.getElementById('fd').value=p.description||'';
+  document.getElementById('ffeat').checked=p.featured||false;
+  document.getElementById('fsal').checked=p.onSale||false;
+  document.getElementById('aTitle').textContent='✏️ Edit Product';
+  document.getElementById('sbtn').textContent='💾 Update Product';
+  goPanel('addprod',null);
+};
+
+// ── Delete
+window.askDel=function(id,name){
+  document.getElementById('delmsg').textContent=`Delete "${name}"? Cannot be undone.`;
+  document.getElementById('delmod').classList.add('open');
+  document.getElementById('delok').onclick=async()=>{
+    await deleteDoc(doc(db,COLL,id));
+    prods=prods.filter(p=>p.id!==id);
+    refresh();addAct('🗑️ Deleted product');
+    showToast('🗑️ Deleted','error');
+    document.getElementById('delmod').classList.remove('open');
+  };
+};
+
+// ── Clear all
+window.clearAll=async function(){
+  const snap=await getDocs(collection(db,COLL));
+  await Promise.all(snap.docs.map(d=>deleteDoc(doc(db,COLL,d.id))));
+  prods=[];refresh();addAct('⚠️ Cleared all products');
+  showToast('🗑️ All cleared','error');
+  document.getElementById('clrmod').classList.remove('open');
+};
+
+// ── Reset form
+window.resetForm=function(){
+  ['fn','fb2','fp','fo','fs','fimg','fd'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fcat').value='';
+  document.getElementById('fbg').value='';
+  document.getElementById('ffeat').checked=false;
+  document.getElementById('fsal').checked=false;
+  editId=null;
+  document.getElementById('aTitle').textContent='➕ Add New Product';
+  document.getElementById('sbtn').textContent='💾 Save Product';
+};
+
+// ── Export
+window.exportProds=function(){
+  const b=new Blob([JSON.stringify(prods,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='ahsan-mobiles-products.json';a.click();
+  showToast('📥 Exported!','success');
+};
+
+// ── Logout
+window.doLogout=async function(){await signOut(auth);window.location.href='admin-login.html';};
+
+// ── Activity log
+const log=[];
+function addAct(msg){
+  log.unshift({msg,time:'Just now'});if(log.length>6)log.pop();
+  const el=document.getElementById('act-list');
+  const cols=['var(--purple)','var(--green)','var(--cyan)','var(--red)','var(--yellow)'];
+  el.innerHTML=log.map((a,i)=>`<div class="act-item"><div class="act-dot" style="background:${cols[i%cols.length]}"></div><div class="act-txt">${a.msg}</div><div class="act-time">${a.time}</div></div>`).join('');
+}
+
+// ── Global search
+window.gSearch=function(v){
+  if(v){goPanel('products',document.querySelectorAll('.ni')[1]);renderProds();}
+};
+
+// ── Date
+document.getElementById('tbdate').textContent=new Date().toLocaleDateString('en-PK',{weekday:'short',month:'short',day:'numeric',year:'numeric'});
+</script>
+
+<script>
+function goPanel(name,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+  if(el)el.classList.add('active');
+  if(window.innerWidth<=768)document.getElementById('sb').classList.remove('open');
+  // Re-render charts if switching to categories
+  if(name==='categories'){setTimeout(()=>{if(typeof renderCharts==='function'){}},100);}
+}
+document.getElementById('delmod').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
+document.getElementById('clrmod').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
+
+function showToast(t,tp=''){
+  const e=document.getElementById('toast');e.textContent=t;e.className='toast show '+tp;
+  setTimeout(()=>e.className='toast',3200);
+}
+// expose globally so module can call it
+window.showToast=showToast;
+</script>
+</body>
+</html>
