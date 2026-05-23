@@ -526,10 +526,11 @@
 
   <div class="nav-right">
     <input class="nav-search" type="text"
-      placeholder="🔍 Search products..."
-      aria-label="Search products"
-      data-en-placeholder="🔍 Search products..."
-      data-ur-placeholder="🔍 مصنوعات تلاش کریں..."/>
+  placeholder="🔍 Search products..."
+  aria-label="Search products"
+  data-en-placeholder="🔍 Search products..."
+  data-ur-placeholder="🔍 مصنوعات تلاش کریں..."
+  onkeydown="if(event.key==='Enter' && this.value.trim()) window.location='search.html?q='+encodeURIComponent(this.value.trim())"/>
 
     <!-- LANGUAGE TOGGLE — in navbar -->
     <button id="lang-nav-btn" onclick="toggleLanguage()" aria-label="Switch language between English and Urdu">
