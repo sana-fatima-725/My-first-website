@@ -1161,22 +1161,13 @@ document.querySelectorAll('.wishlist-btn').forEach(btn => {
 });
 
 /* ═══════════════════════════════════════
-   NEWSLETTER
+   NEWSbxfsvbbhx san ann ybangLETTER
 ═══════════════════════════════════════ */
 function subscribeNewsletter() {
   const inp = document.querySelector('.newsletter-input');
   if (!inp.value.includes('@')) { inp.style.borderColor = '#ef4444'; return; }
   inp.value = '';
-  inp.placeholder = isUrdu ? '✓ سبسکرائب ہو گئے! شکریہ 🎉' : '✓ Subscribed! Thank you 🎉';
-  inp.style.borderColor = 'var(--accent)';
-}
-
-/* ═══════════════════════════════════════
-   BLOG
-═══════════════════════════════════════ */
-const blogData = {
-  tips: {
-    tag:'Tips', tagUr:'مشورے',
+  inp.placeholder = isUrdu ? '✓ سبسکرائب ہو گئے! شکریہ 🎉' : '✓ Subscribed! T 
     title:'Top 5 Mobile Covers to Protect Your Phone in 2026', titleUr:'2026 میں فون بچانے والے 5 بہترین موبائل کور',
     date:'May 18, 2026', dateUr:'18 مئی 2026',
     img:'https://images.unsplash.com/photo-1601593346740-925612772716?w=720&h=405&fit=crop',
@@ -1189,13 +1180,7 @@ const blogData = {
     date:'May 15, 2026', dateUr:'15 مئی 2026',
     img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=720&h=405&fit=crop',
     body:`<p>With so many fast chargers on the market, choosing the right one can be confusing. Here's everything you need to know.</p><h3>Check Your Phone's Maximum Wattage</h3><p>Most modern phones support 18W–65W fast charging. Your phone regulates the input automatically.</p><h3>USB-C PD vs Proprietary Fast Charge</h3><p>USB-C Power Delivery (PD) is universal. Brands like Baseus, Anker, and Ugreen make excellent PD chargers.</p><h3>GaN Technology</h3><p>GaN chargers are smaller, run cooler, and are more efficient. Worth the slightly higher price.</p><h3>Our Recommendation</h3><p>For most users: a 65W GaN USB-C PD charger. It charges laptops, phones, and tablets.</p>`,
-    bodyUr:`<p>صحیح فاسٹ چارجر کا انتخاب کرنا مشکل ہو سکتا ہے۔ یہ جاننا ضروری ہے۔</p><h3>واٹیج چیک کریں</h3><p>زیادہ تر جدید فون 18W–65W فاسٹ چارجنگ سپورٹ کرتے ہیں۔</p><h3>USB-C PD</h3><p>Baseus، Anker اور Ugreen بہترین PD چارجر بناتے ہیں۔</p><h3>GaN ٹیکنالوجی</h3><p>چھوٹے، ٹھنڈے اور زیادہ موثر۔</p><h3>ہماری سفارش</h3><p>65W GaN USB-C PD چارجر۔</p>`
-  },
-  review: {
-    tag:'Review', tagUr:'جائزہ',
-    title:'Best Wireless Earbuds Under Rs.3000 in Pakistan', titleUr:'پاکستان میں Rs.3000 سے کم بہترین وائرلیس ائربڈز',
-    date:'May 10, 2026', dateUr:'10 مئی 2026',
-    img:'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=720&h=405&fit=crop',
+    bodyUr:`<p>صحیح فاسٹ چارجرn=720&h=405&fit=crop',
     body:`<p>You don't need to spend Rs.10,000+ to get great wireless earbuds. Here are our top tested picks under Rs.3000.</p><h3>Audionic Airbuds Pro (Rs.2,499)</h3><p>Our top pick. Excellent ANC, 30hr total battery, comfortable fit.</p><h3>Haylou GT7 Neo (Rs.1,899)</h3><p>Great for gaming — ultra-low 55ms latency.</p><h3>QCY T13 ANC (Rs.2,799)</h3><p>Strong ANC for under Rs.3000. Call quality is very clear.</p><h3>Verdict</h3><p>For all-round use, go with the Audionic Airbuds Pro.</p>`,
     bodyUr:`<p>Rs.3000 سے کم بہترین وائرلیس ائربڈز۔</p><h3>Audionic Airbuds Pro (Rs.2,499)</h3><p>بہترین ANC، 30 گھنٹے کی بیٹری۔</p><h3>Haylou GT7 Neo (Rs.1,899)</h3><p>گیمنگ کے لیے بہترین — 55ms لیٹنسی۔</p><h3>QCY T13 ANC (Rs.2,799)</h3><p>مضبوط ANC۔</p><h3>نتیجہ</h3><p>Audionic Airbuds Pro بہترین آل راؤنڈ انتخاب ہے۔</p>`
   },

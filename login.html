@@ -9,29 +9,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <style>
 :root{
-  --nav-h:68px;
-  --accent:#00d4ff;
-  --accent2:#7c3aed;
-  --success:#10b981;
-  --danger:#ef4444;
-  --bg:#0a0a14;
-  --bg2:#0f0f1e;
-  --surface:#13131f;
-  --surface2:#1a1a2e;
-  --border:rgba(255,255,255,0.07);
-  --border2:rgba(0,212,255,0.18);
-  --text:#f0f0ff;
-  --text2:#c8c8e0;
-  --muted:rgba(255,255,255,0.45);
-  --input-bg:#1a1a2e;
-  --card-bg:#13131f;
-  --nav-bg:rgba(10,10,20,0.97);
+  --nav-h:68px;--accent:#00d4ff;--accent2:#7c3aed;
+  --success:#10b981;--danger:#ef4444;
+  --bg:#0a0a14;--bg2:#0f0f1e;--surface:#13131f;--surface2:#1a1a2e;
+  --border:rgba(255,255,255,0.07);--border2:rgba(0,212,255,0.18);
+  --text:#f0f0ff;--muted:rgba(255,255,255,0.45);
+  --input-bg:#1a1a2e;--card-bg:#13131f;--nav-bg:rgba(10,10,20,0.97);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav-bg);backdrop-filter:blur(24px);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid var(--border);}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
 .nav-logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
@@ -41,12 +28,8 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s;}
 .nav-links a:hover{color:var(--accent);background:rgba(0,212,255,0.08);}
 .nav-actions{display:flex;gap:8px;align-items:center;}
-.nav-search-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:16px;transition:all .2s;}
-.nav-search-btn:hover{border-color:var(--accent);color:var(--accent);}
-.btn-login{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px 18px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;}
-.btn-login:hover{border-color:var(--accent);color:var(--accent);}
 .btn-shop{background:linear-gradient(135deg,var(--accent),#0099bb);border:none;color:#000;padding:8px 20px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;}
-.btn-shop:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,212,255,0.4);}
+.btn-shop:hover{transform:translateY(-1px);}
 .hamburger{display:none;flex-direction:column;gap:5px;background:var(--surface2);border:1px solid var(--border);padding:8px;border-radius:8px;cursor:pointer;}
 .hamburger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
@@ -55,10 +38,10 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .mob-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(10,10,20,0.99);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px 24px;flex-direction:column;gap:4px;z-index:999;}
 .mob-menu.open{display:flex;}
 .mob-menu a{padding:12px 14px;border-radius:9px;font-size:.95rem;font-weight:500;color:var(--muted);transition:.2s;text-decoration:none;}
-.mob-menu a:hover{color:var(--accent);background:rgba(0,212,255,0.08);}
+.mob-menu a:hover{color:var(--accent);}
 
 /* LOGIN CARD */
-.login-page-wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - var(--nav-h));padding:30px 20px;}
+.login-page-wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - var(--nav-h));padding:30px 20px;margin-top:var(--nav-h);}
 .login-card{background:var(--card-bg);border-radius:26px;padding:44px;width:100%;max-width:440px;box-shadow:0 40px 100px rgba(0,0,0,0.5);border:1px solid var(--border);}
 .login-logo{text-align:center;margin-bottom:28px;}
 .login-logo-icon{width:58px;height:58px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:16px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:26px;}
@@ -67,12 +50,11 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .login-tabs{display:flex;background:var(--bg2);border-radius:11px;padding:4px;margin-bottom:26px;}
 .login-tab{flex:1;padding:9px;border:none;background:transparent;cursor:pointer;border-radius:9px;font-weight:600;font-size:13px;color:var(--muted);transition:.2s;font-family:'Plus Jakarta Sans',sans-serif;}
 .login-tab.active{background:var(--surface2);color:var(--accent);}
-
-/* FORM ELEMENTS */
 .form-group{margin-bottom:14px;}
 .form-label{display:block;font-size:12px;font-weight:700;margin-bottom:6px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
 .form-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:11px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:var(--input-bg);color:var(--text);transition:all .2s;}
 .form-input:focus{border-color:var(--accent);}
+.form-input::placeholder{color:var(--muted);}
 .forgot-link{text-align:right;margin-bottom:14px;}
 .forgot-link a{color:var(--accent);font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;}
 
@@ -97,9 +79,9 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .captcha-err{color:var(--danger);font-size:12px;margin-top:5px;display:none;font-weight:600;}
 .captcha-ok{color:var(--success);font-size:12px;margin-top:5px;display:none;font-weight:600;}
 
-/* BUTTONS */
 .btn-signin{width:100%;background:linear-gradient(135deg,var(--surface2),#1e1e3e);color:#fff;border:none;padding:14px;border-radius:11px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:12px;}
 .btn-signin:hover{background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;}
+.btn-signin:disabled{opacity:.6;cursor:not-allowed;}
 .login-divider{text-align:center;color:var(--muted);font-size:12px;position:relative;margin-bottom:12px;}
 .login-divider::before,.login-divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--border);}
 .login-divider::before{left:0;}
@@ -108,21 +90,16 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .btn-whatsapp:hover{background:#1ebe5d;transform:translateY(-1px);}
 .login-footer{text-align:center;color:var(--muted);font-size:13px;margin-top:20px;}
 .login-footer a{color:var(--accent);font-weight:600;cursor:pointer;text-decoration:none;}
-
-/* ERROR MSG */
 .error-msg{color:var(--danger);font-size:13px;font-weight:600;text-align:center;margin-bottom:10px;display:none;padding:10px;background:rgba(239,68,68,0.08);border-radius:9px;border:1px solid rgba(239,68,68,0.2);}
 .error-msg.show{display:block;}
-
-/* TOAST */
+.success-msg{color:var(--success);font-size:13px;font-weight:600;text-align:center;margin-bottom:10px;display:none;padding:10px;background:rgba(16,185,129,0.08);border-radius:9px;border:1px solid rgba(16,185,129,0.2);}
+.success-msg.show{display:block;}
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(18px);background:var(--surface2);color:#fff;padding:13px 22px;border-radius:11px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:3000;white-space:nowrap;border:1px solid var(--border);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .toast.success{background:var(--success);}
-
-/* WA FLOAT */
 .wa-float{position:fixed;right:20px;bottom:22px;z-index:999;}
 .wa-btn-fixed{width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;box-shadow:0 4px 20px rgba(37,211,102,0.4);cursor:pointer;transition:.3s;text-decoration:none;}
 .wa-btn-fixed:hover{transform:scale(1.1);}
-
 @media(max-width:768px){
   nav{padding:0 18px;}
   .nav-links{display:none;}
@@ -133,7 +110,6 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav>
   <a class="nav-logo" href="index.html">
     <div class="nav-logo-icon">📱</div>
@@ -148,9 +124,7 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
     <li><a href="help.html">Help</a></li>
   </ul>
   <div class="nav-actions">
-    <button class="nav-search-btn" onclick="window.location='search.html'">🔍</button>
-    <button class="btn-login" onclick="window.location='login.html'">Login</button>
-    <button class="btn-shop" onclick="window.location='shop.html'">Shop Now →</button>
+    <button class="btn-shop" onclick="window.location='products.html'">Shop Now →</button>
     <div class="hamburger" id="hamburger" onclick="toggleMobMenu()">
       <span></span><span></span><span></span>
     </div>
@@ -164,287 +138,342 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
   <a href="offers.html">🏷️ Offers</a>
   <a href="contact.html">📞 Contact</a>
   <a href="help.html">❓ Help</a>
-  <a href="shop.html">🛍️ Shop Now</a>
 </div>
 
-<div style="height:var(--nav-h);"></div>
-
-<!-- LOGIN PAGE -->
 <div class="login-page-wrap">
   <div class="login-card">
-
-    <!-- LOGO -->
     <div class="login-logo">
       <div class="login-logo-icon">📱</div>
       <div class="login-logo-name">Ahsan Mobiles.pk</div>
       <div class="login-logo-sub">Sign in to your account</div>
     </div>
 
-    <!-- TABS -->
     <div class="login-tabs">
       <button class="login-tab active" id="tab-login" onclick="switchTab('login')">Sign In</button>
       <button class="login-tab" id="tab-signup" onclick="switchTab('signup')">Create Account</button>
     </div>
 
-    <!-- ERROR MSG -->
-    <div class="error-msg" id="error-msg"></div>
+    <div class="error-msg"   id="error-msg"></div>
+    <div class="success-msg" id="success-msg"></div>
 
-    <!-- FORM AREA -->
-    <div id="form-area">
+    <!-- SIGN IN -->
+    <div id="signin-form">
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" id="login-email" placeholder="you@email.com" onkeydown="if(event.key==='Enter') doLogin()">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter') doLogin()">
+      </div>
+      <div class="forgot-link"><a onclick="doForgotPassword()">Forgot password?</a></div>
 
-      <!-- SIGN IN FORM -->
-      <div id="signin-form">
-        <div class="form-group">
-          <label class="form-label">Phone / Email</label>
-          <input class="form-input" type="text" id="login-user" placeholder="03001234567 or email">
+      <div class="captcha-wrap">
+        <span class="captcha-label">Security Verification</span>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+          <div class="captcha-display"><div class="captcha-chars" id="captcha-chars"></div></div>
+          <button class="captcha-refresh-btn" onclick="generateCaptcha()">🔄</button>
         </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <input class="form-input" type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter') doLogin()">
+        <div class="captcha-row">
+          <input class="captcha-input-field" type="text" id="captcha-input" placeholder="TYPE CODE" maxlength="5" autocomplete="off" oninput="this.value=this.value.toUpperCase()">
         </div>
-        <div class="forgot-link">
-          <a href="#">Forgot password?</a>
-        </div>
-
-        <!-- CAPTCHA -->
-        <div class="captcha-wrap">
-          <span class="captcha-label">Security Verification</span>
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
-            <div class="captcha-display" id="captcha-display">
-              <div class="captcha-chars" id="captcha-chars"></div>
-            </div>
-            <button class="captcha-refresh-btn" onclick="generateCaptcha()" title="Refresh CAPTCHA">🔄</button>
-          </div>
-          <div class="captcha-row">
-            <input class="captcha-input-field" type="text" id="captcha-input" placeholder="TYPE CODE" maxlength="5" autocomplete="off" oninput="this.value=this.value.toUpperCase()">
-          </div>
-          <div class="captcha-hint">Type the 5 characters shown above</div>
-          <div class="captcha-err" id="captcha-err">❌ Incorrect code — please try again</div>
-          <div class="captcha-ok" id="captcha-ok">✅ Verified!</div>
-        </div>
-
-        <button class="btn-signin" onclick="doLogin()">
-          <i class="fas fa-sign-in-alt"></i> Sign In
-        </button>
-        <div class="login-divider">or</div>
-        <button class="btn-whatsapp" onclick="waLogin()">
-          <i class="fab fa-whatsapp"></i> Continue with WhatsApp
-        </button>
+        <div class="captcha-hint">Type the 5 characters shown above</div>
+        <div class="captcha-err" id="captcha-err">❌ Incorrect — try again</div>
+        <div class="captcha-ok"  id="captcha-ok">✅ Verified!</div>
       </div>
 
-      <!-- SIGNUP FORM -->
-      <div id="signup-form" style="display:none;">
-        <div class="form-group">
-          <label class="form-label">Full Name</label>
-          <input class="form-input" type="text" id="signup-name" placeholder="Ahmed Raza">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Phone Number</label>
-          <input class="form-input" type="text" id="signup-phone" placeholder="03001234567">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Email (optional)</label>
-          <input class="form-input" type="email" id="signup-email" placeholder="you@email.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <input class="form-input" type="password" id="signup-pass" placeholder="Create a strong password">
-        </div>
+      <button class="btn-signin" id="btn-login" onclick="doLogin()">
+        <i class="fas fa-sign-in-alt"></i> Sign In
+      </button>
+      <div class="login-divider">or</div>
+      <button class="btn-whatsapp" onclick="waLogin()">
+        <i class="fab fa-whatsapp"></i> Continue with WhatsApp
+      </button>
+    </div>
 
-        <!-- CAPTCHA FOR SIGNUP -->
-        <div class="captcha-wrap">
-          <span class="captcha-label">Security Verification</span>
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
-            <div class="captcha-display" id="captcha-display-2">
-              <div class="captcha-chars" id="captcha-chars-2"></div>
-            </div>
-            <button class="captcha-refresh-btn" onclick="generateCaptcha2()" title="Refresh">🔄</button>
-          </div>
-          <div class="captcha-row">
-            <input class="captcha-input-field" type="text" id="captcha-input-2" placeholder="TYPE CODE" maxlength="5" autocomplete="off" oninput="this.value=this.value.toUpperCase()">
-          </div>
-          <div class="captcha-hint">Type the 5 characters shown above</div>
-          <div class="captcha-err" id="captcha-err-2">❌ Incorrect code — please try again</div>
-          <div class="captcha-ok" id="captcha-ok-2">✅ Verified!</div>
-        </div>
-
-        <button class="btn-signin" onclick="doSignup()">
-          <i class="fas fa-user-plus"></i> Create Account
-        </button>
-        <div class="login-divider">or</div>
-        <button class="btn-whatsapp" onclick="waLogin()">
-          <i class="fab fa-whatsapp"></i> Continue with WhatsApp
-        </button>
+    <!-- SIGN UP -->
+    <div id="signup-form" style="display:none;">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" type="text" id="signup-name" placeholder="Ahmed Raza">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" id="signup-email" placeholder="you@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password (min 6 characters)</label>
+        <input class="form-input" type="password" id="signup-pass" placeholder="Create a strong password" onkeydown="if(event.key==='Enter') doSignup()">
       </div>
 
+      <div class="captcha-wrap">
+        <span class="captcha-label">Security Verification</span>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+          <div class="captcha-display"><div class="captcha-chars" id="captcha-chars-2"></div></div>
+          <button class="captcha-refresh-btn" onclick="generateCaptcha2()">🔄</button>
+        </div>
+        <div class="captcha-row">
+          <input class="captcha-input-field" type="text" id="captcha-input-2" placeholder="TYPE CODE" maxlength="5" autocomplete="off" oninput="this.value=this.value.toUpperCase()">
+        </div>
+        <div class="captcha-hint">Type the 5 characters shown above</div>
+        <div class="captcha-err" id="captcha-err-2">❌ Incorrect — try again</div>
+        <div class="captcha-ok"  id="captcha-ok-2">✅ Verified!</div>
+      </div>
+
+      <button class="btn-signin" id="btn-signup" onclick="doSignup()">
+        <i class="fas fa-user-plus"></i> Create Account
+      </button>
+      <div class="login-divider">or</div>
+      <button class="btn-whatsapp" onclick="waLogin()">
+        <i class="fab fa-whatsapp"></i> Continue with WhatsApp
+      </button>
     </div>
 
     <div class="login-footer" id="login-footer">
       New here? <a onclick="switchTab('signup')">Create an account</a>
     </div>
-
   </div>
 </div>
 
-<!-- WHATSAPP FLOAT -->
 <div class="wa-float">
-  <a class="wa-btn-fixed" href="https://wa.me/923054603311?text=Assalam%20o%20Alaikum!%20I%20need%20help." target="_blank">
+  <a class="wa-btn-fixed" href="https://wa.me/923054603311" target="_blank">
     <i class="fab fa-whatsapp"></i>
   </a>
 </div>
-
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp }   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
+         updateProfile, onAuthStateChanged, sendPasswordResetEmail }
+                           from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, serverTimestamp }
+                           from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBYw7O8vjPGUc8MzfjUiMCNgCnxh-fQDbs",
+  authDomain: "ahsan-mobiles.firebaseapp.com",
+  projectId: "ahsan-mobiles",
+  storageBucket: "ahsan-mobiles.firebasestorage.app",
+  messagingSenderId: "527845362077",
+  appId: "1:527845362077:web:aa19595d090c08f648c774"
+};
+
+const ADMIN_EMAIL = "sana180fatima@gmail.com";
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+
+// Agar pehle se logged in hai
+onAuthStateChanged(auth, user => {
+  if (user) {
+    if (user.email === ADMIN_EMAIL) {
+      window.location.href = 'admin.html';
+    } else {
+      window.location.href = 'index.html';
+    }
+  }
+});
+
+// Save user to Firestore
+async function saveUser(user, name = '') {
+  const ref  = doc(db, 'users', user.uid);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) {
+    await setDoc(ref, {
+      uid:       user.uid,
+      name:      name || user.displayName || '',
+      email:     user.email,
+      role:      user.email === ADMIN_EMAIL ? 'admin' : 'customer',
+      createdAt: serverTimestamp()
+    });
+  }
+}
+
+// ── LOGIN ──
+window.doLogin = async function() {
+  const email = document.getElementById('login-email').value.trim();
+  const pass  = document.getElementById('login-pass').value;
+  if (!email || !pass) { showError('Please fill in all fields.'); return; }
+  if (!checkCaptcha())  return;
+
+  const btn = document.getElementById('btn-login');
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Signing in...';
+  hideMessages();
+
+  try {
+    const cred = await signInWithEmailAndPassword(auth, email, pass);
+    await saveUser(cred.user);
+    showSuccess('✅ Signed in! Redirecting...');
+    setTimeout(() => {
+      if (cred.user.email === ADMIN_EMAIL) window.location.href = 'admin.html';
+      else window.location.href = 'index.html';
+    }, 1000);
+  } catch(e) {
+    showError(friendlyError(e.code));
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+    generateCaptcha();
+  }
+};
+
+// ── SIGNUP ──
+window.doSignup = async function() {
+  const name  = document.getElementById('signup-name').value.trim();
+  const email = document.getElementById('signup-email').value.trim();
+  const pass  = document.getElementById('signup-pass').value;
+  if (!name || !email || !pass) { showError('Please fill in all fields.'); return; }
+  if (pass.length < 6)          { showError('Password must be at least 6 characters.'); return; }
+  if (!checkCaptcha2())          return;
+
+  const btn = document.getElementById('btn-signup');
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Creating account...';
+  hideMessages();
+
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    await updateProfile(cred.user, { displayName: name });
+    await saveUser(cred.user, name);
+    showSuccess('✅ Account created! Welcome!');
+    setTimeout(() => window.location.href = 'index.html', 1200);
+  } catch(e) {
+    showError(friendlyError(e.code));
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+    generateCaptcha2();
+  }
+};
+
+// ── FORGOT PASSWORD ──
+window.doForgotPassword = async function() {
+  const email = document.getElementById('login-email').value.trim();
+  if (!email) { showError('Enter your email first, then click Forgot Password.'); return; }
+  try {
+    await sendPasswordResetEmail(auth, email);
+    showSuccess('✅ Password reset email sent! Check your inbox.');
+  } catch(e) {
+    showError(friendlyError(e.code));
+  }
+};
+
+function friendlyError(code) {
+  const map = {
+    'auth/user-not-found':       '❌ No account found with this email.',
+    'auth/wrong-password':       '❌ Wrong password.',
+    'auth/invalid-credential':   '❌ Wrong email or password.',
+    'auth/email-already-in-use': '❌ This email is already registered.',
+    'auth/weak-password':        '❌ Password too weak (min 6 chars).',
+    'auth/invalid-email':        '❌ Invalid email address.',
+    'auth/too-many-requests':    '⏳ Too many attempts. Try later.',
+  };
+  return map[code] || '❌ Something went wrong. Try again.';
+}
+
+// ── UI helpers (exposed to non-module script) ──
+window._firebaseDoForgot = window.doForgotPassword;
+</script>
+
+<!-- NON-MODULE: CAPTCHA + TABS + UTILS -->
 <script>
-// ===== CAPTCHA =====
-let captchaCode = '';
+let captchaCode  = '';
 let captchaCode2 = '';
 const CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
 function generateCaptcha() {
   captchaCode = '';
   for(let i = 0; i < 5; i++) captchaCode += CHARS[Math.floor(Math.random() * CHARS.length)];
-  const container = document.getElementById('captcha-chars');
-  container.innerHTML = '';
-  for(let i = 0; i < captchaCode.length; i++) {
-    const span = document.createElement('span');
-    span.className = 'captcha-char';
-    span.textContent = captchaCode[i];
-    // random slight rotation for visual variety
-    const rotations = [-8,5,-4,7,-5,3,-6,4];
-    const yOffsets = [2,-3,3,-2,2,-3,1,-2];
-    span.style.transform = `rotate(${rotations[i%rotations.length]}deg) translateY(${yOffsets[i%yOffsets.length]}px)`;
-    container.appendChild(span);
-  }
+  const c = document.getElementById('captcha-chars');
+  c.innerHTML = '';
+  const rotations = [-8,5,-4,7,-5];
+  const yOffsets  = [2,-3,3,-2,2];
+  captchaCode.split('').forEach((ch, i) => {
+    const s = document.createElement('span');
+    s.className   = 'captcha-char';
+    s.textContent = ch;
+    s.style.transform = `rotate(${rotations[i]}deg) translateY(${yOffsets[i]}px)`;
+    c.appendChild(s);
+  });
   document.getElementById('captcha-input').value = '';
   document.getElementById('captcha-err').style.display = 'none';
-  document.getElementById('captcha-ok').style.display = 'none';
+  document.getElementById('captcha-ok').style.display  = 'none';
 }
 
 function generateCaptcha2() {
   captchaCode2 = '';
   for(let i = 0; i < 5; i++) captchaCode2 += CHARS[Math.floor(Math.random() * CHARS.length)];
-  const container = document.getElementById('captcha-chars-2');
-  container.innerHTML = '';
-  for(let i = 0; i < captchaCode2.length; i++) {
-    const span = document.createElement('span');
-    span.className = 'captcha-char';
-    span.textContent = captchaCode2[i];
-    container.appendChild(span);
-  }
+  const c = document.getElementById('captcha-chars-2');
+  c.innerHTML = '';
+  captchaCode2.split('').forEach(ch => {
+    const s = document.createElement('span');
+    s.className   = 'captcha-char';
+    s.textContent = ch;
+    c.appendChild(s);
+  });
   document.getElementById('captcha-input-2').value = '';
   document.getElementById('captcha-err-2').style.display = 'none';
-  document.getElementById('captcha-ok-2').style.display = 'none';
+  document.getElementById('captcha-ok-2').style.display  = 'none';
 }
 
 function checkCaptcha() {
-  const input = document.getElementById('captcha-input').value.trim().toUpperCase();
-  const err = document.getElementById('captcha-err');
-  const ok = document.getElementById('captcha-ok');
-  if(input === captchaCode) {
-    err.style.display = 'none';
-    ok.style.display = 'block';
+  const val = document.getElementById('captcha-input').value.trim().toUpperCase();
+  if (val === captchaCode) {
+    document.getElementById('captcha-err').style.display = 'none';
+    document.getElementById('captcha-ok').style.display  = 'block';
     return true;
-  } else {
-    ok.style.display = 'none';
-    err.style.display = 'block';
-    generateCaptcha();
-    return false;
   }
+  document.getElementById('captcha-ok').style.display  = 'none';
+  document.getElementById('captcha-err').style.display = 'block';
+  generateCaptcha();
+  return false;
 }
 
 function checkCaptcha2() {
-  const input = document.getElementById('captcha-input-2').value.trim().toUpperCase();
-  const err = document.getElementById('captcha-err-2');
-  const ok = document.getElementById('captcha-ok-2');
-  if(input === captchaCode2) {
-    err.style.display = 'none';
-    ok.style.display = 'block';
+  const val = document.getElementById('captcha-input-2').value.trim().toUpperCase();
+  if (val === captchaCode2) {
+    document.getElementById('captcha-err-2').style.display = 'none';
+    document.getElementById('captcha-ok-2').style.display  = 'block';
     return true;
-  } else {
-    ok.style.display = 'none';
-    err.style.display = 'block';
-    generateCaptcha2();
-    return false;
   }
+  document.getElementById('captcha-ok-2').style.display  = 'none';
+  document.getElementById('captcha-err-2').style.display = 'block';
+  generateCaptcha2();
+  return false;
 }
 
-// ===== TABS =====
 function switchTab(tab) {
   const isLogin = tab === 'login';
-  document.getElementById('tab-login').classList.toggle('active', isLogin);
+  document.getElementById('tab-login').classList.toggle('active',  isLogin);
   document.getElementById('tab-signup').classList.toggle('active', !isLogin);
-  document.getElementById('signin-form').style.display = isLogin ? 'block' : 'none';
-  document.getElementById('signup-form').style.display = isLogin ? 'none' : 'block';
+  document.getElementById('signin-form').style.display  = isLogin ? 'block' : 'none';
+  document.getElementById('signup-form').style.display  = isLogin ? 'none'  : 'block';
   document.getElementById('login-footer').innerHTML = isLogin
     ? 'New here? <a onclick="switchTab(\'signup\')">Create an account</a>'
     : 'Already have an account? <a onclick="switchTab(\'login\')">Sign in</a>';
-  hideError();
-  if(!isLogin) generateCaptcha2();
+  hideMessages();
+  if (!isLogin) generateCaptcha2();
 }
 
-// ===== ERROR =====
-function showError(msg) {
-  const el = document.getElementById('error-msg');
-  el.textContent = msg;
-  el.classList.add('show');
-}
-function hideError() {
+function showError(msg)   { const e = document.getElementById('error-msg');   e.textContent = msg; e.classList.add('show'); }
+function showSuccess(msg) { const e = document.getElementById('success-msg'); e.textContent = msg; e.classList.add('show'); }
+function hideMessages()   {
   document.getElementById('error-msg').classList.remove('show');
+  document.getElementById('success-msg').classList.remove('show');
 }
 
-// ===== LOGIN =====
-function doLogin() {
-  hideError();
-  const user = document.getElementById('login-user').value.trim();
-  const pass = document.getElementById('login-pass').value.trim();
-  if(!user) { showError('Please enter your phone or email'); return; }
-  if(!pass) { showError('Please enter your password'); return; }
-  if(!checkCaptcha()) return;
-  // Firebase authentication hogi baad mein
-  showToast('✅ Logged in successfully!', 'success');
-  setTimeout(() => window.location.href = 'index.html', 1200);
-}
-
-// ===== SIGNUP =====
-function doSignup() {
-  hideError();
-  const name = document.getElementById('signup-name').value.trim();
-  const phone = document.getElementById('signup-phone').value.trim();
-  const pass = document.getElementById('signup-pass').value.trim();
-  if(!name) { showError('Please enter your full name'); return; }
-  if(!phone || phone.length < 10) { showError('Please enter a valid phone number'); return; }
-  if(!pass || pass.length < 6) { showError('Password must be at least 6 characters'); return; }
-  if(!checkCaptcha2()) return;
-  showToast('✅ Account created! Welcome!', 'success');
-  setTimeout(() => switchTab('login'), 1500);
-}
-
-// ===== WHATSAPP LOGIN =====
 function waLogin() {
-  window.open('https://wa.me/923054603311?text=Assalam%20o%20Alaikum!%20I%20want%20to%20login%20to%20my%20account.', '_blank');
+  window.open('https://wa.me/923054603311?text=Assalam%20o%20Alaikum!%20I%20want%20to%20login.', '_blank');
 }
 
-// ===== TOAST =====
-function showToast(msg, type='') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show ' + type;
-  setTimeout(() => { t.className = 'toast'; }, 3000);
-}
-
-// ===== NAV =====
 function toggleMobMenu() {
   document.getElementById('hamburger').classList.toggle('open');
   document.getElementById('mobMenu').classList.toggle('open');
 }
 
-// ===== INIT =====
-document.addEventListener('DOMContentLoaded', function() {
-  generateCaptcha();
-});
+document.addEventListener('DOMContentLoaded', generateCaptcha);
 </script>
-
 </body>
 </html>
