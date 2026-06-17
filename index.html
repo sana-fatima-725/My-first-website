@@ -8,30 +8,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/opendyslexic" />
-
   <style>
-    /* ══════════════════════════════════════
-       CSS VARIABLES
-    ══════════════════════════════════════ */
     :root {
-      --accent:    #00d4ff;
-      --accent2:   #7c3aed;
-      --accent-dk: #0099bb;
-      --bg:        #0a0a14;
-      --bg2:       #0f0f1e;
-      --bg3:       #141428;
-      --surface:   #13131f;
-      --surface2:  #1a1a2e;
-      --border:    rgba(255,255,255,0.07);
-      --border2:   rgba(0,212,255,0.18);
-      --text:      #f0f0ff;
-      --text2:     #c8c8e0;
-      --muted:     rgba(255,255,255,0.45);
-      --nav-h:     68px;
-      --radius:    16px;
+      --accent:#00d4ff; --accent2:#7c3aed; --accent-dk:#0099bb;
+      --bg:#0a0a14; --bg2:#0f0f1e; --bg3:#141428;
+      --surface:#13131f; --surface2:#1a1a2e;
+      --border:rgba(255,255,255,0.07); --border2:rgba(0,212,255,0.18);
+      --text:#f0f0ff; --text2:#c8c8e0; --muted:rgba(255,255,255,0.45);
+      --nav-h:68px; --radius:16px;
     }
 
-    /* ── HIGH CONTRAST ── */
+    /* HIGH CONTRAST */
     body.high-contrast {
       --bg:#000!important; --bg2:#000!important; --bg3:#000!important;
       --surface:#111!important; --surface2:#111!important;
@@ -44,248 +31,169 @@
     body.high-contrast footer,
     body.high-contrast .offers-banner { background:#000!important; border-color:#ffff00!important; }
 
-    /* ── PAUSE ANIMATIONS ── */
+    /* PAUSE ANIMATIONS */
     body.pause-animations *,
     body.pause-animations *::before,
-    body.pause-animations *::after {
-      animation-play-state:paused!important; transition:none!important;
-    }
+    body.pause-animations *::after { animation-play-state:paused!important; transition:none!important; }
 
-    /* ── DYSLEXIA FONT ── */
+    /* DYSLEXIA FONT */
     body.dyslexia-font, body.dyslexia-font * {
       font-family:'OpenDyslexic',sans-serif!important;
       letter-spacing:0.05em!important; word-spacing:0.15em!important; line-height:1.9!important;
     }
 
-    /* ── URDU MODE ── */
-    body.urdu-mode { direction: rtl; }
-    body.urdu-mode p,
-    body.urdu-mode h1, body.urdu-mode h2, body.urdu-mode h3,
-    body.urdu-mode span, body.urdu-mode div,
-    body.urdu-mode a, body.urdu-mode button,
-    body.urdu-mode li {
-      direction: rtl;
-      font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif !important;
+    /* URDU MODE */
+    body.urdu-mode { direction:rtl; }
+    body.urdu-mode p, body.urdu-mode h1, body.urdu-mode h2, body.urdu-mode h3,
+    body.urdu-mode span, body.urdu-mode div, body.urdu-mode a,
+    body.urdu-mode button, body.urdu-mode li {
+      direction:rtl; font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',serif!important;
     }
-    body.urdu-mode .section-title,
-    body.urdu-mode .slide-title {
-      font-family: 'Noto Nastaliq Urdu', serif !important;
-      line-height: 1.6 !important;
+    body.urdu-mode .section-title, body.urdu-mode .slide-title {
+      font-family:'Noto Nastaliq Urdu',serif!important; line-height:1.6!important;
     }
-    body.urdu-mode .ticker-track { animation-direction: reverse; }
-    body.urdu-mode .slide-content {
-      padding: 0 80px 0 0 !important;
-      text-align: right;
-    }
-    body.urdu-mode .slide-feature-pills { justify-content: flex-end; }
-    body.urdu-mode .slide-btns { justify-content: flex-end; }
+    body.urdu-mode .ticker-track { animation-direction:reverse; }
+    body.urdu-mode .slide-content { padding:0 80px 0 0!important; text-align:right; }
+    body.urdu-mode .slide-feature-pills { justify-content:flex-end; }
+    body.urdu-mode .slide-btns { justify-content:flex-end; }
     body.urdu-mode .footer-main,
     body.urdu-mode .footer-cats-grid,
-    body.urdu-mode .footer-bottom { direction: rtl; }
-    body.urdu-mode .nav-links { flex-direction: row-reverse; }
-    body.urdu-mode .nav-right { flex-direction: row-reverse; }
-    body.urdu-mode .section-row { flex-direction: row-reverse; }
-    body.urdu-mode .brand-story-text p { text-align: right; }
-    body.urdu-mode .reviewer { flex-direction: row-reverse; }
-    body.urdu-mode .footer-contact-item { flex-direction: row-reverse; }
-    @media(max-width:900px){
-      body.urdu-mode .slide-content { padding: 0 24px 0 0 !important; }
-    }
+    body.urdu-mode .footer-bottom { direction:rtl; }
+    body.urdu-mode .nav-links { flex-direction:row-reverse; }
+    body.urdu-mode .nav-right { flex-direction:row-reverse; }
+    body.urdu-mode .section-row { flex-direction:row-reverse; }
+    body.urdu-mode .brand-story-text p { text-align:right; }
+    body.urdu-mode .reviewer { flex-direction:row-reverse; }
+    body.urdu-mode .footer-contact-item { flex-direction:row-reverse; }
+    @media(max-width:900px){ body.urdu-mode .slide-content { padding:0 24px 0 0!important; } }
 
-    /* ══════════════════════════════════════
-       ACCESSIBILITY PANEL (in navbar)
-    ══════════════════════════════════════ */
-    .a11y-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    /* The hamburger-style icon button in nav */
+    /* ACCESSIBILITY PANEL */
+    .a11y-wrapper { position:relative; display:flex; align-items:center; }
     #a11y-toggle-btn {
-      width: 38px; height: 38px;
-      background: var(--surface2);
-      border: 1px solid var(--border2);
-      border-radius: 9px;
-      color: var(--accent);
-      font-size: 17px;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, box-shadow 0.2s;
-      position: relative;
+      width:38px; height:38px; background:var(--surface2);
+      border:1px solid var(--border2); border-radius:9px;
+      color:var(--accent); font-size:17px; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:background 0.2s,box-shadow 0.2s; position:relative;
     }
-    #a11y-toggle-btn:hover,
-    #a11y-toggle-btn.open {
-      background: rgba(0,212,255,0.15);
-      box-shadow: 0 0 0 2px rgba(0,212,255,0.3);
+    #a11y-toggle-btn:hover, #a11y-toggle-btn.open {
+      background:rgba(0,212,255,0.15); box-shadow:0 0 0 2px rgba(0,212,255,0.3);
     }
-    #a11y-toggle-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-    /* The dropdown panel */
+    #a11y-toggle-btn:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
     #a11y-panel {
-      display: none;
-      position: absolute;
-      top: calc(100% + 12px);
-      right: 0;
-      width: 260px;
-      background: #0f0f1e;
-      border: 1.5px solid rgba(0,212,255,0.25);
-      border-radius: 14px;
-      padding: 16px;
-      z-index: 9999;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.6);
-      flex-direction: column;
-      gap: 6px;
+      display:none; position:absolute; top:calc(100% + 12px); right:0;
+      width:260px; background:#0f0f1e; border:1.5px solid rgba(0,212,255,0.25);
+      border-radius:14px; padding:16px; z-index:9999;
+      box-shadow:0 16px 48px rgba(0,0,0,0.6); flex-direction:column; gap:6px;
     }
-    #a11y-panel.open { display: flex; }
+    #a11y-panel.open { display:flex; }
     .a11y-panel-title {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--muted);
-      margin-bottom: 6px; padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
+      font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+      color:var(--muted); margin-bottom:6px; padding-bottom:8px; border-bottom:1px solid var(--border);
     }
     .a11y-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 10px; border-radius: 8px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid transparent;
-      transition: all 0.15s;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:8px 10px; border-radius:8px;
+      background:rgba(255,255,255,0.03); border:1px solid transparent; transition:all 0.15s;
     }
-    .a11y-row:hover { border-color: var(--border2); background: rgba(0,212,255,0.05); }
-    .a11y-row-label {
-      font-size: 13px; font-weight: 600; color: var(--text2);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .a11y-row-label .a11y-icon { font-size: 16px; width: 22px; text-align: center; }
-
-    /* Font size row special */
-    .a11y-font-controls {
-      display: flex; align-items: center; gap: 6px;
-    }
+    .a11y-row:hover { border-color:var(--border2); background:rgba(0,212,255,0.05); }
+    .a11y-row-label { font-size:13px; font-weight:600; color:var(--text2); display:flex; align-items:center; gap:8px; }
+    .a11y-row-label .a11y-icon { font-size:16px; width:22px; text-align:center; }
+    .a11y-font-controls { display:flex; align-items:center; gap:6px; }
     .a11y-font-btn {
-      width: 30px; height: 30px;
-      background: var(--surface2); border: 1px solid var(--border2);
-      border-radius: 7px; color: var(--accent);
-      font-size: 13px; font-weight: 700;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: all 0.15s; font-family: 'Plus Jakarta Sans', sans-serif;
+      width:30px; height:30px; background:var(--surface2); border:1px solid var(--border2);
+      border-radius:7px; color:var(--accent); font-size:13px; font-weight:700;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:all 0.15s; font-family:'Plus Jakarta Sans',sans-serif;
     }
-    .a11y-font-btn:hover { background: var(--accent); color: #000; }
-    #font-size-val {
-      font-size: 11px; font-weight: 700; color: var(--accent);
-      min-width: 34px; text-align: center;
-    }
-
-    /* Toggle switch */
-    .a11y-toggle {
-      position: relative; width: 38px; height: 20px; flex-shrink: 0;
-    }
-    .a11y-toggle input { opacity: 0; width: 0; height: 0; }
+    .a11y-font-btn:hover { background:var(--accent); color:#000; }
+    #font-size-val { font-size:11px; font-weight:700; color:var(--accent); min-width:34px; text-align:center; }
+    .a11y-toggle { position:relative; width:38px; height:20px; flex-shrink:0; }
+    .a11y-toggle input { opacity:0; width:0; height:0; }
     .a11y-toggle-track {
-      position: absolute; inset: 0;
-      background: var(--surface2); border: 1px solid var(--border2);
-      border-radius: 20px; cursor: pointer; transition: background 0.2s;
+      position:absolute; inset:0; background:var(--surface2); border:1px solid var(--border2);
+      border-radius:20px; cursor:pointer; transition:background 0.2s;
     }
     .a11y-toggle-track::after {
-      content: ''; position: absolute;
-      width: 14px; height: 14px; border-radius: 50%;
-      background: var(--muted); top: 2px; left: 2px;
-      transition: transform 0.2s, background 0.2s;
+      content:''; position:absolute; width:14px; height:14px; border-radius:50%;
+      background:var(--muted); top:2px; left:2px; transition:transform 0.2s,background 0.2s;
     }
-    .a11y-toggle input:checked + .a11y-toggle-track {
-      background: rgba(0,212,255,0.25); border-color: var(--accent);
-    }
-    .a11y-toggle input:checked + .a11y-toggle-track::after {
-      transform: translateX(18px); background: var(--accent);
-    }
+    .a11y-toggle input:checked + .a11y-toggle-track { background:rgba(0,212,255,0.25); border-color:var(--accent); }
+    .a11y-toggle input:checked + .a11y-toggle-track::after { transform:translateX(18px); background:var(--accent); }
 
-    /* Lang button in navbar */
+    /* LANG BUTTON */
     #lang-nav-btn {
-      display: flex; align-items: center; gap: 6px;
-      background: linear-gradient(135deg, var(--accent2), var(--accent-dk));
-      border: none; border-radius: 9px;
-      color: white; font-size: 12px; font-weight: 700;
-      padding: 0 14px; height: 38px; cursor: pointer;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      transition: all 0.2s; white-space: nowrap;
+      display:flex; align-items:center; gap:6px;
+      background:linear-gradient(135deg,var(--accent2),var(--accent-dk));
+      border:none; border-radius:9px; color:white; font-size:12px; font-weight:700;
+      padding:0 14px; height:38px; cursor:pointer;
+      font-family:'Plus Jakarta Sans',sans-serif; transition:all 0.2s; white-space:nowrap;
     }
-    #lang-nav-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(124,58,237,0.4); }
-    #lang-nav-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    #lang-nav-btn:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(124,58,237,0.4); }
+    #lang-nav-btn:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
 
-    /* ══════════════════════════════════════
-       KEYBOARD FOCUS
-    ══════════════════════════════════════ */
-    a:focus-visible, button:focus-visible,
-    input:focus-visible, [tabindex]:focus-visible {
-      outline: 2px solid var(--accent)!important;
-      outline-offset: 3px!important; border-radius: 4px;
+    /* KEYBOARD FOCUS */
+    a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+      outline:2px solid var(--accent)!important; outline-offset:3px!important; border-radius:4px;
     }
 
-    /* ══════════════════════════════════════
-       BASE
-    ══════════════════════════════════════ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+    /* BASE */
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
 
-    /* ── NAVBAR ── */
+    /* NAVBAR */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      height: var(--nav-h);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 32px;
-      background: rgba(10,10,20,0.97);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border);
-      gap: 12px;
+      position:fixed; top:0; left:0; right:0; z-index:1000; height:var(--nav-h);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 32px; background:rgba(10,10,20,0.97);
+      backdrop-filter:blur(24px); border-bottom:1px solid var(--border); gap:12px;
     }
     .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
     .nav-logo-icon { width:38px; height:38px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; }
     .nav-logo-text { color:var(--text); font-weight:800; font-size:18px; letter-spacing:-0.5px; }
     .nav-logo-text span { color:var(--accent); }
-    .nav-links { display: flex; gap: 2px; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 7px 12px; border-radius: 8px; transition: all 0.2s; white-space: nowrap; }
-    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(0,212,255,0.08); }
-    .nav-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .nav-links { display:flex; gap:2px; list-style:none; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:13.5px; font-weight:500; padding:7px 12px; border-radius:8px; transition:all 0.2s; white-space:nowrap; }
+    .nav-links a:hover, .nav-links a.active { color:var(--accent); background:rgba(0,212,255,0.08); }
+    .nav-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
     .nav-search {
-      background: var(--surface2); border: 1px solid var(--border); color: var(--text);
-      padding: 8px 12px; border-radius: 8px; font-size: 13px;
-      font-family: 'Plus Jakarta Sans', sans-serif; width: 160px; transition: border 0.2s;
+      background:var(--surface2); border:1px solid var(--border); color:var(--text);
+      padding:8px 12px; border-radius:8px; font-size:13px;
+      font-family:'Plus Jakarta Sans',sans-serif; width:160px; transition:border 0.2s;
     }
-    .nav-search:focus { outline: none; border-color: var(--accent); }
+    .nav-search:focus { outline:none; border-color:var(--accent); }
     .btn-nav {
-      background: linear-gradient(135deg,var(--accent),var(--accent-dk));
-      color: #000; border: none; padding: 9px 18px; border-radius: 8px;
-      font-size: 13px; font-weight: 700; cursor: pointer;
-      font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s; white-space: nowrap;
+      background:linear-gradient(135deg,var(--accent),var(--accent-dk));
+      color:#000; border:none; padding:9px 18px; border-radius:8px;
+      font-size:13px; font-weight:700; cursor:pointer;
+      font-family:'Plus Jakarta Sans',sans-serif; transition:all 0.2s; white-space:nowrap;
     }
-    .btn-nav:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,212,255,0.4); }
-    .nav-cart { color: var(--text); font-size: 20px; cursor: pointer; position: relative; }
+    .btn-nav:hover { transform:translateY(-1px); box-shadow:0 4px 20px rgba(0,212,255,0.4); }
+    .nav-cart { color:var(--text); font-size:20px; cursor:pointer; position:relative; }
     .cart-badge {
-      position: absolute; top: -6px; right: -8px;
-      background: var(--accent); color: #000; font-size: 9px; font-weight: 700;
-      width: 16px; height: 16px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+      position:absolute; top:-6px; right:-8px;
+      background:var(--accent); color:#000; font-size:9px; font-weight:700;
+      width:16px; height:16px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
     }
 
-    /* ── TICKER ── */
+    /* TICKER */
     .ticker-wrap {
-      position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 999;
-      background: linear-gradient(90deg,var(--accent2),var(--accent-dk));
-      overflow: hidden; height: 34px; display: flex; align-items: center;
+      position:fixed; top:var(--nav-h); left:0; right:0; z-index:999;
+      background:linear-gradient(90deg,var(--accent2),var(--accent-dk));
+      overflow:hidden; height:34px; display:flex; align-items:center;
     }
-    .ticker-track { display: flex; white-space: nowrap; animation: ticker 30s linear infinite; }
-    .ticker-item { padding: 0 40px; font-size: 12px; font-weight: 600; color: white; letter-spacing: 1px; text-transform: uppercase; }
-    .ticker-item::after { content: '✦'; margin-left: 40px; }
+    .ticker-track { display:flex; white-space:nowrap; animation:ticker 30s linear infinite; }
+    .ticker-item { padding:0 40px; font-size:12px; font-weight:600; color:white; letter-spacing:1px; text-transform:uppercase; }
+    .ticker-item::after { content:'✦'; margin-left:40px; }
     @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
-      margin-top: calc(var(--nav-h) + 34px);
-      position: relative;
-      height: calc(100vh - var(--nav-h) - 34px);
-      min-height: 500px;
-      overflow: hidden;
-      display: flex; align-items: center;
+      margin-top:calc(var(--nav-h) + 34px);
+      position:relative; height:calc(100vh - var(--nav-h) - 34px);
+      min-height:500px; overflow:hidden; display:flex; align-items:center;
     }
     .hero-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; }
     .slide-overlay { position:absolute; inset:0; z-index:2; background:linear-gradient(90deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.35) 70%); }
@@ -303,14 +211,14 @@
     .btn-outline { background:transparent; color:white; border:2px solid rgba(0,212,255,0.4); padding:12px 28px; font-size:14px; font-weight:600; border-radius:8px; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all 0.2s; text-decoration:none; display:inline-block; }
     .btn-outline:hover { border-color:var(--accent); background:rgba(0,212,255,0.1); color:var(--accent); }
 
-    /* ── STATS BAR ── */
+    /* STATS BAR */
     .stats-bar { background:var(--surface); border-bottom:1px solid var(--border); padding:28px 60px; display:flex; justify-content:space-around; align-items:center; flex-wrap:wrap; gap:20px; }
     .stat-item { text-align:center; }
     .stat-num { font-family:'Bebas Neue',sans-serif; font-size:42px; color:var(--accent); line-height:1; }
     .stat-label { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1.5px; margin-top:4px; }
 
-    /* ── SECTIONS ── */
-    section { padding: 80px 60px; }
+    /* SECTIONS */
+    section { padding:80px 60px; }
     .section-tag { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:10px; display:inline-block; background:rgba(0,212,255,0.08); padding:5px 12px; border-radius:100px; border:1px solid var(--border2); }
     .section-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,4vw,52px); color:var(--text); line-height:1; margin-top:8px; }
     .section-title span { color:var(--accent); }
@@ -319,7 +227,7 @@
     .view-all { color:var(--accent); font-weight:600; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:6px; transition:gap 0.2s; }
     .view-all:hover { gap:12px; }
 
-    /* ── CATEGORIES ── */
+    /* CATEGORIES */
     .categories { background:var(--bg2); }
     .cat-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:20px; }
     .cat-card { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius); overflow:hidden; cursor:pointer; transition:all 0.3s; position:relative; aspect-ratio:1; display:flex; flex-direction:column; }
@@ -331,7 +239,7 @@
     .cat-arrow { position:absolute; top:12px; right:12px; width:28px; height:28px; background:var(--accent); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#000; font-size:12px; opacity:0; transition:opacity 0.2s; }
     .cat-card:hover .cat-arrow { opacity:1; }
 
-    /* ── PRODUCTS ── */
+    /* PRODUCTS */
     .products-section { background:var(--bg2); }
     .products-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
     .product-card { background:var(--surface); border-radius:var(--radius); border:1.5px solid var(--border); overflow:hidden; cursor:pointer; transition:all 0.3s; position:relative; }
@@ -352,7 +260,7 @@
     .add-cart-btn { width:100%; background:var(--surface2); color:var(--text); border:1.5px solid var(--border2); padding:10px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all 0.2s; }
     .add-cart-btn:hover { background:var(--accent); color:#000; border-color:var(--accent); }
 
-    /* ── WHY US ── */
+    /* WHY US */
     .why-us { background:var(--bg3); }
     .why-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
     .why-card { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius); padding:32px 24px; text-align:center; transition:all 0.3s; position:relative; overflow:hidden; }
@@ -363,7 +271,7 @@
     .why-title { font-size:17px; font-weight:700; color:var(--text); margin-bottom:10px; }
     .why-desc { font-size:14px; color:var(--muted); line-height:1.7; }
 
-    /* ── BRAND STORY ── */
+    /* BRAND STORY */
     .brand-story { background:var(--bg2); padding:80px 60px; }
     .brand-story-inner { max-width:1100px; margin:0 auto; }
     .brand-story-heading { font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,4vw,56px); color:var(--text); line-height:1; margin-bottom:10px; }
@@ -377,7 +285,7 @@
     .brand-highlight-card h3 { font-size:17px; font-weight:700; color:var(--text); margin-bottom:8px; }
     .brand-highlight-card p { font-size:14px; color:var(--muted); line-height:1.7; }
 
-    /* ── OFFERS BANNER ── */
+    /* OFFERS BANNER */
     .offers-banner { background:linear-gradient(135deg,var(--accent2),var(--accent-dk)); padding:60px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap; }
     .offer-text .offer-label { font-size:12px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:10px; }
     .offer-text h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,5vw,64px); color:white; line-height:1; }
@@ -388,7 +296,7 @@
     .btn-white { background:white; color:var(--accent-dk); border:none; padding:14px 32px; border-radius:8px; font-weight:700; font-size:14px; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all 0.2s; }
     .btn-white:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
 
-    /* ── BLOG ── */
+    /* BLOG */
     .blog-section { background:var(--bg2); }
     .blog-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
     .blog-card { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius); overflow:hidden; cursor:pointer; transition:all 0.3s; text-decoration:none; display:block; }
@@ -401,7 +309,7 @@
     .blog-title { font-size:15px; font-weight:700; color:var(--text); line-height:1.4; margin-bottom:8px; }
     .blog-date { font-size:12px; color:var(--muted); }
 
-    /* ── NEWSLETTER ── */
+    /* NEWSLETTER */
     .newsletter { background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:80px 60px; display:flex; align-items:center; justify-content:space-between; gap:60px; flex-wrap:wrap; }
     .newsletter-text h2 { font-family:'Bebas Neue',sans-serif; font-size:48px; color:var(--text); line-height:1; margin-bottom:10px; }
     .newsletter-text h2 span { color:var(--accent); }
@@ -411,7 +319,7 @@
     .newsletter-input::placeholder { color:var(--muted); }
     .newsletter-input:focus { outline:none; border-color:var(--accent); }
 
-    /* ── REVIEWS ── */
+    /* REVIEWS */
     .reviews { background:var(--bg3); }
     .reviews-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
     .review-card { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius); padding:28px; transition:border-color 0.2s; }
@@ -423,7 +331,7 @@
     .reviewer-name { font-weight:700; font-size:14px; color:var(--text); }
     .reviewer-loc { font-size:12px; color:var(--muted); }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer { background:#060610; color:var(--muted); }
     .footer-main { display:grid; grid-template-columns:1.8fr 1fr 1fr 1fr 1fr; gap:36px; padding:64px 60px 48px; }
     .footer-brand-name { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--text); letter-spacing:2px; margin-bottom:14px; }
@@ -449,12 +357,12 @@
     .payment-methods { display:flex; gap:8px; }
     .payment-tag { background:var(--surface2); border:1px solid var(--border); color:var(--muted); font-size:11px; font-weight:600; padding:4px 10px; border-radius:4px; }
 
-    /* ── WHATSAPP FLOAT ── */
+    /* WHATSAPP FLOAT */
     .whatsapp-float { position:fixed; bottom:28px; right:28px; z-index:2000; width:56px; height:56px; background:#25d366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,0.4); text-decoration:none; color:white; animation:float 3s ease-in-out infinite; }
     .whatsapp-float i { font-size:28px; }
     @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
-    /* ── BLOG OVERLAY ── */
+    /* BLOG OVERLAY */
     .blog-overlay { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.85); backdrop-filter:blur(6px); overflow-y:auto; padding:40px 20px; }
     .blog-overlay.open { display:flex; align-items:flex-start; justify-content:center; }
     .blog-modal { background:var(--surface); border:1.5px solid var(--border2); border-radius:20px; max-width:720px; width:100%; padding:44px 48px; position:relative; margin:auto; }
@@ -469,10 +377,8 @@
     .blog-modal-body ul { padding-left:20px; margin-bottom:16px; }
     .blog-modal-body ul li { font-size:15px; color:var(--text2); line-height:1.8; margin-bottom:6px; }
 
-    /* ── MOBILE ── */
-    @media(max-width:1100px){
-      .nav-links a { font-size:12px; padding:6px 8px; }
-    }
+    /* MOBILE */
+    @media(max-width:1100px){ .nav-links a { font-size:12px; padding:6px 8px; } }
     @media(max-width:900px){
       nav { padding:0 16px; gap:8px; }
       .nav-links { display:none; }
@@ -487,7 +393,7 @@
       .footer-cats { padding:32px 24px; }
       .footer-cats-grid { grid-template-columns:repeat(2,1fr); }
       .stats-bar { padding:28px 24px; }
-      .slide-content { padding:0 24px !important; }
+      .slide-content { padding:0 24px!important; }
       .offers-banner { padding:40px 24px; flex-direction:column; text-align:center; }
       .newsletter { padding:60px 24px; flex-direction:column; }
       .newsletter-input { width:100%; }
@@ -506,9 +412,7 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     NAVBAR
-══════════════════════════════════════ -->
+<!-- NAVBAR -->
 <nav role="navigation" aria-label="Main Navigation">
   <a href="index.html" class="nav-logo" aria-label="Ahsan Mobiles Home">
     <div class="nav-logo-icon" aria-hidden="true">📱</div>
@@ -526,119 +430,79 @@
 
   <div class="nav-right">
     <input class="nav-search" type="text"
-  placeholder="🔍 Search products..."
-  aria-label="Search products"
-  data-en-placeholder="🔍 Search products..."
-  data-ur-placeholder="🔍 مصنوعات تلاش کریں..."
-  onkeydown="if(event.key==='Enter' && this.value.trim()) window.location='search.html?q='+encodeURIComponent(this.value.trim())"/>
+      placeholder="🔍 Search products..."
+      aria-label="Search products"
+      data-en-placeholder="🔍 Search products..."
+      data-ur-placeholder="🔍 مصنوعات تلاش کریں..."
+      onkeydown="if(event.key==='Enter' && this.value.trim()) window.location='products.html?q='+encodeURIComponent(this.value.trim())"/>
 
-    <!-- LANGUAGE TOGGLE — in navbar -->
+    <!-- LANGUAGE TOGGLE -->
     <button id="lang-nav-btn" onclick="toggleLanguage()" aria-label="Switch language between English and Urdu">
       <span class="lang-globe">🌐</span>
       <span id="lang-btn-label">اردو</span>
     </button>
 
-    <!-- ACCESSIBILITY ICON — opens dropdown panel -->
+    <!-- ACCESSIBILITY PANEL -->
     <div class="a11y-wrapper">
-      <button id="a11y-toggle-btn"
-        onclick="toggleA11yPanel()"
-        aria-label="Accessibility options"
-        aria-expanded="false"
-        aria-haspopup="true">
-        ♿
-      </button>
-
-      <!-- ACCESSIBILITY DROPDOWN PANEL -->
+      <button id="a11y-toggle-btn" onclick="toggleA11yPanel()" aria-label="Accessibility options" aria-expanded="false" aria-haspopup="true">♿</button>
       <div id="a11y-panel" role="menu" aria-label="Accessibility Options">
         <div class="a11y-panel-title">♿ Accessibility</div>
-
-        <!-- Font Size -->
         <div class="a11y-row">
-          <span class="a11y-row-label">
-            <span class="a11y-icon">🔡</span>
-            Font Size
-          </span>
+          <span class="a11y-row-label"><span class="a11y-icon">🔡</span>Font Size</span>
           <div class="a11y-font-controls">
             <button class="a11y-font-btn" onclick="changeFontSize(-1)" aria-label="Decrease font size">A−</button>
             <span id="font-size-val">100%</span>
             <button class="a11y-font-btn" onclick="changeFontSize(1)" aria-label="Increase font size">A+</button>
           </div>
         </div>
-
-        <!-- High Contrast -->
         <div class="a11y-row">
-          <span class="a11y-row-label">
-            <span class="a11y-icon">◑</span>
-            High Contrast
-          </span>
+          <span class="a11y-row-label"><span class="a11y-icon">◑</span>High Contrast</span>
           <label class="a11y-toggle" aria-label="Toggle high contrast mode">
             <input type="checkbox" id="a11y-contrast-input" onchange="toggleContrast()"/>
             <span class="a11y-toggle-track"></span>
           </label>
         </div>
-
-        <!-- Dyslexia Font -->
         <div class="a11y-row">
-          <span class="a11y-row-label">
-            <span class="a11y-icon">📖</span>
-            Dyslexia Font
-          </span>
+          <span class="a11y-row-label"><span class="a11y-icon">📖</span>Dyslexia Font</span>
           <label class="a11y-toggle" aria-label="Toggle dyslexia-friendly font">
             <input type="checkbox" id="a11y-dyslexia-input" onchange="toggleDyslexia()"/>
             <span class="a11y-toggle-track"></span>
           </label>
         </div>
-
-        <!-- Pause Animations -->
         <div class="a11y-row">
-          <span class="a11y-row-label">
-            <span class="a11y-icon">⏸</span>
-            Pause Animations
-          </span>
+          <span class="a11y-row-label"><span class="a11y-icon">⏸</span>Pause Animations</span>
           <label class="a11y-toggle" aria-label="Toggle pause animations">
             <input type="checkbox" id="a11y-pause-input" onchange="toggleAnimations()"/>
             <span class="a11y-toggle-track"></span>
           </label>
         </div>
-
-        <!-- Large Cursor -->
         <div class="a11y-row">
-          <span class="a11y-row-label">
-            <span class="a11y-icon">🖱️</span>
-            Large Cursor
-          </span>
+          <span class="a11y-row-label"><span class="a11y-icon">🖱️</span>Large Cursor</span>
           <label class="a11y-toggle" aria-label="Toggle large cursor">
             <input type="checkbox" id="a11y-cursor-input" onchange="toggleLargeCursor()"/>
             <span class="a11y-toggle-track"></span>
           </label>
         </div>
-
-        <!-- Reading Guide -->
         <div class="a11y-row">
-          <span class="a11y-row-label">
-            <span class="a11y-icon">📏</span>
-            Reading Guide
-          </span>
+          <span class="a11y-row-label"><span class="a11y-icon">📏</span>Reading Guide</span>
           <label class="a11y-toggle" aria-label="Toggle reading guide line">
             <input type="checkbox" id="a11y-guide-input" onchange="toggleReadingGuide()"/>
             <span class="a11y-toggle-track"></span>
           </label>
         </div>
-
-      </div><!-- /a11y-panel -->
-    </div><!-- /a11y-wrapper -->
+      </div>
+    </div>
 
     <a href="login.html" aria-label="Login to your account">
       <button class="btn-nav" data-en="Login" data-ur="لاگ ان">Login</button>
     </a>
-    <div class="nav-cart" onclick="location.href='products.html'"
-      role="button" aria-label="Shopping cart" tabindex="0">
+    <div class="nav-cart" onclick="location.href='products.html'" role="button" aria-label="Shopping cart" tabindex="0">
       🛒<span class="cart-badge" aria-live="polite" aria-label="Items in cart">0</span>
     </div>
   </div>
 </nav>
 
-<!-- ── TICKER ── -->
+<!-- TICKER -->
 <div class="ticker-wrap" aria-hidden="true" role="marquee">
   <div class="ticker-track">
     <span class="ticker-item" data-en="🚀 Fast &amp; Free Delivery Over Rs.1999" data-ur="🚀 Rs.1999 سے زائد پر مفت ڈیلیوری">🚀 Fast &amp; Free Delivery Over Rs.1999</span>
@@ -658,12 +522,10 @@
   </div>
 </div>
 
-<!-- ── READING GUIDE ── -->
-<div id="reading-guide" style="display:none; position:fixed; left:0; right:0; height:32px; background:rgba(0,212,255,0.08); border-top:2px solid rgba(0,212,255,0.4); border-bottom:2px solid rgba(0,212,255,0.4); pointer-events:none; z-index:8000; transform:translateY(-50%);"></div>
+<!-- READING GUIDE -->
+<div id="reading-guide" style="display:none;position:fixed;left:0;right:0;height:32px;background:rgba(0,212,255,0.08);border-top:2px solid rgba(0,212,255,0.4);border-bottom:2px solid rgba(0,212,255,0.4);pointer-events:none;z-index:8000;transform:translateY(-50%);"></div>
 
-<!-- ══════════════════════════════════════
-     HERO
-══════════════════════════════════════ -->
+<!-- HERO -->
 <section class="hero" aria-label="Hero Banner">
   <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
     <source src="https://www.pexels.com/download/video/3196427/" type="video/mp4">
@@ -722,7 +584,7 @@
 </section>
 
 <!-- PREMIUM TRANCE SERIES BANNER -->
-<section style="background:var(--bg2); padding:0 60px 60px;">
+<section style="background:var(--bg2);padding:0 60px 60px;">
   <div style="background:#f0f0f0;border-radius:20px;display:flex;align-items:center;justify-content:space-between;overflow:hidden;min-height:220px;">
     <img src="https://images.pexels.com/photos/7848991/pexels-photo-7848991.jpeg" alt="Premium Trance Series" style="height:240px;width:220px;object-fit:cover;object-position:top;"/>
     <div style="text-align:center;flex:1;">
@@ -758,7 +620,7 @@
 
 <!-- WHY CHOOSE US -->
 <section class="why-us" aria-label="Why Choose Us">
-  <div class="section-header" style="text-align:center; margin-bottom:48px;">
+  <div class="section-header" style="text-align:center;margin-bottom:48px;">
     <div class="section-tag" style="display:inline-block" data-en="Our Promise" data-ur="ہمارا وعدہ">Our Promise</div>
     <h2 class="section-title" style="margin-top:10px"><span data-en="Why Choose " data-ur="کیوں چنیں ">Why Choose </span><span data-en="Ahsan Mobiles" data-ur="احسن موبائلز">Ahsan Mobiles</span></h2>
     <p style="font-size:15px;color:var(--muted);margin-top:12px;max-width:520px;margin-left:auto;margin-right:auto;" data-en="We don't just sell accessories — we deliver trust, quality, and speed right to your door." data-ur="ہم صرف لوازمات نہیں بیچتے — ہم اعتماد، معیار اور رفتار آپ کے دروازے تک پہنچاتے ہیں۔">We don't just sell accessories — we deliver trust, quality, and speed right to your door.</p>
@@ -783,15 +645,15 @@
     <div class="brand-story-divider"></div>
     <div class="brand-story-grid">
       <div class="brand-story-text">
-        <p data-en="In a world that's always connected, your phone should never be unprotected. At Ahsan Mobiles, we believe everyone deserves top-quality accessories without paying a premium price. Since our launch, we have dedicated ourselves to providing Sargodha and all of Pakistan with the best mobile covers, earphones, fast chargers, power banks, and smart gadgets." data-ur="ایک ایسی دنیا میں جو ہمیشہ جڑی رہتی ہے، آپ کا فون کبھی غیر محفوظ نہیں ہونا چاہیے۔ احسن موبائلز میں ہمارا یقین ہے کہ ہر کوئی بغیر زیادہ قیمت کے اعلیٰ معیار کے لوازمات کا مستحق ہے۔">In a world that's always connected, your phone should never be unprotected. At Ahsan Mobiles, we believe everyone deserves top-quality accessories without paying a premium price. Since our launch, we have dedicated ourselves to providing Sargodha and all of Pakistan with the best <a href="products.html?cat=covers">mobile covers</a>, <a href="products.html?cat=earphones">earphones</a>, <a href="products.html?cat=chargers">fast chargers</a>, <a href="products.html?cat=power-banks">power banks</a>, and smart gadgets.</p>
-        <p data-en="As a trusted name in mobile accessories in Pakistan, Ahsan Mobiles has carved its niche by combining quality products with reliable, fast service. Every item we stock is carefully verified to ensure it's 100% original and worth your money." data-ur="پاکستان میں موبائل لوازمات کے قابل اعتماد نام کے طور پر، احسن موبائلز نے معیاری مصنوعات اور قابل اعتماد سروس کو یکجا کر کے اپنا مقام بنایا ہے۔">As a trusted name in mobile accessories in Pakistan, Ahsan Mobiles has carved its niche by combining quality products with reliable, fast service. Every item we stock is carefully verified to ensure it's 100% original and worth your money.</p>
-        <p data-en="Shopping with us is secure, quick, and simple. We deliver across Pakistan, so you can order your favourite gadgets from the comfort of your home. Our customer support team is always ready on WhatsApp if you need any help." data-ur="ہمارے ساتھ خریداری محفوظ، تیز اور آسان ہے۔ ہم پورے پاکستان میں ڈیلیوری کرتے ہیں۔">Shopping with us is secure, quick, and simple. We deliver across Pakistan, so you can order your favourite gadgets from the comfort of your home. Our customer support team is always ready on WhatsApp if you need any help.</p>
-        <p data-en="More and more Pakistanis trust Ahsan Mobiles to elevate their everyday phone experience. If you're looking for the best mobile accessories in Pakistan at the right price, Ahsan Mobiles is the name you can rely on." data-ur="زیادہ سے زیادہ پاکستانی احسن موبائلز پر بھروسہ کرتے ہیں۔ صحیح قیمت پر بہترین لوازمات کے لیے احسن موبائلز پر بھروسہ کریں۔">More and more Pakistanis trust Ahsan Mobiles to elevate their everyday phone experience. If you're looking for the best mobile accessories in Pakistan at the right price, Ahsan Mobiles is the name you can rely on.</p>
+        <p data-en="In a world that's always connected, your phone should never be unprotected. At Ahsan Mobiles, we believe everyone deserves top-quality accessories without paying a premium price." data-ur="ایک ایسی دنیا میں جو ہمیشہ جڑی رہتی ہے، آپ کا فون کبھی غیر محفوظ نہیں ہونا چاہیے۔ احسن موبائلز میں ہمارا یقین ہے کہ ہر کوئی بغیر زیادہ قیمت کے اعلیٰ معیار کے لوازمات کا مستحق ہے۔">In a world that's always connected, your phone should never be unprotected. At Ahsan Mobiles, we believe everyone deserves top-quality accessories without paying a premium price. Since our launch, we have dedicated ourselves to providing Sargodha and all of Pakistan with the best <a href="products.html?cat=covers">mobile covers</a>, <a href="products.html?cat=earphones">earphones</a>, <a href="products.html?cat=chargers">fast chargers</a>, <a href="products.html?cat=power-banks">power banks</a>, and smart gadgets.</p>
+        <p data-en="As a trusted name in mobile accessories in Pakistan, Ahsan Mobiles has carved its niche by combining quality products with reliable, fast service." data-ur="پاکستان میں موبائل لوازمات کے قابل اعتماد نام کے طور پر، احسن موبائلز نے معیاری مصنوعات اور قابل اعتماد سروس کو یکجا کر کے اپنا مقام بنایا ہے۔">As a trusted name in mobile accessories in Pakistan, Ahsan Mobiles has carved its niche by combining quality products with reliable, fast service. Every item we stock is carefully verified to ensure it's 100% original and worth your money.</p>
+        <p data-en="Shopping with us is secure, quick, and simple. We deliver across Pakistan, so you can order your favourite gadgets from the comfort of your home." data-ur="ہمارے ساتھ خریداری محفوظ، تیز اور آسان ہے۔ ہم پورے پاکستان میں ڈیلیوری کرتے ہیں۔">Shopping with us is secure, quick, and simple. We deliver across Pakistan, so you can order your favourite gadgets from the comfort of your home. Our customer support team is always ready on WhatsApp if you need any help.</p>
+        <p data-en="More and more Pakistanis trust Ahsan Mobiles to elevate their everyday phone experience." data-ur="زیادہ سے زیادہ پاکستانی احسن موبائلز پر بھروسہ کرتے ہیں۔">More and more Pakistanis trust Ahsan Mobiles to elevate their everyday phone experience. If you're looking for the best mobile accessories in Pakistan at the right price, Ahsan Mobiles is the name you can rely on.</p>
       </div>
       <div class="brand-story-highlights">
         <div class="brand-highlight-card"><h3 data-en="🏆 Why Choose Ahsan Mobiles?" data-ur="🏆 احسن موبائلز کیوں چنیں؟">🏆 Why Choose Ahsan Mobiles?</h3><p data-en="We stand out for our commitment to quality, affordability, and customer satisfaction. From ANC earphones to military-grade screen guards and 65W fast chargers — every product is chosen with the Pakistani user in mind." data-ur="ہم معیار، سستی اور گاہک کی اطمینان کے عزم کی وجہ سے نمایاں ہیں۔">We stand out for our commitment to quality, affordability, and customer satisfaction. From ANC earphones to military-grade screen guards and 65W fast chargers — every product is chosen with the Pakistani user in mind.</p></div>
-        <div class="brand-highlight-card"><h3 data-en="🛒 Your One-Stop Shop for Phone Accessories" data-ur="🛒 فون لوازمات کی ون اسٹاپ شاپ">🛒 Your One-Stop Shop for Phone Accessories</h3><p data-en="Our growing catalogue includes everything from screen guards and covers to wireless earbuds, smart watches, and power banks. Each item is tested to ensure it performs well under frequent usage." data-ur="ہمارے کیٹلاگ میں سکرین گارڈ، کور، وائرلیس ائربڈز اور پاور بینک شامل ہیں۔">Our growing catalogue includes everything from screen guards and covers to wireless earbuds, smart watches, and power banks. Each item is tested to ensure it performs well under frequent usage.</p></div>
-        <div class="brand-highlight-card"><h3 data-en="🚀 Pakistan's Fastest Growing Accessories Store" data-ur="🚀 پاکستان کی سب سے تیزی سے بڑھتی دکان">🚀 Pakistan's Fastest Growing Accessories Store</h3><p data-en="With 2,000+ satisfied customers, same-day delivery in Sargodha, and payment options including COD, JazzCash and EasyPaisa — we make buying accessories effortless, every single time." data-ur="2,000+ مطمئن گاہکوں کے ساتھ، سرگودھا میں اسی دن ڈیلیوری اور متعدد ادائیگی کے طریقے۔">With 2,000+ satisfied customers, same-day delivery in Sargodha, and payment options including COD, JazzCash and EasyPaisa — we make buying accessories effortless, every single time.</p></div>
+        <div class="brand-highlight-card"><h3 data-en="🛒 Your One-Stop Shop for Phone Accessories" data-ur="🛒 فون لوازمات کی ون اسٹاپ شاپ">🛒 Your One-Stop Shop for Phone Accessories</h3><p data-en="Our growing catalogue includes everything from screen guards and covers to wireless earbuds, smart watches, and power banks." data-ur="ہمارے کیٹلاگ میں سکرین گارڈ، کور، وائرلیس ائربڈز اور پاور بینک شامل ہیں۔">Our growing catalogue includes everything from screen guards and covers to wireless earbuds, smart watches, and power banks. Each item is tested to ensure it performs well under frequent usage.</p></div>
+        <div class="brand-highlight-card"><h3 data-en="🚀 Pakistan's Fastest Growing Accessories Store" data-ur="🚀 پاکستان کی سب سے تیزی سے بڑھتی دکان">🚀 Pakistan's Fastest Growing Accessories Store</h3><p data-en="With 2,000+ satisfied customers, same-day delivery in Sargodha, and payment options including COD, JazzCash and EasyPaisa — we make buying accessories effortless." data-ur="2,000+ مطمئن گاہکوں کے ساتھ، سرگودھا میں اسی دن ڈیلیوری اور متعدد ادائیگی کے طریقے۔">With 2,000+ satisfied customers, same-day delivery in Sargodha, and payment options including COD, JazzCash and EasyPaisa — we make buying accessories effortless, every single time.</p></div>
       </div>
     </div>
   </div>
@@ -811,7 +673,7 @@
   <button class="btn-white" onclick="location.href='offers.html'" data-en="Claim Offer →" data-ur="آفر حاصل کریں →">Claim Offer →</button>
 </div>
 
-<!-- BLOG SECTION -->
+<!-- BLOG -->
 <section class="blog-section" aria-label="Latest Blog Posts">
   <div class="section-row">
     <div class="section-header" style="margin-bottom:0">
@@ -821,10 +683,10 @@
     <a href="#" class="view-all" data-en="View All →" data-ur="سب دیکھیں →">View All →</a>
   </div>
   <div class="blog-grid">
-    <a class="blog-card" href="#" onclick="openBlog('tips'); return false;"><div class="blog-img-wrap"><img src="https://images.pexels.com/photos/5531122/pexels-photo-5531122.jpeg" alt="Blog about mobile covers"/></div><div class="blog-info"><span class="blog-tag-pill" data-en="Tips" data-ur="مشورے">Tips</span><div class="blog-title" data-en="Top 5 Mobile Covers to Protect Your Phone in 2026" data-ur="2026 میں فون بچانے والے 5 بہترین موبائل کور">Top 5 Mobile Covers to Protect Your Phone in 2026</div><div class="blog-date" data-en="May 18, 2026" data-ur="18 مئی 2026">May 18, 2026</div></div></a>
-    <a class="blog-card" href="#" onclick="openBlog('guide'); return false;"><div class="blog-img-wrap"><img src="https://images.pexels.com/photos/28190457/pexels-photo-28190457.jpeg" alt="Blog about fast chargers"/></div><div class="blog-info"><span class="blog-tag-pill" data-en="Guide" data-ur="رہنمائی">Guide</span><div class="blog-title" data-en="How to Choose the Best Fast Charger for Your Device" data-ur="اپنے آلے کے لیے بہترین فاسٹ چارجر کا انتخاب کیسے کریں">How to Choose the Best Fast Charger for Your Device</div><div class="blog-date" data-en="May 15, 2026" data-ur="15 مئی 2026">May 15, 2026</div></div></a>
-    <a class="blog-card" href="#" onclick="openBlog('review'); return false;"><div class="blog-img-wrap"><img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&h=400&fit=crop" alt="Blog about wireless earbuds"/></div><div class="blog-info"><span class="blog-tag-pill" data-en="Review" data-ur="جائزہ">Review</span><div class="blog-title" data-en="Best Wireless Earbuds Under Rs.3000 in Pakistan" data-ur="پاکستان میں Rs.3000 سے کم بہترین وائرلیس ائربڈز">Best Wireless Earbuds Under Rs.3000 in Pakistan</div><div class="blog-date" data-en="May 10, 2026" data-ur="10 مئی 2026">May 10, 2026</div></div></a>
-    <a class="blog-card" href="#" onclick="openBlog('deals'); return false;"><div class="blog-img-wrap"><img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=600&h=400&fit=crop" alt="Blog about power banks"/></div><div class="blog-info"><span class="blog-tag-pill" data-en="Deals" data-ur="ڈیلز">Deals</span><div class="blog-title" data-en="Power Banks 2026 — Which One Should You Buy?" data-ur="پاور بینک 2026 — کون سا خریدیں؟">Power Banks 2026 — Which One Should You Buy?</div><div class="blog-date" data-en="May 5, 2026" data-ur="5 مئی 2026">May 5, 2026</div></div></a>
+    <a class="blog-card" href="#" onclick="openBlog('tips');return false;"><div class="blog-img-wrap"><img src="https://images.pexels.com/photos/5531122/pexels-photo-5531122.jpeg" alt="Blog about mobile covers"/></div><div class="blog-info"><span class="blog-tag-pill" data-en="Tips" data-ur="مشورے">Tips</span><div class="blog-title" data-en="Top 5 Mobile Covers to Protect Your Phone in 2026" data-ur="2026 میں فون بچانے والے 5 بہترین موبائل کور">Top 5 Mobile Covers to Protect Your Phone in 2026</div><div class="blog-date" data-en="May 18, 2026" data-ur="18 مئی 2026">May 18, 2026</div></div></a>
+    <a class="blog-card" href="#" onclick="openBlog('guide');return false;"><div class="blog-img-wrap"><img src="https://images.pexels.com/photos/28190457/pexels-photo-28190457.jpeg" alt="Blog about fast chargers"/></div><div class="blog-info"><span class="blog-tag-pill" data-en="Guide" data-ur="رہنمائی">Guide</span><div class="blog-title" data-en="How to Choose the Best Fast Charger for Your Device" data-ur="اپنے آلے کے لیے بہترین فاسٹ چارجر کا انتخاب کیسے کریں">How to Choose the Best Fast Charger for Your Device</div><div class="blog-date" data-en="May 15, 2026" data-ur="15 مئی 2026">May 15, 2026</div></div></a>
+    <a class="blog-card" href="#" onclick="openBlog('review');return false;"><div class="blog-img-wrap"><img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&h=400&fit=crop" alt="Blog about wireless earbuds"/></div><div class="blog-info"><span class="blog-tag-pill" data-en="Review" data-ur="جائزہ">Review</span><div class="blog-title" data-en="Best Wireless Earbuds Under Rs.3000 in Pakistan" data-ur="پاکستان میں Rs.3000 سے کم بہترین وائرلیس ائربڈز">Best Wireless Earbuds Under Rs.3000 in Pakistan</div><div class="blog-date" data-en="May 10, 2026" data-ur="10 مئی 2026">May 10, 2026</div></div></a>
+    <a class="blog-card" href="#" onclick="openBlog('deals');return false;"><div class="blog-img-wrap"><img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=600&h=400&fit=crop" alt="Blog about power banks"/></div><div class="blog-info"><span class="blog-tag-pill" data-en="Deals" data-ur="ڈیلز">Deals</span><div class="blog-title" data-en="Power Banks 2026 — Which One Should You Buy?" data-ur="پاور بینک 2026 — کون سا خریدیں؟">Power Banks 2026 — Which One Should You Buy?</div><div class="blog-date" data-en="May 5, 2026" data-ur="5 مئی 2026">May 5, 2026</div></div></a>
   </div>
 </section>
 
@@ -836,14 +698,14 @@
   </div>
 </div>
 
-<!-- CUSTOMER REVIEWS -->
+<!-- REVIEWS -->
 <section class="reviews" aria-label="Customer Reviews">
   <div class="section-header" style="text-align:center">
     <div class="section-tag" style="display:inline-block" data-en="Testimonials" data-ur="تبصرے">Testimonials</div>
     <h2 class="section-title" style="margin-top:10px"><span data-en="What " data-ur="گاہک ">What </span><span data-en="Customers Say" data-ur="کیا کہتے ہیں">Customers Say</span></h2>
   </div>
   <div class="reviews-grid">
-    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text" data-en='"Best mobile accessories shop in Sargodha! Got my iPhone cover and it&apos;s amazing quality. Delivery was super fast too. Will definitely buy again!"' data-ur='"سرگودھا میں بہترین موبائل لوازمات کی دکان! میرا iPhone کور آیا اور معیار حیرت انگیز ہے۔ ڈیلیوری بھی بہت تیز تھی۔"'>"Best mobile accessories shop in Sargodha! Got my iPhone cover and it's amazing quality. Delivery was super fast too. Will definitely buy again!"</p><div class="reviewer"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Ahmed Raza</div><div class="reviewer-loc" data-en="Sargodha, Punjab" data-ur="سرگودھا، پنجاب">Sargodha, Punjab</div></div></div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text" data-en='"Best mobile accessories shop in Sargodha! Got my iPhone cover and it is amazing quality. Delivery was super fast too. Will definitely buy again!"' data-ur='"سرگودھا میں بہترین موبائل لوازمات کی دکان! میرا iPhone کور آیا اور معیار حیرت انگیز ہے۔ ڈیلیوری بھی بہت تیز تھی۔"'>"Best mobile accessories shop in Sargodha! Got my iPhone cover and it's amazing quality. Delivery was super fast too. Will definitely buy again!"</p><div class="reviewer"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Ahmed Raza</div><div class="reviewer-loc" data-en="Sargodha, Punjab" data-ur="سرگودھا، پنجاب">Sargodha, Punjab</div></div></div></div>
     <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text" data-en='"Ordered a fast charger — arrived same day. 100% original product at a great price. WhatsApp support was very responsive. Highly recommended!"' data-ur='"فاسٹ چارجر آرڈر کیا — اسی دن پہنچ گیا۔ 100% اصلی مصنوع بہترین قیمت پر۔ واٹس ایپ سپورٹ بہت تیز تھی۔"'>"Ordered a fast charger — arrived same day. 100% original product at a great price. WhatsApp support was very responsive. Highly recommended!"</p><div class="reviewer"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sara Khan</div><div class="reviewer-loc" data-en="Sargodha, Punjab" data-ur="سرگودھا، پنجاب">Sargodha, Punjab</div></div></div></div>
     <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text" data-en='"Very good prices and excellent customer service. They helped me choose the right power bank for my needs. Great overall experience!"' data-ur='"بہت اچھی قیمتیں اور بہترین کسٹمر سروس۔ انہوں نے مجھے صحیح پاور بینک چننے میں مدد کی۔"'>"Very good prices and excellent customer service. They helped me choose the right power bank for my needs. Great overall experience!"</p><div class="reviewer"><div class="reviewer-avatar">U</div><div><div class="reviewer-name">Usman Ali</div><div class="reviewer-loc" data-en="Sargodha, Punjab" data-ur="سرگودھا، پنجاب">Sargodha, Punjab</div></div></div></div>
   </div>
@@ -856,7 +718,9 @@
     <p data-en="Get exclusive deals, new arrivals &amp; offers straight to your inbox." data-ur="خصوصی ڈیلز، نئی آمد اور آفرز سیدھے اپنے ان باکس میں پائیں۔">Get exclusive deals, new arrivals &amp; offers straight to your inbox.</p>
   </div>
   <div class="newsletter-form">
-    <input class="newsletter-input" type="email" placeholder="Enter your email address..." aria-label="Email address for newsletter" data-en-placeholder="Enter your email address..." data-ur-placeholder="اپنا ای میل پتہ درج کریں..."/>
+    <input class="newsletter-input" type="email" placeholder="Enter your email address..." aria-label="Email address for newsletter"
+      data-en-placeholder="Enter your email address..."
+      data-ur-placeholder="اپنا ای میل پتہ درج کریں..."/>
     <button class="btn-primary" style="padding:14px 28px" onclick="subscribeNewsletter()" data-en="Subscribe →" data-ur="سبسکرائب کریں →">Subscribe →</button>
   </div>
 </div>
@@ -900,13 +764,13 @@
     <div class="footer-col">
       <h4 data-en="Help" data-ur="مدد">Help</h4>
       <ul>
-        <li><a href="#" data-en="Track Your Order" data-ur="اپنا آرڈر ٹریک کریں">Track Your Order</a></li>
-        <li><a href="#" data-en="Return Policy" data-ur="واپسی کی پالیسی">Return Policy</a></li>
-        <li><a href="#" data-en="Warranty Policy" data-ur="وارنٹی پالیسی">Warranty Policy</a></li>
-        <li><a href="#" data-en="Shipping Policy" data-ur="شپنگ پالیسی">Shipping Policy</a></li>
-        <li><a href="#" data-en="FAQs" data-ur="اکثر پوچھے گئے سوالات">FAQs</a></li>
+        <li><a href="help.html#track-order" data-en="Track Your Order" data-ur="اپنا آرڈر ٹریک کریں">Track Your Order</a></li>
+        <li><a href="help.html#return-policy" data-en="Return Policy" data-ur="واپسی کی پالیسی">Return Policy</a></li>
+        <li><a href="help.html#warranty" data-en="Warranty Policy" data-ur="وارنٹی پالیسی">Warranty Policy</a></li>
+        <li><a href="help.html#shipping" data-en="Shipping Policy" data-ur="شپنگ پالیسی">Shipping Policy</a></li>
+        <li><a href="help.html#faqs" data-en="FAQs" data-ur="اکثر پوچھے گئے سوالات">FAQs</a></li>
         <li><a href="contact.html" data-en="Contact Us" data-ur="ہم سے رابطہ کریں">Contact Us</a></li>
-        <li><a href="#" data-en="Bulk Orders" data-ur="بلک آرڈر">Bulk Orders</a></li>
+        <li><a href="help.html#bulk-orders" data-en="Bulk Orders" data-ur="بلک آرڈر">Bulk Orders</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -963,22 +827,16 @@
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/923091333812?text=Assalam%20o%20Alaikum!%20I%20need%20help." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+<a href="https://wa.me/923054603311?text=Assalam%20o%20Alaikum!%20I%20need%20help." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<!-- ══════════════════════════════════════
-     LARGE CURSOR STYLE (injected dynamically)
-══════════════════════════════════════ -->
 <style id="large-cursor-style"></style>
 
-<!-- ══════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════ -->
 <script>
-/* ═══════════════════════════════════════
-   ACCESSIBILITY PANEL TOGGLE
-═══════════════════════════════════════ */
+/* ════════════════════════════════
+   ACCESSIBILITY PANEL
+════════════════════════════════ */
 function toggleA11yPanel() {
   const panel = document.getElementById('a11y-panel');
   const btn   = document.getElementById('a11y-toggle-btn');
@@ -986,36 +844,33 @@ function toggleA11yPanel() {
   btn.classList.toggle('open', open);
   btn.setAttribute('aria-expanded', open);
 }
-// Close panel on outside click
 document.addEventListener('click', function(e) {
   const wrap = document.querySelector('.a11y-wrapper');
   if (wrap && !wrap.contains(e.target)) {
     document.getElementById('a11y-panel').classList.remove('open');
     document.getElementById('a11y-toggle-btn').classList.remove('open');
-    document.getElementById('a11y-toggle-btn').setAttribute('aria-expanded', 'false');
+    document.getElementById('a11y-toggle-btn').setAttribute('aria-expanded','false');
   }
 });
 
-/* ═══════════════════════════════════════
-   FONT SIZE  (also syncs display)
-═══════════════════════════════════════ */
+/* ════════════════════════════════
+   FONT SIZE
+════════════════════════════════ */
 let currentFontScale = parseInt(localStorage.getItem('am_fontSize') || '100', 10);
-
 function applyFontSize() {
   document.documentElement.style.fontSize = (currentFontScale / 100) * 16 + 'px';
   const el = document.getElementById('font-size-val');
   if (el) el.textContent = currentFontScale + '%';
 }
-
 function changeFontSize(dir) {
   currentFontScale = Math.min(140, Math.max(80, currentFontScale + dir * 10));
   localStorage.setItem('am_fontSize', currentFontScale);
   applyFontSize();
 }
 
-/* ═══════════════════════════════════════
+/* ════════════════════════════════
    HIGH CONTRAST
-═══════════════════════════════════════ */
+════════════════════════════════ */
 function toggleContrast() {
   const active = document.body.classList.toggle('high-contrast');
   localStorage.setItem('am_contrast', active ? '1' : '');
@@ -1023,9 +878,9 @@ function toggleContrast() {
   if (inp) inp.checked = active;
 }
 
-/* ═══════════════════════════════════════
+/* ════════════════════════════════
    DYSLEXIA FONT
-═══════════════════════════════════════ */
+════════════════════════════════ */
 function toggleDyslexia() {
   const active = document.body.classList.toggle('dyslexia-font');
   localStorage.setItem('am_dyslexia', active ? '1' : '');
@@ -1033,9 +888,9 @@ function toggleDyslexia() {
   if (inp) inp.checked = active;
 }
 
-/* ═══════════════════════════════════════
+/* ════════════════════════════════
    PAUSE ANIMATIONS
-═══════════════════════════════════════ */
+════════════════════════════════ */
 function toggleAnimations() {
   const active = document.body.classList.toggle('pause-animations');
   localStorage.setItem('am_pauseAnim', active ? '1' : '');
@@ -1043,9 +898,9 @@ function toggleAnimations() {
   if (inp) inp.checked = active;
 }
 
-/* ═══════════════════════════════════════
+/* ════════════════════════════════
    LARGE CURSOR
-═══════════════════════════════════════ */
+════════════════════════════════ */
 function toggleLargeCursor() {
   const active = document.body.classList.toggle('large-cursor');
   localStorage.setItem('am_largeCursor', active ? '1' : '');
@@ -1057,9 +912,9 @@ function toggleLargeCursor() {
     : '';
 }
 
-/* ═══════════════════════════════════════
+/* ════════════════════════════════
    READING GUIDE
-═══════════════════════════════════════ */
+════════════════════════════════ */
 let readingGuideActive = false;
 function toggleReadingGuide() {
   readingGuideActive = !readingGuideActive;
@@ -1068,28 +923,23 @@ function toggleReadingGuide() {
   const inp   = document.getElementById('a11y-guide-input');
   if (inp) inp.checked = readingGuideActive;
   guide.style.display = readingGuideActive ? 'block' : 'none';
-  if (readingGuideActive) {
-    document.addEventListener('mousemove', moveReadingGuide);
-  } else {
-    document.removeEventListener('mousemove', moveReadingGuide);
-  }
+  if (readingGuideActive) document.addEventListener('mousemove', moveReadingGuide);
+  else document.removeEventListener('mousemove', moveReadingGuide);
 }
 function moveReadingGuide(e) {
   const guide = document.getElementById('reading-guide');
   if (guide) guide.style.top = e.clientY + 'px';
 }
 
-/* ═══════════════════════════════════════
-   LANGUAGE TOGGLE
-═══════════════════════════════════════ */
+/* ════════════════════════════════
+   LANGUAGE TOGGLE (EN / UR)
+════════════════════════════════ */
 let isUrdu = localStorage.getItem('am_lang') === 'ur';
-
 function applyLang() {
   document.body.classList.toggle('urdu-mode', isUrdu);
   document.getElementById('html-root').setAttribute('lang', isUrdu ? 'ur' : 'en');
   const lbl = document.getElementById('lang-btn-label');
   if (lbl) lbl.textContent = isUrdu ? 'English' : 'اردو';
-
   document.querySelectorAll('[data-en],[data-ur]').forEach(el => {
     const val = isUrdu ? el.getAttribute('data-ur') : el.getAttribute('data-en');
     if (val !== null) el.textContent = val;
@@ -1098,25 +948,22 @@ function applyLang() {
     const ph = isUrdu ? el.getAttribute('data-ur-placeholder') : el.getAttribute('data-en-placeholder');
     if (ph !== null) el.placeholder = ph;
   });
-
   if (isUrdu && !document.getElementById('urdu-font-link')) {
     const link = document.createElement('link');
-    link.id   = 'urdu-font-link';
-    link.rel  = 'stylesheet';
+    link.id = 'urdu-font-link'; link.rel = 'stylesheet';
     link.href = 'https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap';
     document.head.appendChild(link);
   }
 }
-
 function toggleLanguage() {
   isUrdu = !isUrdu;
   localStorage.setItem('am_lang', isUrdu ? 'ur' : 'en');
   applyLang();
 }
 
-/* ═══════════════════════════════════════
-   RESTORE SAVED SETTINGS ON LOAD
-═══════════════════════════════════════ */
+/* ════════════════════════════════
+   RESTORE SAVED SETTINGS
+════════════════════════════════ */
 (function restoreSettings() {
   applyFontSize();
   if (localStorage.getItem('am_contrast')    === '1') { document.body.classList.add('high-contrast');    const i=document.getElementById('a11y-contrast-input'); if(i) i.checked=true; }
@@ -1127,9 +974,9 @@ function toggleLanguage() {
   if (isUrdu) applyLang();
 })();
 
-/* ═══════════════════════════════════════
+/* ════════════════════════════════
    CART
-═══════════════════════════════════════ */
+════════════════════════════════ */
 let cartCount = 0;
 document.querySelectorAll('.add-cart-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1148,9 +995,9 @@ document.querySelectorAll('.add-cart-btn').forEach(btn => {
   });
 });
 
-/* ═══════════════════════════════════════
+/* ════════════════════════════════
    WISHLIST
-═══════════════════════════════════════ */
+════════════════════════════════ */
 document.querySelectorAll('.wishlist-btn').forEach(btn => {
   btn.addEventListener('click', e => {
     e.stopPropagation();
@@ -1160,49 +1007,105 @@ document.querySelectorAll('.wishlist-btn').forEach(btn => {
   });
 });
 
-/* ═══════════════════════════════════════
-   NEWSbxfsvbbhx san ann ybangadLETTER
-═══════════════════════════════════════ */
+/* ════════════════════════════════
+   NEWSLETTER
+════════════════════════════════ */
 function subscribeNewsletter() {
   const inp = document.querySelector('.newsletter-input');
-  if (!inp.value.includes('@')) { inp.style.borderColor = '#ef4444'; return; }
+  if (!inp || !inp.value.includes('@')) {
+    if (inp) inp.style.borderColor = '#ef4444';
+    return;
+  }
   inp.value = '';
-  inp.placeholder = isUrdu ? '✓ سبسکرائب ہو گئے! شکریہ 🎉' : '✓ Subscribed! T 
-    title:'Top 5 Mobile Covers to Protect Your Phone in 2026', titleUr:'2026 میں فون بچانے والے 5 بہترین موبائل کور',
+  inp.placeholder = isUrdu ? '✓ سبسکرائب ہو گئے! شکریہ 🎉' : '✓ Subscribed! Thank you 🎉';
+  inp.style.borderColor = 'var(--accent)';
+}
+
+/* ════════════════════════════════
+   BLOG DATA + FUNCTIONS
+════════════════════════════════ */
+const blogData = {
+  tips: {
+    tag:'Tips', tagUr:'مشورے',
+    title:'Top 5 Mobile Covers to Protect Your Phone in 2026',
+    titleUr:'2026 میں فون بچانے والے 5 بہترین موبائل کور',
     date:'May 18, 2026', dateUr:'18 مئی 2026',
     img:'https://images.unsplash.com/photo-1601593346740-925612772716?w=720&h=405&fit=crop',
-    body:`<p>Your phone is one of your most valuable possessions. A good cover can save you hundreds — even thousands — of rupees in repair costs. Here are our top 5 picks for 2026.</p><h3>1. Military-Grade Shockproof Case</h3><p>With reinforced corners and TPU bumpers, these cases survive drops from over 2 metres.</p><h3>2. Slim Leather Wallet Case</h3><p>Style and function combined. Holds up to 3 cards and has a magnetic closure.</p><h3>3. Clear Anti-Yellow Case</h3><p>Shows off your phone's original design while protecting it. Anti-yellowing formula keeps it crystal clear for years.</p><h3>4. Ring Holder Cover</h3><p>Built-in 360° ring stand for hands-free viewing and a secure grip.</p><h3>5. Magsafe Compatible Cover</h3><p>Perfect for iPhone users. Snaps onto MagSafe chargers and accessories seamlessly.</p>`,
-    bodyUr:`<p>آپ کا فون آپ کی قیمتی ترین اشیاء میں سے ایک ہے۔ یہ ہمارے 2026 کے لیے 5 بہترین کور ہیں۔</p><h3>1. ملٹری گریڈ شاک پروف کیس</h3><p>مضبوط کونوں اور TPU بمپر کے ساتھ، 2 میٹر سے زیادہ اونچائی سے گرنے پر بھی محفوظ۔</p><h3>2. سلم لیدر والٹ کیس</h3><p>انداز اور فنکشن دونوں۔ 3 کارڈ تک رکھتا ہے۔</p><h3>3. کلیئر اینٹی یلو کیس</h3><p>فون کی ڈیزائن دکھاتا اور محفوظ بھی رکھتا ہے۔</p><h3>4. رنگ ہولڈر کور</h3><p>360° رنگ اسٹینڈ۔</p><h3>5. میگ سیف کمپیٹیبل کور</h3><p>iPhone صارفین کے لیے بہترین۔</p>`
+    body:`<p>Your phone is one of your most valuable possessions. A good cover can save you hundreds — even thousands — of rupees in repair costs. Here are our top 5 picks for 2026.</p>
+<h3>1. Military-Grade Shockproof Case</h3><p>With reinforced corners and TPU bumpers, these cases survive drops from over 2 metres.</p>
+<h3>2. Slim Leather Wallet Case</h3><p>Style and function combined. Holds up to 3 cards and has a magnetic closure.</p>
+<h3>3. Clear Anti-Yellow Case</h3><p>Shows off your phone's original design while protecting it. Anti-yellowing formula keeps it crystal clear for years.</p>
+<h3>4. Ring Holder Cover</h3><p>Built-in 360° ring stand for hands-free viewing and a secure grip.</p>
+<h3>5. MagSafe Compatible Cover</h3><p>Perfect for iPhone users. Snaps onto MagSafe chargers and accessories seamlessly.</p>`,
+    bodyUr:`<p>آپ کا فون آپ کی قیمتی ترین اشیاء میں سے ایک ہے۔ یہ ہمارے 2026 کے لیے 5 بہترین کور ہیں۔</p>
+<h3>1. ملٹری گریڈ شاک پروف کیس</h3><p>مضبوط کونوں اور TPU بمپر کے ساتھ، 2 میٹر سے زیادہ اونچائی سے گرنے پر بھی محفوظ۔</p>
+<h3>2. سلم لیدر والٹ کیس</h3><p>انداز اور فنکشن دونوں۔ 3 کارڈ تک رکھتا ہے۔</p>
+<h3>3. کلیئر اینٹی یلو کیس</h3><p>فون کی ڈیزائن دکھاتا اور محفوظ بھی رکھتا ہے۔</p>
+<h3>4. رنگ ہولڈر کور</h3><p>360° رنگ اسٹینڈ۔</p>
+<h3>5. میگ سیف کمپیٹیبل کور</h3><p>iPhone صارفین کے لیے بہترین۔</p>`
   },
   guide: {
     tag:'Guide', tagUr:'رہنمائی',
-    title:'How to Choose the Best Fast Charger for Your Device', titleUr:'اپنے آلے کے لیے بہترین فاسٹ چارجر کا انتخاب',
+    title:'How to Choose the Best Fast Charger for Your Device',
+    titleUr:'اپنے آلے کے لیے بہترین فاسٹ چارجر کا انتخاب',
     date:'May 15, 2026', dateUr:'15 مئی 2026',
     img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=720&h=405&fit=crop',
-    body:`<p>With so many fast chargers on the market, choosing the right one can be confusing. Here's everything you need to know.</p><h3>Check Your Phone's Maximum Wattage</h3><p>Most modern phones support 18W–65W fast charging. Your phone regulates the input automatically.</p><h3>USB-C PD vs Proprietary Fast Charge</h3><p>USB-C Power Delivery (PD) is universal. Brands like Baseus, Anker, and Ugreen make excellent PD chargers.</p><h3>GaN Technology</h3><p>GaN chargers are smaller, run cooler, and are more efficient. Worth the slightly higher price.</p><h3>Our Recommendation</h3><p>For most users: a 65W GaN USB-C PD charger. It charges laptops, phones, and tablets.</p>`,
-    bodyUr:`<p>صحیح فاسٹ چارجرn=720&h=405&fit=crop',
-    body:`<p>You don't need to spend Rs.10,000+ to get great wireless earbuds. Here are our top tested picks under Rs.3000.</p><h3>Audionic Airbuds Pro (Rs.2,499)</h3><p>Our top pick. Excellent ANC, 30hr total battery, comfortable fit.</p><h3>Haylou GT7 Neo (Rs.1,899)</h3><p>Great for gaming — ultra-low 55ms latency.</p><h3>QCY T13 ANC (Rs.2,799)</h3><p>Strong ANC for under Rs.3000. Call quality is very clear.</p><h3>Verdict</h3><p>For all-round use, go with the Audionic Airbuds Pro.</p>`,
-    bodyUr:`<p>Rs.3000 سے کم بہترین وائرلیس ائربڈز۔</p><h3>Audionic Airbuds Pro (Rs.2,499)</h3><p>بہترین ANC، 30 گھنٹے کی بیٹری۔</p><h3>Haylou GT7 Neo (Rs.1,899)</h3><p>گیمنگ کے لیے بہترین — 55ms لیٹنسی۔</p><h3>QCY T13 ANC (Rs.2,799)</h3><p>مضبوط ANC۔</p><h3>نتیجہ</h3><p>Audionic Airbuds Pro بہترین آل راؤنڈ انتخاب ہے۔</p>`
+    body:`<p>With so many fast chargers on the market, choosing the right one can be confusing. Here's everything you need to know.</p>
+<h3>Check Your Phone's Maximum Wattage</h3><p>Most modern phones support 18W–65W fast charging. Your phone regulates the input automatically.</p>
+<h3>USB-C PD vs Proprietary Fast Charge</h3><p>USB-C Power Delivery (PD) is universal. Brands like Baseus, Anker, and Ugreen make excellent PD chargers.</p>
+<h3>GaN Technology</h3><p>GaN chargers are smaller, run cooler, and are more efficient. Worth the slightly higher price.</p>
+<h3>Our Recommendation</h3><p>For most users: a 65W GaN USB-C PD charger. It charges laptops, phones, and tablets simultaneously.</p>`,
+    bodyUr:`<p>صحیح فاسٹ چارجر کا انتخاب کرنا مشکل ہو سکتا ہے۔ یہ جاننا ضروری ہے۔</p>
+<h3>واٹیج چیک کریں</h3><p>زیادہ تر جدید فون 18W–65W فاسٹ چارجنگ سپورٹ کرتے ہیں۔</p>
+<h3>USB-C PD</h3><p>Baseus، Anker اور Ugreen بہترین PD چارجر بناتے ہیں۔</p>
+<h3>GaN ٹیکنالوجی</h3><p>چھوٹے، ٹھنڈے اور زیادہ موثر۔</p>
+<h3>ہماری سفارش</h3><p>65W GaN USB-C PD چارجر۔</p>`
+  },
+  review: {
+    tag:'Review', tagUr:'جائزہ',
+    title:'Best Wireless Earbuds Under Rs.3000 in Pakistan',
+    titleUr:'پاکستان میں Rs.3000 سے کم بہترین وائرلیس ائربڈز',
+    date:'May 10, 2026', dateUr:'10 مئی 2026',
+    img:'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=720&h=405&fit=crop',
+    body:`<p>You don't need to spend Rs.10,000+ to get great wireless earbuds. Here are our top tested picks under Rs.3000.</p>
+<h3>Audionic Airbuds Pro (Rs.2,499)</h3><p>Our top pick. Excellent ANC, 30hr total battery, comfortable fit.</p>
+<h3>Haylou GT7 Neo (Rs.1,899)</h3><p>Great for gaming — ultra-low 55ms latency.</p>
+<h3>QCY T13 ANC (Rs.2,799)</h3><p>Strong ANC for under Rs.3000. Call quality is very clear.</p>
+<h3>Verdict</h3><p>For all-round use, go with the Audionic Airbuds Pro.</p>`,
+    bodyUr:`<p>Rs.3000 سے کم بہترین وائرلیس ائربڈز۔</p>
+<h3>Audionic Airbuds Pro (Rs.2,499)</h3><p>بہترین ANC، 30 گھنٹے کی بیٹری۔</p>
+<h3>Haylou GT7 Neo (Rs.1,899)</h3><p>گیمنگ کے لیے بہترین — 55ms لیٹنسی۔</p>
+<h3>QCY T13 ANC (Rs.2,799)</h3><p>مضبوط ANC۔</p>
+<h3>نتیجہ</h3><p>Audionic Airbuds Pro بہترین آل راؤنڈ انتخاب ہے۔</p>`
   },
   deals: {
     tag:'Deals', tagUr:'ڈیلز',
-    title:'Power Banks 2026 — Which One Should You Buy?', titleUr:'پاور بینک 2026 — کون سا خریدیں؟',
+    title:'Power Banks 2026 — Which One Should You Buy?',
+    titleUr:'پاور بینک 2026 — کون سا خریدیں؟',
     date:'May 5, 2026', dateUr:'5 مئی 2026',
     img:'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=720&h=405&fit=crop',
-    body:`<p>A good power bank is essential for travel and daily use. Here's how to pick the right one in 2026.</p><h3>Capacity: 10,000 vs 20,000 mAh</h3><p>10,000mAh: compact, charges 2–3 times. 20,000mAh: heavier but charges 4–6 times.</p><h3>Charging Speed</h3><p>Look for 22.5W or higher output.</p><h3>Brand Reliability</h3><p>Anker, Baseus, and Xiaomi are the most reliable.</p><h3>Our Top Pick</h3><p>Anker PowerCore 20,000mAh PD — fast charge, safe, 2-year warranty.</p>`,
-    bodyUr:`<p>2026 میں صحیح پاور بینک کا انتخاب کیسے کریں۔</p><h3>صلاحیت</h3><p>10,000mAh کمپیکٹ۔ 20,000mAh زیادہ چارجنگ۔</p><h3>چارجنگ رفتار</h3><p>22.5W یا زیادہ آؤٹ پٹ تلاش کریں۔</p><h3>برانڈ</h3><p>Anker، Baseus اور Xiaomi سب سے قابل اعتماد۔</p><h3>ہماری پسند</h3><p>Anker PowerCore 20,000mAh PD۔</p>`
+    body:`<p>A good power bank is essential for travel and daily use. Here's how to pick the right one in 2026.</p>
+<h3>Capacity: 10,000 vs 20,000 mAh</h3><p>10,000mAh: compact, charges 2–3 times. 20,000mAh: heavier but charges 4–6 times.</p>
+<h3>Charging Speed</h3><p>Look for 22.5W or higher output.</p>
+<h3>Brand Reliability</h3><p>Anker, Baseus, and Xiaomi are the most reliable.</p>
+<h3>Our Top Pick</h3><p>Anker PowerCore 20,000mAh PD — fast charge, safe, 2-year warranty.</p>`,
+    bodyUr:`<p>2026 میں صحیح پاور بینک کا انتخاب کیسے کریں۔</p>
+<h3>صلاحیت</h3><p>10,000mAh کمپیکٹ۔ 20,000mAh زیادہ چارجنگ۔</p>
+<h3>چارجنگ رفتار</h3><p>22.5W یا زیادہ آؤٹ پٹ تلاش کریں۔</p>
+<h3>برانڈ</h3><p>Anker، Baseus اور Xiaomi سب سے قابل اعتماد۔</p>
+<h3>ہماری پسند</h3><p>Anker PowerCore 20,000mAh PD۔</p>`
   }
 };
 
 function openBlog(key) {
   const d = blogData[key];
-  const ur = isUrdu;
-  document.getElementById('blog-modal-content').innerHTML = `
-    <div class="blog-modal-tag">${ur ? d.tagUr : d.tag}</div>
-    <h2>${ur ? d.titleUr : d.title}</h2>
-    <div class="blog-modal-date">${ur ? d.dateUr : d.date}</div>
-    <img class="blog-modal-img" src="${d.img}" alt="${d.title}"/>
-    <div class="blog-modal-body">${ur ? d.bodyUr : d.body}</div>`;
+  if (!d) return;
+  document.getElementById('blog-modal-content').innerHTML =
+    `<div class="blog-modal-tag">${isUrdu ? d.tagUr : d.tag}</div>
+     <h2>${isUrdu ? d.titleUr : d.title}</h2>
+     <div class="blog-modal-date">${isUrdu ? d.dateUr : d.date}</div>
+     <img class="blog-modal-img" src="${d.img}" alt="${d.title}"/>
+     <div class="blog-modal-body">${isUrdu ? d.bodyUr : d.body}</div>`;
   document.getElementById('blog-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -1214,18 +1117,17 @@ function closeBlogIfBg(e) {
   if (e.target === document.getElementById('blog-overlay')) closeBlog();
 }
 
-/* ═══════════════════════════════════════
+/* ════════════════════════════════
    KEYBOARD NAV
-═══════════════════════════════════════ */
+════════════════════════════════ */
 document.querySelector('.nav-cart').addEventListener('keydown', e => {
   if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); location.href = 'products.html'; }
 });
-// Escape closes a11y panel and blog
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeBlog();
     document.getElementById('a11y-panel').classList.remove('open');
-    document.getElementById('a11y-toggle-btn').setAttribute('aria-expanded', 'false');
+    document.getElementById('a11y-toggle-btn').setAttribute('aria-expanded','false');
   }
 });
 </script>
