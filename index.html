@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" id="html-root">
 <head>
@@ -536,7 +535,7 @@
       </div>
     </div>
 
-    <a href="login.html" aria-label="Login to your account">
+    <a href="login.html" aria-label="Login to your account" data-nav-login>
       <button class="btn-nav" data-en="Login" data-ur="لاگ ان">Login</button>
     </a>
 
@@ -1562,6 +1561,8 @@ document.addEventListener('keydown', e => {
   }
 });
 </script>
+
+<!-- Nav auth: swaps Login button for profile icon when signed in -->
+<script type="module" src="nav-auth.js"></script>
 </body>
 </html>
-
