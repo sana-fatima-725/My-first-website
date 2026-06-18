@@ -121,9 +121,12 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .spec-v{font-weight:600;font-size:13px;color:var(--text);}
 
 /* BUTTONS */
-.detail-btns{display:flex;gap:12px;margin-top:24px;}
-.btn-order{flex:1;background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;border:none;padding:15px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.detail-btns{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+.btn-order{flex:1;min-width:160px;background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;border:none;padding:15px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
 .btn-order:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,255,0.35);}
+.btn-cart{flex:1;min-width:160px;background:var(--card-bg);color:var(--text);border:1.5px solid var(--border2);padding:15px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.btn-cart:hover{background:rgba(0,212,255,0.08);border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.btn-cart.added{background:var(--success);border-color:var(--success);color:#fff;}
 .btn-wish{width:52px;height:52px;background:var(--card-bg);border:1.5px solid var(--border);border-radius:14px;font-size:20px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
 .btn-wish:hover{border-color:var(--accent2);}
 .delivery-box{margin-top:16px;padding:14px 16px;background:rgba(16,185,129,0.06);border-radius:12px;font-size:13px;color:var(--success);border:1px solid rgba(16,185,129,0.15);line-height:1.6;}

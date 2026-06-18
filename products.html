@@ -316,6 +316,8 @@ let currentSort = 'default';
 function initFromURL() {
   const params = new URLSearchParams(window.location.search);
   const cat = params.get('cat');
+  const q   = params.get('q');
+
   if (cat) {
     currentCategory = cat;
     document.querySelectorAll('.filter-tab').forEach(t => {
@@ -323,6 +325,25 @@ function initFromURL() {
       if (t.getAttribute('onclick') && t.getAttribute('onclick').includes("'" + cat + "'")) t.classList.add('active');
     });
   }
+
+  if (q) {
+    document.getElementById('search-input').value = q;
+    currentSearch = q.toLowerCase().trim();
+
+    const matches = allProducts.filter(p =>
+      p.name.toLowerCase().includes(currentSearch) ||
+      (p.nameUr && p.nameUr.includes(currentSearch)) ||
+      p.brand.toLowerCase().includes(currentSearch) ||
+      p.cat.toLowerCase().includes(currentSearch)
+    );
+
+    // Exactly one product matches the search -> jump straight to its page
+    if (matches.length === 1) {
+      window.location.replace('product-detail.html?id=' + matches[0].id);
+      return true; // signal: redirecting, don't render the grid
+    }
+  }
+  return false;
 }
 
 function setCategory(cat, el) {
@@ -486,7 +507,10 @@ function toggleLanguage() {
   if (localStorage.getItem('am_pauseAnim')   === '1') { document.body.classList.add('pause-animations'); const i=document.getElementById('a11y-pause-input');    if(i) i.checked=true; }
   if (localStorage.getItem('am_largeCursor') === '1') { toggleLargeCursor(); }
   if (localStorage.getItem('am_readingGuide')=== '1') { toggleReadingGuide(); }
-  initFromURL();
+
+  const redirecting = initFromURL();
+  if (redirecting) return; // page is navigating to product-detail.html, stop here
+
   filterProducts();
   if (isUrdu) applyLang();
 })();
