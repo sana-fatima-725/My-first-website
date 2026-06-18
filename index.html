@@ -17,6 +17,8 @@
       --text:#f0f0ff; --text2:#c8c8e0; --muted:rgba(255,255,255,0.45);
       --nav-h:68px; --radius:16px;
     }
+
+    /* HIGH CONTRAST */
     body.high-contrast {
       --bg:#000!important; --bg2:#000!important; --bg3:#000!important;
       --surface:#111!important; --surface2:#111!important;
@@ -24,20 +26,39 @@
       --muted:#fff!important; --accent:#ffff00!important;
       --border:rgba(255,255,0,0.4)!important; --border2:rgba(255,255,0,0.6)!important;
     }
-    body.high-contrast nav, body.high-contrast .ticker-wrap,
-    body.high-contrast footer, body.high-contrast .offers-banner { background:#000!important; border-color:#ffff00!important; }
-    body.pause-animations *, body.pause-animations *::before, body.pause-animations *::after { animation-play-state:paused!important; transition:none!important; }
-    body.dyslexia-font, body.dyslexia-font * { font-family:'OpenDyslexic',sans-serif!important; letter-spacing:0.05em!important; word-spacing:0.15em!important; line-height:1.9!important; }
+    body.high-contrast nav,
+    body.high-contrast .ticker-wrap,
+    body.high-contrast footer,
+    body.high-contrast .offers-banner { background:#000!important; border-color:#ffff00!important; }
+
+    /* PAUSE ANIMATIONS */
+    body.pause-animations *,
+    body.pause-animations *::before,
+    body.pause-animations *::after { animation-play-state:paused!important; transition:none!important; }
+
+    /* DYSLEXIA FONT */
+    body.dyslexia-font, body.dyslexia-font * {
+      font-family:'OpenDyslexic',sans-serif!important;
+      letter-spacing:0.05em!important; word-spacing:0.15em!important; line-height:1.9!important;
+    }
+
+    /* URDU MODE */
     body.urdu-mode { direction:rtl; }
     body.urdu-mode p, body.urdu-mode h1, body.urdu-mode h2, body.urdu-mode h3,
     body.urdu-mode span, body.urdu-mode div, body.urdu-mode a,
-    body.urdu-mode button, body.urdu-mode li { direction:rtl; font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',serif!important; }
-    body.urdu-mode .section-title, body.urdu-mode .slide-title { font-family:'Noto Nastaliq Urdu',serif!important; line-height:1.6!important; }
+    body.urdu-mode button, body.urdu-mode li {
+      direction:rtl; font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',serif!important;
+    }
+    body.urdu-mode .section-title, body.urdu-mode .slide-title {
+      font-family:'Noto Nastaliq Urdu',serif!important; line-height:1.6!important;
+    }
     body.urdu-mode .ticker-track { animation-direction:reverse; }
     body.urdu-mode .slide-content { padding:0 80px 0 0!important; text-align:right; }
     body.urdu-mode .slide-feature-pills { justify-content:flex-end; }
     body.urdu-mode .slide-btns { justify-content:flex-end; }
-    body.urdu-mode .footer-main, body.urdu-mode .footer-cats-grid, body.urdu-mode .footer-bottom { direction:rtl; }
+    body.urdu-mode .footer-main,
+    body.urdu-mode .footer-cats-grid,
+    body.urdu-mode .footer-bottom { direction:rtl; }
     body.urdu-mode .nav-links { flex-direction:row-reverse; }
     body.urdu-mode .nav-right { flex-direction:row-reverse; }
     body.urdu-mode .section-row { flex-direction:row-reverse; }
@@ -48,32 +69,73 @@
 
     /* ACCESSIBILITY PANEL */
     .a11y-wrapper { position:relative; display:flex; align-items:center; }
-    #a11y-toggle-btn { width:38px; height:38px; background:var(--surface2); border:1px solid var(--border2); border-radius:9px; color:var(--accent); font-size:17px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s,box-shadow 0.2s; position:relative; }
-    #a11y-toggle-btn:hover, #a11y-toggle-btn.open { background:rgba(0,212,255,0.15); box-shadow:0 0 0 2px rgba(0,212,255,0.3); }
+    #a11y-toggle-btn {
+      width:38px; height:38px; background:var(--surface2);
+      border:1px solid var(--border2); border-radius:9px;
+      color:var(--accent); font-size:17px; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:background 0.2s,box-shadow 0.2s; position:relative;
+    }
+    #a11y-toggle-btn:hover, #a11y-toggle-btn.open {
+      background:rgba(0,212,255,0.15); box-shadow:0 0 0 2px rgba(0,212,255,0.3);
+    }
     #a11y-toggle-btn:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
-    #a11y-panel { display:none; position:absolute; top:calc(100% + 12px); right:0; width:260px; background:#0f0f1e; border:1.5px solid rgba(0,212,255,0.25); border-radius:14px; padding:16px; z-index:9999; box-shadow:0 16px 48px rgba(0,0,0,0.6); flex-direction:column; gap:6px; }
+    #a11y-panel {
+      display:none; position:absolute; top:calc(100% + 12px); right:0;
+      width:260px; background:#0f0f1e; border:1.5px solid rgba(0,212,255,0.25);
+      border-radius:14px; padding:16px; z-index:9999;
+      box-shadow:0 16px 48px rgba(0,0,0,0.6); flex-direction:column; gap:6px;
+    }
     #a11y-panel.open { display:flex; }
-    .a11y-panel-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; padding-bottom:8px; border-bottom:1px solid var(--border); }
-    .a11y-row { display:flex; align-items:center; justify-content:space-between; padding:8px 10px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid transparent; transition:all 0.15s; }
+    .a11y-panel-title {
+      font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+      color:var(--muted); margin-bottom:6px; padding-bottom:8px; border-bottom:1px solid var(--border);
+    }
+    .a11y-row {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:8px 10px; border-radius:8px;
+      background:rgba(255,255,255,0.03); border:1px solid transparent; transition:all 0.15s;
+    }
     .a11y-row:hover { border-color:var(--border2); background:rgba(0,212,255,0.05); }
     .a11y-row-label { font-size:13px; font-weight:600; color:var(--text2); display:flex; align-items:center; gap:8px; }
     .a11y-row-label .a11y-icon { font-size:16px; width:22px; text-align:center; }
     .a11y-font-controls { display:flex; align-items:center; gap:6px; }
-    .a11y-font-btn { width:30px; height:30px; background:var(--surface2); border:1px solid var(--border2); border-radius:7px; color:var(--accent); font-size:13px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.15s; font-family:'Plus Jakarta Sans',sans-serif; }
+    .a11y-font-btn {
+      width:30px; height:30px; background:var(--surface2); border:1px solid var(--border2);
+      border-radius:7px; color:var(--accent); font-size:13px; font-weight:700;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:all 0.15s; font-family:'Plus Jakarta Sans',sans-serif;
+    }
     .a11y-font-btn:hover { background:var(--accent); color:#000; }
     #font-size-val { font-size:11px; font-weight:700; color:var(--accent); min-width:34px; text-align:center; }
     .a11y-toggle { position:relative; width:38px; height:20px; flex-shrink:0; }
     .a11y-toggle input { opacity:0; width:0; height:0; }
-    .a11y-toggle-track { position:absolute; inset:0; background:var(--surface2); border:1px solid var(--border2); border-radius:20px; cursor:pointer; transition:background 0.2s; }
-    .a11y-toggle-track::after { content:''; position:absolute; width:14px; height:14px; border-radius:50%; background:var(--muted); top:2px; left:2px; transition:transform 0.2s,background 0.2s; }
+    .a11y-toggle-track {
+      position:absolute; inset:0; background:var(--surface2); border:1px solid var(--border2);
+      border-radius:20px; cursor:pointer; transition:background 0.2s;
+    }
+    .a11y-toggle-track::after {
+      content:''; position:absolute; width:14px; height:14px; border-radius:50%;
+      background:var(--muted); top:2px; left:2px; transition:transform 0.2s,background 0.2s;
+    }
     .a11y-toggle input:checked + .a11y-toggle-track { background:rgba(0,212,255,0.25); border-color:var(--accent); }
     .a11y-toggle input:checked + .a11y-toggle-track::after { transform:translateX(18px); background:var(--accent); }
 
     /* LANG BUTTON */
-    #lang-nav-btn { display:flex; align-items:center; gap:6px; background:linear-gradient(135deg,var(--accent2),var(--accent-dk)); border:none; border-radius:9px; color:white; font-size:12px; font-weight:700; padding:0 14px; height:38px; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all 0.2s; white-space:nowrap; }
+    #lang-nav-btn {
+      display:flex; align-items:center; gap:6px;
+      background:linear-gradient(135deg,var(--accent2),var(--accent-dk));
+      border:none; border-radius:9px; color:white; font-size:12px; font-weight:700;
+      padding:0 14px; height:38px; cursor:pointer;
+      font-family:'Plus Jakarta Sans',sans-serif; transition:all 0.2s; white-space:nowrap;
+    }
     #lang-nav-btn:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(124,58,237,0.4); }
     #lang-nav-btn:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
-    a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--accent)!important; outline-offset:3px!important; border-radius:4px; }
+
+    /* KEYBOARD FOCUS */
+    a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+      outline:2px solid var(--accent)!important; outline-offset:3px!important; border-radius:4px;
+    }
 
     /* BASE */
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
@@ -81,7 +143,12 @@
     body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
 
     /* NAVBAR */
-    nav { position:fixed; top:0; left:0; right:0; z-index:1000; height:var(--nav-h); display:flex; align-items:center; justify-content:space-between; padding:0 32px; background:rgba(10,10,20,0.97); backdrop-filter:blur(24px); border-bottom:1px solid var(--border); gap:12px; }
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:1000; height:var(--nav-h);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 32px; background:rgba(10,10,20,0.97);
+      backdrop-filter:blur(24px); border-bottom:1px solid var(--border); gap:12px;
+    }
     .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
     .nav-logo-icon { width:38px; height:38px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; }
     .nav-logo-text { color:var(--text); font-weight:800; font-size:18px; letter-spacing:-0.5px; }
@@ -90,22 +157,44 @@
     .nav-links a { color:var(--muted); text-decoration:none; font-size:13.5px; font-weight:500; padding:7px 12px; border-radius:8px; transition:all 0.2s; white-space:nowrap; }
     .nav-links a:hover, .nav-links a.active { color:var(--accent); background:rgba(0,212,255,0.08); }
     .nav-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
-    .nav-search { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:8px 12px; border-radius:8px; font-size:13px; font-family:'Plus Jakarta Sans',sans-serif; width:160px; transition:border 0.2s; }
+    .nav-search {
+      background:var(--surface2); border:1px solid var(--border); color:var(--text);
+      padding:8px 12px; border-radius:8px; font-size:13px;
+      font-family:'Plus Jakarta Sans',sans-serif; width:160px; transition:border 0.2s;
+    }
     .nav-search:focus { outline:none; border-color:var(--accent); }
-    .btn-nav { background:linear-gradient(135deg,var(--accent),var(--accent-dk)); color:#000; border:none; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all 0.2s; white-space:nowrap; }
+    .btn-nav {
+      background:linear-gradient(135deg,var(--accent),var(--accent-dk));
+      color:#000; border:none; padding:9px 18px; border-radius:8px;
+      font-size:13px; font-weight:700; cursor:pointer;
+      font-family:'Plus Jakarta Sans',sans-serif; transition:all 0.2s; white-space:nowrap;
+    }
     .btn-nav:hover { transform:translateY(-1px); box-shadow:0 4px 20px rgba(0,212,255,0.4); }
     .nav-cart { color:var(--text); font-size:20px; cursor:pointer; position:relative; }
-    .cart-badge { position:absolute; top:-6px; right:-8px; background:var(--accent); color:#000; font-size:9px; font-weight:700; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+    .cart-badge {
+      position:absolute; top:-6px; right:-8px;
+      background:var(--accent); color:#000; font-size:9px; font-weight:700;
+      width:16px; height:16px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+    }
 
     /* TICKER */
-    .ticker-wrap { position:fixed; top:var(--nav-h); left:0; right:0; z-index:999; background:linear-gradient(90deg,var(--accent2),var(--accent-dk)); overflow:hidden; height:34px; display:flex; align-items:center; }
+    .ticker-wrap {
+      position:fixed; top:var(--nav-h); left:0; right:0; z-index:999;
+      background:linear-gradient(90deg,var(--accent2),var(--accent-dk));
+      overflow:hidden; height:34px; display:flex; align-items:center;
+    }
     .ticker-track { display:flex; white-space:nowrap; animation:ticker 30s linear infinite; }
     .ticker-item { padding:0 40px; font-size:12px; font-weight:600; color:white; letter-spacing:1px; text-transform:uppercase; }
     .ticker-item::after { content:'✦'; margin-left:40px; }
     @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
     /* HERO */
-    .hero { margin-top:calc(var(--nav-h) + 34px); position:relative; height:calc(100vh - var(--nav-h) - 34px); min-height:500px; overflow:hidden; display:flex; align-items:center; }
+    .hero {
+      margin-top:calc(var(--nav-h) + 34px);
+      position:relative; height:calc(100vh - var(--nav-h) - 34px);
+      min-height:500px; overflow:hidden; display:flex; align-items:center;
+    }
     .hero-video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1; }
     .slide-overlay { position:absolute; inset:0; z-index:2; background:linear-gradient(90deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.35) 70%); }
     .slide-content { position:relative; z-index:3; padding:0 80px; max-width:640px; }
@@ -288,135 +377,6 @@
     .blog-modal-body ul { padding-left:20px; margin-bottom:16px; }
     .blog-modal-body ul li { font-size:15px; color:var(--text2); line-height:1.8; margin-bottom:6px; }
 
-    /* ═══════════════════════════════════════
-       CART DRAWER — NEW FEATURE
-    ═══════════════════════════════════════ */
-    .cart-drawer-overlay {
-      display:none; position:fixed; inset:0; z-index:4000;
-      background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);
-    }
-    .cart-drawer-overlay.open { display:block; }
-    .cart-drawer {
-      position:fixed; top:0; right:0; bottom:0; z-index:4001;
-      width:420px; max-width:100vw;
-      background:var(--bg2); border-left:1.5px solid var(--border2);
-      display:flex; flex-direction:column;
-      transform:translateX(100%); transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
-      box-shadow:-20px 0 60px rgba(0,0,0,0.5);
-    }
-    .cart-drawer.open { transform:translateX(0); }
-    .cart-drawer-header {
-      display:flex; align-items:center; justify-content:space-between;
-      padding:20px 24px; border-bottom:1px solid var(--border);
-      background:var(--surface); flex-shrink:0;
-    }
-    .cart-drawer-title {
-      font-family:'Bebas Neue',sans-serif; font-size:24px; color:var(--text);
-      display:flex; align-items:center; gap:10px;
-    }
-    .cart-drawer-count {
-      background:var(--accent); color:#000; font-size:11px; font-weight:800;
-      padding:2px 8px; border-radius:100px; font-family:'Plus Jakarta Sans',sans-serif;
-    }
-    .cart-drawer-close {
-      width:36px; height:36px; background:var(--surface2); border:1px solid var(--border);
-      border-radius:50%; color:var(--text); font-size:18px; cursor:pointer;
-      display:flex; align-items:center; justify-content:center; transition:all 0.2s;
-    }
-    .cart-drawer-close:hover { border-color:var(--border2); color:var(--accent); }
-    .cart-items-list {
-      flex:1; overflow-y:auto; padding:16px 24px; display:flex; flex-direction:column; gap:14px;
-    }
-    .cart-items-list::-webkit-scrollbar { width:4px; }
-    .cart-items-list::-webkit-scrollbar-track { background:transparent; }
-    .cart-items-list::-webkit-scrollbar-thumb { background:var(--border2); border-radius:4px; }
-    .cart-empty {
-      flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
-      gap:16px; color:var(--muted); padding:40px;
-    }
-    .cart-empty-icon { font-size:64px; opacity:0.4; }
-    .cart-empty-text { font-size:16px; font-weight:600; text-align:center; }
-    .cart-empty-sub { font-size:13px; text-align:center; opacity:0.7; }
-    .cart-item {
-      display:flex; gap:14px; align-items:flex-start;
-      background:var(--surface); border:1px solid var(--border); border-radius:12px;
-      padding:12px; transition:border-color 0.2s;
-      animation:cartItemIn 0.3s ease;
-    }
-    @keyframes cartItemIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
-    .cart-item:hover { border-color:var(--border2); }
-    .cart-item-img {
-      width:72px; height:72px; border-radius:8px; object-fit:cover;
-      background:var(--surface2); flex-shrink:0;
-    }
-    .cart-item-info { flex:1; min-width:0; }
-    .cart-item-brand { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; }
-    .cart-item-name { font-size:13px; font-weight:700; color:var(--text); line-height:1.3; margin:3px 0 6px; }
-    .cart-item-price { font-size:16px; font-weight:800; color:var(--accent); }
-    .cart-item-old { font-size:11px; color:var(--muted); text-decoration:line-through; margin-left:6px; }
-    .cart-item-controls { display:flex; align-items:center; justify-content:space-between; margin-top:10px; }
-    .cart-qty { display:flex; align-items:center; gap:8px; }
-    .cart-qty-btn {
-      width:26px; height:26px; border-radius:6px; background:var(--surface2);
-      border:1px solid var(--border2); color:var(--accent); font-size:14px; font-weight:700;
-      cursor:pointer; display:flex; align-items:center; justify-content:center;
-      transition:all 0.15s; line-height:1;
-    }
-    .cart-qty-btn:hover { background:var(--accent); color:#000; }
-    .cart-qty-num { font-size:14px; font-weight:700; color:var(--text); min-width:20px; text-align:center; }
-    .cart-item-remove { font-size:11px; color:var(--muted); cursor:pointer; text-decoration:underline; transition:color 0.2s; background:none; border:none; }
-    .cart-item-remove:hover { color:#ef4444; }
-    .cart-drawer-footer {
-      border-top:1px solid var(--border); padding:20px 24px;
-      background:var(--surface); flex-shrink:0;
-    }
-    .cart-summary-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
-    .cart-summary-label { font-size:13px; color:var(--muted); }
-    .cart-summary-val { font-size:13px; font-weight:600; color:var(--text); }
-    .cart-summary-saved { font-size:13px; font-weight:700; color:#22c55e; }
-    .cart-total-row { display:flex; justify-content:space-between; align-items:center; margin:12px 0; padding-top:12px; border-top:1px solid var(--border); }
-    .cart-total-label { font-size:16px; font-weight:700; color:var(--text); }
-    .cart-total-val { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--accent); }
-    .free-delivery-badge {
-      background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3);
-      color:#22c55e; font-size:11px; font-weight:700; letter-spacing:1px;
-      padding:6px 14px; border-radius:100px; text-align:center; margin-bottom:14px;
-      display:flex; align-items:center; justify-content:center; gap:6px;
-    }
-    .checkout-btn {
-      width:100%; padding:14px; background:linear-gradient(135deg,var(--accent),var(--accent-dk));
-      color:#000; border:none; border-radius:10px; font-size:15px; font-weight:700;
-      cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all 0.2s;
-      letter-spacing:0.5px;
-    }
-    .checkout-btn:hover { transform:translateY(-1px); box-shadow:0 8px 24px rgba(0,212,255,0.4); }
-    .checkout-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; box-shadow:none; }
-    .cart-continue { display:block; text-align:center; margin-top:10px; font-size:13px; color:var(--muted); cursor:pointer; text-decoration:underline; background:none; border:none; width:100%; }
-    .cart-continue:hover { color:var(--accent); }
-
-    /* CART BOUNCE ANIMATION for nav icon */
-    @keyframes cartBounce { 0%,100%{transform:scale(1)} 30%{transform:scale(1.4)} 60%{transform:scale(0.9)} 80%{transform:scale(1.1)} }
-    .cart-bounce { animation:cartBounce 0.5s ease; }
-
-    /* CONFETTI CANVAS */
-    #confetti-canvas {
-      position:fixed; top:0; left:0; width:100%; height:100%;
-      pointer-events:none; z-index:9999; display:none;
-    }
-
-    /* NEWSLETTER SUBSCRIBED STATE */
-    .newsletter-subscribed {
-      display:none; flex-direction:column; align-items:flex-start; gap:8px;
-    }
-    .subscribed-badge {
-      display:inline-flex; align-items:center; gap:10px;
-      background:rgba(34,197,94,0.1); border:1.5px solid rgba(34,197,94,0.4);
-      color:#22c55e; padding:12px 20px; border-radius:10px;
-      font-size:15px; font-weight:700;
-    }
-    .subscribed-check { font-size:22px; }
-    .subscribed-sub { font-size:13px; color:var(--muted); }
-
     /* MOBILE */
     @media(max-width:1100px){ .nav-links a { font-size:12px; padding:6px 8px; } }
     @media(max-width:900px){
@@ -443,7 +403,6 @@
       .blog-modal { padding:32px 24px; }
       #a11y-panel { right:-60px; width:240px; }
       #lang-btn-label { display:none; }
-      .cart-drawer { width:100vw; }
     }
     @media(max-width:480px){
       .nav-search { display:none; }
@@ -452,9 +411,6 @@
   </style>
 </head>
 <body>
-
-<!-- CONFETTI CANVAS -->
-<canvas id="confetti-canvas"></canvas>
 
 <!-- NAVBAR -->
 <nav role="navigation" aria-label="Main Navigation">
@@ -480,11 +436,13 @@
       data-ur-placeholder="🔍 مصنوعات تلاش کریں..."
       onkeydown="if(event.key==='Enter' && this.value.trim()) window.location='products.html?q='+encodeURIComponent(this.value.trim())"/>
 
+    <!-- LANGUAGE TOGGLE -->
     <button id="lang-nav-btn" onclick="toggleLanguage()" aria-label="Switch language between English and Urdu">
       <span class="lang-globe">🌐</span>
       <span id="lang-btn-label">اردو</span>
     </button>
 
+    <!-- ACCESSIBILITY PANEL -->
     <div class="a11y-wrapper">
       <button id="a11y-toggle-btn" onclick="toggleA11yPanel()" aria-label="Accessibility options" aria-expanded="false" aria-haspopup="true">♿</button>
       <div id="a11y-panel" role="menu" aria-label="Accessibility Options">
@@ -535,62 +493,14 @@
       </div>
     </div>
 
-    <a href="login.html" aria-label="Login to your account" data-nav-login>
+    <a href="login.html" aria-label="Login to your account">
       <button class="btn-nav" data-en="Login" data-ur="لاگ ان">Login</button>
     </a>
-
-    <!-- CART ICON — now opens drawer -->
-    <div class="nav-cart" id="nav-cart-icon" onclick="openCartDrawer()" role="button" aria-label="Shopping cart" tabindex="0">
-      🛒<span class="cart-badge" id="cart-badge-count" aria-live="polite" aria-label="Items in cart">0</span>
+    <div class="nav-cart" onclick="location.href='products.html'" role="button" aria-label="Shopping cart" tabindex="0">
+      🛒<span class="cart-badge" aria-live="polite" aria-label="Items in cart">0</span>
     </div>
   </div>
 </nav>
-
-<!-- READING GUIDE -->
-<div id="reading-guide" style="display:none;position:fixed;left:0;right:0;height:32px;background:rgba(0,212,255,0.08);border-top:2px solid rgba(0,212,255,0.4);border-bottom:2px solid rgba(0,212,255,0.4);pointer-events:none;z-index:8000;transform:translateY(-50%);"></div>
-
-<!-- ═══════════════════════════════════════
-     CART DRAWER
-═══════════════════════════════════════ -->
-<div class="cart-drawer-overlay" id="cart-overlay" onclick="closeCartDrawer()"></div>
-<div class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-label="Shopping Cart">
-  <div class="cart-drawer-header">
-    <div class="cart-drawer-title">
-      🛒 <span data-en="Your Cart" data-ur="آپ کا کارٹ">Your Cart</span>
-      <span class="cart-drawer-count" id="drawer-item-count">0</span>
-    </div>
-    <button class="cart-drawer-close" onclick="closeCartDrawer()" aria-label="Close cart">✕</button>
-  </div>
-
-  <div class="cart-items-list" id="cart-items-container">
-    <!-- Cart items injected here by JS -->
-    <div class="cart-empty" id="cart-empty-state">
-      <div class="cart-empty-icon">🛒</div>
-      <div class="cart-empty-text" data-en="Your cart is empty" data-ur="آپ کا کارٹ خالی ہے">Your cart is empty</div>
-      <div class="cart-empty-sub" data-en="Add products to see them here" data-ur="مصنوعات شامل کریں">Add products to see them here</div>
-    </div>
-  </div>
-
-  <div class="cart-drawer-footer" id="cart-footer" style="display:none;">
-    <div class="free-delivery-badge">
-      🚚 <span data-en="Free Delivery — You qualify!" data-ur="مفت ڈیلیوری — آپ اہل ہیں!">Free Delivery — You qualify!</span>
-    </div>
-    <div class="cart-summary-row">
-      <span class="cart-summary-label" data-en="Subtotal (original)" data-ur="ذیلی کل (اصل)">Subtotal (original)</span>
-      <span class="cart-summary-val" id="cart-original-total">Rs.0</span>
-    </div>
-    <div class="cart-summary-row">
-      <span class="cart-summary-label" data-en="You Saved" data-ur="آپ نے بچائے">You Saved</span>
-      <span class="cart-summary-saved" id="cart-saved-amount">Rs.0</span>
-    </div>
-    <div class="cart-total-row">
-      <span class="cart-total-label" data-en="Grand Total" data-ur="کل رقم">Grand Total</span>
-      <span class="cart-total-val" id="cart-grand-total">Rs.0</span>
-    </div>
-    <button class="checkout-btn" onclick="location.href='products.html'" data-en="Proceed to Checkout →" data-ur="چیک آؤٹ کریں →">Proceed to Checkout →</button>
-    <button class="cart-continue" onclick="closeCartDrawer()" data-en="← Continue Shopping" data-ur="← خریداری جاری رکھیں">← Continue Shopping</button>
-  </div>
-</div>
 
 <!-- TICKER -->
 <div class="ticker-wrap" aria-hidden="true" role="marquee">
@@ -612,8 +522,11 @@
   </div>
 </div>
 
+<!-- READING GUIDE -->
+<div id="reading-guide" style="display:none;position:fixed;left:0;right:0;height:32px;background:rgba(0,212,255,0.08);border-top:2px solid rgba(0,212,255,0.4);border-bottom:2px solid rgba(0,212,255,0.4);pointer-events:none;z-index:8000;transform:translateY(-50%);"></div>
+
 <!-- HERO -->
-<section class="hero" aria-label="Hero Banner" style="margin-top:calc(var(--nav-h) + 34px);">
+<section class="hero" aria-label="Hero Banner">
   <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
     <source src="https://www.pexels.com/download/video/3196427/" type="video/mp4">
   </video>
@@ -694,138 +607,14 @@
     <a href="products.html" class="view-all" data-en="View All →" data-ur="سب دیکھیں →">View All →</a>
   </div>
   <div class="products-grid">
-    <div class="product-card" role="article"
-      data-name="Pro Wireless Earbuds X1" data-name-ur="پرو وائرلیس ائربڈز X1"
-      data-brand="Audionic" data-price="2499" data-old-price="4999"
-      data-img="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop" alt="Pro Wireless Earbuds X1"/>
-        <span class="badge" data-en="-50% OFF" data-ur="-50% چھوٹ">-50% OFF</span>
-        <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
-      </div>
-      <div class="product-info">
-        <div class="product-brand">Audionic</div>
-        <div class="product-name" data-en="Pro Wireless Earbuds X1" data-ur="پرو وائرلیس ائربڈز X1">Pro Wireless Earbuds X1</div>
-        <div class="product-price-row"><span class="price-new">Rs.2,499</span><span class="price-old">Rs.4,999</span></div>
-        <button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="product-card" role="article"
-      data-name="Luxury Leather Phone Cover" data-name-ur="لگژری چمڑے کا فون کور"
-      data-brand="Premium" data-price="899" data-old-price="1499"
-      data-img="https://images.pexels.com/photos/12351694/pexels-photo-12351694.jpeg">
-      <div class="product-img-wrap">
-        <img src="https://images.pexels.com/photos/12351694/pexels-photo-12351694.jpeg" alt="Luxury Leather Phone Cover"/>
-        <span class="badge" data-en="NEW" data-ur="نیا">NEW</span>
-        <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
-      </div>
-      <div class="product-info">
-        <div class="product-brand">Premium</div>
-        <div class="product-name" data-en="Luxury Leather Phone Cover" data-ur="لگژری چمڑے کا فون کور">Luxury Leather Phone Cover</div>
-        <div class="product-price-row"><span class="price-new">Rs.899</span><span class="price-old">Rs.1,499</span></div>
-        <button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="product-card" role="article"
-      data-name="65W Super Fast Charger" data-name-ur="65W سپر فاسٹ چارجر"
-      data-brand="Baseus" data-price="1299" data-old-price="2499"
-      data-img="https://images.pexels.com/photos/3921632/pexels-photo-3921632.jpeg">
-      <div class="product-img-wrap">
-        <img src="https://images.pexels.com/photos/3921632/pexels-photo-3921632.jpeg" alt="65W Super Fast Charger"/>
-        <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
-      </div>
-      <div class="product-info">
-        <div class="product-brand">Baseus</div>
-        <div class="product-name" data-en="65W Super Fast Charger" data-ur="65W سپر فاسٹ چارجر">65W Super Fast Charger</div>
-        <div class="product-price-row"><span class="price-new">Rs.1,299</span><span class="price-old">Rs.2,499</span></div>
-        <button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="product-card" role="article"
-      data-name="20000mAh Power Bank PD" data-name-ur="20000mAh پاور بینک PD"
-      data-brand="Anker" data-price="4499" data-old-price="8999"
-      data-img="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=400&fit=crop">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=400&fit=crop" alt="20000mAh Power Bank PD"/>
-        <span class="badge badge-hot" data-en="HOT 🔥" data-ur="مقبول 🔥">HOT 🔥</span>
-        <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
-      </div>
-      <div class="product-info">
-        <div class="product-brand">Anker</div>
-        <div class="product-name" data-en="20000mAh Power Bank PD" data-ur="20000mAh پاور بینک PD">20000mAh Power Bank PD</div>
-        <div class="product-price-row"><span class="price-new">Rs.4,499</span><span class="price-old">Rs.8,999</span></div>
-        <button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="product-card" role="article"
-      data-name="Deep Bass Headphones" data-name-ur="ڈیپ باس ہیڈفون"
-      data-brand="Sony" data-price="3999" data-old-price="6999"
-      data-img="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&h=400&fit=crop">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&h=400&fit=crop" alt="Deep Bass Headphones"/>
-        <span class="badge" data-en="-40%" data-ur="-40% چھوٹ">-40%</span>
-        <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
-      </div>
-      <div class="product-info">
-        <div class="product-brand">Sony</div>
-        <div class="product-name" data-en="Deep Bass Headphones" data-ur="ڈیپ باس ہیڈفون">Deep Bass Headphones</div>
-        <div class="product-price-row"><span class="price-new">Rs.3,999</span><span class="price-old">Rs.6,999</span></div>
-        <button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="product-card" role="article"
-      data-name="9H Tempered Glass Screen Guard" data-name-ur="9H ٹیمپرڈ گلاس سکرین گارڈ"
-      data-brand="Nillkin" data-price="349" data-old-price="699"
-      data-img="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop">
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop" alt="9H Tempered Glass Screen Guard"/>
-        <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
-      </div>
-      <div class="product-info">
-        <div class="product-brand">Nillkin</div>
-        <div class="product-name" data-en="9H Tempered Glass Screen Guard" data-ur="9H ٹیمپرڈ گلاس سکرین گارڈ">9H Tempered Glass Screen Guard</div>
-        <div class="product-price-row"><span class="price-new">Rs.349</span><span class="price-old">Rs.699</span></div>
-        <button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="product-card" role="article"
-      data-name="Portable Bluetooth Speaker" data-name-ur="پورٹیبل بلوٹوتھ اسپیکر"
-      data-brand="JBL" data-price="5999" data-old-price="9999"
-      data-img="https://images.pexels.com/photos/4917455/pexels-photo-4917455.jpeg">
-      <div class="product-img-wrap">
-        <img src="https://images.pexels.com/photos/4917455/pexels-photo-4917455.jpeg" alt="Portable Bluetooth Speaker"/>
-        <span class="badge" data-en="NEW" data-ur="نیا">NEW</span>
-        <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
-      </div>
-      <div class="product-info">
-        <div class="product-brand">JBL</div>
-        <div class="product-name" data-en="Portable Bluetooth Speaker" data-ur="پورٹیبل بلوٹوتھ اسپیکر">Portable Bluetooth Speaker</div>
-        <div class="product-price-row"><span class="price-new">Rs.5,999</span><span class="price-old">Rs.9,999</span></div>
-        <button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="product-card" role="article"
-      data-name="120W Braided USB-C Cable 2m" data-name-ur="120W برائیڈڈ USB-C کیبل 2m"
-      data-brand="Ugreen" data-price="599" data-old-price="999"
-      data-img="https://images.pexels.com/photos/163047/network-network-cables-connection-plug-163047.jpeg">
-      <div class="product-img-wrap">
-        <img src="https://images.pexels.com/photos/163047/network-network-cables-connection-plug-163047.jpeg" alt="120W Braided USB-C Cable 2m"/>
-        <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
-      </div>
-      <div class="product-info">
-        <div class="product-brand">Ugreen</div>
-        <div class="product-name" data-en="120W Braided USB-C Cable 2m" data-ur="120W برائیڈڈ USB-C کیبل 2m">120W Braided USB-C Cable 2m</div>
-        <div class="product-price-row"><span class="price-new">Rs.599</span><span class="price-old">Rs.999</span></div>
-        <button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button>
-      </div>
-    </div>
+    <div class="product-card" role="article"><div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop" alt="Pro Wireless Earbuds X1"/><span class="badge" data-en="-50% OFF" data-ur="-50% چھوٹ">-50% OFF</span><button class="wishlist-btn" aria-label="Add to wishlist">♡</button></div><div class="product-info"><div class="product-brand">Audionic</div><div class="product-name" data-en="Pro Wireless Earbuds X1" data-ur="پرو وائرلیس ائربڈز X1">Pro Wireless Earbuds X1</div><div class="product-price-row"><span class="price-new">Rs.2,499</span><span class="price-old">Rs.4,999</span></div><button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button></div></div>
+    <div class="product-card" role="article"><div class="product-img-wrap"><img src="https://images.pexels.com/photos/12351694/pexels-photo-12351694.jpeg" alt="Luxury Leather Phone Cover"/><span class="badge" data-en="NEW" data-ur="نیا">NEW</span><button class="wishlist-btn" aria-label="Add to wishlist">♡</button></div><div class="product-info"><div class="product-brand">Premium</div><div class="product-name" data-en="Luxury Leather Phone Cover" data-ur="لگژری چمڑے کا فون کور">Luxury Leather Phone Cover</div><div class="product-price-row"><span class="price-new">Rs.899</span><span class="price-old">Rs.1,499</span></div><button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button></div></div>
+    <div class="product-card" role="article"><div class="product-img-wrap"><img src="https://images.pexels.com/photos/3921632/pexels-photo-3921632.jpeg" alt="65W Super Fast Charger"/><button class="wishlist-btn" aria-label="Add to wishlist">♡</button></div><div class="product-info"><div class="product-brand">Baseus</div><div class="product-name" data-en="65W Super Fast Charger" data-ur="65W سپر فاسٹ چارجر">65W Super Fast Charger</div><div class="product-price-row"><span class="price-new">Rs.1,299</span><span class="price-old">Rs.2,499</span></div><button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button></div></div>
+    <div class="product-card" role="article"><div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=400&fit=crop" alt="20000mAh Power Bank PD"/><span class="badge badge-hot" data-en="HOT 🔥" data-ur="مقبول 🔥">HOT 🔥</span><button class="wishlist-btn" aria-label="Add to wishlist">♡</button></div><div class="product-info"><div class="product-brand">Anker</div><div class="product-name" data-en="20000mAh Power Bank PD" data-ur="20000mAh پاور بینک PD">20000mAh Power Bank PD</div><div class="product-price-row"><span class="price-new">Rs.4,499</span><span class="price-old">Rs.8,999</span></div><button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button></div></div>
+    <div class="product-card" role="article"><div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&h=400&fit=crop" alt="Deep Bass Headphones"/><span class="badge" data-en="-40%" data-ur="-40% چھوٹ">-40%</span><button class="wishlist-btn" aria-label="Add to wishlist">♡</button></div><div class="product-info"><div class="product-brand">Sony</div><div class="product-name" data-en="Deep Bass Headphones" data-ur="ڈیپ باس ہیڈفون">Deep Bass Headphones</div><div class="product-price-row"><span class="price-new">Rs.3,999</span><span class="price-old">Rs.6,999</span></div><button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button></div></div>
+    <div class="product-card" role="article"><div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop" alt="9H Tempered Glass Screen Guard"/><button class="wishlist-btn" aria-label="Add to wishlist">♡</button></div><div class="product-info"><div class="product-brand">Nillkin</div><div class="product-name" data-en="9H Tempered Glass Screen Guard" data-ur="9H ٹیمپرڈ گلاس سکرین گارڈ">9H Tempered Glass Screen Guard</div><div class="product-price-row"><span class="price-new">Rs.349</span><span class="price-old">Rs.699</span></div><button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button></div></div>
+    <div class="product-card" role="article"><div class="product-img-wrap"><img src="https://images.pexels.com/photos/4917455/pexels-photo-4917455.jpeg" alt="Portable Bluetooth Speaker"/><span class="badge" data-en="NEW" data-ur="نیا">NEW</span><button class="wishlist-btn" aria-label="Add to wishlist">♡</button></div><div class="product-info"><div class="product-brand">JBL</div><div class="product-name" data-en="Portable Bluetooth Speaker" data-ur="پورٹیبل بلوٹوتھ اسپیکر">Portable Bluetooth Speaker</div><div class="product-price-row"><span class="price-new">Rs.5,999</span><span class="price-old">Rs.9,999</span></div><button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button></div></div>
+    <div class="product-card" role="article"><div class="product-img-wrap"><img src="https://images.pexels.com/photos/163047/network-network-cables-connection-plug-163047.jpeg" alt="120W Braided USB-C Cable 2m"/><button class="wishlist-btn" aria-label="Add to wishlist">♡</button></div><div class="product-info"><div class="product-brand">Ugreen</div><div class="product-name" data-en="120W Braided USB-C Cable 2m" data-ur="120W برائیڈڈ USB-C کیبل 2m">120W Braided USB-C Cable 2m</div><div class="product-price-row"><span class="price-new">Rs.599</span><span class="price-old">Rs.999</span></div><button class="add-cart-btn" data-en="Add to Cart" data-ur="کارٹ میں ڈالیں">Add to Cart</button></div></div>
   </div>
 </section>
 
@@ -916,36 +705,23 @@
     <h2 class="section-title" style="margin-top:10px"><span data-en="What " data-ur="گاہک ">What </span><span data-en="Customers Say" data-ur="کیا کہتے ہیں">Customers Say</span></h2>
   </div>
   <div class="reviews-grid">
-    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Best mobile accessories shop in Sargodha! Got my iPhone cover and it's amazing quality. Delivery was super fast too. Will definitely buy again!"</p><div class="reviewer"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Ahmed Raza</div><div class="reviewer-loc">Sargodha, Punjab</div></div></div></div>
-    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Ordered a fast charger — arrived same day. 100% original product at a great price. WhatsApp support was very responsive. Highly recommended!"</p><div class="reviewer"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sara Khan</div><div class="reviewer-loc">Sargodha, Punjab</div></div></div></div>
-    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Very good prices and excellent customer service. They helped me choose the right power bank for my needs. Great overall experience!"</p><div class="reviewer"><div class="reviewer-avatar">U</div><div><div class="reviewer-name">Usman Ali</div><div class="reviewer-loc">Sargodha, Punjab</div></div></div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text" data-en='"Best mobile accessories shop in Sargodha! Got my iPhone cover and it is amazing quality. Delivery was super fast too. Will definitely buy again!"' data-ur='"سرگودھا میں بہترین موبائل لوازمات کی دکان! میرا iPhone کور آیا اور معیار حیرت انگیز ہے۔ ڈیلیوری بھی بہت تیز تھی۔"'>"Best mobile accessories shop in Sargodha! Got my iPhone cover and it's amazing quality. Delivery was super fast too. Will definitely buy again!"</p><div class="reviewer"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Ahmed Raza</div><div class="reviewer-loc" data-en="Sargodha, Punjab" data-ur="سرگودھا، پنجاب">Sargodha, Punjab</div></div></div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text" data-en='"Ordered a fast charger — arrived same day. 100% original product at a great price. WhatsApp support was very responsive. Highly recommended!"' data-ur='"فاسٹ چارجر آرڈر کیا — اسی دن پہنچ گیا۔ 100% اصلی مصنوع بہترین قیمت پر۔ واٹس ایپ سپورٹ بہت تیز تھی۔"'>"Ordered a fast charger — arrived same day. 100% original product at a great price. WhatsApp support was very responsive. Highly recommended!"</p><div class="reviewer"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sara Khan</div><div class="reviewer-loc" data-en="Sargodha, Punjab" data-ur="سرگودھا، پنجاب">Sargodha, Punjab</div></div></div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text" data-en='"Very good prices and excellent customer service. They helped me choose the right power bank for my needs. Great overall experience!"' data-ur='"بہت اچھی قیمتیں اور بہترین کسٹمر سروس۔ انہوں نے مجھے صحیح پاور بینک چننے میں مدد کی۔"'>"Very good prices and excellent customer service. They helped me choose the right power bank for my needs. Great overall experience!"</p><div class="reviewer"><div class="reviewer-avatar">U</div><div><div class="reviewer-name">Usman Ali</div><div class="reviewer-loc" data-en="Sargodha, Punjab" data-ur="سرگودھا، پنجاب">Sargodha, Punjab</div></div></div></div>
   </div>
 </section>
 
-<!-- NEWSLETTER — UPDATED WITH SUBSCRIBED STATE -->
+<!-- NEWSLETTER -->
 <div class="newsletter" aria-label="Newsletter Signup">
   <div class="newsletter-text">
     <h2><span data-en="STAY IN THE " data-ur="اپ ڈیٹ رہیں ">STAY IN THE </span><span data-en="LOOP" data-ur="لوپ میں">LOOP</span></h2>
     <p data-en="Get exclusive deals, new arrivals &amp; offers straight to your inbox." data-ur="خصوصی ڈیلز، نئی آمد اور آفرز سیدھے اپنے ان باکس میں پائیں۔">Get exclusive deals, new arrivals &amp; offers straight to your inbox.</p>
   </div>
-
-  <!-- FORM STATE (shown before subscribe) -->
-  <div class="newsletter-form" id="newsletter-form-area">
-    <input class="newsletter-input" id="newsletter-email-input" type="email"
-      placeholder="Enter your email address..."
-      aria-label="Email address for newsletter"
+  <div class="newsletter-form">
+    <input class="newsletter-input" type="email" placeholder="Enter your email address..." aria-label="Email address for newsletter"
       data-en-placeholder="Enter your email address..."
       data-ur-placeholder="اپنا ای میل پتہ درج کریں..."/>
     <button class="btn-primary" style="padding:14px 28px" onclick="subscribeNewsletter()" data-en="Subscribe →" data-ur="سبسکرائب کریں →">Subscribe →</button>
-  </div>
-
-  <!-- SUBSCRIBED STATE (shown after subscribe) -->
-  <div class="newsletter-subscribed" id="newsletter-subscribed-area">
-    <div class="subscribed-badge">
-      <span class="subscribed-check">✅</span>
-      <span id="subscribed-message" data-en="You're subscribed! Welcome to the family 🎉" data-ur="آپ سبسکرائب ہو گئے! خوش آمدید 🎉">You're subscribed! Welcome to the family 🎉</span>
-    </div>
-    <div class="subscribed-sub" id="subscribed-email-display"></div>
   </div>
 </div>
 
@@ -976,71 +752,71 @@
     <div class="footer-col">
       <h4 data-en="Categories" data-ur="زمرے">Categories</h4>
       <ul>
-        <li><a href="products.html?cat=covers">Mobile Covers</a></li>
-        <li><a href="products.html?cat=earphones">Earphones</a></li>
-        <li><a href="products.html?cat=chargers">Chargers</a></li>
-        <li><a href="products.html?cat=screen-guards">Screen Guards</a></li>
-        <li><a href="products.html?cat=power-banks">Power Banks</a></li>
-        <li><a href="products.html?cat=headphones">Headphones</a></li>
-        <li><a href="products.html?cat=speakers">BT Speakers</a></li>
+        <li><a href="products.html?cat=covers" data-en="Mobile Covers" data-ur="موبائل کور">Mobile Covers</a></li>
+        <li><a href="products.html?cat=earphones" data-en="Earphones" data-ur="ایئر فون">Earphones</a></li>
+        <li><a href="products.html?cat=chargers" data-en="Chargers" data-ur="چارجر">Chargers</a></li>
+        <li><a href="products.html?cat=screen-guards" data-en="Screen Guards" data-ur="سکرین گارڈ">Screen Guards</a></li>
+        <li><a href="products.html?cat=power-banks" data-en="Power Banks" data-ur="پاور بینک">Power Banks</a></li>
+        <li><a href="products.html?cat=headphones" data-en="Headphones" data-ur="ہیڈفون">Headphones</a></li>
+        <li><a href="products.html?cat=speakers" data-en="BT Speakers" data-ur="بلوٹوتھ اسپیکر">BT Speakers</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4 data-en="Help" data-ur="مدد">Help</h4>
       <ul>
-        <li><a href="help.html#track-order">Track Your Order</a></li>
-        <li><a href="help.html#return-policy">Return Policy</a></li>
-        <li><a href="help.html#warranty">Warranty Policy</a></li>
-        <li><a href="help.html#shipping">Shipping Policy</a></li>
-        <li><a href="help.html#faqs">FAQs</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="help.html#bulk-orders">Bulk Orders</a></li>
+        <li><a href="help.html#track-order" data-en="Track Your Order" data-ur="اپنا آرڈر ٹریک کریں">Track Your Order</a></li>
+        <li><a href="help.html#return-policy" data-en="Return Policy" data-ur="واپسی کی پالیسی">Return Policy</a></li>
+        <li><a href="help.html#warranty" data-en="Warranty Policy" data-ur="وارنٹی پالیسی">Warranty Policy</a></li>
+        <li><a href="help.html#shipping" data-en="Shipping Policy" data-ur="شپنگ پالیسی">Shipping Policy</a></li>
+        <li><a href="help.html#faqs" data-en="FAQs" data-ur="اکثر پوچھے گئے سوالات">FAQs</a></li>
+        <li><a href="contact.html" data-en="Contact Us" data-ur="ہم سے رابطہ کریں">Contact Us</a></li>
+        <li><a href="help.html#bulk-orders" data-en="Bulk Orders" data-ur="بلک آرڈر">Bulk Orders</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4 data-en="Contact" data-ur="رابطہ">Contact</h4>
-      <div class="footer-contact-item"><span>📍</span><span>Trust Plaza, Sargodha, Punjab, Pakistan</span></div>
+      <div class="footer-contact-item"><span>📍</span><span data-en="Trust Plaza, Sargodha, Punjab, Pakistan" data-ur="ٹرسٹ پلازہ، سرگودھا، پنجاب، پاکستان">Trust Plaza, Sargodha, Punjab, Pakistan</span></div>
       <div class="footer-contact-item"><span>📞</span><a href="tel:03054603311" style="color:var(--muted);text-decoration:none">03054603311</a></div>
-      <div class="footer-contact-item"><span>💬</span><a href="https://wa.me/923054603311" style="color:var(--muted);text-decoration:none">WhatsApp Available</a></div>
-      <div class="footer-contact-item"><span>🕘</span><span>Mon–Sat: 9am–9pm</span></div>
+      <div class="footer-contact-item"><span>💬</span><a href="https://wa.me/923054603311" style="color:var(--muted);text-decoration:none" data-en="WhatsApp Available" data-ur="واٹس ایپ دستیاب">WhatsApp Available</a></div>
+      <div class="footer-contact-item"><span>🕘</span><span data-en="Mon–Sat: 9am–9pm" data-ur="پیر–ہفتہ: صبح 9 سے رات 9 بجے">Mon–Sat: 9am–9pm</span></div>
     </div>
   </div>
   <div class="footer-cats">
     <div class="footer-cats-grid">
       <div class="footer-cat-col">
-        <h5>Earphones</h5>
+        <h5 data-en="Earphones" data-ur="ایئر فون">Earphones</h5>
         <ul>
-          <li><a href="products.html?cat=earphones&max=2000">Earphones Under Rs.2000</a></li>
-          <li><a href="products.html?cat=earphones&max=3000">Earphones Under Rs.3000</a></li>
-          <li><a href="products.html?cat=earphones&max=5000">Earphones Under Rs.5000</a></li>
-          <li><a href="products.html?cat=earphones&max=10000">Earphones Under Rs.10000</a></li>
+          <li><a href="products.html?cat=earphones&max=2000" data-en="Earphones Under Rs.2000" data-ur="Rs.2000 سے کم ایئرفون">Earphones Under Rs.2000</a></li>
+          <li><a href="products.html?cat=earphones&max=3000" data-en="Earphones Under Rs.3000" data-ur="Rs.3000 سے کم ایئرفون">Earphones Under Rs.3000</a></li>
+          <li><a href="products.html?cat=earphones&max=5000" data-en="Earphones Under Rs.5000" data-ur="Rs.5000 سے کم ایئرفون">Earphones Under Rs.5000</a></li>
+          <li><a href="products.html?cat=earphones&max=10000" data-en="Earphones Under Rs.10000" data-ur="Rs.10000 سے کم ایئرفون">Earphones Under Rs.10000</a></li>
         </ul>
       </div>
       <div class="footer-cat-col">
-        <h5>Chargers</h5>
+        <h5 data-en="Chargers" data-ur="چارجر">Chargers</h5>
         <ul>
-          <li><a href="products.html?cat=chargers&max=1000">Chargers Under Rs.1000</a></li>
-          <li><a href="products.html?cat=chargers&max=2000">Chargers Under Rs.2000</a></li>
-          <li><a href="products.html?cat=chargers&max=3000">Chargers Under Rs.3000</a></li>
-          <li><a href="products.html?cat=chargers&max=5000">Chargers Under Rs.5000</a></li>
+          <li><a href="products.html?cat=chargers&max=1000" data-en="Chargers Under Rs.1000" data-ur="Rs.1000 سے کم چارجر">Chargers Under Rs.1000</a></li>
+          <li><a href="products.html?cat=chargers&max=2000" data-en="Chargers Under Rs.2000" data-ur="Rs.2000 سے کم چارجر">Chargers Under Rs.2000</a></li>
+          <li><a href="products.html?cat=chargers&max=3000" data-en="Chargers Under Rs.3000" data-ur="Rs.3000 سے کم چارجر">Chargers Under Rs.3000</a></li>
+          <li><a href="products.html?cat=chargers&max=5000" data-en="Chargers Under Rs.5000" data-ur="Rs.5000 سے کم چارجر">Chargers Under Rs.5000</a></li>
         </ul>
       </div>
       <div class="footer-cat-col">
-        <h5>Power Banks</h5>
+        <h5 data-en="Power Banks" data-ur="پاور بینک">Power Banks</h5>
         <ul>
-          <li><a href="products.html?cat=power-banks&max=3000">Power Banks Under Rs.3000</a></li>
-          <li><a href="products.html?cat=power-banks&max=5000">Power Banks Under Rs.5000</a></li>
-          <li><a href="products.html?cat=power-banks&max=10000">Power Banks Under Rs.10000</a></li>
-          <li><a href="products.html?cat=power-banks&max=15000">Power Banks Under Rs.15000</a></li>
+          <li><a href="products.html?cat=power-banks&max=3000" data-en="Power Banks Under Rs.3000" data-ur="Rs.3000 سے کم پاور بینک">Power Banks Under Rs.3000</a></li>
+          <li><a href="products.html?cat=power-banks&max=5000" data-en="Power Banks Under Rs.5000" data-ur="Rs.5000 سے کم پاور بینک">Power Banks Under Rs.5000</a></li>
+          <li><a href="products.html?cat=power-banks&max=10000" data-en="Power Banks Under Rs.10000" data-ur="Rs.10000 سے کم پاور بینک">Power Banks Under Rs.10000</a></li>
+          <li><a href="products.html?cat=power-banks&max=15000" data-en="Power Banks Under Rs.15000" data-ur="Rs.15000 سے کم پاور بینک">Power Banks Under Rs.15000</a></li>
         </ul>
       </div>
       <div class="footer-cat-col">
-        <h5>Earphones by Feature</h5>
+        <h5 data-en="Earphones by Feature" data-ur="فیچر کے مطابق ایئرفون">Earphones by Feature</h5>
         <ul>
-          <li><a href="products.html?cat=earphones&feature=anc">ANC Earphones</a></li>
-          <li><a href="products.html?cat=earphones&feature=enc">ENC Earphones</a></li>
-          <li><a href="products.html?cat=earphones&feature=wireless">Wireless Earphones</a></li>
-          <li><a href="products.html?cat=earphones&feature=gaming">Gaming Earphones</a></li>
+          <li><a href="products.html?cat=earphones&feature=anc" data-en="ANC Earphones" data-ur="ANC ایئرفون">ANC Earphones</a></li>
+          <li><a href="products.html?cat=earphones&feature=enc" data-en="ENC Earphones" data-ur="ENC ایئرفون">ENC Earphones</a></li>
+          <li><a href="products.html?cat=earphones&feature=wireless" data-en="Wireless Earphones" data-ur="وائرلیس ایئرفون">Wireless Earphones</a></li>
+          <li><a href="products.html?cat=earphones&feature=gaming" data-en="Gaming Earphones" data-ur="گیمنگ ایئرفون">Gaming Earphones</a></li>
         </ul>
       </div>
     </div>
@@ -1058,263 +834,9 @@
 <style id="large-cursor-style"></style>
 
 <script>
-/* ════════════════════════════════════════════════════════
-   CART DATA STORE
-════════════════════════════════════════════════════════ */
-let cartItems = []; // { id, name, nameUr, brand, price, oldPrice, img, qty }
-
-function generateId() {
-  return Math.random().toString(36).substr(2, 9);
-}
-
-function addToCart(card) {
-  const name     = card.dataset.name;
-  const nameUr   = card.dataset.nameUr;
-  const brand    = card.dataset.brand;
-  const price    = parseInt(card.dataset.price, 10);
-  const oldPrice = parseInt(card.dataset.oldPrice, 10);
-  const img      = card.dataset.img;
-
-  // Check if already in cart (match by name)
-  const existing = cartItems.find(i => i.name === name);
-  if (existing) {
-    existing.qty++;
-  } else {
-    cartItems.push({ id: generateId(), name, nameUr, brand, price, oldPrice, img, qty: 1 });
-  }
-  updateCartUI();
-  openCartDrawer();
-}
-
-function removeFromCart(id) {
-  cartItems = cartItems.filter(i => i.id !== id);
-  updateCartUI();
-}
-
-function changeQty(id, delta) {
-  const item = cartItems.find(i => i.id === id);
-  if (!item) return;
-  item.qty += delta;
-  if (item.qty <= 0) { removeFromCart(id); return; }
-  updateCartUI();
-}
-
-function updateCartUI() {
-  const totalQty = cartItems.reduce((s, i) => s + i.qty, 0);
-
-  // Update badge
-  document.getElementById('cart-badge-count').textContent = totalQty;
-  document.getElementById('drawer-item-count').textContent = totalQty;
-
-  // Bounce icon
-  const icon = document.getElementById('nav-cart-icon');
-  icon.classList.remove('cart-bounce');
-  void icon.offsetWidth; // reflow
-  icon.classList.add('cart-bounce');
-
-  const container  = document.getElementById('cart-items-container');
-  const emptyState = document.getElementById('cart-empty-state');
-  const footer     = document.getElementById('cart-footer');
-
-  if (cartItems.length === 0) {
-    container.innerHTML = '';
-    container.appendChild(emptyState);
-    emptyState.style.display = 'flex';
-    footer.style.display = 'none';
-    return;
-  }
-
-  emptyState.style.display = 'none';
-  footer.style.display = 'block';
-
-  // Render items
-  container.innerHTML = '';
-  cartItems.forEach(item => {
-    const displayName = isUrdu ? item.nameUr : item.name;
-    const itemTotal   = item.price * item.qty;
-    const el = document.createElement('div');
-    el.className = 'cart-item';
-    el.innerHTML = `
-      <img class="cart-item-img" src="${item.img}" alt="${item.name}" onerror="this.style.background='var(--surface2)'"/>
-      <div class="cart-item-info">
-        <div class="cart-item-brand">${item.brand}</div>
-        <div class="cart-item-name">${displayName}</div>
-        <div>
-          <span class="cart-item-price">Rs.${itemTotal.toLocaleString()}</span>
-          <span class="cart-item-old">Rs.${item.oldPrice.toLocaleString()}</span>
-        </div>
-        <div class="cart-item-controls">
-          <div class="cart-qty">
-            <button class="cart-qty-btn" onclick="changeQty('${item.id}',-1)" aria-label="Decrease quantity">−</button>
-            <span class="cart-qty-num">${item.qty}</span>
-            <button class="cart-qty-btn" onclick="changeQty('${item.id}',1)" aria-label="Increase quantity">+</button>
-          </div>
-          <button class="cart-item-remove" onclick="removeFromCart('${item.id}')" data-en="Remove" data-ur="ہٹائیں">${isUrdu ? 'ہٹائیں' : 'Remove'}</button>
-        </div>
-      </div>
-    `;
-    container.appendChild(el);
-  });
-
-  // Totals
-  const grandTotal    = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
-  const originalTotal = cartItems.reduce((s, i) => s + i.oldPrice * i.qty, 0);
-  const saved         = originalTotal - grandTotal;
-
-  document.getElementById('cart-original-total').textContent = 'Rs.' + originalTotal.toLocaleString();
-  document.getElementById('cart-saved-amount').textContent   = 'Rs.' + saved.toLocaleString();
-  document.getElementById('cart-grand-total').textContent    = 'Rs.' + grandTotal.toLocaleString();
-}
-
-/* ════════════════════════════════════════════════════════
-   CART DRAWER OPEN / CLOSE
-════════════════════════════════════════════════════════ */
-function openCartDrawer() {
-  document.getElementById('cart-overlay').classList.add('open');
-  document.getElementById('cart-drawer').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeCartDrawer() {
-  document.getElementById('cart-overlay').classList.remove('open');
-  document.getElementById('cart-drawer').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-/* ════════════════════════════════════════════════════════
-   ADD TO CART BUTTONS — attach to product cards
-════════════════════════════════════════════════════════ */
-document.querySelectorAll('.add-cart-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const card = btn.closest('.product-card');
-    if (!card) return;
-
-    // Visual feedback on button
-    const origText = isUrdu ? (btn.getAttribute('data-ur') || 'کارٹ میں ڈالیں') : (btn.getAttribute('data-en') || 'Add to Cart');
-    btn.textContent = isUrdu ? '✓ شامل!' : '✓ Added!';
-    btn.style.background = 'var(--accent)';
-    btn.style.color = '#000';
-    btn.style.borderColor = 'var(--accent)';
-    setTimeout(() => {
-      btn.textContent = origText;
-      btn.style.background = btn.style.color = btn.style.borderColor = '';
-    }, 1200);
-
-    addToCart(card);
-  });
-});
-
-/* ════════════════════════════════════════════════════════
-   CONFETTI ENGINE
-════════════════════════════════════════════════════════ */
-let confettiAnimFrame = null;
-function launchConfetti() {
-  const canvas = document.getElementById('confetti-canvas');
-  const ctx    = canvas.getContext('2d');
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
-  canvas.style.display = 'block';
-
-  const colors   = ['#00d4ff','#7c3aed','#f59e0b','#ef4444','#22c55e','#ffffff','#ff6b6b','#ffd700'];
-  const pieces   = [];
-  const count    = 160;
-
-  for (let i = 0; i < count; i++) {
-    pieces.push({
-      x:      Math.random() * canvas.width,
-      y:      Math.random() * canvas.height - canvas.height,
-      w:      Math.random() * 10 + 5,
-      h:      Math.random() * 6 + 3,
-      color:  colors[Math.floor(Math.random() * colors.length)],
-      speed:  Math.random() * 4 + 2,
-      angle:  Math.random() * Math.PI * 2,
-      spin:   (Math.random() - 0.5) * 0.2,
-      drift:  (Math.random() - 0.5) * 1.5,
-      opacity:1,
-    });
-  }
-
-  let startTime = null;
-  const duration = 3500;
-
-  function draw(ts) {
-    if (!startTime) startTime = ts;
-    const elapsed = ts - startTime;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    pieces.forEach(p => {
-      p.y     += p.speed;
-      p.x     += p.drift;
-      p.angle += p.spin;
-      p.opacity = elapsed > duration * 0.6
-        ? Math.max(0, 1 - (elapsed - duration * 0.6) / (duration * 0.4))
-        : 1;
-
-      ctx.save();
-      ctx.globalAlpha = p.opacity;
-      ctx.translate(p.x + p.w / 2, p.y + p.h / 2);
-      ctx.rotate(p.angle);
-      ctx.fillStyle = p.color;
-      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-      ctx.restore();
-    });
-
-    if (elapsed < duration) {
-      confettiAnimFrame = requestAnimationFrame(draw);
-    } else {
-      canvas.style.display = 'none';
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-  }
-
-  if (confettiAnimFrame) cancelAnimationFrame(confettiAnimFrame);
-  confettiAnimFrame = requestAnimationFrame(draw);
-}
-
-/* ════════════════════════════════════════════════════════
-   NEWSLETTER — SUBSCRIBE WITH CONFETTI + PERSISTENT STATE
-════════════════════════════════════════════════════════ */
-function subscribeNewsletter() {
-  const inp = document.getElementById('newsletter-email-input');
-  if (!inp || !inp.value.includes('@') || !inp.value.includes('.')) {
-    inp.style.borderColor = '#ef4444';
-    inp.placeholder = isUrdu ? 'درست ای میل درج کریں!' : 'Please enter a valid email!';
-    setTimeout(() => {
-      inp.style.borderColor = '';
-      inp.placeholder = isUrdu ? 'اپنا ای میل پتہ درج کریں...' : 'Enter your email address...';
-    }, 2000);
-    return;
-  }
-
-  const email = inp.value.trim();
-
-  // Save to localStorage so it persists on reload
-  localStorage.setItem('am_subscribed', '1');
-  localStorage.setItem('am_sub_email', email);
-
-  showSubscribedState(email);
-  launchConfetti();
-}
-
-function showSubscribedState(email) {
-  document.getElementById('newsletter-form-area').style.display = 'none';
-  const area = document.getElementById('newsletter-subscribed-area');
-  area.style.display = 'flex';
-  document.getElementById('subscribed-email-display').textContent =
-    (isUrdu ? 'ای میل: ' : 'Subscribed email: ') + email;
-}
-
-// On page load — check if already subscribed
-(function checkSubscribed() {
-  if (localStorage.getItem('am_subscribed') === '1') {
-    const email = localStorage.getItem('am_sub_email') || '';
-    showSubscribedState(email);
-  }
-})();
-
-/* ════════════════════════════════════════════════════════
+/* ════════════════════════════════
    ACCESSIBILITY PANEL
-════════════════════════════════════════════════════════ */
+════════════════════════════════ */
 function toggleA11yPanel() {
   const panel = document.getElementById('a11y-panel');
   const btn   = document.getElementById('a11y-toggle-btn');
@@ -1331,7 +853,9 @@ document.addEventListener('click', function(e) {
   }
 });
 
-/* FONT SIZE */
+/* ════════════════════════════════
+   FONT SIZE
+════════════════════════════════ */
 let currentFontScale = parseInt(localStorage.getItem('am_fontSize') || '100', 10);
 function applyFontSize() {
   document.documentElement.style.fontSize = (currentFontScale / 100) * 16 + 'px';
@@ -1344,7 +868,9 @@ function changeFontSize(dir) {
   applyFontSize();
 }
 
-/* HIGH CONTRAST */
+/* ════════════════════════════════
+   HIGH CONTRAST
+════════════════════════════════ */
 function toggleContrast() {
   const active = document.body.classList.toggle('high-contrast');
   localStorage.setItem('am_contrast', active ? '1' : '');
@@ -1352,7 +878,9 @@ function toggleContrast() {
   if (inp) inp.checked = active;
 }
 
-/* DYSLEXIA FONT */
+/* ════════════════════════════════
+   DYSLEXIA FONT
+════════════════════════════════ */
 function toggleDyslexia() {
   const active = document.body.classList.toggle('dyslexia-font');
   localStorage.setItem('am_dyslexia', active ? '1' : '');
@@ -1360,7 +888,9 @@ function toggleDyslexia() {
   if (inp) inp.checked = active;
 }
 
-/* PAUSE ANIMATIONS */
+/* ════════════════════════════════
+   PAUSE ANIMATIONS
+════════════════════════════════ */
 function toggleAnimations() {
   const active = document.body.classList.toggle('pause-animations');
   localStorage.setItem('am_pauseAnim', active ? '1' : '');
@@ -1368,7 +898,9 @@ function toggleAnimations() {
   if (inp) inp.checked = active;
 }
 
-/* LARGE CURSOR */
+/* ════════════════════════════════
+   LARGE CURSOR
+════════════════════════════════ */
 function toggleLargeCursor() {
   const active = document.body.classList.toggle('large-cursor');
   localStorage.setItem('am_largeCursor', active ? '1' : '');
@@ -1376,11 +908,13 @@ function toggleLargeCursor() {
   if (inp) inp.checked = active;
   const style = document.getElementById('large-cursor-style');
   style.textContent = active
-    ? `*, *::before, *::after { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='4' cy='4' r='4' fill='%2300d4ff'/%3E%3Cline x1='4' y1='4' x2='4' y2='28' stroke='%2300d4ff' stroke-width='3'/%3E%3Cline x1='4' y1='4' x2='20' y2='20' stroke='%2300d4ff' stroke-width='3'/%3E%3C/svg%3E") 4 4, auto !important; }`
+    ? '*, *::before, *::after { cursor: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'%3E%3Ccircle cx=\'4\' cy=\'4\' r=\'4\' fill=\'%2300d4ff\'/%3E%3Cline x1=\'4\' y1=\'4\' x2=\'4\' y2=\'28\' stroke=\'%2300d4ff\' stroke-width=\'3\'/%3E%3Cline x1=\'4\' y1=\'4\' x2=\'20\' y2=\'20\' stroke=\'%2300d4ff\' stroke-width=\'3\'/%3E%3C/svg%3E") 4 4, auto !important; }'
     : '';
 }
 
-/* READING GUIDE */
+/* ════════════════════════════════
+   READING GUIDE
+════════════════════════════════ */
 let readingGuideActive = false;
 function toggleReadingGuide() {
   readingGuideActive = !readingGuideActive;
@@ -1397,9 +931,9 @@ function moveReadingGuide(e) {
   if (guide) guide.style.top = e.clientY + 'px';
 }
 
-/* ════════════════════════════════════════════════════════
-   LANGUAGE TOGGLE
-════════════════════════════════════════════════════════ */
+/* ════════════════════════════════
+   LANGUAGE TOGGLE (EN / UR)
+════════════════════════════════ */
 let isUrdu = localStorage.getItem('am_lang') === 'ur';
 function applyLang() {
   document.body.classList.toggle('urdu-mode', isUrdu);
@@ -1420,8 +954,6 @@ function applyLang() {
     link.href = 'https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap';
     document.head.appendChild(link);
   }
-  // Re-render cart if open to update language
-  updateCartUI();
 }
 function toggleLanguage() {
   isUrdu = !isUrdu;
@@ -1429,9 +961,9 @@ function toggleLanguage() {
   applyLang();
 }
 
-/* ════════════════════════════════════════════════════════
-   RESTORE SAVED SETTINGS ON LOAD
-════════════════════════════════════════════════════════ */
+/* ════════════════════════════════
+   RESTORE SAVED SETTINGS
+════════════════════════════════ */
 (function restoreSettings() {
   applyFontSize();
   if (localStorage.getItem('am_contrast')    === '1') { document.body.classList.add('high-contrast');    const i=document.getElementById('a11y-contrast-input'); if(i) i.checked=true; }
@@ -1440,13 +972,32 @@ function toggleLanguage() {
   if (localStorage.getItem('am_largeCursor') === '1') { toggleLargeCursor(); }
   if (localStorage.getItem('am_readingGuide')=== '1') { toggleReadingGuide(); }
   if (isUrdu) applyLang();
-  // Initialize empty cart UI
-  updateCartUI();
 })();
 
-/* ════════════════════════════════════════════════════════
+/* ════════════════════════════════
+   CART
+════════════════════════════════ */
+let cartCount = 0;
+document.querySelectorAll('.add-cart-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    cartCount++;
+    document.querySelector('.cart-badge').textContent = cartCount;
+    const origEn = btn.getAttribute('data-en') || 'Add to Cart';
+    const origUr = btn.getAttribute('data-ur') || 'کارٹ میں ڈالیں';
+    btn.textContent = isUrdu ? '✓ شامل ہو گیا!' : '✓ Added!';
+    btn.style.background = 'var(--accent)';
+    btn.style.color = '#000';
+    btn.style.borderColor = 'var(--accent)';
+    setTimeout(() => {
+      btn.textContent = isUrdu ? origUr : origEn;
+      btn.style.background = btn.style.color = btn.style.borderColor = '';
+    }, 1500);
+  });
+});
+
+/* ════════════════════════════════
    WISHLIST
-════════════════════════════════════════════════════════ */
+════════════════════════════════ */
 document.querySelectorAll('.wishlist-btn').forEach(btn => {
   btn.addEventListener('click', e => {
     e.stopPropagation();
@@ -1456,9 +1007,23 @@ document.querySelectorAll('.wishlist-btn').forEach(btn => {
   });
 });
 
-/* ════════════════════════════════════════════════════════
+/* ════════════════════════════════
+   NEWSLETTER
+════════════════════════════════ */
+function subscribeNewsletter() {
+  const inp = document.querySelector('.newsletter-input');
+  if (!inp || !inp.value.includes('@')) {
+    if (inp) inp.style.borderColor = '#ef4444';
+    return;
+  }
+  inp.value = '';
+  inp.placeholder = isUrdu ? '✓ سبسکرائب ہو گئے! شکریہ 🎉' : '✓ Subscribed! Thank you 🎉';
+  inp.style.borderColor = 'var(--accent)';
+}
+
+/* ════════════════════════════════
    BLOG DATA + FUNCTIONS
-════════════════════════════════════════════════════════ */
+════════════════════════════════ */
 const blogData = {
   tips: {
     tag:'Tips', tagUr:'مشورے',
@@ -1473,8 +1038,8 @@ const blogData = {
 <h3>4. Ring Holder Cover</h3><p>Built-in 360° ring stand for hands-free viewing and a secure grip.</p>
 <h3>5. MagSafe Compatible Cover</h3><p>Perfect for iPhone users. Snaps onto MagSafe chargers and accessories seamlessly.</p>`,
     bodyUr:`<p>آپ کا فون آپ کی قیمتی ترین اشیاء میں سے ایک ہے۔ یہ ہمارے 2026 کے لیے 5 بہترین کور ہیں۔</p>
-<h3>1. ملٹری گریڈ شاک پروف کیس</h3><p>مضبوط کونوں اور TPU بمپر کے ساتھ۔</p>
-<h3>2. سلم لیدر والٹ کیس</h3><p>انداز اور فنکشن دونوں۔</p>
+<h3>1. ملٹری گریڈ شاک پروف کیس</h3><p>مضبوط کونوں اور TPU بمپر کے ساتھ، 2 میٹر سے زیادہ اونچائی سے گرنے پر بھی محفوظ۔</p>
+<h3>2. سلم لیدر والٹ کیس</h3><p>انداز اور فنکشن دونوں۔ 3 کارڈ تک رکھتا ہے۔</p>
 <h3>3. کلیئر اینٹی یلو کیس</h3><p>فون کی ڈیزائن دکھاتا اور محفوظ بھی رکھتا ہے۔</p>
 <h3>4. رنگ ہولڈر کور</h3><p>360° رنگ اسٹینڈ۔</p>
 <h3>5. میگ سیف کمپیٹیبل کور</h3><p>iPhone صارفین کے لیے بہترین۔</p>`
@@ -1485,13 +1050,14 @@ const blogData = {
     titleUr:'اپنے آلے کے لیے بہترین فاسٹ چارجر کا انتخاب',
     date:'May 15, 2026', dateUr:'15 مئی 2026',
     img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=720&h=405&fit=crop',
-    body:`<p>With so many fast chargers on the market, choosing the right one can be confusing.</p>
-<h3>Check Your Phone's Maximum Wattage</h3><p>Most modern phones support 18W–65W fast charging.</p>
-<h3>USB-C PD vs Proprietary Fast Charge</h3><p>USB-C Power Delivery is universal. Brands like Baseus, Anker, and Ugreen make excellent PD chargers.</p>
-<h3>GaN Technology</h3><p>GaN chargers are smaller, run cooler, and are more efficient.</p>
-<h3>Our Recommendation</h3><p>For most users: a 65W GaN USB-C PD charger.</p>`,
-    bodyUr:`<p>صحیح فاسٹ چارجر کا انتخاب کرنا مشکل ہو سکتا ہے۔</p>
-<h3>واٹیج چیک کریں</h3><p>زیادہ تر جدید فون 18W–65W سپورٹ کرتے ہیں۔</p>
+    body:`<p>With so many fast chargers on the market, choosing the right one can be confusing. Here's everything you need to know.</p>
+<h3>Check Your Phone's Maximum Wattage</h3><p>Most modern phones support 18W–65W fast charging. Your phone regulates the input automatically.</p>
+<h3>USB-C PD vs Proprietary Fast Charge</h3><p>USB-C Power Delivery (PD) is universal. Brands like Baseus, Anker, and Ugreen make excellent PD chargers.</p>
+<h3>GaN Technology</h3><p>GaN chargers are smaller, run cooler, and are more efficient. Worth the slightly higher price.</p>
+<h3>Our Recommendation</h3><p>For most users: a 65W GaN USB-C PD charger. It charges laptops, phones, and tablets simultaneously.</p>`,
+    bodyUr:`<p>صحیح فاسٹ چارجر کا انتخاب کرنا مشکل ہو سکتا ہے۔ یہ جاننا ضروری ہے۔</p>
+<h3>واٹیج چیک کریں</h3><p>زیادہ تر جدید فون 18W–65W فاسٹ چارجنگ سپورٹ کرتے ہیں۔</p>
+<h3>USB-C PD</h3><p>Baseus، Anker اور Ugreen بہترین PD چارجر بناتے ہیں۔</p>
 <h3>GaN ٹیکنالوجی</h3><p>چھوٹے، ٹھنڈے اور زیادہ موثر۔</p>
 <h3>ہماری سفارش</h3><p>65W GaN USB-C PD چارجر۔</p>`
   },
@@ -1501,15 +1067,16 @@ const blogData = {
     titleUr:'پاکستان میں Rs.3000 سے کم بہترین وائرلیس ائربڈز',
     date:'May 10, 2026', dateUr:'10 مئی 2026',
     img:'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=720&h=405&fit=crop',
-    body:`<p>You don't need to spend Rs.10,000+ to get great wireless earbuds.</p>
+    body:`<p>You don't need to spend Rs.10,000+ to get great wireless earbuds. Here are our top tested picks under Rs.3000.</p>
 <h3>Audionic Airbuds Pro (Rs.2,499)</h3><p>Our top pick. Excellent ANC, 30hr total battery, comfortable fit.</p>
 <h3>Haylou GT7 Neo (Rs.1,899)</h3><p>Great for gaming — ultra-low 55ms latency.</p>
-<h3>QCY T13 ANC (Rs.2,799)</h3><p>Strong ANC for under Rs.3000.</p>
+<h3>QCY T13 ANC (Rs.2,799)</h3><p>Strong ANC for under Rs.3000. Call quality is very clear.</p>
 <h3>Verdict</h3><p>For all-round use, go with the Audionic Airbuds Pro.</p>`,
     bodyUr:`<p>Rs.3000 سے کم بہترین وائرلیس ائربڈز۔</p>
-<h3>Audionic Airbuds Pro</h3><p>بہترین ANC، 30 گھنٹے کی بیٹری۔</p>
-<h3>Haylou GT7 Neo</h3><p>گیمنگ کے لیے بہترین۔</p>
-<h3>نتیجہ</h3><p>Audionic Airbuds Pro بہترین انتخاب ہے۔</p>`
+<h3>Audionic Airbuds Pro (Rs.2,499)</h3><p>بہترین ANC، 30 گھنٹے کی بیٹری۔</p>
+<h3>Haylou GT7 Neo (Rs.1,899)</h3><p>گیمنگ کے لیے بہترین — 55ms لیٹنسی۔</p>
+<h3>QCY T13 ANC (Rs.2,799)</h3><p>مضبوط ANC۔</p>
+<h3>نتیجہ</h3><p>Audionic Airbuds Pro بہترین آل راؤنڈ انتخاب ہے۔</p>`
   },
   deals: {
     tag:'Deals', tagUr:'ڈیلز',
@@ -1517,11 +1084,15 @@ const blogData = {
     titleUr:'پاور بینک 2026 — کون سا خریدیں؟',
     date:'May 5, 2026', dateUr:'5 مئی 2026',
     img:'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=720&h=405&fit=crop',
-    body:`<p>A good power bank is essential for travel and daily use.</p>
+    body:`<p>A good power bank is essential for travel and daily use. Here's how to pick the right one in 2026.</p>
 <h3>Capacity: 10,000 vs 20,000 mAh</h3><p>10,000mAh: compact, charges 2–3 times. 20,000mAh: heavier but charges 4–6 times.</p>
+<h3>Charging Speed</h3><p>Look for 22.5W or higher output.</p>
+<h3>Brand Reliability</h3><p>Anker, Baseus, and Xiaomi are the most reliable.</p>
 <h3>Our Top Pick</h3><p>Anker PowerCore 20,000mAh PD — fast charge, safe, 2-year warranty.</p>`,
-    bodyUr:`<p>2026 میں صحیح پاور بینک کا انتخاب۔</p>
+    bodyUr:`<p>2026 میں صحیح پاور بینک کا انتخاب کیسے کریں۔</p>
 <h3>صلاحیت</h3><p>10,000mAh کمپیکٹ۔ 20,000mAh زیادہ چارجنگ۔</p>
+<h3>چارجنگ رفتار</h3><p>22.5W یا زیادہ آؤٹ پٹ تلاش کریں۔</p>
+<h3>برانڈ</h3><p>Anker، Baseus اور Xiaomi سب سے قابل اعتماد۔</p>
 <h3>ہماری پسند</h3><p>Anker PowerCore 20,000mAh PD۔</p>`
   }
 };
@@ -1546,23 +1117,19 @@ function closeBlogIfBg(e) {
   if (e.target === document.getElementById('blog-overlay')) closeBlog();
 }
 
-/* ════════════════════════════════════════════════════════
-   KEYBOARD NAVIGATION
-════════════════════════════════════════════════════════ */
-document.getElementById('nav-cart-icon').addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCartDrawer(); }
+/* ════════════════════════════════
+   KEYBOARD NAV
+════════════════════════════════ */
+document.querySelector('.nav-cart').addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); location.href = 'products.html'; }
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeBlog();
-    closeCartDrawer();
     document.getElementById('a11y-panel').classList.remove('open');
     document.getElementById('a11y-toggle-btn').setAttribute('aria-expanded','false');
   }
 });
 </script>
-
-<!-- Nav auth: swaps Login button for profile icon when signed in -->
-<script type="module" src="nav-auth.js"></script>
 </body>
 </html>

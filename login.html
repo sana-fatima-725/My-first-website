@@ -58,6 +58,12 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .forgot-link{text-align:right;margin-bottom:14px;}
 .forgot-link a{color:var(--accent);font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;}
 
+/* PASSWORD TOGGLE */
+.input-wrap{position:relative;}
+.input-wrap .form-input{padding-right:46px;}
+.eye-btn{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:15px;padding:4px;transition:color .2s;line-height:1;}
+.eye-btn:hover{color:var(--accent);}
+
 /* CAPTCHA */
 .captcha-wrap{margin-bottom:16px;}
 .captcha-label{display:block;font-size:12px;font-weight:700;margin-bottom:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
@@ -164,7 +170,12 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
       </div>
       <div class="form-group">
         <label class="form-label">Password</label>
-        <input class="form-input" type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter') doLogin()">
+        <div class="input-wrap">
+          <input class="form-input" type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter') doLogin()">
+          <button class="eye-btn" type="button" onclick="togglePass('login-pass', this)" title="Show/Hide Password">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
       </div>
       <div class="forgot-link"><a onclick="doForgotPassword()">Forgot password?</a></div>
 
@@ -203,7 +214,12 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
       </div>
       <div class="form-group">
         <label class="form-label">Password (min 6 characters)</label>
-        <input class="form-input" type="password" id="signup-pass" placeholder="Create a strong password" onkeydown="if(event.key==='Enter') doSignup()">
+        <div class="input-wrap">
+          <input class="form-input" type="password" id="signup-pass" placeholder="Create a strong password" onkeydown="if(event.key==='Enter') doSignup()">
+          <button class="eye-btn" type="button" onclick="togglePass('signup-pass', this)" title="Show/Hide Password">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
       </div>
 
       <div class="captcha-wrap">
@@ -373,7 +389,6 @@ function friendlyError(code) {
   return map[code] || '❌ Something went wrong. Try again.';
 }
 
-// ── UI helpers (exposed to non-module script) ──
 window._firebaseDoForgot = window.doForgotPassword;
 </script>
 
@@ -382,6 +397,21 @@ window._firebaseDoForgot = window.doForgotPassword;
 let captchaCode  = '';
 let captchaCode2 = '';
 const CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+
+// ── PASSWORD SHOW/HIDE TOGGLE ──
+function togglePass(inputId, btn) {
+  const input = document.getElementById(inputId);
+  const icon  = btn.querySelector('i');
+  if (input.type === 'password') {
+    input.type = 'text';
+    icon.classList.remove('fa-eye');
+    icon.classList.add('fa-eye-slash');
+  } else {
+    input.type = 'password';
+    icon.classList.remove('fa-eye-slash');
+    icon.classList.add('fa-eye');
+  }
+}
 
 function generateCaptcha() {
   captchaCode = '';
