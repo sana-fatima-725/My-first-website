@@ -10,7 +10,7 @@
 <style>
 :root{
   --nav-h:68px;--accent:#00d4ff;--accent2:#7c3aed;
-  --success:#10b981;--danger:#ef4444;
+  --success:#10b981;--danger:#ef4444;--warn:#f5c518;
   --bg:#0a0a14;--bg2:#0f0f1e;--surface:#13131f;--surface2:#1a1a2e;
   --border:rgba(255,255,255,0.07);--border2:rgba(0,212,255,0.18);
   --text:#f0f0ff;--muted:rgba(255,255,255,0.45);
@@ -100,6 +100,15 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .error-msg.show{display:block;}
 .success-msg{color:var(--success);font-size:13px;font-weight:600;text-align:center;margin-bottom:10px;display:none;padding:10px;background:rgba(16,185,129,0.08);border-radius:9px;border:1px solid rgba(16,185,129,0.2);}
 .success-msg.show{display:block;}
+
+/* EMAIL VERIFY WARNING BANNER */
+.verify-warning{display:none;background:rgba(245,197,24,0.08);border:1px solid rgba(245,197,24,0.3);border-radius:11px;padding:14px 16px;margin-bottom:14px;text-align:center;}
+.verify-warning.show{display:block;}
+.verify-warning p{color:var(--warn);font-size:13px;font-weight:600;margin-bottom:8px;line-height:1.5;}
+.resend-btn{background:rgba(245,197,24,0.15);border:1px solid rgba(245,197,24,0.4);color:var(--warn);padding:7px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.resend-btn:hover{background:rgba(245,197,24,0.25);}
+.resend-btn:disabled{opacity:.5;cursor:not-allowed;}
+
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(18px);background:var(--surface2);color:#fff;padding:13px 22px;border-radius:11px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:3000;white-space:nowrap;border:1px solid var(--border);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .toast.success{background:var(--success);}
@@ -161,6 +170,12 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 
     <div class="error-msg"   id="error-msg"></div>
     <div class="success-msg" id="success-msg"></div>
+
+    <!-- EMAIL NOT VERIFIED WARNING -->
+    <div class="verify-warning" id="verify-warning">
+      <p>⚠️ Your email is not verified yet. Some features may be limited. Please check your inbox for the verification link.</p>
+      <button class="resend-btn" id="resend-btn" onclick="resendVerification()">📧 Resend Verification Email</button>
+    </div>
 
     <!-- SIGN IN -->
     <div id="signin-form">
@@ -262,7 +277,8 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 <script type="module">
 import { initializeApp }   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
-         updateProfile, onAuthStateChanged, sendPasswordResetEmail }
+         updateProfile, onAuthStateChanged, sendPasswordResetEmail,
+         sendEmailVerification }
                            from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp }
                            from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
@@ -281,6 +297,8 @@ const ADMIN_EMAIL = "sana180fatima@gmail.com";
 const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db   = getFirestore(app);
+
+let pendingUser = null; // user jiska email verify nahi (warning ke liye)
 
 // Agar pehle se logged in hai
 onAuthStateChanged(auth, user => {
@@ -319,10 +337,25 @@ window.doLogin = async function() {
   btn.disabled = true;
   btn.innerHTML = '⏳ Signing in...';
   hideMessages();
+  document.getElementById('verify-warning').classList.remove('show');
 
   try {
     const cred = await signInWithEmailAndPassword(auth, email, pass);
     await saveUser(cred.user);
+
+    // ── EMAIL VERIFICATION CHECK (login allowed, warning only) ──
+    if (!cred.user.emailVerified && cred.user.email !== ADMIN_EMAIL) {
+      pendingUser = cred.user;
+      document.getElementById('verify-warning').classList.add('show');
+      showSuccess('✅ Signed in! Redirecting...');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2500); // thora extra time taake warning dikh jaye
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+      return;
+    }
+
     showSuccess('✅ Signed in! Redirecting...');
     setTimeout(() => {
       if (cred.user.email === ADMIN_EMAIL) window.location.href = 'admin.html';
@@ -354,13 +387,45 @@ window.doSignup = async function() {
     const cred = await createUserWithEmailAndPassword(auth, email, pass);
     await updateProfile(cred.user, { displayName: name });
     await saveUser(cred.user, name);
-    showSuccess('✅ Account created! Welcome!');
-    setTimeout(() => window.location.href = 'index.html', 1200);
+
+    // ── SEND EMAIL VERIFICATION ──
+    try {
+      await sendEmailVerification(cred.user);
+      showSuccess('✅ Account created! A verification link has been sent to your email. Please verify it.');
+    } catch (vErr) {
+      showSuccess('✅ Account created! (Could not send verification email — you can resend it later from login page.)');
+    }
+
+    setTimeout(() => window.location.href = 'index.html', 2200);
   } catch(e) {
     showError(friendlyError(e.code));
     btn.disabled = false;
     btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
     generateCaptcha2();
+  }
+};
+
+// ── RESEND VERIFICATION EMAIL ──
+window.resendVerification = async function() {
+  const btn = document.getElementById('resend-btn');
+  if (!pendingUser) {
+    showError('Please sign in first, then try resending.');
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = '⏳ Sending...';
+  try {
+    await sendEmailVerification(pendingUser);
+    showToast('📧 Verification email sent! Check your inbox.', 'success');
+    btn.textContent = '✅ Sent! Check inbox';
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = '📧 Resend Verification Email';
+    }, 8000);
+  } catch (e) {
+    showToast('❌ Could not send email. Try again later.', '');
+    btn.disabled = false;
+    btn.textContent = '📧 Resend Verification Email';
   }
 };
 
@@ -484,6 +549,7 @@ function switchTab(tab) {
     ? 'New here? <a onclick="switchTab(\'signup\')">Create an account</a>'
     : 'Already have an account? <a onclick="switchTab(\'login\')">Sign in</a>';
   hideMessages();
+  document.getElementById('verify-warning').classList.remove('show');
   if (!isLogin) generateCaptcha2();
 }
 
@@ -492,6 +558,13 @@ function showSuccess(msg) { const e = document.getElementById('success-msg'); e.
 function hideMessages()   {
   document.getElementById('error-msg').classList.remove('show');
   document.getElementById('success-msg').classList.remove('show');
+}
+
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + (type || '');
+  setTimeout(() => t.className = 'toast', 3500);
 }
 
 function waLogin() {
