@@ -115,6 +115,22 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .wa-float{position:fixed;right:20px;bottom:22px;z-index:999;}
 .wa-btn-fixed{width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;box-shadow:0 4px 20px rgba(37,211,102,0.4);cursor:pointer;transition:.3s;text-decoration:none;}
 .wa-btn-fixed:hover{transform:scale(1.1);}
+
+/* OTP STEP */
+.otp-icon-wrap{text-align:center;margin-bottom:18px;}
+.otp-icon-wrap .otp-emoji{font-size:32px;margin-bottom:8px;}
+.otp-icon-wrap p{font-size:13px;color:var(--muted);}
+.otp-icon-wrap .otp-email{color:var(--accent);font-size:14px;font-weight:700;margin-top:2px;}
+.otp-input-box{width:100%;padding:14px;border:1.5px solid var(--border);border-radius:11px;font-size:24px;font-weight:700;letter-spacing:10px;text-align:center;font-family:'JetBrains Mono',monospace;outline:none;background:var(--input-bg);color:var(--text);transition:all .2s;}
+.otp-input-box:focus{border-color:var(--accent);}
+.otp-timer-text{text-align:center;color:var(--muted);font-size:12px;margin:10px 0 16px;}
+.otp-bottom-links{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
+.otp-bottom-links a{font-size:13px;cursor:pointer;text-decoration:none;}
+.otp-link-back{color:var(--muted);}
+.otp-link-back:hover{color:var(--text);}
+.otp-link-resend{color:var(--accent);font-weight:600;}
+.otp-link-resend.disabled{color:var(--muted);cursor:not-allowed;}
+
 @media(max-width:768px){
   nav{padding:0 18px;}
   .nav-links{display:none;}
@@ -260,6 +276,33 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
       </button>
     </div>
 
+    <!-- OTP VERIFICATION (new step before account is actually created) -->
+    <div id="otp-form" style="display:none;">
+      <div class="otp-icon-wrap">
+        <div class="otp-emoji">📧</div>
+        <p>We've sent a 6-digit code to</p>
+        <div class="otp-email" id="otp-sent-email"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Enter OTP</label>
+        <input class="otp-input-box" type="text" id="otp-input" maxlength="6" placeholder="000000"
+               oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+               onkeydown="if(event.key==='Enter') verifySignupOTP()">
+      </div>
+
+      <div class="otp-timer-text" id="otp-timer"></div>
+
+      <button class="btn-signin" id="btn-verify-otp" onclick="verifySignupOTP()">
+        <i class="fas fa-check-circle"></i> Verify &amp; Create Account
+      </button>
+
+      <div class="otp-bottom-links">
+        <a class="otp-link-back" onclick="cancelSignupOTP()">← Change email</a>
+        <a class="otp-link-resend" id="resend-otp-link" onclick="resendSignupOTP()">Resend code</a>
+      </div>
+    </div>
+
     <div class="login-footer" id="login-footer">
       New here? <a onclick="switchTab('signup')">Create an account</a>
     </div>
@@ -272,6 +315,9 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
   </a>
 </div>
 <div class="toast" id="toast"></div>
+
+<!-- EMAILJS (for signup OTP) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 <!-- FIREBASE -->
 <script type="module">
@@ -293,6 +339,18 @@ const firebaseConfig = {
 };
 
 const ADMIN_EMAIL = "sana180fatima@gmail.com";
+
+// ── EMAILJS CONFIG (OTP) ──
+const EMAILJS_PUBLIC_KEY  = "pylcxzgVlRTC29J3l";
+const EMAILJS_SERVICE_ID  = "service_28wmz0j";
+const EMAILJS_TEMPLATE_ID = "template_bhrnrvp";
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+let signupOTP         = '';   // current generated OTP
+let signupOTPExpiry   = null; // timestamp jab OTP expire hoga
+let pendingSignupData = null; // name/email/pass jo OTP verify hone tak ruka rehta hai
+let otpTimerInterval  = null;
+let resendCooldown    = 0;
 
 const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -369,7 +427,7 @@ window.doLogin = async function() {
   }
 };
 
-// ── SIGNUP ──
+// ── SIGNUP STEP 1: validate + send OTP (account abhi nahi banta) ──
 window.doSignup = async function() {
   const name  = document.getElementById('signup-name').value.trim();
   const email = document.getElementById('signup-email').value.trim();
@@ -380,32 +438,146 @@ window.doSignup = async function() {
 
   const btn = document.getElementById('btn-signup');
   btn.disabled = true;
-  btn.innerHTML = '⏳ Creating account...';
+  btn.innerHTML = '⏳ Sending OTP...';
   hideMessages();
 
   try {
-    const cred = await createUserWithEmailAndPassword(auth, email, pass);
-    await updateProfile(cred.user, { displayName: name });
-    await saveUser(cred.user, name);
+    pendingSignupData = { name, email, pass };
+    await sendSignupOTP(email);
 
-    // ── SEND EMAIL VERIFICATION ──
-    try {
-      await sendEmailVerification(cred.user);
-      showSuccess('✅ Account created! A verification link has been sent to your email. Please verify it.');
-    } catch (vErr) {
-      showSuccess('✅ Account created! (Could not send verification email — you can resend it later from login page.)');
-    }
+    // Signup form chhupao, OTP form dikhao
+    document.getElementById('signup-form').style.display   = 'none';
+    document.getElementById('login-footer').style.display  = 'none';
+    document.getElementById('otp-form').style.display      = 'block';
+    document.getElementById('otp-sent-email').textContent  = email;
+    document.getElementById('otp-input').value = '';
+    document.getElementById('otp-input').focus();
 
-    setTimeout(() => window.location.href = 'index.html', 2200);
-  } catch(e) {
-    showError(friendlyError(e.code));
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+  } catch (e) {
+    console.error(e);
+    showError('❌ Could not send OTP. Check your internet and try again.');
     btn.disabled = false;
     btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
     generateCaptcha2();
   }
 };
 
-// ── RESEND VERIFICATION EMAIL ──
+// ── GENERATE + SEND OTP EMAIL ──
+async function sendSignupOTP(email) {
+  signupOTP = String(Math.floor(100000 + Math.random() * 900000)); // 6-digit code
+  const expiryDate = new Date(Date.now() + 5 * 60 * 1000); // 5 minute validity
+  signupOTPExpiry  = expiryDate.getTime();
+
+  await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    email:    email,
+    passcode: signupOTP,
+    time:     expiryDate.toLocaleTimeString()
+  });
+
+  startOTPTimer();
+  startResendCooldown();
+}
+
+// ── SIGNUP STEP 2: verify OTP, then actually create the Firebase account ──
+window.verifySignupOTP = async function() {
+  const entered = document.getElementById('otp-input').value.trim();
+  if (!entered) { showError('Please enter the OTP.'); return; }
+
+  if (Date.now() > signupOTPExpiry) {
+    showError('❌ OTP expired. Please tap "Resend code".');
+    return;
+  }
+  if (entered !== signupOTP) {
+    showError('❌ Incorrect OTP. Please try again.');
+    return;
+  }
+
+  hideMessages();
+  const btn = document.getElementById('btn-verify-otp');
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Creating account...';
+
+  try {
+    const { name, email, pass } = pendingSignupData;
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    await updateProfile(cred.user, { displayName: name });
+    await saveUser(cred.user, name);
+
+    try { await sendEmailVerification(cred.user); } catch (vErr) { /* ignore, not critical */ }
+
+    clearInterval(otpTimerInterval);
+    showSuccess('✅ Account created successfully! Redirecting...');
+    setTimeout(() => window.location.href = 'index.html', 1500);
+  } catch (e) {
+    showError(friendlyError(e.code));
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-check-circle"></i> Verify &amp; Create Account';
+  }
+};
+
+// ── RESEND OTP ──
+window.resendSignupOTP = async function() {
+  if (resendCooldown > 0 || !pendingSignupData) return;
+  const link = document.getElementById('resend-otp-link');
+  link.textContent = 'Sending...';
+  try {
+    await sendSignupOTP(pendingSignupData.email);
+    showToast('📧 New OTP sent!', 'success');
+  } catch (e) {
+    showToast('❌ Could not resend OTP.', '');
+    link.textContent = 'Resend code';
+  }
+};
+
+// ── CHANGE EMAIL / GO BACK TO SIGNUP FORM ──
+window.cancelSignupOTP = function() {
+  clearInterval(otpTimerInterval);
+  document.getElementById('otp-form').style.display      = 'none';
+  document.getElementById('signup-form').style.display    = 'block';
+  document.getElementById('login-footer').style.display   = 'block';
+  document.getElementById('otp-input').value = '';
+  hideMessages();
+  pendingSignupData = null;
+  signupOTP = '';
+};
+
+// ── OTP COUNTDOWN DISPLAY ──
+function startOTPTimer() {
+  clearInterval(otpTimerInterval);
+  otpTimerInterval = setInterval(() => {
+    const remaining = signupOTPExpiry - Date.now();
+    if (remaining <= 0) {
+      document.getElementById('otp-timer').textContent = '⏰ OTP expired — please resend.';
+      clearInterval(otpTimerInterval);
+      return;
+    }
+    const m = Math.floor(remaining / 60000);
+    const s = Math.floor((remaining % 60000) / 1000);
+    document.getElementById('otp-timer').textContent =
+      `⏱️ Code expires in ${m}:${s < 10 ? '0' : ''}${s}`;
+  }, 1000);
+}
+
+// ── RESEND BUTTON COOLDOWN (60 seconds) ──
+function startResendCooldown() {
+  resendCooldown = 60;
+  const link = document.getElementById('resend-otp-link');
+  link.classList.add('disabled');
+  const tick = setInterval(() => {
+    resendCooldown--;
+    if (resendCooldown <= 0) {
+      clearInterval(tick);
+      link.textContent = 'Resend code';
+      link.classList.remove('disabled');
+    } else {
+      link.textContent = `Resend in ${resendCooldown}s`;
+    }
+  }, 1000);
+}
+
+// ── RESEND VERIFICATION EMAIL (existing feature, unchanged) ──
 window.resendVerification = async function() {
   const btn = document.getElementById('resend-btn');
   if (!pendingUser) {
@@ -545,6 +717,8 @@ function switchTab(tab) {
   document.getElementById('tab-signup').classList.toggle('active', !isLogin);
   document.getElementById('signin-form').style.display  = isLogin ? 'block' : 'none';
   document.getElementById('signup-form').style.display  = isLogin ? 'none'  : 'block';
+  document.getElementById('otp-form').style.display     = 'none';
+  document.getElementById('login-footer').style.display = 'block';
   document.getElementById('login-footer').innerHTML = isLogin
     ? 'New here? <a onclick="switchTab(\'signup\')">Create an account</a>'
     : 'Already have an account? <a onclick="switchTab(\'login\')">Sign in</a>';
