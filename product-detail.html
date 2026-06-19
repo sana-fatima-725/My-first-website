@@ -58,6 +58,13 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .lang-option .check{color:var(--accent);font-size:12px;opacity:0;}
 .lang-option.active-lang .check{opacity:1;}
 
+/* CART ICON IN NAV */
+.nav-cart-btn{position:relative;width:40px;height:40px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all 0.2s;flex-shrink:0;}
+.nav-cart-btn:hover{background:rgba(0,212,255,0.1);border-color:var(--accent);}
+.cart-badge{position:absolute;top:-6px;right:-6px;background:var(--accent);color:#000;font-size:9px;font-weight:800;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);}
+@keyframes cartBounce{0%,100%{transform:scale(1)}30%{transform:scale(1.4)}60%{transform:scale(0.9)}80%{transform:scale(1.1)}}
+.cart-bounce{animation:cartBounce 0.5s ease;}
+
 /* PAGE */
 .page-wrap{max-width:1200px;margin:0 auto;padding:calc(var(--nav-h) + 40px) 40px 80px;}
 
@@ -120,13 +127,21 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .spec-k{color:var(--muted);font-size:13px;width:130px;flex-shrink:0;}
 .spec-v{font-weight:600;font-size:13px;color:var(--text);}
 
+/* QUANTITY STEPPER (on detail page) */
+.qty-section{display:flex;align-items:center;gap:14px;margin-top:22px;}
+.qty-section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);}
+.qty-stepper{display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1.5px solid var(--border2);border-radius:12px;padding:6px 8px;}
+.qty-step-btn{width:32px;height:32px;border-radius:8px;background:var(--surface2);border:1px solid var(--border2);color:var(--accent);font-size:17px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;line-height:1;font-family:'Plus Jakarta Sans',sans-serif;}
+.qty-step-btn:hover{background:var(--accent);color:#000;}
+.qty-step-num{font-size:15px;font-weight:800;color:var(--text);min-width:24px;text-align:center;}
+
 /* BUTTONS */
 .detail-btns{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
-.btn-order{flex:1;min-width:160px;background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;border:none;padding:15px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
-.btn-order:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,255,0.35);}
 .btn-cart{flex:1;min-width:160px;background:var(--card-bg);color:var(--text);border:1.5px solid var(--border2);padding:15px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
 .btn-cart:hover{background:rgba(0,212,255,0.08);border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
 .btn-cart.added{background:var(--success);border-color:var(--success);color:#fff;}
+.btn-order{flex:1;min-width:160px;background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;border:none;padding:15px;border-radius:14px;font-size:15px;font-weight:800;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.btn-order:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,255,0.35);}
 .btn-wish{width:52px;height:52px;background:var(--card-bg);border:1.5px solid var(--border);border-radius:14px;font-size:20px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
 .btn-wish:hover{border-color:var(--accent2);}
 .delivery-box{margin-top:16px;padding:14px 16px;background:rgba(16,185,129,0.06);border-radius:12px;font-size:13px;color:var(--success);border:1px solid rgba(16,185,129,0.15);line-height:1.6;}
@@ -150,7 +165,7 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .modal-close:hover{border-color:var(--accent);color:var(--accent);}
 
 /* TOAST */
-.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg2);color:#fff;padding:13px 22px;border-radius:11px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:3000;white-space:nowrap;border:1px solid var(--border);}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg2);color:#fff;padding:13px 22px;border-radius:11px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:5000;white-space:nowrap;border:1px solid var(--border);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .toast.success{background:var(--success);border-color:var(--success);}
 
@@ -163,6 +178,55 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 /* FOOTER */
 footer{background:#06060f;padding:40px;border-top:1px solid rgba(255,255,255,0.05);text-align:center;color:rgba(255,255,255,0.25);font-size:12px;}
 footer span{color:var(--accent);}
+
+/* ═══════════════════════════════
+   CART DRAWER (synced with products.html)
+═══════════════════════════════ */
+.cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:4000;}
+.cart-overlay.open{display:block;}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;background:var(--bg2);border-left:1.5px solid var(--border2);display:flex;flex-direction:column;z-index:4001;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);box-shadow:-20px 0 60px rgba(0,0,0,0.5);}
+.cart-drawer.open{transform:translateX(0);}
+.cart-drawer-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border);background:var(--card-bg);flex-shrink:0;}
+.cart-drawer-title{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--text);display:flex;align-items:center;gap:10px;}
+.cart-item-count-badge{background:var(--accent);color:#000;font-size:11px;font-weight:800;padding:2px 8px;border-radius:100px;font-family:'Plus Jakarta Sans',sans-serif;}
+.cart-close-btn{width:36px;height:36px;background:var(--surface2);border:1px solid var(--border);border-radius:50%;color:var(--text);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.cart-close-btn:hover{border-color:var(--border2);color:var(--accent);}
+.cart-items-list{flex:1;overflow-y:auto;padding:16px 24px;display:flex;flex-direction:column;gap:14px;}
+.cart-items-list::-webkit-scrollbar{width:4px;}
+.cart-items-list::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+.cart-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);padding:40px;text-align:center;}
+.cart-empty-icon{font-size:56px;opacity:0.35;}
+.cart-empty-text{font-size:16px;font-weight:600;}
+.cart-empty-sub{font-size:13px;opacity:0.7;}
+.cart-item{display:flex;gap:12px;align-items:flex-start;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:12px;transition:border-color 0.2s;animation:slideInRight 0.3s ease;}
+@keyframes slideInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+.cart-item:hover{border-color:var(--border2);}
+.cart-item-img{width:68px;height:68px;border-radius:8px;object-fit:contain;background:var(--bg2);flex-shrink:0;padding:4px;}
+.cart-item-info{flex:1;min-width:0;}
+.cart-item-brand{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.cart-item-name{font-size:13px;font-weight:700;color:var(--text);line-height:1.3;margin:3px 0 6px;}
+.cart-item-price{font-size:15px;font-weight:800;color:var(--accent);}
+.cart-item-old{font-size:11px;color:var(--muted);text-decoration:line-through;margin-left:6px;}
+.cart-item-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px;}
+.cart-qty{display:flex;align-items:center;gap:8px;}
+.qty-btn{width:26px;height:26px;border-radius:6px;background:var(--surface2);border:1px solid var(--border2);color:var(--accent);font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;line-height:1;}
+.qty-btn:hover{background:var(--accent);color:#000;}
+.qty-num{font-size:14px;font-weight:700;color:var(--text);min-width:20px;text-align:center;}
+.cart-remove-btn{font-size:11px;color:var(--muted);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Plus Jakarta Sans',sans-serif;transition:color 0.2s;}
+.cart-remove-btn:hover{color:#ef4444;}
+.cart-footer{border-top:1px solid var(--border);padding:20px 24px;background:var(--card-bg);flex-shrink:0;}
+.cart-summary-row{display:flex;justify-content:space-between;margin-bottom:7px;}
+.cart-summary-label{font-size:13px;color:var(--muted);}
+.cart-summary-val{font-size:13px;font-weight:600;color:var(--text);}
+.cart-saved-val{font-size:13px;font-weight:700;color:#22c55e;}
+.cart-total-row{display:flex;justify-content:space-between;align-items:center;margin:12px 0;padding-top:12px;border-top:1px solid var(--border);}
+.cart-total-label{font-size:16px;font-weight:700;color:var(--text);}
+.cart-total-val{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--accent);}
+.free-delivery-pill{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#22c55e;font-size:11px;font-weight:700;padding:6px 14px;border-radius:100px;text-align:center;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:6px;}
+.checkout-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;border:none;border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;}
+.checkout-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,212,255,0.4);}
+.continue-btn{display:block;width:100%;text-align:center;margin-top:10px;font-size:13px;color:var(--muted);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Plus Jakarta Sans',sans-serif;}
+.continue-btn:hover{color:var(--accent);}
 
 /* RTL */
 body.rtl-mode{direction:rtl;}
@@ -178,10 +242,46 @@ body.rtl-mode .slide-next{right:auto;left:12px;}
 
 /* RESPONSIVE */
 @media(max-width:900px){.detail-grid{grid-template-columns:1fr;}.page-wrap{padding:calc(var(--nav-h)+24px) 18px 60px;}}
-@media(max-width:600px){.nav-links{display:none;}.hamburger{display:flex;}nav{padding:0 18px;}.detail-name{font-size:28px;}}
+@media(max-width:600px){.nav-links{display:none;}.hamburger{display:flex;}nav{padding:0 18px;}.detail-name{font-size:28px;}.cart-drawer{width:100vw;}}
 </style>
 </head>
 <body>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-label="Shopping Cart">
+  <div class="cart-drawer-header">
+    <div class="cart-drawer-title">
+      🛒 <span id="cart-title-text">Your Cart</span>
+      <span class="cart-item-count-badge" id="drawer-count">0</span>
+    </div>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items-list" id="cart-items-list">
+    <div class="cart-empty" id="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <div class="cart-empty-text" id="cart-empty-text">Your cart is empty</div>
+      <div class="cart-empty-sub" id="cart-empty-sub">Add products to see them here</div>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="free-delivery-pill">🚚 <span id="free-delivery-text">Free Delivery — You qualify!</span></div>
+    <div class="cart-summary-row">
+      <span class="cart-summary-label" id="subtotal-label">Original Price</span>
+      <span class="cart-summary-val" id="cart-original">Rs.0</span>
+    </div>
+    <div class="cart-summary-row">
+      <span class="cart-summary-label" id="saved-label">You Saved</span>
+      <span class="cart-saved-val" id="cart-saved">Rs.0</span>
+    </div>
+    <div class="cart-total-row">
+      <span class="cart-total-label" id="total-label">Grand Total</span>
+      <span class="cart-total-val" id="cart-total">Rs.0</span>
+    </div>
+    <button class="checkout-btn" onclick="location.href='contact.html'" id="checkout-btn">Proceed to Checkout →</button>
+    <button class="continue-btn" onclick="closeCart()" id="continue-btn">← Continue Shopping</button>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -213,6 +313,11 @@ body.rtl-mode .slide-next{right:auto;left:12px;}
         <div class="lang-option" onclick="setLang('ar')"><span class="flag">🇸🇦</span><span class="lname">العربية</span><span class="check">✓</span></div>
       </div>
     </div>
+    <!-- CART ICON -->
+    <div class="nav-cart-btn" id="nav-cart-btn" onclick="openCart()" title="View Cart">
+      🛒
+      <span class="cart-badge" id="cart-badge">0</span>
+    </div>
     <div class="hamburger" id="hamburger" onclick="this.classList.toggle('open');document.getElementById('mobMenu').classList.toggle('open')">
       <span></span><span></span><span></span>
     </div>
@@ -234,7 +339,7 @@ body.rtl-mode .slide-next{right:auto;left:12px;}
   <div id="detail-root"></div>
 </div>
 
-<footer>© 2025 Ahsan Mobiles.pk — All Rights Reserved &nbsp;|&nbsp; <span>Made with ❤️ in Sargodha 🇵🇰</span></footer>
+<footer>© 2026 Ahsan Mobiles.pk — All Rights Reserved &nbsp;|&nbsp; <span>Made with ❤️ in Sargodha 🇵🇰</span></footer>
 
 <div class="wa-float">
   <a class="wa-btn" href="https://wa.me/923091333812?text=Assalam%20o%20Alaikum!" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -287,6 +392,154 @@ let currentProduct = null;
 let slideIndex = 0;
 let slideTotal = 0;
 let slideTimer = null;
+let detailQty = 1;
+
+// ===== CART STATE (shared with products.html via localStorage key 'am_cart') =====
+let cartItems = JSON.parse(localStorage.getItem('am_cart') || '[]');
+
+function saveCart() { localStorage.setItem('am_cart', JSON.stringify(cartItems)); }
+
+function getCartLabels() {
+  var isUrdu = currentLang === 'ur';
+  return {
+    add: isUrdu ? '🛒 کارٹ میں ڈالیں' : '🛒 Add to Cart',
+    added: isUrdu ? '✓ کارٹ میں شامل' : '✓ Added to Cart'
+  };
+}
+
+function isInCart(id) {
+  return cartItems.some(function(x){ return x.id === id; });
+}
+
+function updateCartBadge() {
+  var total = cartItems.reduce(function(s,i){ return s + i.qty; }, 0);
+  var badge = document.getElementById('cart-badge');
+  var dc = document.getElementById('drawer-count');
+  if (badge) badge.textContent = total;
+  if (dc) dc.textContent = total;
+}
+
+function renderCartDrawer() {
+  var list = document.getElementById('cart-items-list');
+  var footer = document.getElementById('cart-footer');
+  var empty = document.getElementById('cart-empty');
+  if (!list) return;
+
+  if (!cartItems.length) {
+    list.innerHTML = '';
+    list.appendChild(empty);
+    empty.style.display = 'flex';
+    footer.style.display = 'none';
+    return;
+  }
+  empty.style.display = 'none';
+  footer.style.display = 'block';
+  list.innerHTML = '';
+  var isUrdu = currentLang === 'ur';
+  cartItems.forEach(function(item) {
+    var displayName = (isUrdu && item.nameUr) ? item.nameUr : item.name;
+    var itemTotal = item.price * item.qty;
+    var div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML =
+      '<img class="cart-item-img" src="' + item.img + '" alt="' + item.name + '" onerror="this.style.background=\'var(--surface2)\'">' +
+      '<div class="cart-item-info">' +
+        '<div class="cart-item-brand">' + item.brand + '</div>' +
+        '<div class="cart-item-name">' + displayName + '</div>' +
+        '<div>' +
+          '<span class="cart-item-price">Rs.' + itemTotal.toLocaleString() + '</span>' +
+          '<span class="cart-item-old">Rs.' + item.oldPrice.toLocaleString() + '</span>' +
+        '</div>' +
+        '<div class="cart-item-row">' +
+          '<div class="cart-qty">' +
+            '<button class="qty-btn" onclick="changeQty(' + item.id + ',-1)">−</button>' +
+            '<span class="qty-num">' + item.qty + '</span>' +
+            '<button class="qty-btn" onclick="changeQty(' + item.id + ',1)">+</button>' +
+          '</div>' +
+          '<button class="cart-remove-btn" onclick="removeItem(' + item.id + ')">' + (isUrdu ? 'ہٹائیں' : 'Remove') + '</button>' +
+        '</div>' +
+      '</div>';
+    list.appendChild(div);
+  });
+
+  var grand = cartItems.reduce(function(s,i){ return s + i.price * i.qty; }, 0);
+  var orig  = cartItems.reduce(function(s,i){ return s + i.oldPrice * i.qty; }, 0);
+  document.getElementById('cart-original').textContent = 'Rs.' + orig.toLocaleString();
+  document.getElementById('cart-saved').textContent    = 'Rs.' + (orig - grand).toLocaleString();
+  document.getElementById('cart-total').textContent    = 'Rs.' + grand.toLocaleString();
+}
+
+function openCart()  { document.getElementById('cart-overlay').classList.add('open'); document.getElementById('cart-drawer').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeCart() { document.getElementById('cart-overlay').classList.remove('open'); document.getElementById('cart-drawer').classList.remove('open'); document.body.style.overflow = ''; }
+
+function changeQty(id, delta) {
+  var item = cartItems.find(function(x){ return x.id === id; });
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cartItems = cartItems.filter(function(x){ return x.id !== id; });
+  saveCart();
+  updateCartBadge();
+  renderCartDrawer();
+  refreshAddToCartButton();
+}
+
+function removeItem(id) {
+  cartItems = cartItems.filter(function(x){ return x.id !== id; });
+  saveCart();
+  updateCartBadge();
+  renderCartDrawer();
+  refreshAddToCartButton();
+}
+
+// ===== ADD TO CART (on product detail page) =====
+function addToCartFromDetail() {
+  var p = currentProduct;
+  if (!p) return;
+  var qty = detailQty || 1;
+  var existing = cartItems.find(function(x){ return x.id === p.id; });
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cartItems.push({ id: p.id, name: p.name, nameUr: p.nameUr, brand: p.brand, price: p.price, oldPrice: p.oldPrice, img: p.imgs[0], qty: qty });
+  }
+  saveCart();
+  updateCartBadge();
+  renderCartDrawer();
+  refreshAddToCartButton();
+
+  var isUrdu = currentLang === 'ur';
+  showToast(isUrdu ? '✓ کارٹ میں شامل ہو گیا!' : '✓ Added to Cart!', 'success');
+
+  var navBtn = document.getElementById('nav-cart-btn');
+  if (navBtn) {
+    navBtn.classList.remove('cart-bounce');
+    void navBtn.offsetWidth;
+    navBtn.classList.add('cart-bounce');
+    setTimeout(function(){ navBtn.classList.remove('cart-bounce'); }, 600);
+  }
+  openCart();
+}
+
+function refreshAddToCartButton() {
+  var p = currentProduct;
+  if (!p) return;
+  var btn = document.getElementById('add-cart-btn');
+  if (!btn) return;
+  var labels = getCartLabels();
+  if (isInCart(p.id)) {
+    btn.textContent = labels.added;
+    btn.classList.add('added');
+  } else {
+    btn.textContent = labels.add;
+    btn.classList.remove('added');
+  }
+}
+
+function changeDetailQty(delta) {
+  detailQty = Math.max(1, detailQty + delta);
+  var el = document.getElementById('detail-qty-num');
+  if (el) el.textContent = detailQty;
+}
 
 // ===== RENDER DETAIL =====
 function renderDetail() {
@@ -302,6 +555,7 @@ function renderDetail() {
     return;
   }
   currentProduct = p;
+  detailQty = 1;
   document.title = p.name + ' — Ahsan Mobiles.pk';
   const isUrdu = currentLang === 'ur';
   const save = Math.round((1 - p.price / p.oldPrice) * 100);
@@ -336,6 +590,9 @@ function renderDetail() {
     return '<div class="spec-row"><span class="spec-k">' + entry[0] + '</span><span class="spec-v">' + entry[1] + '</span></div>';
   }).join('');
 
+  const labels = getCartLabels();
+  const alreadyInCart = isInCart(p.id);
+
   root.innerHTML =
     '<div class="detail-grid">' +
       '<div class="detail-imgs">' +
@@ -366,7 +623,16 @@ function renderDetail() {
         '</div>' +
         '<div class="specs-title">' + (isUrdu ? 'خصوصیات' : 'Specifications') + '</div>' +
         specsHTML +
+        '<div class="qty-section">' +
+          '<span class="qty-section-label">' + (isUrdu ? 'مقدار' : 'Quantity') + '</span>' +
+          '<div class="qty-stepper">' +
+            '<button class="qty-step-btn" onclick="changeDetailQty(-1)">−</button>' +
+            '<span class="qty-step-num" id="detail-qty-num">1</span>' +
+            '<button class="qty-step-btn" onclick="changeDetailQty(1)">+</button>' +
+          '</div>' +
+        '</div>' +
         '<div class="detail-btns">' +
+          '<button class="btn-cart' + (alreadyInCart ? ' added' : '') + '" id="add-cart-btn" onclick="addToCartFromDetail()">' + (alreadyInCart ? labels.added : labels.add) + '</button>' +
           '<button class="btn-order" onclick="orderNow()">🛒 ' + (isUrdu ? 'واٹس ایپ پر آرڈر کریں' : 'Order via WhatsApp') + '</button>' +
           '<button class="btn-wish" id="wish-btn" onclick="wishlistToggle()">❤️</button>' +
         '</div>' +
@@ -468,7 +734,7 @@ function showToast(msg, type) {
 
 // ===== KEYBOARD =====
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') { closeModal(); closeCart(); }
   if (e.key === 'ArrowRight') nextSlide();
   if (e.key === 'ArrowLeft') prevSlide();
 });
@@ -487,6 +753,28 @@ document.addEventListener('click', function(e) {
   var w = document.getElementById('lang-wrap');
   if (w && !w.contains(e.target)) w.classList.remove('open');
 });
+
+function updateCartUIText() {
+  var isUrdu = currentLang === 'ur';
+  var elTitle = document.getElementById('cart-title-text');
+  var elEmptyText = document.getElementById('cart-empty-text');
+  var elEmptySub = document.getElementById('cart-empty-sub');
+  var elFree = document.getElementById('free-delivery-text');
+  var elSubtotal = document.getElementById('subtotal-label');
+  var elSaved = document.getElementById('saved-label');
+  var elTotal = document.getElementById('total-label');
+  var elCheckout = document.getElementById('checkout-btn');
+  var elContinue = document.getElementById('continue-btn');
+  if (elTitle) elTitle.textContent = isUrdu ? 'آپ کا کارٹ' : 'Your Cart';
+  if (elEmptyText) elEmptyText.textContent = isUrdu ? 'کارٹ خالی ہے' : 'Your cart is empty';
+  if (elEmptySub) elEmptySub.textContent = isUrdu ? 'مصنوعات شامل کریں' : 'Add products to see them here';
+  if (elFree) elFree.textContent = isUrdu ? 'مفت ڈیلیوری — آپ اہل ہیں!' : 'Free Delivery — You qualify!';
+  if (elSubtotal) elSubtotal.textContent = isUrdu ? 'اصل قیمت' : 'Original Price';
+  if (elSaved) elSaved.textContent = isUrdu ? 'آپ نے بچائے' : 'You Saved';
+  if (elTotal) elTotal.textContent = isUrdu ? 'کل رقم' : 'Grand Total';
+  if (elCheckout) elCheckout.textContent = isUrdu ? 'چیک آؤٹ کریں →' : 'Proceed to Checkout →';
+  if (elContinue) elContinue.textContent = isUrdu ? '← خریداری جاری رکھیں' : '← Continue Shopping';
+}
 
 function setLang(code) {
   currentLang = code;
@@ -509,11 +797,16 @@ function setLang(code) {
   var bb = document.getElementById('back-btn');
   if (bb) bb.textContent = (code === 'ur') ? '← پروڈکٹس پر واپس جائیں' : '← Back to Products';
   if (slideTimer) clearInterval(slideTimer);
+  updateCartUIText();
+  renderCartDrawer();
   renderDetail();
 }
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', function() {
+  updateCartBadge();
+  renderCartDrawer();
+
   if (currentLang !== 'en') {
     setLang(currentLang);
   } else {
@@ -521,7 +814,18 @@ document.addEventListener('DOMContentLoaded', function() {
       opt.classList.remove('active-lang');
       if (opt.getAttribute('onclick') && opt.getAttribute('onclick').indexOf("'en'") !== -1) opt.classList.add('active-lang');
     });
+    updateCartUIText();
     renderDetail();
+  }
+});
+
+// Listen for cart changes from other tabs
+window.addEventListener('storage', function(e) {
+  if (e.key === 'am_cart') {
+    cartItems = JSON.parse(e.newValue || '[]');
+    updateCartBadge();
+    renderCartDrawer();
+    refreshAddToCartButton();
   }
 });
 </script>

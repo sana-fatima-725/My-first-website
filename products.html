@@ -21,14 +21,10 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 
-/* ── HIGH CONTRAST ── */
 body.high-contrast{--bg:#000!important;--bg2:#000!important;--card-bg:#111!important;--surface2:#111!important;--text:#ffff00!important;--muted:#fff!important;--accent:#ffff00!important;--border:rgba(255,255,0,0.4)!important;--border2:rgba(255,255,0,0.6)!important;}
 body.high-contrast nav,body.high-contrast footer{background:#000!important;border-color:#ffff00!important;}
-/* ── PAUSE ANIMATIONS ── */
 body.pause-animations *,body.pause-animations *::before,body.pause-animations *::after{animation-play-state:paused!important;transition:none!important;}
-/* ── DYSLEXIA FONT ── */
 body.dyslexia-font,body.dyslexia-font *{font-family:'OpenDyslexic',sans-serif!important;letter-spacing:0.05em!important;word-spacing:0.15em!important;line-height:1.9!important;}
-/* ── URDU MODE ── */
 body.urdu-mode{direction:rtl;}
 body.urdu-mode nav{flex-direction:row-reverse;}
 body.urdu-mode .nav-links{flex-direction:row-reverse;}
@@ -37,7 +33,7 @@ body.urdu-mode .toolbar{direction:rtl;}
 body.urdu-mode .filter-tabs{direction:rtl;}
 body.urdu-mode footer{direction:rtl;}
 
-/* ══ ACCESSIBILITY PANEL ══ */
+/* ACCESSIBILITY */
 .a11y-wrapper{position:relative;display:flex;align-items:center;}
 #a11y-toggle-btn{width:38px;height:38px;background:var(--surface2);border:1px solid var(--border2);border-radius:9px;color:var(--accent);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,box-shadow 0.2s;}
 #a11y-toggle-btn:hover,#a11y-toggle-btn.open{background:rgba(0,212,255,0.15);box-shadow:0 0 0 2px rgba(0,212,255,0.3);}
@@ -58,7 +54,6 @@ body.urdu-mode footer{direction:rtl;}
 .a11y-toggle-track::after{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:var(--muted);top:2px;left:2px;transition:transform 0.2s,background 0.2s;}
 .a11y-toggle input:checked+.a11y-toggle-track{background:rgba(0,212,255,0.25);border-color:var(--accent);}
 .a11y-toggle input:checked+.a11y-toggle-track::after{transform:translateX(18px);background:var(--accent);}
-/* Lang btn */
 #lang-nav-btn{display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--accent2),#0099bb);border:none;border-radius:9px;color:white;font-size:12px;font-weight:700;padding:0 14px;height:38px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;white-space:nowrap;}
 #lang-nav-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(124,58,237,0.4);}
 
@@ -76,6 +71,14 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .btn-login:hover{border-color:var(--accent);color:var(--accent);}
 .btn-shop{background:linear-gradient(135deg,var(--accent),#0099bb);border:none;color:#000;padding:8px 20px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif;}
 .btn-shop:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,212,255,0.4);}
+
+/* CART ICON IN NAV */
+.nav-cart-btn{position:relative;width:40px;height:40px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all 0.2s;flex-shrink:0;}
+.nav-cart-btn:hover{background:rgba(0,212,255,0.1);border-color:var(--accent);}
+.cart-badge{position:absolute;top:-6px;right:-6px;background:var(--accent);color:#000;font-size:9px;font-weight:800;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);}
+@keyframes cartBounce{0%,100%{transform:scale(1)}30%{transform:scale(1.4)}60%{transform:scale(0.9)}80%{transform:scale(1.1)}}
+.cart-bounce{animation:cartBounce 0.5s ease;}
+
 .hamburger{display:none;flex-direction:column;gap:5px;background:var(--surface2);border:1px solid var(--border);padding:8px;border-radius:8px;cursor:pointer;}
 .hamburger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
@@ -106,6 +109,8 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .filter-tab.active{background:var(--accent);border-color:var(--accent);color:#000;}
 .products-section{padding:0 40px 80px;max-width:1200px;margin:0 auto;}
 .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+
+/* PRODUCT CARD */
 .prod-card{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .3s;cursor:pointer;display:flex;flex-direction:column;}
 .prod-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,212,255,0.1);}
 .prod-img-wrap{position:relative;background:var(--bg2);aspect-ratio:1;overflow:hidden;}
@@ -122,31 +127,127 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--nav
 .prod-price{font-weight:800;font-size:17px;color:var(--text);}
 .prod-old{font-size:12px;color:var(--muted);text-decoration:line-through;}
 .prod-save{font-size:11px;font-weight:700;color:#a78bfa;background:rgba(124,58,237,0.1);padding:2px 7px;border-radius:100px;}
-.prod-btn{width:100%;background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;border:none;padding:11px;font-size:13px;font-weight:800;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
-.prod-btn:hover{opacity:.9;}
+
+/* TWO BUTTONS ON CARD */
+.prod-actions{display:flex;gap:0;}
+.prod-btn-detail{flex:1;background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;border:none;padding:11px 8px;font-size:12px;font-weight:800;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.prod-btn-detail:hover{opacity:.85;}
+.prod-btn-cart{flex:1;background:var(--surface2);color:var(--text);border:none;border-left:1px solid rgba(0,212,255,0.2);padding:11px 8px;font-size:12px;font-weight:800;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:5px;}
+.prod-btn-cart:hover{background:rgba(0,212,255,0.12);color:var(--accent);}
+.prod-btn-cart.added{background:var(--success);color:#fff;border-color:var(--success);}
+
 .empty-state{text-align:center;padding:80px 20px;grid-column:1/-1;}
 .empty-state .emoji{font-size:54px;margin-bottom:16px;}
 .empty-state h3{font-size:20px;font-weight:700;margin-bottom:8px;}
 .empty-state p{color:var(--muted);font-size:14px;}
+
+/* ═══════════════════════════════
+   CART DRAWER
+═══════════════════════════════ */
+.cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:4000;}
+.cart-overlay.open{display:block;}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;background:var(--bg2);border-left:1.5px solid var(--border2);display:flex;flex-direction:column;z-index:4001;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);box-shadow:-20px 0 60px rgba(0,0,0,0.5);}
+.cart-drawer.open{transform:translateX(0);}
+.cart-drawer-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border);background:var(--card-bg);flex-shrink:0;}
+.cart-drawer-title{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--text);display:flex;align-items:center;gap:10px;}
+.cart-item-count-badge{background:var(--accent);color:#000;font-size:11px;font-weight:800;padding:2px 8px;border-radius:100px;font-family:'Plus Jakarta Sans',sans-serif;}
+.cart-close-btn{width:36px;height:36px;background:var(--surface2);border:1px solid var(--border);border-radius:50%;color:var(--text);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.cart-close-btn:hover{border-color:var(--border2);color:var(--accent);}
+.cart-items-list{flex:1;overflow-y:auto;padding:16px 24px;display:flex;flex-direction:column;gap:14px;}
+.cart-items-list::-webkit-scrollbar{width:4px;}
+.cart-items-list::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+.cart-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);padding:40px;text-align:center;}
+.cart-empty-icon{font-size:56px;opacity:0.35;}
+.cart-empty-text{font-size:16px;font-weight:600;}
+.cart-empty-sub{font-size:13px;opacity:0.7;}
+.cart-item{display:flex;gap:12px;align-items:flex-start;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:12px;transition:border-color 0.2s;animation:slideInRight 0.3s ease;}
+@keyframes slideInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+.cart-item:hover{border-color:var(--border2);}
+.cart-item-img{width:68px;height:68px;border-radius:8px;object-fit:contain;background:var(--bg2);flex-shrink:0;padding:4px;}
+.cart-item-info{flex:1;min-width:0;}
+.cart-item-brand{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.cart-item-name{font-size:13px;font-weight:700;color:var(--text);line-height:1.3;margin:3px 0 6px;}
+.cart-item-price{font-size:15px;font-weight:800;color:var(--accent);}
+.cart-item-old{font-size:11px;color:var(--muted);text-decoration:line-through;margin-left:6px;}
+.cart-item-row{display:flex;align-items:center;justify-content:space-between;margin-top:8px;}
+.cart-qty{display:flex;align-items:center;gap:8px;}
+.qty-btn{width:26px;height:26px;border-radius:6px;background:var(--surface2);border:1px solid var(--border2);color:var(--accent);font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;line-height:1;}
+.qty-btn:hover{background:var(--accent);color:#000;}
+.qty-num{font-size:14px;font-weight:700;color:var(--text);min-width:20px;text-align:center;}
+.cart-remove-btn{font-size:11px;color:var(--muted);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Plus Jakarta Sans',sans-serif;transition:color 0.2s;}
+.cart-remove-btn:hover{color:#ef4444;}
+.cart-footer{border-top:1px solid var(--border);padding:20px 24px;background:var(--card-bg);flex-shrink:0;}
+.cart-summary-row{display:flex;justify-content:space-between;margin-bottom:7px;}
+.cart-summary-label{font-size:13px;color:var(--muted);}
+.cart-summary-val{font-size:13px;font-weight:600;color:var(--text);}
+.cart-saved-val{font-size:13px;font-weight:700;color:#22c55e;}
+.cart-total-row{display:flex;justify-content:space-between;align-items:center;margin:12px 0;padding-top:12px;border-top:1px solid var(--border);}
+.cart-total-label{font-size:16px;font-weight:700;color:var(--text);}
+.cart-total-val{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--accent);}
+.free-delivery-pill{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#22c55e;font-size:11px;font-weight:700;padding:6px 14px;border-radius:100px;text-align:center;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:6px;}
+.checkout-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),#0099bb);color:#000;border:none;border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;}
+.checkout-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,212,255,0.4);}
+.continue-btn{display:block;width:100%;text-align:center;margin-top:10px;font-size:13px;color:var(--muted);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Plus Jakarta Sans',sans-serif;}
+.continue-btn:hover{color:var(--accent);}
+
+/* TOAST */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg2);color:#fff;padding:13px 22px;border-radius:11px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:5000;white-space:nowrap;border:1px solid var(--border);}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.success{background:var(--success);border-color:var(--success);}
+
+/* WA FLOAT */
 .wa-float{position:fixed;right:20px;bottom:22px;z-index:999;}
 .wa-btn{width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:.3s;animation:waPulse 3s ease-in-out infinite;}
 .wa-btn:hover{transform:scale(1.1);}
 @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.35);}50%{box-shadow:0 4px 38px rgba(37,211,102,0.65);}}
 footer{background:#06060f;padding:40px;border-top:1px solid rgba(255,255,255,0.05);text-align:center;color:rgba(255,255,255,0.25);font-size:12px;}
 footer span{color:var(--accent);}
-.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg2);color:#fff;padding:13px 22px;border-radius:11px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:3000;white-space:nowrap;border:1px solid var(--border);}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-/* Reading guide */
 #reading-guide{display:none;position:fixed;left:0;right:0;height:32px;background:rgba(0,212,255,0.08);border-top:2px solid rgba(0,212,255,0.4);border-bottom:2px solid rgba(0,212,255,0.4);pointer-events:none;z-index:8000;transform:translateY(-50%);}
+
 @media(max-width:1100px){.products-grid{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:700px){.products-grid{grid-template-columns:repeat(2,1fr);}.page-hero,.toolbar,.filter-tabs,.products-section{padding-left:18px;padding-right:18px;}.page-hero h1{font-size:38px;}}
+@media(max-width:700px){.products-grid{grid-template-columns:repeat(2,1fr);}.page-hero,.toolbar,.filter-tabs,.products-section{padding-left:18px;padding-right:18px;}.page-hero h1{font-size:38px;}.cart-drawer{width:100vw;}}
 @media(max-width:600px){.nav-links{display:none;}.hamburger{display:flex;}nav{padding:0 18px;}#a11y-panel{right:-60px;width:240px;}}
 </style>
 </head>
 <body>
 
-<!-- Reading Guide -->
 <div id="reading-guide"></div>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-label="Shopping Cart">
+  <div class="cart-drawer-header">
+    <div class="cart-drawer-title">
+      🛒 <span id="cart-title-text">Your Cart</span>
+      <span class="cart-item-count-badge" id="drawer-count">0</span>
+    </div>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items-list" id="cart-items-list">
+    <div class="cart-empty" id="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <div class="cart-empty-text" id="cart-empty-text">Your cart is empty</div>
+      <div class="cart-empty-sub" id="cart-empty-sub">Add products to see them here</div>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="free-delivery-pill">🚚 <span id="free-delivery-text">Free Delivery — You qualify!</span></div>
+    <div class="cart-summary-row">
+      <span class="cart-summary-label" id="subtotal-label">Original Price</span>
+      <span class="cart-summary-val" id="cart-original">Rs.0</span>
+    </div>
+    <div class="cart-summary-row">
+      <span class="cart-summary-label" id="saved-label">You Saved</span>
+      <span class="cart-saved-val" id="cart-saved">Rs.0</span>
+    </div>
+    <div class="cart-total-row">
+      <span class="cart-total-label" id="total-label">Grand Total</span>
+      <span class="cart-total-val" id="cart-total">Rs.0</span>
+    </div>
+    <button class="checkout-btn" onclick="location.href='contact.html'" id="checkout-btn">Proceed to Checkout →</button>
+    <button class="continue-btn" onclick="closeCart()" id="continue-btn">← Continue Shopping</button>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -165,14 +266,10 @@ footer span{color:var(--accent);}
   <div class="nav-actions">
     <button class="btn-login" onclick="window.location='login.html'" data-en="Login" data-ur="لاگ ان">Login</button>
     <button class="btn-shop" onclick="window.location='products.html'" data-en="Shop Now →" data-ur="ابھی خریدیں →">Shop Now →</button>
-
-    <!-- LANGUAGE TOGGLE -->
     <button id="lang-nav-btn" onclick="toggleLanguage()" aria-label="Switch language">
       <span class="lang-globe">🌐</span>
       <span id="lang-btn-label">اردو</span>
     </button>
-
-    <!-- ACCESSIBILITY PANEL -->
     <div class="a11y-wrapper">
       <button id="a11y-toggle-btn" onclick="toggleA11yPanel()" aria-label="Accessibility options" aria-expanded="false" aria-haspopup="true">♿</button>
       <div id="a11y-panel" role="menu" aria-label="Accessibility Options">
@@ -180,9 +277,9 @@ footer span{color:var(--accent);}
         <div class="a11y-row">
           <span class="a11y-row-label"><span class="a11y-icon">🔡</span>Font Size</span>
           <div class="a11y-font-controls">
-            <button class="a11y-font-btn" onclick="changeFontSize(-1)" aria-label="Decrease font size">A−</button>
+            <button class="a11y-font-btn" onclick="changeFontSize(-1)">A−</button>
             <span id="font-size-val">100%</span>
-            <button class="a11y-font-btn" onclick="changeFontSize(1)" aria-label="Increase font size">A+</button>
+            <button class="a11y-font-btn" onclick="changeFontSize(1)">A+</button>
           </div>
         </div>
         <div class="a11y-row">
@@ -207,7 +304,11 @@ footer span{color:var(--accent);}
         </div>
       </div>
     </div>
-
+    <!-- CART ICON -->
+    <div class="nav-cart-btn" id="nav-cart-btn" onclick="openCart()" title="View Cart">
+      🛒
+      <span class="cart-badge" id="cart-badge">0</span>
+    </div>
     <div class="hamburger" id="hamburger" onclick="this.classList.toggle('open');document.getElementById('mobMenu').classList.toggle('open')">
       <span></span><span></span><span></span>
     </div>
@@ -223,13 +324,11 @@ footer span{color:var(--accent);}
   <a href="help.html">❓ Help</a>
 </div>
 
-<!-- PAGE HEADER -->
 <div class="page-hero">
   <h1 data-en="ALL PRODUCTS" data-ur="تمام مصنوعات">ALL <span>PRODUCTS</span></h1>
   <p data-en="Browse our complete collection of premium mobile accessories" data-ur="ہمارے تمام پریمیم موبائل لوازمات دیکھیں">Browse our complete collection of premium mobile accessories</p>
 </div>
 
-<!-- TOOLBAR -->
 <div class="toolbar">
   <div class="search-wrap">
     <i class="fas fa-search search-icon"></i>
@@ -248,7 +347,6 @@ footer span{color:var(--accent);}
   <div class="results-count" id="results-count">26 Products</div>
 </div>
 
-<!-- FILTER TABS -->
 <div class="filter-tabs" id="filter-tabs">
   <div class="filter-tab active" onclick="setCategory('all',this)" data-en="All (26)" data-ur="سب (26)">All (26)</div>
   <div class="filter-tab" onclick="setCategory('covers',this)" data-en="📱 Covers (7)" data-ur="📱 کور (7)">📱 Covers (7)</div>
@@ -264,7 +362,6 @@ footer span{color:var(--accent);}
   <div class="filter-tab" onclick="setCategory('camera',this)" data-en="📷 Cameras (2)" data-ur="📷 کیمرے (2)">📷 Cameras (2)</div>
 </div>
 
-<!-- PRODUCTS -->
 <div class="products-section">
   <div class="products-grid" id="products-grid"></div>
 </div>
@@ -280,35 +377,135 @@ footer span{color:var(--accent);}
 <script>
 // ===== PRODUCTS DATA =====
 const allProducts = [
-{id:1,name:'iPhone 13 Premium Silicone Cover',nameUr:'آئی فون 13 پریمیم سلیکون کور',cat:'covers',badge:'NEW',brand:'Apple',price:850,oldPrice:1200,imgs:['https://m.media-amazon.com/images/I/61npKqB2yWL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/512csOgQI1L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/517XQICcoWL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/51i1-WZWyXL._AC_SX679_.jpg'],colors:[{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:0},{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:1},{name:'Chalk Pink',nameUr:'گلابی',hex:'#f9a8c9',imgIdx:2},{name:'Stone Gray',nameUr:'سرمئی',hex:'#9ca3af',imgIdx:3}],desc:'Premium Apple-style silicone cover designed for iPhone 13.',descUr:'آئی فون 13 کے لیے پریمیم سلیکون کور۔'},
-{id:2,name:'iPhone 11 Transparent Hard Cover',nameUr:'آئی فون 11 شفاف ہارڈ کور',cat:'covers',badge:'HOT',brand:'Generic',price:350,oldPrice:550,imgs:['https://m.media-amazon.com/images/I/61Txe-1Sa3L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61OMgVbMp3L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61Wz71MSw6L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/614Gtz+nb-L._AC_SX679_.jpg'],colors:[{name:'Red',nameUr:'لال',hex:'#ef4444',imgIdx:0},{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:1},{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:2},{name:'Forest Green',nameUr:'جنگلی سبز',hex:'#166534',imgIdx:3}],desc:'Crystal clear transparent hard plastic cover for iPhone 11.',descUr:'آئی فون 11 کے لیے کرسٹل کلیئر شفاف ہارڈ کور۔'},
-{id:3,name:'Cute Cartoon Phone Cover',nameUr:'کیوٹ کارٹون فون کور',cat:'covers',badge:null,brand:'Trendy',price:450,oldPrice:700,imgs:['https://m.media-amazon.com/images/I/718W2ZNFB0L._AC_SX569_.jpg','https://m.media-amazon.com/images/I/7120prYS4NL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/717Q9-cNBqL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71cTPdE0yPL._AC_SX679_.jpg'],colors:[{name:'Pink',nameUr:'گلابی',hex:'#f9a8c9',imgIdx:0},{name:'Honey Bear',nameUr:'ہنی بیئر',hex:'#f59e0b',imgIdx:1},{name:'Star Cat',nameUr:'اسٹار کیٹ',hex:'#8b5cf6',imgIdx:2},{name:'Pink 16',nameUr:'گلابی',hex:'#ec4899',imgIdx:3}],desc:'Adorable cartoon-printed covers.',descUr:'خوبصورت کارٹون پرنٹڈ کور۔'},
-{id:4,name:'Vivo V29 Faux Leather Flip Cover',nameUr:'ویوو V29 فیوکس لیدر فلپ کور',cat:'covers',badge:'SALE',brand:'Vivo',price:650,oldPrice:900,imgs:['https://m.media-amazon.com/images/I/617y-ZfgF9L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61NzAvCcTTL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61TUA+l5Q7L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71WCCqHvbKL._AC_SX679_.jpg'],colors:[{name:'Gray',nameUr:'سرمئی',hex:'#6b7280',imgIdx:0},{name:'Dark Brown',nameUr:'گہرا بھورا',hex:'#78350f',imgIdx:1},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:2},{name:'Rose Gold',nameUr:'روز گولڈ',hex:'#fbbf24',imgIdx:3}],desc:'Premium faux leather flip cover for Vivo V29.',descUr:'ویوو V29 کے لیے پریمیم فلپ کور۔'},
-{id:5,name:'Samsung Galaxy A16 5G Rugged Cover',nameUr:'سام سنگ A16 5G رگڈ کور',cat:'covers',badge:'HOT',brand:'Samsung',price:750,oldPrice:1100,imgs:['https://m.media-amazon.com/images/I/81tZjh3sxrL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81FqDobT3OL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81MTB03CypL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81x+D90bkyL._AC_SX679_.jpg'],colors:[{name:'Black Matte',nameUr:'میٹ سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Dark Green',nameUr:'گہرا سبز',hex:'#166534',imgIdx:1},{name:'Mint Green',nameUr:'منٹ سبز',hex:'#6ee7b7',imgIdx:2},{name:'Red',nameUr:'لال',hex:'#ef4444',imgIdx:3}],desc:'Heavy-duty rugged case for Samsung Galaxy A16 5G.',descUr:'سام سنگ A16 5G کے لیے رگڈ کیس۔'},
-{id:6,name:'Realme C11 Crystal Glitter Cover',nameUr:'ریئل می C11 کرسٹل گلٹر کور',cat:'covers',badge:null,brand:'Realme',price:280,oldPrice:400,imgs:['https://m.media-amazon.com/images/I/61QEDrM-bpL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/611gRgrlH4L._AC_SX679_.jpg'],colors:[{name:'Pink',nameUr:'گلابی',hex:'#f9a8c9',imgIdx:0},{name:'Purple',nameUr:'جامنی',hex:'#7c3aed',imgIdx:1}],desc:'Transparent glitter crystal TPU case for Realme C11.',descUr:'ریئل می C11 کے لیے گلٹر کرسٹل کیس۔'},
-{id:7,name:'Android Rugged Armor Case',nameUr:'اینڈرائیڈ رگڈ آرمر کیس',cat:'covers',badge:null,brand:'Generic',price:320,oldPrice:500,imgs:['https://m.media-amazon.com/images/I/710+2gQhGQL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81P-C+v2TnL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71oP25DAJ7L._AC_SX569_.jpg','https://m.media-amazon.com/images/I/7157A+jxaSL._AC_SX569_.jpg'],colors:[{name:'Black+Red',nameUr:'کالا+لال',hex:'#ef4444',imgIdx:0},{name:'Green',nameUr:'سبز',hex:'#22c55e',imgIdx:1},{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:2},{name:'Olive',nameUr:'زیتونی',hex:'#65a30d',imgIdx:3}],desc:'Heavy-duty metal + silicone armor case.',descUr:'بھاری ڈیوٹی آرمر کیس۔'},
-{id:8,name:'Wired In-Ear Earphones',nameUr:'وائرڈ ان ایئر ایئر فونز',cat:'earphones',badge:'HOT',brand:'Generic',price:650,oldPrice:1000,imgs:['https://m.media-amazon.com/images/I/51tE5dn5QxL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/51QhFh7WGGL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/514YUBv14QL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/71Ig7LaqT7L._AC_SX569_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:1},{name:'Red',nameUr:'لال',hex:'#ef4444',imgIdx:2},{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:3}],desc:'High-quality wired in-ear earphones with powerful bass.',descUr:'طاقتور باس کے ساتھ ان ایئر ایئر فونز۔'},
-{id:9,name:'Apple AirPods Pro 2nd Generation',nameUr:'ایپل ایئر پاڈز پرو دوسری نسل',cat:'airpods',badge:'NEW',brand:'Apple',price:8500,oldPrice:12000,imgs:['https://m.media-amazon.com/images/I/51NRGHU2NoL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/611pEx7220L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61n7MpBGeBL._AC_SX679_.jpg'],colors:[],desc:'Original Apple AirPods Pro 2nd Generation with ANC.',descUr:'اصلی ایپل ایئر پاڈز پرو۔ ایکٹو نوائز کینسلیشن۔'},
-{id:10,name:'Samsung Galaxy Buds Pro',nameUr:'سام سنگ گیلیکسی بڈز پرو',cat:'airpods',badge:null,brand:'Samsung',price:7200,oldPrice:10500,imgs:['https://m.media-amazon.com/images/I/51QEHqsjzPL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/51Hg2oo0nHL._AC_SX679_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:1}],desc:'Samsung Galaxy Buds Pro with Intelligent ANC.',descUr:'سام سنگ گیلیکسی بڈز پرو۔ انٹیلیجنٹ ANC۔'},
-{id:11,name:'ESR AirPods 4 Wireless Charging Case',nameUr:'ESR ایئر پاڈز 4 وائرلیس چارجنگ کیس',cat:'airpods',badge:'HOT',brand:'ESR',price:1200,oldPrice:1800,imgs:['https://m.media-amazon.com/images/I/61Uwm+8gn1L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61YCaL+maUL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/613+NfkUBoL._AC_SX679_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:1},{name:'Desert Titanium',nameUr:'ڈیزرٹ ٹائٹینیم',hex:'#d4a96a',imgIdx:2}],desc:'ESR protective case for AirPods 4 with Qi wireless charging.',descUr:'ESR کیس ایئر پاڈز 4 کے لیے۔ Qi وائرلیس چارجنگ۔'},
-{id:12,name:'65W GaN Fast Charger — 3 Ports',nameUr:'65W GaN فاسٹ چارجر',cat:'chargers',badge:'HOT',brand:'INIU / MINIX',price:1800,oldPrice:2500,imgs:['https://m.media-amazon.com/images/I/71-JlJ622oL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/61ojwZSg3pL._AC_SX679_.jpg'],colors:[{name:'INIU',nameUr:'INIU',hex:'#1a1a1a',imgIdx:0},{name:'MINIX',nameUr:'MINIX',hex:'#374151',imgIdx:1}],desc:'65W GaN fast charger with 3 USB ports.',descUr:'65W GaN فاسٹ چارجر 3 پورٹس۔'},
-{id:13,name:'Samsung 45W Super Fast Charger',nameUr:'سام سنگ 45W سپر فاسٹ چارجر',cat:'chargers',badge:'NEW',brand:'Samsung',price:2200,oldPrice:3000,imgs:['https://m.media-amazon.com/images/I/61xeaSwjuCL._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/51qzmoZBLYL._AC_SX679_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:1}],desc:'Original Samsung 45W Super Fast Charging adapter.',descUr:'اصلی سام سنگ 45W چارجر۔'},
-{id:14,name:'Apple 20W USB-C Fast Charger',nameUr:'ایپل 20W USB-C فاسٹ چارجر',cat:'chargers',badge:null,brand:'Apple',price:1500,oldPrice:2000,imgs:['https://m.media-amazon.com/images/I/51PA37nXgJL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/41mPNFKp2wL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61t+vHQ67DL._AC_SX679_.jpg'],colors:[],desc:'Original Apple 20W USB-C Power Adapter.',descUr:'اصلی ایپل 20W چارجر۔'},
-{id:15,name:'Ailun 9H Tempered Glass Screen Guard',nameUr:'Ailun 9H ٹیمپرڈ گلاس اسکرین گارڈ',cat:'screen-guards',badge:'HOT',brand:'Ailun',price:350,oldPrice:600,imgs:['https://m.media-amazon.com/images/I/71OicfvCsbL._AC_SL1500_.jpg','https://m.media-amazon.com/images/I/71mEz9OkKGL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71xLbMGka0L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/6128a4sx+0L._AC_SX679_.jpg'],colors:[],desc:'Ailun premium 9H hardness tempered glass.',descUr:'Ailun 9H ٹیمپرڈ گلاس۔'},
-{id:16,name:'INIU 20000mAh 65W Power Bank',nameUr:'INIU 20000mAh 65W پاور بینک',cat:'power-banks',badge:'HOT',brand:'INIU',price:3500,oldPrice:5000,imgs:['https://m.media-amazon.com/images/I/51B-TtrqU6L._AC_SX679_.jpg','https://m.media-amazon.com/images/I/61UA7QJYZCL._AC_SX679_.jpg'],colors:[],desc:'INIU 20,000mAh power bank with 65W fast charging.',descUr:'INIU 20,000mAh پاور بینک 65W فاسٹ چارجنگ۔'},
-{id:17,name:'10000mAh Ultra Slim Power Bank',nameUr:'10000mAh الٹرا سلم پاور بینک',cat:'power-banks',badge:null,brand:'Generic',price:1800,oldPrice:2500,imgs:['https://m.media-amazon.com/images/I/519bJupcnQL._AC_SL1200_.jpg','https://m.media-amazon.com/images/I/71Zb2AEIATL._AC_SL1500_.jpg'],colors:[],desc:'Ultra-slim 10,000mAh power bank. 22.5W fast charge.',descUr:'14mm الٹرا سلم 10,000mAh پاور بینک۔'},
-{id:18,name:'30000mAh High Capacity Power Bank',nameUr:'30000mAh ہائی کیپیسٹی پاور بینک',cat:'power-banks',badge:'NEW',brand:'Generic',price:4800,oldPrice:7000,imgs:['https://m.media-amazon.com/images/I/31z1jUNsmOL._AC_.jpg','https://m.media-amazon.com/images/I/41SehL3mNrL._AC_.jpg'],colors:[],desc:'Massive 30,000mAh power bank with LED flashlight.',descUr:'30,000mAh پاور بینک۔ بلٹ ان فلیش لائٹ۔'},
-{id:19,name:'Sony WH-1000XM5 Headphones',nameUr:'سونی WH-1000XM5 ہیڈ فونز',cat:'headphones',badge:'NEW',brand:'Sony',price:18000,oldPrice:25000,imgs:['https://m.media-amazon.com/images/I/61vJtKbAssL._AC_SX569_.jpg','https://m.media-amazon.com/images/I/61oUbsHuWuL._AC_SY879_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Silver',nameUr:'چاندی',hex:'#9ca3af',imgIdx:1}],desc:'Sony WH-1000XM5 flagship noise-cancelling headphones.',descUr:'سونی فلیگ شپ ہیڈ فونز۔ 30 گھنٹے بیٹری۔'},
-{id:20,name:'JBL Tune 760NC Wireless Headphones',nameUr:'JBL ٹیون 760NC ہیڈ فونز',cat:'headphones',badge:'HOT',brand:'JBL',price:8500,oldPrice:12000,imgs:['https://m.media-amazon.com/images/I/51P5yWaJscL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/51bEfQvoeLL._AC_SL1500_.jpg'],colors:[{name:'White',nameUr:'سفید',hex:'#f3f4f6',imgIdx:0},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:1}],desc:'JBL Tune 760NC active noise-cancelling wireless headphones.',descUr:'JBL 760NC وائرلیس ہیڈ فونز۔ 35 گھنٹے بیٹری۔'},
-{id:21,name:'3-in-1 Multi Fast Charging Cable',nameUr:'3-in-1 ملٹی فاسٹ چارجنگ کیبل',cat:'cables',badge:'HOT',brand:'Generic',price:550,oldPrice:900,imgs:['https://m.media-amazon.com/images/I/61LCDYuThXL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71lOJAPFTvL._AC_SL1500_.jpg'],colors:[],desc:'3-in-1 cable with USB-C, Lightning, and Micro-USB.',descUr:'USB-C، لائٹننگ اور مائیکرو USB ایک کیبل میں۔'},
-{id:22,name:'USB Type-C to A Cable — 5 Pack',nameUr:'USB Type-C to A کیبل — 5 پیک',cat:'cables',badge:null,brand:'SMALLelectric',price:800,oldPrice:1200,imgs:['https://m.media-amazon.com/images/I/71hLGDuvLCL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/719Ok7ujpiL._AC_SL1500_.jpg'],colors:[],desc:'USB-C to A cable 5-pack with fast charging.',descUr:'USB-C کیبل 5 کا پیک۔ فاسٹ چارجنگ۔'},
-{id:23,name:'iPhone 14 OLED Display Screen',nameUr:'آئی فون 14 OLED ڈسپلے اسکرین',cat:'spare-parts',badge:'NEW',brand:'Apple Grade',price:12000,oldPrice:16000,imgs:['https://m.media-amazon.com/images/I/71MzvRpZ8JL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/71OP6M-f74L._AC_SX679_.jpg'],colors:[],desc:'Original-grade OLED replacement screen for iPhone 14.',descUr:'آئی فون 14 OLED ریپلیسمنٹ اسکرین۔'},
-{id:24,name:'JBL Go 3 Portable Bluetooth Speaker',nameUr:'JBL گو 3 پورٹیبل اسپیکر',cat:'speakers',badge:'HOT',brand:'JBL',price:5500,oldPrice:7500,imgs:['https://m.media-amazon.com/images/I/715ZUYP5N5L._AC_SX569_.jpg','https://m.media-amazon.com/images/I/91jMTx-oKhL._AC_SL1500_.jpg'],colors:[{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:0},{name:'Blue',nameUr:'نیلا',hex:'#3b82f6',imgIdx:1}],desc:'JBL Go 3 Bluetooth speaker with IP67 waterproofing.',descUr:'JBL گو 3 اسپیکر۔ IP67 واٹر پروف۔'},
-{id:25,name:'Kodak PIXPRO FZ55 16MP Camera',nameUr:'Kodak PIXPRO FZ55 16MP کیمرہ',cat:'camera',badge:'NEW',brand:'Kodak',price:15000,oldPrice:20000,imgs:['https://m.media-amazon.com/images/I/81a8ZMB-nNL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81-drCl5xVL._AC_SX679_.jpg'],colors:[{name:'Red',nameUr:'لال',hex:'#ef4444',imgIdx:0},{name:'Black',nameUr:'سیاہ',hex:'#1a1a1a',imgIdx:1}],desc:'Kodak PIXPRO FZ55 16MP digital camera. 5x optical zoom.',descUr:'Kodak 16MP کیمرہ۔ 5x زوم۔'},
-{id:26,name:'Sony Alpha 7 Full-Frame Camera',nameUr:'سونی الفا 7 فل فریم کیمرہ',cat:'camera',badge:'HOT',brand:'Sony',price:85000,oldPrice:110000,imgs:['https://m.media-amazon.com/images/I/814+bb-I8HL._AC_SX679_.jpg','https://m.media-amazon.com/images/I/81UPLQHpzcL._AC_SX569_.jpg'],colors:[],desc:'Sony Alpha 7 full-frame mirrorless camera. 4K video.',descUr:'سونی الفا 7 فل فریم مررلیس کیمرہ۔ 4K ویڈیو۔'},
+{id:1,name:'iPhone 13 Premium Silicone Cover',nameUr:'آئی فون 13 پریمیم سلیکون کور',cat:'covers',badge:'NEW',brand:'Apple',price:850,oldPrice:1200,imgs:['https://m.media-amazon.com/images/I/61npKqB2yWL._AC_SX679_.jpg']},
+{id:2,name:'iPhone 11 Transparent Hard Cover',nameUr:'آئی فون 11 شفاف ہارڈ کور',cat:'covers',badge:'HOT',brand:'Generic',price:350,oldPrice:550,imgs:['https://m.media-amazon.com/images/I/61Txe-1Sa3L._AC_SX679_.jpg']},
+{id:3,name:'Cute Cartoon Phone Cover',nameUr:'کیوٹ کارٹون فون کور',cat:'covers',badge:null,brand:'Trendy',price:450,oldPrice:700,imgs:['https://m.media-amazon.com/images/I/718W2ZNFB0L._AC_SX569_.jpg']},
+{id:4,name:'Vivo V29 Faux Leather Flip Cover',nameUr:'ویوو V29 فیوکس لیدر فلپ کور',cat:'covers',badge:'SALE',brand:'Vivo',price:650,oldPrice:900,imgs:['https://m.media-amazon.com/images/I/617y-ZfgF9L._AC_SX679_.jpg']},
+{id:5,name:'Samsung Galaxy A16 5G Rugged Cover',nameUr:'سام سنگ A16 5G رگڈ کور',cat:'covers',badge:'HOT',brand:'Samsung',price:750,oldPrice:1100,imgs:['https://m.media-amazon.com/images/I/81tZjh3sxrL._AC_SX679_.jpg']},
+{id:6,name:'Realme C11 Crystal Glitter Cover',nameUr:'ریئل می C11 کرسٹل گلٹر کور',cat:'covers',badge:null,brand:'Realme',price:280,oldPrice:400,imgs:['https://m.media-amazon.com/images/I/61QEDrM-bpL._AC_SX679_.jpg']},
+{id:7,name:'Android Rugged Armor Case',nameUr:'اینڈرائیڈ رگڈ آرمر کیس',cat:'covers',badge:null,brand:'Generic',price:320,oldPrice:500,imgs:['https://m.media-amazon.com/images/I/710+2gQhGQL._AC_SX679_.jpg']},
+{id:8,name:'Wired In-Ear Earphones',nameUr:'وائرڈ ان ایئر ایئر فونز',cat:'earphones',badge:'HOT',brand:'Generic',price:650,oldPrice:1000,imgs:['https://m.media-amazon.com/images/I/51tE5dn5QxL._AC_SX569_.jpg']},
+{id:9,name:'Apple AirPods Pro 2nd Generation',nameUr:'ایپل ایئر پاڈز پرو دوسری نسل',cat:'airpods',badge:'NEW',brand:'Apple',price:8500,oldPrice:12000,imgs:['https://m.media-amazon.com/images/I/51NRGHU2NoL._AC_SX679_.jpg']},
+{id:10,name:'Samsung Galaxy Buds Pro',nameUr:'سام سنگ گیلیکسی بڈز پرو',cat:'airpods',badge:null,brand:'Samsung',price:7200,oldPrice:10500,imgs:['https://m.media-amazon.com/images/I/51QEHqsjzPL._AC_SX679_.jpg']},
+{id:11,name:'ESR AirPods 4 Wireless Charging Case',nameUr:'ESR ایئر پاڈز 4 وائرلیس چارجنگ کیس',cat:'airpods',badge:'HOT',brand:'ESR',price:1200,oldPrice:1800,imgs:['https://m.media-amazon.com/images/I/61Uwm+8gn1L._AC_SX679_.jpg']},
+{id:12,name:'65W GaN Fast Charger — 3 Ports',nameUr:'65W GaN فاسٹ چارجر',cat:'chargers',badge:'HOT',brand:'INIU / MINIX',price:1800,oldPrice:2500,imgs:['https://m.media-amazon.com/images/I/71-JlJ622oL._AC_SX569_.jpg']},
+{id:13,name:'Samsung 45W Super Fast Charger',nameUr:'سام سنگ 45W سپر فاسٹ چارجر',cat:'chargers',badge:'NEW',brand:'Samsung',price:2200,oldPrice:3000,imgs:['https://m.media-amazon.com/images/I/61xeaSwjuCL._AC_SL1500_.jpg']},
+{id:14,name:'Apple 20W USB-C Fast Charger',nameUr:'ایپل 20W USB-C فاسٹ چارجر',cat:'chargers',badge:null,brand:'Apple',price:1500,oldPrice:2000,imgs:['https://m.media-amazon.com/images/I/51PA37nXgJL._AC_SX679_.jpg']},
+{id:15,name:'Ailun 9H Tempered Glass Screen Guard',nameUr:'Ailun 9H ٹیمپرڈ گلاس اسکرین گارڈ',cat:'screen-guards',badge:'HOT',brand:'Ailun',price:350,oldPrice:600,imgs:['https://m.media-amazon.com/images/I/71OicfvCsbL._AC_SL1500_.jpg']},
+{id:16,name:'INIU 20000mAh 65W Power Bank',nameUr:'INIU 20000mAh 65W پاور بینک',cat:'power-banks',badge:'HOT',brand:'INIU',price:3500,oldPrice:5000,imgs:['https://m.media-amazon.com/images/I/51B-TtrqU6L._AC_SX679_.jpg']},
+{id:17,name:'10000mAh Ultra Slim Power Bank',nameUr:'10000mAh الٹرا سلم پاور بینک',cat:'power-banks',badge:null,brand:'Generic',price:1800,oldPrice:2500,imgs:['https://m.media-amazon.com/images/I/519bJupcnQL._AC_SL1200_.jpg']},
+{id:18,name:'30000mAh High Capacity Power Bank',nameUr:'30000mAh ہائی کیپیسٹی پاور بینک',cat:'power-banks',badge:'NEW',brand:'Generic',price:4800,oldPrice:7000,imgs:['https://m.media-amazon.com/images/I/31z1jUNsmOL._AC_.jpg']},
+{id:19,name:'Sony WH-1000XM5 Headphones',nameUr:'سونی WH-1000XM5 ہیڈ فونز',cat:'headphones',badge:'NEW',brand:'Sony',price:18000,oldPrice:25000,imgs:['https://m.media-amazon.com/images/I/61vJtKbAssL._AC_SX569_.jpg']},
+{id:20,name:'JBL Tune 760NC Wireless Headphones',nameUr:'JBL ٹیون 760NC ہیڈ فونز',cat:'headphones',badge:'HOT',brand:'JBL',price:8500,oldPrice:12000,imgs:['https://m.media-amazon.com/images/I/51P5yWaJscL._AC_SX679_.jpg']},
+{id:21,name:'3-in-1 Multi Fast Charging Cable',nameUr:'3-in-1 ملٹی فاسٹ چارجنگ کیبل',cat:'cables',badge:'HOT',brand:'Generic',price:550,oldPrice:900,imgs:['https://m.media-amazon.com/images/I/61LCDYuThXL._AC_SX679_.jpg']},
+{id:22,name:'USB Type-C to A Cable — 5 Pack',nameUr:'USB Type-C to A کیبل — 5 پیک',cat:'cables',badge:null,brand:'SMALLelectric',price:800,oldPrice:1200,imgs:['https://m.media-amazon.com/images/I/71hLGDuvLCL._AC_SX679_.jpg']},
+{id:23,name:'iPhone 14 OLED Display Screen',nameUr:'آئی فون 14 OLED ڈسپلے اسکرین',cat:'spare-parts',badge:'NEW',brand:'Apple Grade',price:12000,oldPrice:16000,imgs:['https://m.media-amazon.com/images/I/71MzvRpZ8JL._AC_SX679_.jpg']},
+{id:24,name:'JBL Go 3 Portable Bluetooth Speaker',nameUr:'JBL گو 3 پورٹیبل اسپیکر',cat:'speakers',badge:'HOT',brand:'JBL',price:5500,oldPrice:7500,imgs:['https://m.media-amazon.com/images/I/715ZUYP5N5L._AC_SX569_.jpg']},
+{id:25,name:'Kodak PIXPRO FZ55 16MP Camera',nameUr:'Kodak PIXPRO FZ55 16MP کیمرہ',cat:'camera',badge:'NEW',brand:'Kodak',price:15000,oldPrice:20000,imgs:['https://m.media-amazon.com/images/I/81a8ZMB-nNL._AC_SX679_.jpg']},
+{id:26,name:'Sony Alpha 7 Full-Frame Camera',nameUr:'سونی الفا 7 فل فریم کیمرہ',cat:'camera',badge:'HOT',brand:'Sony',price:85000,oldPrice:110000,imgs:['https://m.media-amazon.com/images/I/814+bb-I8HL._AC_SX679_.jpg']},
 ];
 
-// ===== STATE =====
+// ===== CART STATE (shared with index.html via localStorage) =====
+let cartItems = JSON.parse(localStorage.getItem('am_cart') || '[]');
+
+function saveCart() { localStorage.setItem('am_cart', JSON.stringify(cartItems)); }
+
+function addToCartById(productId, e) {
+  if (e) e.stopPropagation();
+  const p = allProducts.find(x => x.id === productId);
+  if (!p) return;
+  const existing = cartItems.find(x => x.id === productId);
+  if (existing) { existing.qty++; } 
+  else { cartItems.push({ id: p.id, name: p.name, nameUr: p.nameUr, brand: p.brand, price: p.price, oldPrice: p.oldPrice, img: p.imgs[0], qty: 1 }); }
+  saveCart();
+  updateCartBadge();
+  renderCartDrawer();
+  showToast(isUrdu ? '✓ کارٹ میں شامل ہو گیا!' : '✓ Added to Cart!', 'success');
+  // Bounce the cart icon
+  const btn = document.getElementById('nav-cart-btn');
+  btn.classList.remove('cart-bounce');
+  void btn.offsetWidth;
+  btn.classList.add('cart-bounce');
+  setTimeout(() => btn.classList.remove('cart-bounce'), 600);
+  // Open cart drawer
+  openCart();
+}
+
+function changeQty(id, delta) {
+  const item = cartItems.find(x => x.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cartItems = cartItems.filter(x => x.id !== id);
+  saveCart();
+  updateCartBadge();
+  renderCartDrawer();
+}
+
+function removeItem(id) {
+  cartItems = cartItems.filter(x => x.id !== id);
+  saveCart();
+  updateCartBadge();
+  renderCartDrawer();
+}
+
+function updateCartBadge() {
+  const total = cartItems.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cart-badge').textContent = total;
+  document.getElementById('drawer-count').textContent = total;
+}
+
+function renderCartDrawer() {
+  const list = document.getElementById('cart-items-list');
+  const footer = document.getElementById('cart-footer');
+  const empty = document.getElementById('cart-empty');
+
+  if (!cartItems.length) {
+    list.innerHTML = '';
+    list.appendChild(empty);
+    empty.style.display = 'flex';
+    footer.style.display = 'none';
+    return;
+  }
+  empty.style.display = 'none';
+  footer.style.display = 'block';
+  list.innerHTML = '';
+  cartItems.forEach(item => {
+    const displayName = (isUrdu && item.nameUr) ? item.nameUr : item.name;
+    const itemTotal = item.price * item.qty;
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <img class="cart-item-img" src="${item.img}" alt="${item.name}" onerror="this.style.background='var(--surface2)'">
+      <div class="cart-item-info">
+        <div class="cart-item-brand">${item.brand}</div>
+        <div class="cart-item-name">${displayName}</div>
+        <div>
+          <span class="cart-item-price">Rs.${itemTotal.toLocaleString()}</span>
+          <span class="cart-item-old">Rs.${item.oldPrice.toLocaleString()}</span>
+        </div>
+        <div class="cart-item-row">
+          <div class="cart-qty">
+            <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+            <span class="qty-num">${item.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+          </div>
+          <button class="cart-remove-btn" onclick="removeItem(${item.id})">${isUrdu ? 'ہٹائیں' : 'Remove'}</button>
+        </div>
+      </div>`;
+    list.appendChild(div);
+  });
+
+  const grand = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
+  const orig  = cartItems.reduce((s, i) => s + i.oldPrice * i.qty, 0);
+  document.getElementById('cart-original').textContent = 'Rs.' + orig.toLocaleString();
+  document.getElementById('cart-saved').textContent    = 'Rs.' + (orig - grand).toLocaleString();
+  document.getElementById('cart-total').textContent    = 'Rs.' + grand.toLocaleString();
+}
+
+function openCart()  { document.getElementById('cart-overlay').classList.add('open'); document.getElementById('cart-drawer').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeCart() { document.getElementById('cart-overlay').classList.remove('open'); document.getElementById('cart-drawer').classList.remove('open'); document.body.style.overflow = ''; }
+
+// ===== PRODUCTS STATE =====
 let currentCategory = 'all';
 let currentSearch = '';
 let currentSort = 'default';
@@ -317,7 +514,6 @@ function initFromURL() {
   const params = new URLSearchParams(window.location.search);
   const cat = params.get('cat');
   const q   = params.get('q');
-
   if (cat) {
     currentCategory = cat;
     document.querySelectorAll('.filter-tab').forEach(t => {
@@ -325,23 +521,16 @@ function initFromURL() {
       if (t.getAttribute('onclick') && t.getAttribute('onclick').includes("'" + cat + "'")) t.classList.add('active');
     });
   }
-
   if (q) {
     document.getElementById('search-input').value = q;
     currentSearch = q.toLowerCase().trim();
-
     const matches = allProducts.filter(p =>
       p.name.toLowerCase().includes(currentSearch) ||
       (p.nameUr && p.nameUr.includes(currentSearch)) ||
       p.brand.toLowerCase().includes(currentSearch) ||
       p.cat.toLowerCase().includes(currentSearch)
     );
-
-    // Exactly one product matches the search -> jump straight to its page
-    if (matches.length === 1) {
-      window.location.replace('product-detail.html?id=' + matches[0].id);
-      return true; // signal: redirecting, don't render the grid
-    }
+    if (matches.length === 1) { window.location.replace('product-detail.html?id=' + matches[0].id); return true; }
   }
   return false;
 }
@@ -361,21 +550,29 @@ function filterProducts() {
     const matchSearch = !currentSearch || p.name.toLowerCase().includes(currentSearch) || (p.nameUr && p.nameUr.includes(currentSearch)) || p.brand.toLowerCase().includes(currentSearch) || p.cat.toLowerCase().includes(currentSearch);
     return matchCat && matchSearch;
   });
-  if (currentSort === 'price-low')  filtered.sort((a,b) => a.price - b.price);
+  if (currentSort === 'price-low')   filtered.sort((a,b) => a.price - b.price);
   else if (currentSort === 'price-high') filtered.sort((a,b) => b.price - a.price);
-  else if (currentSort === 'discount') filtered.sort((a,b) => (b.oldPrice-b.price)/b.oldPrice - (a.oldPrice-a.price)/a.oldPrice);
+  else if (currentSort === 'discount')   filtered.sort((a,b) => (b.oldPrice-b.price)/b.oldPrice - (a.oldPrice-a.price)/a.oldPrice);
   renderGrid(filtered);
   document.getElementById('results-count').textContent = filtered.length + ' Product' + (filtered.length !== 1 ? 's' : '');
 }
 
 function renderGrid(products) {
   const grid = document.getElementById('products-grid');
-  if (!products.length) { grid.innerHTML = '<div class="empty-state"><div class="emoji">😕</div><h3>No Products Found</h3><p>Try a different search or category.</p></div>'; return; }
+  if (!products.length) {
+    grid.innerHTML = '<div class="empty-state"><div class="emoji">😕</div><h3>No Products Found</h3><p>Try a different search or category.</p></div>';
+    return;
+  }
+  const detailLabel = isUrdu ? 'تفصیل دیکھیں' : 'View Details';
+  const cartLabel   = isUrdu ? '🛒 کارٹ میں ڈالیں' : '🛒 Add to Cart';
+
   grid.innerHTML = products.map(p => {
     const save = Math.round((1 - p.price / p.oldPrice) * 100);
     const badgeClass = p.badge === 'NEW' ? 'badge-new' : p.badge === 'HOT' ? 'badge-hot' : p.badge === 'SALE' ? 'badge-sale' : '';
-    const displayName = (typeof isUrdu !== 'undefined' && isUrdu && p.nameUr) ? p.nameUr : p.name;
-    const btnLabel = (typeof isUrdu !== 'undefined' && isUrdu) ? 'تفصیل دیکھیں' : 'View Details';
+    const displayName = (isUrdu && p.nameUr) ? p.nameUr : p.name;
+    const inCart = cartItems.find(x => x.id === p.id);
+    const cartBtnClass = inCart ? 'prod-btn-cart added' : 'prod-btn-cart';
+    const cartBtnText  = inCart ? (isUrdu ? '✓ شامل' : '✓ Added') : cartLabel;
     return `<div class="prod-card" onclick="window.location='product-detail.html?id=${p.id}'">
       <div class="prod-img-wrap">
         <img src="${p.imgs[0]}" alt="${p.name}" loading="lazy">
@@ -390,14 +587,15 @@ function renderGrid(products) {
           <div class="prod-save">${save}% OFF</div>
         </div>
       </div>
-      <button class="prod-btn" onclick="event.stopPropagation();window.location='product-detail.html?id=${p.id}'">${btnLabel}</button>
+      <div class="prod-actions">
+        <button class="prod-btn-detail" onclick="event.stopPropagation();window.location='product-detail.html?id=${p.id}'">${detailLabel}</button>
+        <button class="${cartBtnClass}" id="cart-btn-${p.id}" onclick="addToCartById(${p.id}, event)">${cartBtnText}</button>
+      </div>
     </div>`;
   }).join('');
 }
 
-// ══════════════════════════════════
-// ACCESSIBILITY FUNCTIONS
-// ══════════════════════════════════
+// ===== ACCESSIBILITY =====
 function toggleA11yPanel() {
   const panel = document.getElementById('a11y-panel');
   const btn   = document.getElementById('a11y-toggle-btn');
@@ -414,61 +612,28 @@ document.addEventListener('click', function(e) {
   }
 });
 let currentFontScale = parseInt(localStorage.getItem('am_fontSize') || '100', 10);
-function applyFontSize() {
-  document.documentElement.style.fontSize = (currentFontScale / 100) * 16 + 'px';
-  const el = document.getElementById('font-size-val');
-  if (el) el.textContent = currentFontScale + '%';
-}
-function changeFontSize(dir) {
-  currentFontScale = Math.min(140, Math.max(80, currentFontScale + dir * 10));
-  localStorage.setItem('am_fontSize', currentFontScale);
-  applyFontSize();
-}
-function toggleContrast() {
-  const active = document.body.classList.toggle('high-contrast');
-  localStorage.setItem('am_contrast', active ? '1' : '');
-  const inp = document.getElementById('a11y-contrast-input');
-  if (inp) inp.checked = active;
-}
-function toggleDyslexia() {
-  const active = document.body.classList.toggle('dyslexia-font');
-  localStorage.setItem('am_dyslexia', active ? '1' : '');
-  const inp = document.getElementById('a11y-dyslexia-input');
-  if (inp) inp.checked = active;
-}
-function toggleAnimations() {
-  const active = document.body.classList.toggle('pause-animations');
-  localStorage.setItem('am_pauseAnim', active ? '1' : '');
-  const inp = document.getElementById('a11y-pause-input');
-  if (inp) inp.checked = active;
-}
+function applyFontSize() { document.documentElement.style.fontSize = (currentFontScale / 100) * 16 + 'px'; const el = document.getElementById('font-size-val'); if (el) el.textContent = currentFontScale + '%'; }
+function changeFontSize(dir) { currentFontScale = Math.min(140, Math.max(80, currentFontScale + dir * 10)); localStorage.setItem('am_fontSize', currentFontScale); applyFontSize(); }
+function toggleContrast() { const a = document.body.classList.toggle('high-contrast'); localStorage.setItem('am_contrast', a?'1':''); const i=document.getElementById('a11y-contrast-input'); if(i) i.checked=a; }
+function toggleDyslexia() { const a = document.body.classList.toggle('dyslexia-font'); localStorage.setItem('am_dyslexia', a?'1':''); const i=document.getElementById('a11y-dyslexia-input'); if(i) i.checked=a; }
+function toggleAnimations() { const a = document.body.classList.toggle('pause-animations'); localStorage.setItem('am_pauseAnim', a?'1':''); const i=document.getElementById('a11y-pause-input'); if(i) i.checked=a; }
 function toggleLargeCursor() {
-  const active = document.body.classList.toggle('large-cursor');
-  localStorage.setItem('am_largeCursor', active ? '1' : '');
-  const inp = document.getElementById('a11y-cursor-input');
-  if (inp) inp.checked = active;
-  const style = document.getElementById('large-cursor-style');
-  style.textContent = active ? '*, *::before, *::after { cursor: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'%3E%3Ccircle cx=\'4\' cy=\'4\' r=\'4\' fill=\'%2300d4ff\'/%3E%3Cline x1=\'4\' y1=\'4\' x2=\'4\' y2=\'28\' stroke=\'%2300d4ff\' stroke-width=\'3\'/%3E%3Cline x1=\'4\' y1=\'4\' x2=\'20\' y2=\'20\' stroke=\'%2300d4ff\' stroke-width=\'3\'/%3E%3C/svg%3E") 4 4, auto !important; }' : '';
+  const a = document.body.classList.toggle('large-cursor'); localStorage.setItem('am_largeCursor', a?'1':'');
+  const i=document.getElementById('a11y-cursor-input'); if(i) i.checked=a;
+  const s=document.getElementById('large-cursor-style');
+  s.textContent = a ? '*, *::before, *::after { cursor: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'%3E%3Ccircle cx=\'4\' cy=\'4\' r=\'4\' fill=\'%2300d4ff\'/%3E%3Cline x1=\'4\' y1=\'4\' x2=\'4\' y2=\'28\' stroke=\'%2300d4ff\' stroke-width=\'3\'/%3E%3Cline x1=\'4\' y1=\'4\' x2=\'20\' y2=\'20\' stroke=\'%2300d4ff\' stroke-width=\'3\'/%3E%3C/svg%3E") 4 4, auto !important; }' : '';
 }
 let readingGuideActive = false;
 function toggleReadingGuide() {
-  readingGuideActive = !readingGuideActive;
-  localStorage.setItem('am_readingGuide', readingGuideActive ? '1' : '');
-  const guide = document.getElementById('reading-guide');
-  const inp   = document.getElementById('a11y-guide-input');
-  if (inp) inp.checked = readingGuideActive;
-  guide.style.display = readingGuideActive ? 'block' : 'none';
+  readingGuideActive = !readingGuideActive; localStorage.setItem('am_readingGuide', readingGuideActive?'1':'');
+  const g=document.getElementById('reading-guide'); const i=document.getElementById('a11y-guide-input'); if(i) i.checked=readingGuideActive;
+  g.style.display = readingGuideActive ? 'block' : 'none';
   if (readingGuideActive) document.addEventListener('mousemove', moveReadingGuide);
   else document.removeEventListener('mousemove', moveReadingGuide);
 }
-function moveReadingGuide(e) {
-  const guide = document.getElementById('reading-guide');
-  if (guide) guide.style.top = e.clientY + 'px';
-}
+function moveReadingGuide(e) { const g=document.getElementById('reading-guide'); if(g) g.style.top=e.clientY+'px'; }
 
-// ══════════════════════════════════
-// LANGUAGE TOGGLE (EN / UR)
-// ══════════════════════════════════
+// ===== LANGUAGE =====
 let isUrdu = localStorage.getItem('am_lang') === 'ur';
 function applyLang() {
   document.body.classList.toggle('urdu-mode', isUrdu);
@@ -483,42 +648,64 @@ function applyLang() {
     const ph = isUrdu ? el.getAttribute('data-ur-placeholder') : el.getAttribute('data-en-placeholder');
     if (ph !== null) el.placeholder = ph;
   });
+  // Update cart UI text
+  document.getElementById('cart-title-text').textContent  = isUrdu ? 'آپ کا کارٹ' : 'Your Cart';
+  document.getElementById('cart-empty-text').textContent  = isUrdu ? 'کارٹ خالی ہے' : 'Your cart is empty';
+  document.getElementById('cart-empty-sub').textContent   = isUrdu ? 'مصنوعات شامل کریں' : 'Add products to see them here';
+  document.getElementById('free-delivery-text').textContent = isUrdu ? 'مفت ڈیلیوری — آپ اہل ہیں!' : 'Free Delivery — You qualify!';
+  document.getElementById('subtotal-label').textContent   = isUrdu ? 'اصل قیمت' : 'Original Price';
+  document.getElementById('saved-label').textContent      = isUrdu ? 'آپ نے بچائے' : 'You Saved';
+  document.getElementById('total-label').textContent      = isUrdu ? 'کل رقم' : 'Grand Total';
+  document.getElementById('checkout-btn').textContent     = isUrdu ? 'چیک آؤٹ کریں →' : 'Proceed to Checkout →';
+  document.getElementById('continue-btn').textContent     = isUrdu ? '← خریداری جاری رکھیں' : '← Continue Shopping';
   if (isUrdu && !document.getElementById('urdu-font-link')) {
-    const link = document.createElement('link');
-    link.id = 'urdu-font-link'; link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap';
+    const link = document.createElement('link'); link.id='urdu-font-link'; link.rel='stylesheet';
+    link.href='https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap';
     document.head.appendChild(link);
   }
   filterProducts();
 }
-function toggleLanguage() {
-  isUrdu = !isUrdu;
-  localStorage.setItem('am_lang', isUrdu ? 'ur' : 'en');
-  applyLang();
+function toggleLanguage() { isUrdu = !isUrdu; localStorage.setItem('am_lang', isUrdu ? 'ur' : 'en'); applyLang(); }
+
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' ' + type : '');
+  setTimeout(() => { t.className = 'toast'; }, 2500);
 }
 
-// ══════════════════════════════════
-// RESTORE SAVED SETTINGS
-// ══════════════════════════════════
-(function restoreSettings() {
+// ===== INIT =====
+(function init() {
   applyFontSize();
-  if (localStorage.getItem('am_contrast')    === '1') { document.body.classList.add('high-contrast');    const i=document.getElementById('a11y-contrast-input'); if(i) i.checked=true; }
-  if (localStorage.getItem('am_dyslexia')    === '1') { document.body.classList.add('dyslexia-font');    const i=document.getElementById('a11y-dyslexia-input'); if(i) i.checked=true; }
-  if (localStorage.getItem('am_pauseAnim')   === '1') { document.body.classList.add('pause-animations'); const i=document.getElementById('a11y-pause-input');    if(i) i.checked=true; }
-  if (localStorage.getItem('am_largeCursor') === '1') { toggleLargeCursor(); }
-  if (localStorage.getItem('am_readingGuide')=== '1') { toggleReadingGuide(); }
+  if (localStorage.getItem('am_contrast')   === '1') { document.body.classList.add('high-contrast');    const i=document.getElementById('a11y-contrast-input'); if(i) i.checked=true; }
+  if (localStorage.getItem('am_dyslexia')   === '1') { document.body.classList.add('dyslexia-font');    const i=document.getElementById('a11y-dyslexia-input'); if(i) i.checked=true; }
+  if (localStorage.getItem('am_pauseAnim')  === '1') { document.body.classList.add('pause-animations'); const i=document.getElementById('a11y-pause-input'); if(i) i.checked=true; }
+  if (localStorage.getItem('am_largeCursor')=== '1') { toggleLargeCursor(); }
+  if (localStorage.getItem('am_readingGuide')==='1') { toggleReadingGuide(); }
+
+  updateCartBadge();
+  renderCartDrawer();
 
   const redirecting = initFromURL();
-  if (redirecting) return; // page is navigating to product-detail.html, stop here
+  if (redirecting) return;
 
-  filterProducts();
-  if (isUrdu) applyLang();
+  if (isUrdu) applyLang(); else filterProducts();
 })();
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
+    closeCart();
     document.getElementById('a11y-panel').classList.remove('open');
     document.getElementById('a11y-toggle-btn').setAttribute('aria-expanded','false');
+  }
+});
+
+// Listen for cart changes from other tabs
+window.addEventListener('storage', e => {
+  if (e.key === 'am_cart') {
+    cartItems = JSON.parse(e.newValue || '[]');
+    updateCartBadge();
+    renderCartDrawer();
   }
 });
 </script>
